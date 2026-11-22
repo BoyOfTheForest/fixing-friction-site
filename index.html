@@ -782,7 +782,7 @@
       .start-summary-box pre{margin:10px 0 0;padding:12px;border-radius:8px;background:var(--bg-soft);border:1px solid var(--line);font:inherit;font-size:.86rem;line-height:1.45;white-space:pre-wrap;color:var(--ink);}
       .sc-print-head{display:none;}
       @media print{
-        header.site,.announce-bar,#scReturnBar,.to-top,.toast,footer.site,.sc-intro,.sc-shell,.sc-about-details,.sc-res-hero .btnrow,.sc-res-foot button,#scCalBlock .btnrow,#scRoleBar{display:none !important;}
+        header.site,.announce-bar,#scReturnBar,.to-top,.toast,footer.site,.sc-intro,.sc-shell,.sc-about-details,.sc-res-hero .btnrow,.sc-res-foot button,#scCalBlock .btnrow,#scRoleBar,.ai-sc-back,#aiScStepWrap,#aiScContactWrap,.ai-sc-library-links,.ai-sc-copy-row,.ai-sc-brief button{display:none !important;}
         main{max-width:100%;padding:0;}
         section.page{padding-top:0;}
         .sc-print-head{display:block;border-bottom:2px solid #101F3C;padding-bottom:10px;margin-bottom:14px;}
@@ -791,7 +791,7 @@
         .sc-res-hero{background:#FFFFFF !important;color:#101F3C !important;border:2px solid #101F3C;padding:18px 20px;}
         .sc-res-hero .eyebrow,.sc-res-hero h2,.sc-res-hero p,.sc-res-also{color:#101F3C !important;background:transparent !important;border-color:#CBD5E1 !important;}
         .sc-res-grid{grid-template-columns:1fr 1fr;gap:14px;}
-        .sc-res-card,.sc-cal,.sc-also-card{break-inside:avoid;padding:14px 16px;}
+        .sc-res-card,.sc-cal,.sc-also-card,.ai-arch-box,.ai-sc-dodont-col,.ai-sc-brief{break-inside:avoid;padding:14px 16px;}
       }
       .sc-res-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start;}
       @media (max-width:860px){.sc-res-grid{grid-template-columns:1fr;}}
@@ -1188,6 +1188,18 @@
       .ai-sc-brief pre{white-space:pre-wrap;font-family:inherit;font-size:.94rem;line-height:1.55;margin:10px 0 12px;padding:14px;background:#FFFFFF;border:1px solid var(--line);border-radius:8px;color:var(--ink);}
       .ai-sc-library-links{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
       .ai-sc-library-links .btnrow{margin-top:10px;}
+      .ai-sc-ownership{font-size:.84rem;color:var(--muted);margin-top:12px;}
+      .ai-arch-box{background:var(--card);border:1.5px solid #D97706;border-radius:14px;padding:22px;margin-top:20px;}
+      .ai-arch-svg{display:block;width:100%;max-width:680px;height:auto;margin:14px auto 10px;}
+      .ai-arch-spots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:10px 0 14px;padding:0;list-style:none;}
+      @media(max-width:720px){.ai-arch-spots{grid-template-columns:1fr;}}
+      .ai-arch-spot{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.82rem;line-height:1.35;background:#F8FAFC;color:var(--muted);}
+      .ai-arch-spot strong{display:block;color:var(--ink);font-size:.86rem;}
+      .ai-arch-spot.current{border:2px solid #101F3C;background:#FEF3C7;color:#101F3C;}
+      .ai-arch-spot.current::before{content:"You are roughly here";display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;background:#101F3C;color:#FFFFFF;padding:2px 7px;border-radius:999px;margin-bottom:5px;}
+      .ai-arch-give{background:#F8FAFC;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:12px;}
+      .ai-arch-give ul{margin:8px 0 0;padding-left:20px;display:grid;gap:6px;font-size:.94rem;color:var(--ink);}
+      .ai-arch-note{font-size:.88rem;color:var(--muted);margin:10px 0 0;line-height:1.5;}
 </style>
     <script type="application/ld+json">
     {
@@ -4753,7 +4765,7 @@
           <p class="answerline">Beyond the ADA keynotes above, Matthew speaks to general audiences on AI at work, cognitive load, burnout, creativity, family life, and personal growth. Every talk below is written twice on purpose: once for the person in the seat, and once for the leader that person can reach.</p>
           <p style="margin-top:14px;color:var(--muted);max-width:46rem;">Most people meet this work in a crowd first: at a conference, in an employee session, on video, or through a free guide. They are not the buyer, and this page does not pretend otherwise. What they can do is carry the right sentence to the right person. So each topic names its take it upward element: the line, the method, or the next step an audience member can hand to their boss, their network, or the person who plans the training. The standing next step is the nine-question scorecard, which routes the reader to the service, program, or product that fits. When a whole team wants the session, the routes are a Custom Team Workshop, a Multi Session Track, or a Leadership Friction Review, each opened by a fit conversation.</p>
           <div class="grid2" style="margin-top:22px;">
-<div class="card"><h3>Work Smarter with AI</h3><p class="answerline">Work Smarter with AI is a practical session that helps people use AI to reduce overwhelm, get unstuck, and make everyday work easier, starting with the problem before the tool.</p><p class="small" style="margin-top:12px;"><strong>For the room:</strong> You leave with one stuck task understood better and one small AI assisted workflow you can test the same week. The method is CALM: give the tool context, a clear assignment, limits, and the shape of a useful result, and keep your own judgment in charge.</p><p class="small" style="margin-top:8px;"><strong>For the buyer:</strong> Your teams gain a shared, safe way to use AI on real work, chosen by the task in front of them rather than by the newest product. It is the evergreen course of the same name, offered for whole organizations.</p><p class="small" style="margin-top:8px;"><strong>Formats:</strong> Keynote, interactive workshop, team training, multi session track.</p><p class="small" style="margin-top:8px;"><strong>Funnel role:</strong> Top and middle of funnel: the talk people find first, share first, and ask for by name.</p><p class="small" style="margin-top:8px;"><strong>Take it upward:</strong> One repeatable line to carry upward: start with the problem, not the product. Plus the scorecard link to send to the person who books training.</p><p class="small" style="margin-top:10px;">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the nine-question scorecard</a> · Or check how you brief AI first: <a href="#ai-scorecards?sc=3.1" class="quiet-link" data-go="ai-scorecards" data-ai-sc="3.1">Scorecard 3.1: Get Muse to Behave Better</a>.</p></div>
+<div class="card"><h3>Work Smarter with AI</h3><p class="answerline">Work Smarter with AI is a practical session that helps people use AI to reduce overwhelm, get unstuck, and make everyday work easier, starting with the problem before the tool.</p><p class="small" style="margin-top:12px;"><strong>For the room:</strong> You leave with one stuck task understood better and one small AI assisted workflow you can test the same week. The method is CALM: give the tool context, a clear assignment, limits, and the shape of a useful result, and keep your own judgment in charge.</p><p class="small" style="margin-top:8px;"><strong>For the buyer:</strong> Your teams gain a shared, safe way to use AI on real work, chosen by the task in front of them rather than by the newest product. It is the evergreen course of the same name, offered for whole organizations.</p><p class="small" style="margin-top:8px;"><strong>Formats:</strong> Keynote, interactive workshop, team training, multi session track.</p><p class="small" style="margin-top:8px;"><strong>Funnel role:</strong> Top and middle of funnel: the talk people find first, share first, and ask for by name.</p><p class="small" style="margin-top:8px;"><strong>Take it upward:</strong> One repeatable line to carry upward: start with the problem, not the product. Plus the scorecard link to send to the person who books training.</p><p class="small" style="margin-top:10px;">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the nine-question scorecard</a> · Or check how you brief AI first: <a href="#ai-scorecards?sc=3.1" class="quiet-link" data-go="ai-scorecards" data-ai-sc="3.1">Scorecard 3.1: Get Muse, Meta&#8217;s AI, to Behave Better</a>.</p></div>
 <div class="card"><h3>Reduce Cognitive Load at Work</h3><p class="answerline">Reducing cognitive load at work means removing the extra mental effort a task should never have cost, so people with different ways of working can do their best work.</p><p class="small" style="margin-top:12px;"><strong>For the room:</strong> You learn to spot where work takes more mental effort than it should, and practical tools for executive function and different ways of working, including the TLCCW method and the 10% Polish idea: small finishes that make work usable.</p><p class="small" style="margin-top:8px;"><strong>For the buyer:</strong> Your organization gets language and tools for neuroinclusion that managers can use on Monday, taught through your own meetings, documents, and tools.</p><p class="small" style="margin-top:8px;"><strong>Formats:</strong> Keynote, workshop, leadership briefing, team training.</p><p class="small" style="margin-top:8px;"><strong>Funnel role:</strong> Middle of funnel: the session employee groups request and managers forward.</p><p class="small" style="margin-top:8px;"><strong>Take it upward:</strong> The question to take upward: where does this work cost more mental effort than it should? Plus the scorecard as the named next step for the team.</p><p class="small" style="margin-top:10px;">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the nine-question scorecard</a>.</p></div>
 <div class="card"><h3>Accessible AI</h3><p class="answerline">Accessible AI means using AI and assistive technology to make information easier to access, understand, communicate, and use, so more people can take part in the work.</p><p class="small" style="margin-top:12px;"><strong>For the room:</strong> You try voice to text, meeting transcripts, clearer summaries, writing support, and planning tools, and you learn the four step rhythm: Capture, Access, Reflect, Act. No prior AI experience is needed, and no one is asked to disclose anything. Privacy, permission, and human judgment run through the whole session.</p><p class="small" style="margin-top:8px;"><strong>For the buyer:</strong> Your organization gets an inclusion session that works for the whole workforce, in the same register as the International Day of Persons with Disabilities session built on this material: broad audience, plain language, one small change to test afterward.</p><p class="small" style="margin-top:8px;"><strong>Formats:</strong> Keynote, organization wide session, workshop, ERG and employee summit session.</p><p class="small" style="margin-top:8px;"><strong>Funnel role:</strong> Top of funnel at scale: built for whole organizations and public occasions, and the talk audience members most often describe to their leaders afterward.</p><p class="small" style="margin-top:8px;"><strong>Take it upward:</strong> One small change to test, written down before the room leaves, plus the scorecard link to carry to the person who plans inclusion programming.</p><p class="small" style="margin-top:10px;">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the nine-question scorecard</a>.</p></div>
 <div class="card"><h3>Find Your Seat on the AI Curve</h3><p class="answerline">The AI adoption curve sorts people honestly: AI Skeptic, AI Curious, AI Cautious, and AI Confident. Each seat is a fair starting point, and each one has a different first step.</p><p class="small" style="margin-top:12px;"><strong>For the room:</strong> You find your seat without hype and without being sold to, and you leave with the free first step that fits it: evidence for the skeptic, a prompt that works for the curious, safe habits for the cautious, and leverage for the confident. Frameworks from the Fixing Friction library, including PACE, CALM, and RARE, do the sorting in plain language.</p><p class="small" style="margin-top:8px;"><strong>For the buyer:</strong> Your people stop being one audience at four different stages. Leaders see where their workforce actually sits, and training can start at the right seat instead of the loudest one.</p><p class="small" style="margin-top:8px;"><strong>Formats:</strong> Keynote, conference session, workshop.</p><p class="small" style="margin-top:8px;"><strong>Funnel role:</strong> Top of funnel: the talk built for video viewers, conference crowds, and anyone meeting this work for the first time.</p><p class="small" style="margin-top:8px;"><strong>Take it upward:</strong> Your seat name is the forwardable element: it is the sentence people repeat in the hallway, with the scorecard as the way to find the tools that fit the seat.</p><p class="small" style="margin-top:10px;">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the nine-question scorecard</a>.</p></div>
@@ -4933,7 +4945,7 @@
           <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><circle cx="320" cy="180" r="118" fill="#102A43"/><circle cx="320" cy="180" r="98" fill="#E0F2FE"/><path d="M320 105l28 75-28 75-28-75z" fill="#9A3412"/><path d="M245 180h150" stroke="#0369A1" stroke-width="6" opacity=".5"/><circle cx="320" cy="180" r="13" fill="#102A43"/></svg></figure><h3>Brain Blame</h3><p class="small">In a few minutes, sort whether a stall is personal, relational, or professional, and whether it is cognitive load, overload, or something under the surface. Then leave with one next step.</p><p style="margin-top:12px;"><a href="#brainblame" class="btn ghost" data-go="brainblame" style="padding:9px 16px;font-size:.95rem;">Try Brain Blame</a></p></div>
           <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><rect x="120" y="80" width="250" height="130" rx="20" fill="#0F766E"/><path d="M175 210l-8 52 66-52z" fill="#0F766E"/><rect x="180" y="118" width="130" height="14" rx="7" fill="#FFFFFF"/><rect x="180" y="148" width="90" height="14" rx="7" fill="#FFFFFF" opacity=".65"/><rect x="270" y="165" width="250" height="130" rx="20" fill="#102A43"/><path d="M465 295l8 52-66-52z" fill="#102A43"/><rect x="330" y="203" width="130" height="14" rx="7" fill="#E0F2FE"/><rect x="330" y="233" width="90" height="14" rx="7" fill="#E0F2FE" opacity=".65"/></svg></figure><h3>CareCircle</h3><p class="small">One trusted place for family medical updates, so the person doing the caring stops repeating the same news five times a day. Primary caregivers should not have to be phone operators too.</p><p style="margin-top:12px;"><a href="#carecircle" class="btn ghost" data-go="carecircle" style="padding:9px 16px;font-size:.95rem;">See CareCircle</a></p></div>
           <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><circle cx="220" cy="140" r="42" fill="#9A3412"/><path d="M150 300c0-62 32-96 70-96s70 34 70 96z" fill="#9A3412"/><circle cx="400" cy="140" r="42" fill="#102A43"/><path d="M330 300c0-62 32-96 70-96s70 34 70 96z" fill="#102A43"/><circle cx="310" cy="105" r="34" fill="#0F766E"/><path d="M248 300c0-52 28-80 62-80s62 28 62 80z" fill="#0F766E"/></svg></figure><h3>The specialist directory</h3><p class="small">Any serious review needs specialists around it. This page shows, with sample listings only, how the directory would match the right inspector, reviewer, trainer, or specialist to the work, credentials checked first.</p><p style="margin-top:12px;"><a href="#directory" class="btn ghost" data-go="directory" style="padding:9px 16px;font-size:.95rem;">Browse the directory model</a></p></div>
-          <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><rect x="130" y="70" width="380" height="220" rx="14" fill="#102A43"/><rect x="152" y="92" width="336" height="176" rx="8" fill="#E0F2FE"/><rect x="180" y="120" width="180" height="16" rx="8" fill="#0F766E"/><rect x="180" y="152" width="250" height="12" rx="6" fill="#9A3412" opacity=".55"/><rect x="180" y="180" width="220" height="12" rx="6" fill="#0369A1" opacity=".35"/><rect x="180" y="222" width="280" height="18" rx="9" fill="#102A43" opacity=".85"/><rect x="192" y="228" width="150" height="6" rx="3" fill="#FFFFFF"/><rect x="292" y="290" width="56" height="22" fill="#102A43"/><rect x="240" y="312" width="160" height="10" rx="5" fill="#102A43"/></svg></figure><h3>Fixing Friction on Substack</h3><p class="small">Writing about fixing the frictions of everyday life, across art, accessibility, AI, and AI empowerment.</p><p style="margin-top:12px;"><a href="#" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Read on Substack <span aria-hidden="true">&#8599;</span></a></p></div>
+          <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><rect x="130" y="70" width="380" height="220" rx="14" fill="#102A43"/><rect x="152" y="92" width="336" height="176" rx="8" fill="#E0F2FE"/><rect x="180" y="120" width="180" height="16" rx="8" fill="#0F766E"/><rect x="180" y="152" width="250" height="12" rx="6" fill="#9A3412" opacity=".55"/><rect x="180" y="180" width="220" height="12" rx="6" fill="#0369A1" opacity=".35"/><rect x="180" y="222" width="280" height="18" rx="9" fill="#102A43" opacity=".85"/><rect x="192" y="228" width="150" height="6" rx="3" fill="#FFFFFF"/><rect x="292" y="290" width="56" height="22" fill="#102A43"/><rect x="240" y="312" width="160" height="10" rx="5" fill="#102A43"/></svg></figure><h3>Fixing Friction on Substack</h3><p class="small">Writing about fixing the frictions of everyday life, across art, accessibility, AI, and AI empowerment.</p><p style="margin-top:12px;"><a href="https://fixingfriction.substack.com/" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Read on Substack <span aria-hidden="true">&#8599;</span><span class="sr-only"> (Opens in a new tab)</span></a> <span class="fineprint" style="margin-left:8px;">Opens in a new tab.</span></p></div>
           <div class="card"><h3>Burnout Bingo</h3><p class="small">Spot burnout patterns early across personal, relational, and professional life.</p><p style="margin-top:12px;"><a href="#burnout" class="btn ghost" data-go="burnout" style="padding:9px 16px;font-size:.95rem;">Play Burnout Bingo</a></p></div>
         </div>
         <div id="tools-ai-scorecards" style="margin-top:36px;">
@@ -4953,7 +4965,7 @@
                 <li><strong>Lens:</strong> Tool Choice</li>
                 <li><strong>Time:</strong> 2 Minutes</li>
                 <li><strong>Level:</strong> Beginner</li>
-                <li><strong>Tools:</strong> Muse, NotebookLM</li>
+                <li><strong>Tools:</strong> Muse, Meta&#8217;s AI; Gemini Notebook (Formerly NotebookLM); ChatGPT; Claude; Gemini; Dots</li>
               </ul>
               <div class="ai-sc-card-foot"><a href="#ai-scorecards?sc=1.1" class="btn ghost" data-go="ai-scorecards" data-ai-sc="1.1" style="padding:9px 16px;font-size:.95rem;">Take Scorecard 1.1</a></div>
             </article>
@@ -4977,12 +4989,13 @@
                 <li><strong>Lens:</strong> Prompting</li>
                 <li><strong>Time:</strong> 3 Minutes</li>
                 <li><strong>Level:</strong> Beginner to Intermediate</li>
-                <li><strong>Tools:</strong> Muse</li>
+                <li><strong>Tools:</strong> Muse, ChatGPT, Claude, Gemini, Dots</li>
               </ul>
               <div class="ai-sc-card-foot"><a href="#ai-scorecards?sc=3.1" class="btn ghost" data-go="ai-scorecards" data-ai-sc="3.1" style="padding:9px 16px;font-size:.95rem;">Take Scorecard 3.1</a></div>
             </article>
           </div>
-          <p class="small" style="margin-top:14px;">Want to compare all three side by side? <a href="#ai-scorecards" class="quiet-link" data-go="ai-scorecards">Open the AI Scorecards Hub</a>.</p>
+          <p class="ai-sc-ownership">Tool names belong to their owners. Fixing Friction is not affiliated with or endorsed by them.</p>
+          <p class="small" style="margin-top:10px;">Want to compare all three side by side? <a href="#ai-scorecards" class="quiet-link" data-go="ai-scorecards">Open the AI Scorecards Hub</a>.</p>
         </div>
         <div class="callout" role="note">
           <figure class="ph wide-fig"><img src="assets/aa40decfaf7c.jpg" alt="Concept picture of a wooden desk by a sunlit window, with an open blank notebook and a pen on it, a stack of blank paper, and a laptop with a dark screen beside them." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture: the tools to open first, laid out ready.</figcaption></figure><h2 style="font-size:1.5rem;margin:6px 0 8px;">Looking for people, not tools?</h2>
@@ -5006,7 +5019,7 @@
           <div class="card"><h3>Read the team</h3><p class="small">The Team Cohesion and Communication Snapshot is a short, structured look at how a team talks, decides, and works together, and of how it communicates with the clients it serves.</p><p style="margin-top:12px;"><a href="#cohesion" class="btn ghost" data-go="cohesion" style="padding:9px 16px;font-size:.95rem;">See the Team Cohesion Snapshot</a></p></div>
           <div class="card"><h3>See whether your people are supported</h3><p class="small">Reporting shows how staff are actually doing, beside the outcomes leadership already watches, so barriers and people appear in one picture instead of two separate reports.</p><p style="margin-top:12px;"><a href="#reporting" class="btn ghost" data-go="reporting" style="padding:9px 16px;font-size:.95rem;">See workplace reporting</a></p></div>
           <div class="card"><h3>Start inside</h3><p class="small">Individual contributors, ERG members, and internal champions. This hub gathers the tools, the community routes, and the ADA Titles in plain language, all in one place.</p><p style="margin-top:12px;"><a href="#inside" class="btn ghost" data-go="inside" style="padding:9px 16px;font-size:.95rem;">Start here: Inside Fixing Friction</a></p></div>
-          <div class="card"><h3>Fixing Friction on Substack</h3><p class="small">Writing about fixing the frictions of everyday life: art, accessibility, AI and AI empowerment. Read it, share it upward, and bring the conversation back to your team. Mapping where AI fits in your own workflow? <a href="#ai-scorecards?sc=2.1" class="quiet-link" data-go="ai-scorecards" data-ai-sc="2.1">Start with Scorecard 2.1: Start With the Work, Not the Tool</a>.</p><p style="margin-top:12px;"><a href="#" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Read on Substack <span aria-hidden="true">&#8599;</span></a></p></div>
+          <div class="card"><h3>Fixing Friction on Substack</h3><p class="small">Writing about fixing the frictions of everyday life: art, accessibility, AI and AI empowerment. Read it, share it upward, and bring the conversation back to your team. Mapping where AI fits in your own workflow? <a href="#ai-scorecards?sc=2.1" class="quiet-link" data-go="ai-scorecards" data-ai-sc="2.1">Start with Scorecard 2.1: Start With the Work, Not the Tool</a>.</p><p style="margin-top:12px;"><a href="https://fixingfriction.substack.com/" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Read on Substack <span aria-hidden="true">&#8599;</span><span class="sr-only"> (Opens in a new tab)</span></a> <span class="fineprint" style="margin-left:8px;">Opens in a new tab.</span></p></div>
         </div>
         
         <div>
@@ -5246,7 +5259,7 @@
               </ul>
               <div class="ai-sc-meta">
                 <div><strong>Job To Be Done:</strong> Match the work in front of you to the right type of tool (or no new tool yet).</div>
-                <div><strong>Tool Mentioned:</strong> Muse, NotebookLM</div>
+                <div><strong>Tool Mentioned:</strong> Muse, Meta&#8217;s AI; Gemini Notebook (Formerly NotebookLM); ChatGPT; Claude; Gemini; Dots</div>
                 <div><strong>Related Scorecard:</strong> 2.1 &amp; 3.1</div>
                 <div><strong>Site Next Step:</strong> Tools &amp; Resources, Community &amp; Support, or Find Your Starting Point</div>
               </div>
@@ -5282,13 +5295,14 @@
               </ul>
               <div class="ai-sc-meta">
                 <div><strong>Job To Be Done:</strong> Build a clear Do and Do Not list and a repeatable 5-part brief.</div>
-                <div><strong>Tool Mentioned:</strong> Muse</div>
+                <div><strong>Tool Mentioned:</strong> Muse, ChatGPT, Claude, Gemini, Dots</div>
                 <div><strong>Related Scorecard:</strong> 1.1 &amp; 2.1</div>
                 <div><strong>Site Next Step:</strong> Tools &amp; Resources, AI Empowerment teaching, or Find Your Starting Point</div>
               </div>
               <div class="ai-sc-card-foot"><button type="button" class="btn primary" data-ai-start="3.1">Start Scorecard 3.1</button></div>
             </article>
           </div>
+          <p class="ai-sc-ownership">Tool names belong to their owners. Fixing Friction is not affiliated with or endorsed by them.</p>
           <div class="callout" role="note" style="margin-top:26px;">
             <p class="eyebrow">How AI sits in this practice</p>
             <h2 style="font-size:1.4rem;margin:6px 0 8px;">Expertise leads. AI is a supporting layer only.</h2>
@@ -5413,7 +5427,7 @@
             <a href="#community" data-go="community">Community &amp; Support</a>
           </div>
           <div>
-            <h3>Tools &amp; Resources</h3>
+            <h3>Resources</h3>
             <span class="sitemap-label first">Free checks and scorecards</span>
             <a href="#scorecards" data-go="scorecards">Scorecards: Pick Your Path</a>
             <a href="#scorecard" data-go="scorecard">The Nine-Question Scorecard</a>
@@ -6976,6 +6990,204 @@
       els.forEach(function (el) { io.observe(el); });
     })();
     (function () {
+      // TODO: Connect to GoHighLevel inbound webhook, then set true.
+      var AI_SC_CONTACT_ENABLED = false;
+
+      var AI_ARCH_ORDER = ["fearful", "cautious", "curious", "confident", "stacker"];
+      var AI_ARCH_SPOTS = {
+        fearful: {
+          key: "fearful",
+          label: "AI Fearful",
+          role: "The hesitation trap",
+          tag: "ff-ai-arch-fearful",
+          summary: "Avoiding AI, not trusting it, or worried about what it will do with your work.",
+          giveHeading: "What helps most right now",
+          give: [
+            "Safety first: decide what never to share (client, health, private, or work-sensitive material stays out of public AI tools).",
+            "How to share safely if you ever choose to: strip identifying details, use approved private tools only, and keep primary sources in front of you.",
+            "Full permission to use no AI at all. Human judgement and plain-language checklists are always a valid choice."
+          ],
+          links: [
+            { label: "Scorecard 2.1: Start With the Work, Not the Tool", attr: 'href="#ai-scorecards?sc=2.1" data-go="ai-scorecards" data-ai-sc="2.1"' },
+            { label: "Tools & Resources", attr: 'href="#tools" data-go="tools"' },
+            { label: "Find Your Starting Point", attr: 'href="#scorecard" data-go="scorecard"' }
+          ]
+        },
+        cautious: {
+          key: "cautious",
+          label: "AI Cautious",
+          role: "Start of the healthy middle",
+          tag: "ff-ai-arch-cautious",
+          summary: "Will try AI carefully for one small job and checks everything. This is a good place, not a problem.",
+          giveHeading: "What helps most right now",
+          give: [
+            "Plain-language guides and templates you can inspect before using.",
+            "Clear Do and Do Not rules so you know where the guardrails sit.",
+            "One low-risk first use on non-sensitive material where checking the output takes seconds."
+          ],
+          links: [
+            { label: "Scorecard 3.1: Do and Do Not Rules", attr: 'href="#ai-scorecards?sc=3.1" data-go="ai-scorecards" data-ai-sc="3.1"' },
+            { label: "Tools & Resources", attr: 'href="#tools" data-go="tools"' },
+            { label: "Three Checklists", attr: 'href="#modules" data-go="modules"' }
+          ]
+        },
+        curious: {
+          key: "curious",
+          label: "AI Curious",
+          role: "Middle of the healthy middle",
+          tag: "ff-ai-arch-curious",
+          summary: "Experimenting, comparing tools, and trying prompts to see what actually saves effort.",
+          giveHeading: "What helps most right now",
+          give: [
+            "Reusable prompt structures and starter briefs you can copy and adapt.",
+            "Help matching each job to one fitting tool instead of guessing.",
+            "Clear examples of what good looks like so results stay steady."
+          ],
+          links: [
+            { label: "Scorecard 1.1: Match the Tool to the Job", attr: 'href="#ai-scorecards?sc=1.1" data-go="ai-scorecards" data-ai-sc="1.1"' },
+            { label: "Scorecard 3.1: Get Muse to Behave Better", attr: 'href="#ai-scorecards?sc=3.1" data-go="ai-scorecards" data-ai-sc="3.1"' },
+            { label: "Tools & Resources", attr: 'href="#tools" data-go="tools"' }
+          ]
+        },
+        confident: {
+          key: "confident",
+          label: "AI Confident",
+          role: "Top of the healthy middle",
+          tag: "ff-ai-arch-confident",
+          summary: "Uses AI on purpose, for the right jobs, in your own voice, and verifies output. Expertise leads.",
+          giveHeading: "What helps most right now",
+          give: [
+            "Repeatable systems and saved prompts treated as working assets.",
+            "Clear verification habits so quality stays high across tools like Muse, Meta's AI, Gemini Notebook (Formerly NotebookLM), ChatGPT, Claude, Gemini, and Dots.",
+            "The community or membership route when you want peers, courses, and coaching."
+          ],
+          links: [
+            { label: "Paid Coaching Community & Membership", attr: 'href="#community" data-go="community" data-jump="community-membership"' },
+            { label: "AI Empowerment Teaching", attr: 'href="#speaking" data-go="speaking" data-jump="speaking-ai-empowerment"' },
+            { label: "Tools & Resources", attr: 'href="#tools" data-go="tools"' }
+          ]
+        },
+        stacker: {
+          key: "stacker",
+          label: "Tool Stacker",
+          role: "The tech bloat trap",
+          tag: "ff-ai-arch-tool-stacker",
+          summary: "A common pattern where tools stack on top of tools and automation runs ahead of the point of the work.",
+          giveHeading: "What helps most right now (a cut back, not an add on)",
+          give: [
+            "Fewer tools: pause new subscriptions and check what each current tool is actually doing for you.",
+            "Put human judgement back in charge before anything leaves your desk.",
+            "Return to one clear job, one clear brief, and one human verification step."
+          ],
+          links: [
+            { label: "Scorecard 2.1: Start With the Work, Not the Tool", attr: 'href="#ai-scorecards?sc=2.1" data-go="ai-scorecards" data-ai-sc="2.1"' },
+            { label: "Scorecard 1.1: Match One Tool (or None) to the Job", attr: 'href="#ai-scorecards?sc=1.1" data-go="ai-scorecards" data-ai-sc="1.1"' },
+            { label: "Tools & Resources", attr: 'href="#tools" data-go="tools"' }
+          ]
+        }
+      };
+
+      function evaluateAiArch(scId, chosenIdx) {
+        // Reads four signals from existing answers only:
+        // Comfort, Trust, Use, Judgement. Never changes existing scorecard routing.
+        if (scId === "1.1") {
+          var q1 = chosenIdx[0], q3 = chosenIdx[2], q4 = chosenIdx[3], q5 = chosenIdx[4], q6 = chosenIdx[5], q7 = chosenIdx[6];
+          // Stacker: "Too many tools already" (q6===4) with active use or low-stakes/unexamined risk
+          if (q6 === 4 && (q5 === 0 || q3 === 2 || q3 === 4)) return "stacker";
+          if (q5 === 0 && (q3 === 4 || (q3 === 2 && q7 === 2))) return "stacker";
+          // Fearful: avoiding / unsure / untrusted / private + one-time or access friction
+          if ((q4 === 0 && q5 === 2) || (q1 === 4 && (q6 === 2 || q6 === 3)) || (q6 === 2 && q5 === 2)) return "fearful";
+          // Confident: weekly/daily (q5===0) with verification & human judgement leading
+          if (q5 === 0 && (q3 === 0 || q3 === 1 || q3 === 3) && (q7 === 0 || q7 === 1 || q7 === 3)) return "confident";
+          // Cautious: careful checks, high stakes or private, low frequency
+          if (q4 === 0 || q3 === 0 || q3 === 3 || q5 === 2 || q7 === 4) return "cautious";
+          return "curious";
+        }
+        if (scId === "2.1") {
+          var a1 = chosenIdx[0], a2 = chosenIdx[1], a3 = chosenIdx[2], a4 = chosenIdx[3], a5 = chosenIdx[4], a6 = chosenIdx[5], a7 = chosenIdx[6];
+          // Stacker: "None of it feels precious" (a3===3) + low/no consequence (a5===3 or a5===2)
+          if (a3 === 3 && (a5 === 3 || (a5 === 2 && a7 === 1))) return "stacker";
+          // Fearful: high harm risk (a5===0) + all one-offs (a4===3) or overload/unpredictable start
+          if (a5 === 0 && (a4 === 3 || a7 === 3 || a1 === 3)) return "fearful";
+          // Confident: human voice/decision protected (a3<=2) + repeatable system (a7===1) + verified workflow (a5===1)
+          if (a3 <= 2 && a7 === 1 && (a5 === 1 || a4 === 0 || a4 === 2)) return "confident";
+          // Cautious: high harm risk or careful checking / human decision first
+          if (a5 === 0 || a2 === 2 || a7 === 2 || a4 === 3) return "cautious";
+          return "curious";
+        }
+        if (scId === "3.1") {
+          // 0=steady habit (2pts), 1=sometimes (1pt), 2=not yet (0pts)
+          var s1 = chosenIdx[0], s2 = chosenIdx[1], s3 = chosenIdx[2], s4 = chosenIdx[3], s5 = chosenIdx[4], s6 = chosenIdx[5], s7 = chosenIdx[6];
+          // Stacker: uses output unchecked (s5===2) AND lets tool lead (s6===2 or s7===2)
+          if (s5 === 2 && (s6 === 2 || s7 === 2)) return "stacker";
+          // Confident: strong habits (0s) with verified source checking (s5===0) and clear stop rule (s7===0)
+          var strongCount = [s1, s2, s3, s4, s5, s6, s7].filter(function (v) { return v === 0; }).length;
+          if (strongCount >= 5 && s5 === 0 && s7 === 0) return "confident";
+          // Fearful: not yet briefing (s1===2 && s2===2) while stopping or restarting cautiously (s5===0 || s7===0)
+          if (s1 === 2 && s2 === 2 && (s5 === 0 || s7 === 0)) return "fearful";
+          // Cautious: checks carefully against sources (s5===0) or stops early (s7===0) while still building brief habits
+          if (s5 === 0 || s7 === 0) return "cautious";
+          return "curious";
+        }
+        return "curious";
+      }
+
+      function renderAiArch(archKey) {
+        var spot = AI_ARCH_SPOTS[archKey] || AI_ARCH_SPOTS.curious;
+        var coords = [
+          { key: "fearful", x: 70, y: 170, label: "1. AI Fearful" },
+          { key: "cautious", x: 195, y: 92, label: "2. AI Cautious" },
+          { key: "curious", x: 340, y: 58, label: "3. AI Curious" },
+          { key: "confident", x: 485, y: 92, label: "4. AI Confident" },
+          { key: "stacker", x: 610, y: 170, label: "5. Tool Stacker" }
+        ];
+        var svgNodes = coords.map(function (c) {
+          var isCur = c.key === spot.key;
+          var marker = isCur
+            ? '<circle cx="' + c.x + '" cy="' + c.y + '" r="18" fill="#FEF3C7" stroke="#101F3C" stroke-width="3.5" />' +
+              '<circle cx="' + c.x + '" cy="' + c.y + '" r="8" fill="#101F3C" />' +
+              '<rect x="' + (c.x - 62) + '" y="' + (c.y - 44) + '" width="124" height="22" rx="11" fill="#101F3C" />' +
+              '<text x="' + c.x + '" y="' + (c.y - 29) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">Roughly here</text>'
+            : '<circle cx="' + c.x + '" cy="' + c.y + '" r="9" fill="#FFFFFF" stroke="#B45309" stroke-width="3" />';
+          return marker +
+            '<text x="' + c.x + '" y="' + (c.y + 32) + '" text-anchor="middle" font-size="12" font-weight="' + (isCur ? "800" : "600") + '" fill="#101F3C">' + esc(c.label) + '</text>';
+        }).join("");
+
+        var svg = '<svg class="ai-arch-svg" viewBox="0 0 680 225" role="img" aria-label="The AI Arch: five spots from left to right — 1 AI Fearful, 2 AI Cautious, 3 AI Curious, 4 AI Confident, 5 Tool Stacker. You are roughly at ' + esc(spot.label) + ' (' + esc(spot.role) + ').">' +
+          '<rect x="130" y="24" width="420" height="176" rx="14" fill="#FEF9C3" opacity="0.45" />' +
+          '<text x="340" y="192" text-anchor="middle" font-size="11.5" font-weight="700" fill="#78350F">Healthy middle: AI Cautious, AI Curious, AI Confident</text>' +
+          '<path d="M 70 170 Q 340 -36 610 170" fill="none" stroke="#D97706" stroke-width="6" stroke-linecap="round" />' +
+          svgNodes +
+          '</svg>';
+
+        var spotList = '<ol class="ai-arch-spots" aria-label="Five spots on the AI Arch">' +
+          AI_ARCH_ORDER.map(function (k, idx) {
+            var sp = AI_ARCH_SPOTS[k];
+            var cur = k === spot.key;
+            return '<li class="ai-arch-spot' + (cur ? ' current' : '') + '"' + (cur ? ' aria-current="step"' : '') + '>' +
+              '<strong>' + (idx + 1) + '. ' + esc(sp.label) + '</strong>' +
+              '<span>' + esc(sp.role) + '</span>' +
+              '</li>';
+          }).join("") +
+          '</ol>';
+
+        return '<div class="ai-arch-box" data-arch-spot="' + esc(spot.key) + '" data-arch-tag="' + esc(spot.tag) + '">' +
+          '<p class="eyebrow" style="margin:0;color:#92400E;">Matthewism #18 &middot; The AI Arch &middot; Matthew&#8217;s AI Adoption Bell Curve recut as a golden arch</p>' +
+          '<h3 style="margin:6px 0 6px;font-size:1.3rem;">Where you are on the AI Arch: ' + esc(spot.label) + '</h3>' +
+          '<p class="small" style="margin:0;color:var(--ink);">This is a loose sort, not a grade. You are roughly here right now. Nobody is stuck at a level, and further right is not better.</p>' +
+          svg +
+          spotList +
+          '<p class="small" style="margin:6px 0 0;color:var(--ink);"><strong>' + esc(spot.label) + ' (' + esc(spot.role) + '):</strong> ' + esc(spot.summary) + '</p>' +
+          '<div class="ai-arch-give">' +
+          '<p style="margin:0;font-weight:700;font-size:.95rem;color:var(--ink);">' + esc(spot.giveHeading) + '</p>' +
+          '<ul>' + spot.give.map(function (g) { return '<li>' + esc(g) + '</li>'; }).join("") + '</ul>' +
+          '<div class="btnrow" style="margin-top:12px;">' +
+          spot.links.map(function (lk) { return '<a class="btn ghost" style="padding:8px 14px;font-size:.9rem;" ' + lk.attr + '>' + esc(lk.label) + '</a>'; }).join("") +
+          '</div></div>' +
+          '<p class="ai-arch-note">AI Cautious, AI Curious, and AI Confident are the healthy range: confident, without stacking tools past what the work needs. AI Fearful and Tool Stacker sit at opposite edges of the arch, yet both benefit from the same human reset: slow down, name the real work, and put your own judgement back in charge.</p>' +
+          '</div>';
+      }
+
       var AI_SCORECARDS = {
         "1.1": {
           id: "1.1",
@@ -6987,7 +7199,7 @@
             ["Lens", "Tool Choice"],
             ["Time Needed", "2 Minutes"],
             ["Beginner Level", "Beginner"],
-            ["Tool Mentioned", "Muse, NotebookLM"]
+            ["Tool Mentioned", "Muse, Meta's AI; Gemini Notebook (Formerly NotebookLM); ChatGPT; Claude; Gemini; Dots"]
           ],
           welcome: "People ask me which tool to get. The honest answer is, it depends on the job. Answer 7 short questions about the work in front of you, and this will point you to the type of tool that fits, what to use it for, and what not to use it for. No tool can fix a job that has not been named yet, and sometimes the right answer is no new tool at all.",
           questions: [
@@ -7076,24 +7288,26 @@
               R: {
                 profile: "The Researcher",
                 ghlTag: "ff-scorecard-1-1-result-r",
-                summary: "Start with a source-based research tool. NotebookLM is the example Matthew is asked about most often for this job.",
+                summary: "Start with a source-based research tool. Gemini Notebook (Formerly NotebookLM) is the example Matthew is asked about most often for this job.",
                 useFor: "Use it only on documents, notes, PDFs, or recordings you supplied so you can trace every answer back to your own sources.",
                 notFor: "Do not use it to invent sources, fill in missing facts, or make a compliance or legal call.",
                 nextLabel: "Take Scorecard 3.1: Get Muse to Behave Better",
                 nextAttr: 'href="#ai-scorecards?sc=3.1" data-go="ai-scorecards" data-ai-sc="3.1"',
                 secondaryNote: "Then explore Tools & Resources for plain-language checklists and guides.",
-                secondaryLink: '<a href="#tools" class="quiet-link" data-go="tools">Open Tools &amp; Resources</a>'
+                secondaryLink: '<a href="#tools" class="quiet-link" data-go="tools">Open Tools &amp; Resources</a>',
+                namesTools: true
               },
               W: {
                 profile: "The Shaper",
                 ghlTag: "ff-scorecard-1-1-result-w",
-                summary: "Start with a writing and thinking partner. Muse is the example Matthew is asked about most often for this job.",
+                summary: "Start with a writing and thinking partner. Muse, Meta's AI, is the example Matthew is asked about most often for this job (others include ChatGPT, Claude, Gemini, and Dots).",
                 useFor: "Use it to outline, draft in plain language, and test your thinking while your own judgement stays in charge.",
                 notFor: "Do not use it as your only fact check, and do not publish names, dates, or quotes without verifying them yourself.",
                 nextLabel: "Take Scorecard 3.1: Get Muse to Behave Better",
                 nextAttr: 'href="#ai-scorecards?sc=3.1" data-go="ai-scorecards" data-ai-sc="3.1"',
                 secondaryNote: "Then open Tools & Resources for templates and plain-language references.",
-                secondaryLink: '<a href="#tools" class="quiet-link" data-go="tools">Open Tools &amp; Resources</a>'
+                secondaryLink: '<a href="#tools" class="quiet-link" data-go="tools">Open Tools &amp; Resources</a>',
+                namesTools: true
               },
               S: {
                 profile: "The Access Checker",
@@ -7104,18 +7318,20 @@
                 nextLabel: "Open Find Your Starting Point",
                 nextAttr: 'href="#scorecard" data-go="scorecard"',
                 secondaryNote: "Route the barrier in front of you with the existing Fixing Friction starting-point scorecard.",
-                secondaryLink: ""
+                secondaryLink: "",
+                namesTools: false
               },
               G: {
                 profile: "The Quick Look",
                 ghlTag: "ff-scorecard-1-1-result-g",
-                summary: "A general chat tool you already have is enough for this job. Do not buy a new subscription for a quick pass or one-time task.",
+                summary: "A general chat tool you already have (such as ChatGPT, Claude, Gemini, Muse, Meta's AI, or Dots) is enough for this job. Do not buy a new subscription for a quick pass or one-time task.",
                 useFor: "Use it for a fast first look, a plain summary of public material, or a simple next step.",
                 notFor: "Do not feed it sensitive material or treat a first-pass answer as verified fact.",
                 nextLabel: "Take Scorecard 2.1: Start With the Work, Not the Tool",
                 nextAttr: 'href="#ai-scorecards?sc=2.1" data-go="ai-scorecards" data-ai-sc="2.1"',
                 secondaryNote: "Map where AI fits in your week before adding any new tool.",
-                secondaryLink: ""
+                secondaryLink: "",
+                namesTools: true
               },
               N: {
                 profile: "No New Tool Yet",
@@ -7126,7 +7342,8 @@
                 nextLabel: "Take Scorecard 2.1: Start With the Work, Not the Tool",
                 nextAttr: 'href="#ai-scorecards?sc=2.1" data-go="ai-scorecards" data-ai-sc="2.1"',
                 secondaryNote: "Then visit Community & Support if you want to work through the friction with others.",
-                secondaryLink: '<a href="#community" class="quiet-link" data-go="community">Open Community &amp; Support</a>'
+                secondaryLink: '<a href="#community" class="quiet-link" data-go="community">Open Community &amp; Support</a>',
+                namesTools: false
               }
             };
             var res = map[best];
@@ -7141,7 +7358,8 @@
               nextLabel: res.nextLabel,
               nextAttr: res.nextAttr,
               secondaryNote: res.secondaryNote,
-              secondaryLink: res.secondaryLink
+              secondaryLink: res.secondaryLink,
+              namesTools: res.namesTools
             };
           }
         },
@@ -7329,9 +7547,9 @@
             ["Lens", "Prompting"],
             ["Time Needed", "3 Minutes"],
             ["Beginner Level", "Beginner to Intermediate"],
-            ["Tool Mentioned", "Muse"]
+            ["Tool Mentioned", "Muse, Meta's AI; ChatGPT; Claude; Gemini; Dots"]
           ],
-          welcome: "Muse is not misbehaving at random. It is following the brief it actually got, not the one in your head. Answer 7 questions about how you brief, feed, and check it. You will get your pattern, the do and do not rules that fit you, and one starter brief to copy. Works for Muse first, and the same logic works in most AI tools.",
+          welcome: "Muse, Meta's AI, is not misbehaving at random. It is following the brief it actually got, not the one in your head. Answer 7 questions about how you brief, feed, and check it. You will get your pattern, the do and do not rules that fit you, and one starter brief to copy. Works for Muse first, and the same logic works in ChatGPT, Claude, Gemini, Dots, and most AI tools.",
           questions: [
             {
               q: "Q1. How do you open?",
@@ -7477,6 +7695,7 @@
             band.personalDo = personalDo;
             band.personalDoNot = personalDoNot;
             band.starterBrief = sc.starterBrief;
+            band.namesTools = true;
             return band;
           }
         }
@@ -7504,7 +7723,7 @@
       var backHubBtn = document.getElementById("aiScBackHub");
       if (!hubEl || !runnerEl) return;
 
-      var state = { id: null, idx: 0, answers: [], computed: null };
+      var state = { id: null, idx: 0, answers: [], computed: null, archKey: "curious" };
 
       function esc(s) {
         return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -7544,7 +7763,11 @@
           });
         });
         prevBtn.disabled = (state.idx === 0);
-        nextBtn.textContent = (state.idx === total - 1) ? "Continue to optional contact step" : "Next question";
+        if (state.idx === total - 1) {
+          nextBtn.textContent = AI_SC_CONTACT_ENABLED ? "Continue to optional contact step" : "See my result";
+        } else {
+          nextBtn.textContent = "Next question";
+        }
         nextBtn.disabled = (typeof state.answers[state.idx] !== "number");
         var lg = document.getElementById("aiScQLegend");
         if (lg) lg.focus({ preventScroll: true });
@@ -7553,7 +7776,7 @@
       function openScorecard(id) {
         if (!AI_SCORECARDS[id]) { showHub(); return; }
         var sc = AI_SCORECARDS[id];
-        state = { id: id, idx: 0, answers: [], computed: null };
+        state = { id: id, idx: 0, answers: [], computed: null, archKey: "curious" };
         hubEl.hidden = true;
         runnerEl.hidden = false;
         stepWrap.hidden = false;
@@ -7577,11 +7800,16 @@
           return qObj.opts[state.answers[qi]];
         });
         state.computed = sc.evaluate(chosen, sc);
+        state.archKey = evaluateAiArch(state.id, state.answers);
         if (ghlInput) ghlInput.value = state.computed.ghlTag || "";
       }
 
       function showContactStep() {
         computeResult();
+        if (!AI_SC_CONTACT_ENABLED) {
+          showResult(false);
+          return;
+        }
         stepWrap.hidden = true;
         contactWrap.hidden = false;
         resultWrap.hidden = true;
@@ -7589,12 +7817,14 @@
         if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
       }
 
-      function buildPlainSummary(sc, res) {
+      function buildPlainSummary(sc, res, archKey) {
+        var arch = AI_ARCH_SPOTS[archKey] || AI_ARCH_SPOTS.curious;
         var lines = [
-          "Fixing Friction — AI Scorecard Result",
+          "Fixing Friction — AI Scorecard Result (fixingfriction.com)",
           sc.code + ": " + sc.title,
           "Result Profile: " + res.profile,
-          "Tag: " + res.ghlTag,
+          "Where you are on the AI Arch (Matthewism #18): " + arch.label + " (" + arch.role + ")",
+          "Tag: " + res.ghlTag + " | " + arch.tag,
           "",
           res.summary
         ];
@@ -7617,13 +7847,16 @@
       function showResult(contactSaved) {
         var sc = AI_SCORECARDS[state.id];
         var res = state.computed;
+        var arch = AI_ARCH_SPOTS[state.archKey] || AI_ARCH_SPOTS.curious;
         stepWrap.hidden = true;
         contactWrap.hidden = true;
         resultWrap.hidden = false;
         resultWrap.setAttribute("data-ghl-tag", res.ghlTag || "");
+        resultWrap.setAttribute("data-arch-spot", arch.key);
+        resultWrap.setAttribute("data-arch-tag", arch.tag);
         resultWrap.setAttribute("data-privacy-flag", res.privacyFlag ? "true" : "false");
 
-        var html = "";
+        var html = '<div class="sc-print-head"><h2>Fixing Friction &mdash; ' + esc(sc.code) + ': ' + esc(sc.title) + '</h2><p>fixingfriction.com &middot; Result Profile: ' + esc(res.profile) + ' &middot; AI Arch: ' + esc(arch.label) + '</p></div>';
         if (res.privacyFlag) {
           html += '<div class="ai-sc-privacy-flag" role="alert">' +
             '<h3>Privacy rule first (before any tool name)</h3>' +
@@ -7678,15 +7911,19 @@
             '</div>';
         }
 
+        html += renderAiArch(state.archKey);
+
         html += '<div class="callout" style="margin-top:20px;">' +
           '<p class="eyebrow" style="margin:0;">Your Best Next Step</p>' +
           '<h3 style="margin:6px 0 8px;font-size:1.3rem;">One clear move from here</h3>' +
           '<p class="small" style="margin:0;color:var(--ink);">' + esc(res.secondaryNote) + (res.secondaryLink ? ' ' + res.secondaryLink : '') + '</p>' +
-          '<div class="btnrow" style="margin-top:14px;">' +
+          '<div class="btnrow ai-sc-copy-row" style="margin-top:14px;">' +
           '<a class="btn primary" ' + res.nextAttr + '>' + esc(res.nextLabel) + '</a>' +
           '<button type="button" class="btn ghost" id="aiScCopyResBtn">Copy my result summary</button>' +
+          '<button type="button" class="btn ghost" id="aiScPrintResBtn">Print or save my results</button>' +
           '</div>' +
-          (contactSaved ? '<p class="fineprint" style="margin-top:10px;">Your note and routing tag (<code>' + esc(res.ghlTag) + '</code>) are ready for your records.</p>' : '') +
+          (contactSaved && AI_SC_CONTACT_ENABLED ? '<p class="fineprint" style="margin-top:10px;">Your note and routing tag (<code>' + esc(res.ghlTag) + '</code>) are ready for your records.</p>' : '') +
+          (res.namesTools || state.archKey === "confident" ? '<p class="ai-sc-ownership">Tool names belong to their owners. Fixing Friction is not affiliated with or endorsed by them.</p>' : '') +
           '<p class="fineprint" style="margin-top:10px;">Guidance only, not a finding, compliance call, or legal determination. Matthew Cicanese, ADAC.</p>' +
           '</div>';
 
@@ -7705,13 +7942,17 @@
         var copyResBtn = document.getElementById("aiScCopyResBtn");
         if (copyResBtn) {
           copyResBtn.addEventListener("click", function () {
-            var txt = buildPlainSummary(sc, res);
+            var txt = buildPlainSummary(sc, res, state.archKey);
             if (navigator.clipboard && navigator.clipboard.writeText) {
               navigator.clipboard.writeText(txt).then(function () {
                 copyResBtn.textContent = "Copied result summary";
               });
             }
           });
+        }
+        var printResBtn = document.getElementById("aiScPrintResBtn");
+        if (printResBtn) {
+          printResBtn.addEventListener("click", function () { window.print(); });
         }
         var copyBriefBtn = document.getElementById("aiScCopyBriefBtn");
         if (copyBriefBtn) {

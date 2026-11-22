@@ -74,7 +74,7 @@ const home = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-p
 const mine = home.slice(home.indexOf('<div class="hero-bleed">'), home.indexOf('<div class="logo-banner"'));
 ok(!mine.includes("\u2014"), "no em dash in the hero, self select or Three Outs copy");
 ok((html.match(/corporate bullshit/g) || []).length === 1, "the phrase corporate bullshit appears exactly once on the site");
-ok((html.match(/systems mismatch, never a character flaw/g) || []).length === 1, "the principle line appears exactly once on the site (homepage)");
+ok((home.match(/systems mismatch, never a character flaw/g) || []).length === 1 && (html.match(/systems mismatch, never a character flaw/g) || []).length === 2, "the principle line appears once on the homepage and once on About, nowhere else (Phase 4.6 placement)");
 ok(!/Creative Consulting|Accelerate/i.test(mine), "no Creative Consulting or Accelerate in the new copy");
 ok((mine.match(/class="card ff-ss-card"/g) || []).length === 2, "exactly two self select cards");
 ok((mine.match(/class="btn /g) || []).length === 2, "hero still has exactly two calls to action");

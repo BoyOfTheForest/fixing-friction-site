@@ -1167,6 +1167,7 @@
       .ai-sc-opt:focus-within{outline:3px solid var(--brand);outline-offset:2px;}
       .ai-sc-nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:20px;}
       .ai-sc-contact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;}
+      .ai-sc-contact[hidden],#aiScHub[hidden],#aiScRunner[hidden],#aiScStepWrap[hidden],#aiScResultWrap[hidden]{display:none !important;}
       .ai-sc-field{display:grid;gap:6px;}
       .ai-sc-field label{font-weight:700;font-size:.94rem;color:var(--ink);}
       .ai-sc-field input[type="text"],.ai-sc-field input[type="email"],.ai-sc-field textarea{width:100%;min-height:44px;padding:10px 12px;border:1.5px solid #94A3B8;border-radius:8px;font:inherit;font-size:1rem;color:var(--ink);background:#FFFFFF;}
@@ -7725,6 +7726,29 @@
 
       var state = { id: null, idx: 0, answers: [], computed: null, archKey: "curious" };
 
+      function lockContactHidden() {
+        if (!contactWrap) return;
+        contactWrap.hidden = true;
+        contactWrap.setAttribute("aria-hidden", "true");
+        contactWrap.inert = true;
+      }
+      function unlockContactVisible() {
+        if (!contactWrap || !AI_SC_CONTACT_ENABLED) return;
+        contactWrap.hidden = false;
+        contactWrap.removeAttribute("aria-hidden");
+        contactWrap.inert = false;
+      }
+      lockContactHidden();
+
+      function allQuestionsAnswered(sc) {
+        if (!sc || !sc.questions || !sc.questions.length) return false;
+        for (var i = 0; i < sc.questions.length; i++) {
+          var a = state.answers[i];
+          if (typeof a !== "number" || !sc.questions[i].opts[a]) return false;
+        }
+        return true;
+      }
+
       function esc(s) {
         return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
       }
@@ -7732,6 +7756,7 @@
       function showHub() {
         state.id = null;
         runnerEl.hidden = true;
+        lockContactHidden();
         hubEl.hidden = false;
         try { history.replaceState(null, "", "#ai-scorecards"); } catch (e) {}
       }
@@ -7780,7 +7805,7 @@
         hubEl.hidden = true;
         runnerEl.hidden = false;
         stepWrap.hidden = false;
-        contactWrap.hidden = true;
+        lockContactHidden();
         resultWrap.hidden = true;
         runCode.textContent = sc.code;
         runTitle.textContent = sc.title;
@@ -7796,22 +7821,24 @@
 
       function computeResult() {
         var sc = AI_SCORECARDS[state.id];
+        if (!allQuestionsAnswered(sc)) return false;
         var chosen = sc.questions.map(function (qObj, qi) {
           return qObj.opts[state.answers[qi]];
         });
         state.computed = sc.evaluate(chosen, sc);
         state.archKey = evaluateAiArch(state.id, state.answers);
-        if (ghlInput) ghlInput.value = state.computed.ghlTag || "";
+        if (ghlInput && state.computed) ghlInput.value = state.computed.ghlTag || "";
+        return !!state.computed;
       }
 
       function showContactStep() {
-        computeResult();
+        if (!computeResult()) return;
         if (!AI_SC_CONTACT_ENABLED) {
           showResult(false);
           return;
         }
         stepWrap.hidden = true;
-        contactWrap.hidden = false;
+        unlockContactVisible();
         resultWrap.hidden = true;
         var h = document.getElementById("aiScContactHeading");
         if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
@@ -7846,10 +7873,13 @@
 
       function showResult(contactSaved) {
         var sc = AI_SCORECARDS[state.id];
+        if (!sc || !allQuestionsAnswered(sc)) return;
+        if (!state.computed && !computeResult()) return;
         var res = state.computed;
+        if (!res) return;
         var arch = AI_ARCH_SPOTS[state.archKey] || AI_ARCH_SPOTS.curious;
         stepWrap.hidden = true;
-        contactWrap.hidden = true;
+        lockContactHidden();
         resultWrap.hidden = false;
         resultWrap.setAttribute("data-ghl-tag", res.ghlTag || "");
         resultWrap.setAttribute("data-arch-spot", arch.key);
@@ -7994,11 +8024,13 @@
       if (contactForm) {
         contactForm.addEventListener("submit", function (ev) {
           ev.preventDefault();
+          if (!AI_SC_CONTACT_ENABLED) return;
           showResult(true);
         });
       }
       if (skipContactBtn) {
         skipContactBtn.addEventListener("click", function () {
+          if (!AI_SC_CONTACT_ENABLED) return;
           showResult(false);
         });
       }

@@ -39,14 +39,16 @@ const WIDOW = `(function(){
     if(ys.length<2) return;
     var last=lines[ys[ys.length-1]].join('').trim();
     if(last.indexOf(' ')<0 && last.indexOf(String.fromCharCode(160))<0) bad.push(h.textContent+' => last line: '+last);
+    var first=lines[ys[0]].join('').trim();
+    if(first.indexOf(' ')<0 && first.indexOf(String.fromCharCode(160))<0) bad.push(h.textContent+' => first line: '+first);
   });
   return JSON.stringify(bad);
 })()`;
 
-const sizes = [["desktop-1440", 1440, 900], ["tablet-landscape-1024", 1024, 768], ["tablet-portrait-768", 768, 1024], ["phone-390", 390, 844]];
+const sizes = [["desktop-1280", 1280, 800], ["desktop-1440", 1440, 900], ["tablet-portrait-768", 768, 1024], ["phone-390", 390, 844]];
 for (const [name, w, h] of sizes) {
   await load(w, h);
-  const desk = w >= 1340;
+  const desk = w >= 1280;
   const s = JSON.parse(await ev(`(function(){var n=document.querySelector('nav.pages');return JSON.stringify({navShown:getComputedStyle(n).display!=='none',menubtn:getComputedStyle(document.getElementById('menubtn')).display!=='none',overflow:document.documentElement.scrollWidth>innerWidth})})()`));
   ok(s.navShown === desk && s.menubtn === !desk, `${name}: ${desk ? "desktop row" : "mobile menu"} shown`);
   ok(!s.overflow, `${name}: no sideways scroll`);
@@ -65,20 +67,37 @@ for (const [name, w, h] of sizes) {
     await shot(name + "-menu-open-bottom", null, true);
     const mt = await ev(`JSON.stringify([].filter.call(document.querySelectorAll('#menupanel a'),function(a){return a.getBoundingClientRect().height<43.5}).map(function(a){return a.textContent.trim()}))`);
     ok(mt === "[]", `${name}: every mobile menu link >= 44px tall ${mt}`);
+    ok(await ev(`document.querySelectorAll('#menupanel .menu-group, #menupanel .menu-label, #menupanel .menu-sublabel').length===0`), `${name}: no group labels in the mobile menu`);
+    const gp = JSON.parse(await ev(`(function(){var L=[].slice.call(document.querySelectorAll('#menupanel a.sub'));var out=[];for(var i=1;i<L.length;i++){var a=L[i-1].getBoundingClientRect(),b=L[i].getBoundingClientRect();var sa=L[i-1].closest('.menu-set'),sb=L[i].closest('.menu-set');out.push([Math.round(b.top-a.bottom), sa===sb?'in':'between']);}return JSON.stringify(out)})()`));
+    const inMax = Math.max(...gp.filter((g) => g[1] === 'in').map((g) => g[0])), btwMin = Math.min(...gp.filter((g) => g[1] === 'between').map((g) => g[0]));
+    ok(btwMin > inMax, `${name}: mobile menu gaps between groups (min ${btwMin}px) wider than inside a group (max ${inMax}px)`);
+    const sets = await ev(`JSON.stringify([].map.call(document.querySelectorAll('#menupanel .menu-set'),function(s){return Math.round(s.getBoundingClientRect().top)}))`);
+    console.log('mobile set tops:', sets);
     await ev(`document.getElementById('menubtn').click()`);
   }
   await ev(`document.querySelector('footer.site').scrollIntoView()`); await sleep(300);
   const fb = JSON.parse(await ev(`(function(){var f=document.querySelector('footer.site').getBoundingClientRect();return JSON.stringify({top:f.top+scrollY,h:f.height,bg:getComputedStyle(document.querySelector('footer.site')).backgroundColor,cols:getComputedStyle(document.querySelector('.sitemap')).gridTemplateColumns.split(' ').length})})()`));
   await shot(name + "-footer", { x: 0, y: fb.top, width: w, height: fb.h });
   ok(fb.bg === "rgb(255, 255, 255)", `${name}: footer background pure white (${fb.bg})`);
-  const wantCols = w >= 1200 ? 6 : w >= 600 ? 2 : 1;
+  const wantCols = w >= 1280 ? 6 : w >= 600 ? 2 : 1;
   ok(fb.cols === wantCols, `${name}: footer has ${fb.cols} columns per row (want ${wantCols})`);
   const small = await ev(`JSON.stringify([].filter.call(document.querySelectorAll('.sitemap a'),function(a){return a.getBoundingClientRect().height<43.5}).map(function(a){return a.textContent.trim()}))`);
   ok(small === "[]", `${name}: every footer link >= 44px tall ${small}`);
+  ok(await ev(`!document.querySelector('.foot-cta') && !document.querySelector('footer.site a[href*=buildout]') && !document.querySelector('footer.site a[href*=launch]') && !document.querySelector('footer.site a[href*=changes]')`), `${name}: no dev links and no Not-sure line in the footer`);
+  ok(await ev(`document.querySelectorAll('.sitemap > div').length===6 && document.querySelector('footer.site .foot-bar').previousElementSibling.classList.contains('sitemap')`), `${name}: footer is the six columns then the bottom bar`);
   const wid = await ev(WIDOW);
   ok(wid === "[]", `${name}: no widow word in footer headings ${wid}`);
 }
 
+// 1024 probe: force the desktop row at tablet landscape and measure whether it fits cleanly
+await load(1024, 768);
+await ev(`(function(){var s=document.createElement('style');s.id='probe';s.textContent='nav.pages{display:flex!important}.menubtn{display:none!important}';document.head.appendChild(s)})()`); await sleep(300);
+const pr = JSON.parse(await ev(`(function(){var h=document.querySelector('.head-in');var n=document.querySelector('nav.pages');var hs=[].map.call(n.querySelectorAll('.drop-btn,a.cta'),function(e){return Math.round(e.getBoundingClientRect().height)});var tw=[].map.call(n.querySelectorAll('.drop-btn,a.cta'),function(e){return Math.round(e.getBoundingClientRect().width)});return JSON.stringify({scroll:h.scrollWidth,client:h.clientWidth,navR:Math.round(n.getBoundingClientRect().right),vw:innerWidth,heights:hs,widths:tw})})()`));
+console.log('PROBE 1024 forced desktop row:', JSON.stringify(pr));
+await shot('tablet-landscape-1024-forced-desktop-row-probe', null, true);
+await ev(`document.getElementById('probe').remove()`); await sleep(200);
+console.log('1024 real build shows:', await ev(`getComputedStyle(document.querySelector('nav.pages')).display==='none'?'mobile menu':'desktop row'`));
+await shot('tablet-landscape-1024-actual', null, true);
 await load(1440, 900);
 const btns = JSON.parse(await ev(`JSON.stringify([].map.call(document.querySelectorAll('nav.pages .drop-btn'),function(b){return {t:b.textContent.trim(),h:b.getBoundingClientRect().height}}))`));
 ok(btns.length === 6 && btns.every((b) => b.h >= 44), "desktop: six top items, each >= 44px tall");
@@ -105,6 +124,9 @@ await ev(`document.querySelector('[data-nav-group=about]').closest('.nav-drop').
 ok(await ev(`!document.querySelector('.nav-drop.open')`), "hover alone does not open a dropdown");
 await ev(`location.hash='#audits'; window.dispatchEvent(new PopStateEvent('popstate'))`); await sleep(500);
 ok(await ev(`document.querySelector('[data-nav-group=ada]').getAttribute('aria-current')==='page'`), "current section marked (aria-current) on ADA group at #audits");
+await ev(`location.hash='#speaking'; window.dispatchEvent(new PopStateEvent('popstate'))`); await sleep(500);
+ok(await ev(`document.querySelectorAll('nav.pages [aria-current]').length===1 && document.querySelector('[data-nav-group=speaking]').getAttribute('aria-current')==='page'`), 'moving to another section clears the previous current mark (exactly one marked)');
+await ev(`location.hash='#audits'; window.dispatchEvent(new PopStateEvent('popstate'))`); await sleep(500);
 await shot("desktop-1440-current-marker", { x: 0, y: 0, width: 1440, height: 140 });
 const cta = JSON.parse(await ev(`(function(){var a=document.querySelector('nav.pages a.cta');return JSON.stringify({h:a.getBoundingClientRect().height,others:[].map.call(document.querySelectorAll('nav.pages .drop-btn'),function(b){return getComputedStyle(b).backgroundColor+'|'+getComputedStyle(b).fontWeight})})})()`));
 ok(cta.h >= 44 && cta.others.every((o) => o === "rgb(255, 255, 255)|600"), "only the CTA is filled; nav text items are white and not bolded (" + cta.others[0] + ")");

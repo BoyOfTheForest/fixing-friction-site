@@ -1325,13 +1325,27 @@
       .sitemap{grid-template-columns:repeat(6,minmax(0,1fr));gap:28px 22px;}
       .sitemap h3{text-wrap:balance;}
       .sitemap a{min-height:44px;display:flex;align-items:center;overflow-wrap:anywhere;}
-      @media (max-width:1199px){.sitemap{grid-template-columns:repeat(2,minmax(0,1fr));}}
+      @media (max-width:1279px){.sitemap{grid-template-columns:repeat(2,minmax(0,1fr));}}
       @media (max-width:599px){.sitemap{grid-template-columns:1fr;}}
       .foot-bar{border-top:1px solid var(--line);padding-top:18px;margin-top:10px;font-size:.92rem;color:var(--ink);max-width:60rem;}
       @media (max-width:1599px){.brand-sub{display:none;}}
-      @media (max-width:1339px){nav.pages{display:none;}.menubtn{display:block;}}
-      @media (min-width:1340px){.menupanel{display:none !important;}}
+      @media (max-width:1279px){nav.pages{display:none;}.menubtn{display:block;}}
+      @media (min-width:1280px){.menupanel{display:none !important;}}
       body:has(.menupanel.open) .to-top{display:none;}
+
+      /* ===== Phase 1 fixes: tighter desktop row at 1280, spacing-only mobile groups, footer headings ===== */
+      @media (min-width:1280px) and (max-width:1439px){
+        .head-in{padding-left:20px;padding-right:20px;gap:16px;}
+        nav.pages button.drop-btn,nav.pages > a:not(.cta){font-size:.8rem;padding-left:6px;padding-right:6px;}
+        nav.pages .nav-drop.g-start{margin-left:18px;}
+        nav.pages a.cta{margin-left:18px;padding:10px 16px;font-size:.8rem;}
+      }
+      .menupanel .menu-set{display:block;margin-top:8px;}
+      .menupanel .menu-set.g-start{margin-top:26px;}
+      .menupanel .menu-set:first-child{margin-top:0;}
+      .menupanel .menu-set[aria-current="page"]{box-shadow:inset 4px 0 0 var(--accent);}
+      .menupanel a.sub{padding-left:18px;}
+      .sitemap h3{font-size:.74rem;letter-spacing:.06em;white-space:normal;text-wrap:wrap;}
 </style>
     <script type="application/ld+json">
     {
@@ -1695,36 +1709,42 @@
         <button type="button" class="menubtn" id="menubtn" aria-expanded="false" aria-controls="menupanel">Menu</button>
       </div>
       <div class="menupanel" id="menupanel" role="navigation" aria-label="Site menu">
-        <p class="menu-group" data-nav-group="outs">The Three Outs</p>
+        <div class="menu-set" role="group" aria-label="The Three Outs" data-nav-group="outs">
         <a href="#home" data-go="home" class="sub"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
         <a href="#home" data-go="home" class="sub"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
         <a href="#home" data-go="home" class="sub"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
         <a href="#debt" data-go="debt" class="sub">How friction builds into all three</a>
-        <p class="menu-group g-start" data-nav-group="leaders">For Leaders</p>
+        </div>
+        <div class="menu-set g-start" role="group" aria-label="For Leaders" data-nav-group="leaders">
         <a href="#training" data-go="training" class="sub">Speaking and training for teams</a>
         <a href="#start" data-go="start" class="sub">Start with a pilot session</a>
         <a href="#evidence" data-go="evidence" class="sub">Client stories</a>
         <a href="#speaking" data-go="speaking" class="sub">Book Matthew to speak</a>
-        <p class="menu-group" data-nav-group="workers">For Everyday Workers</p>
+        </div>
+        <div class="menu-set" role="group" aria-label="For Everyday Workers" data-nav-group="workers">
         <a href="#inside" data-go="inside" class="sub">Inside Fixing Friction</a>
         <a href="#inside" data-go="inside" class="sub">Help at work</a>
         <a href="#athome" data-go="athome" class="sub">Help at home and for families</a>
         <a href="#scorecards" data-go="scorecards" class="sub">Take the Scorecard</a>
-        <p class="menu-group g-start" data-nav-group="speaking">Speaking and Training</p>
+        </div>
+        <div class="menu-set g-start" role="group" aria-label="Speaking and Training" data-nav-group="speaking">
         <a href="#speaking" data-go="speaking" class="sub">Keynote speaking</a>
         <a href="#training" data-go="training" class="sub">Team training and workshops</a>
         <a href="#start" data-go="start" class="sub">Start with a pilot session</a>
         <a href="#speaking" data-go="speaking" class="sub">Book Matthew to speak</a>
-        <p class="menu-group" data-nav-group="ada">ADA Compliance and Consulting</p>
+        </div>
+        <div class="menu-set" role="group" aria-label="ADA Compliance and Consulting" data-nav-group="ada">
         <a href="#audits" data-go="audits" class="sub"><span class="di-t">ADA Assessments and Audits<span class="vh">: </span></span><span class="di-s">One place or system, checked and documented in plain language</span></a>
         <a href="#advising" data-go="advising" class="sub"><span class="di-t">ADA Consulting and Coordinator Support<span class="vh">: </span></span><span class="di-s">Ongoing expert help, and support for your designated coordinator</span></a>
         <a href="#support" data-go="support" class="sub"><span class="di-t">Workplace and Team Consulting<span class="vh">: </span></span><span class="di-s">Help with hiring, onboarding, and the accommodation process at work</span></a>
         <a href="#voting" data-go="voting" class="sub"><span class="di-t">Voting and Polling Places<span class="vh">: </span></span><span class="di-s">Access checks for voting sites and polling places</span></a>
-        <p class="menu-group g-start" data-nav-group="about">About</p>
+        </div>
+        <div class="menu-set g-start" role="group" aria-label="About" data-nav-group="about">
         <a href="#about-story" data-go="about" data-jump="about-story" class="sub">Matthew and his story</a>
         <a href="#about-faq" data-go="about" data-jump="about-faq" class="sub">What ADAC means</a>
         <a href="#evidence" data-go="evidence" class="sub">Proof from the field</a>
         <a href="#about-contact" data-go="about" data-jump="about-contact" class="sub">Contact</a>
+        </div>
         <a href="#scorecards" data-go="scorecards" class="menu-cta">Take the Scorecard</a>
       </div>
     </header>
@@ -5514,42 +5534,37 @@
 
     <footer class="site">
       <div class="foot-in">
-        <p><strong>Fixing Friction</strong>, an ADA accessibility practice by Litmus Collective. Ecosystem Architecture.</p>
-        <p class="small u08">Written in plain language and checked against lived reality as well as the standard: the same two readings this practice gives every finding.</p>
-        <p class="fineprint">Outputs are assessments and recommendations, not legal determinations. Matthew Cicanese, ADAC.</p>
-        <p class="fineprint">Each client&#8217;s data stays that client&#8217;s property. Cross-client views are anonymized averages only. Data is never sold.</p>
-        <p class="fineprint"><a href="buildout/" rel="nofollow" class="quiet-link">Buildout</a> &middot; <a href="launch/" rel="nofollow" class="quiet-link">Launch checklist</a> &middot; <a href="changes/" rel="nofollow" class="quiet-link">Changes</a></p>
         <nav class="sitemap" aria-label="Footer">
           <div>
-            <h3 role="heading" aria-level="2">The Three&nbsp;Outs</h3>
+            <h3 role="heading" aria-level="2">The&nbsp;Three&nbsp;Outs</h3>
             <a href="#home" data-go="home">Burn Out</a>
             <a href="#home" data-go="home">Turn Out</a>
             <a href="#home" data-go="home">Churn Out</a>
             <a href="#debt" data-go="debt">How friction builds</a>
           </div>
           <div>
-            <h3 role="heading" aria-level="2">For Leaders</h3>
+            <h3 role="heading" aria-level="2">For&nbsp;Leaders</h3>
             <a href="#training" data-go="training">Speaking and training for teams</a>
             <a href="#start" data-go="start">Start with a pilot session</a>
             <a href="#evidence" data-go="evidence">Client stories</a>
             <a href="#speaking" data-go="speaking">Book Matthew to speak</a>
           </div>
           <div>
-            <h3 role="heading" aria-level="2">For Everyday&nbsp;Workers</h3>
+            <h3 role="heading" aria-level="2">For&nbsp;Everyday&nbsp;Workers</h3>
             <a href="#inside" data-go="inside">Inside Fixing Friction</a>
             <a href="#inside" data-go="inside">Help at work</a>
             <a href="#athome" data-go="athome">Help at home and for families</a>
             <a href="#scorecards" data-go="scorecards">Take the Scorecard</a>
           </div>
           <div>
-            <h3 role="heading" aria-level="2">Speaking and&nbsp;Training</h3>
+            <h3 role="heading" aria-level="2">Speaking&nbsp;and&nbsp;Training</h3>
             <a href="#speaking" data-go="speaking">Keynote speaking</a>
             <a href="#training" data-go="training">Team training and workshops</a>
             <a href="#start" data-go="start">Start with a pilot session</a>
             <a href="#speaking" data-go="speaking">Book Matthew to speak</a>
           </div>
           <div>
-            <h3 role="heading" aria-level="2">ADA Compliance and&nbsp;Consulting</h3>
+            <h3 role="heading" aria-level="2">ADA&nbsp;Compliance and&nbsp;Consulting</h3>
             <a href="#audits" data-go="audits">ADA Assessments and Audits</a>
             <a href="#advising" data-go="advising">ADA Consulting and Coordinator Support</a>
             <a href="#support" data-go="support">Workplace and Team Consulting</a>
@@ -5563,9 +5578,10 @@
             <a href="mailto:hello@fixingfriction.com">Contact: hello@fixingfriction.com</a>
           </div>
         </nav>
-        <p class="foot-cta"><strong>Not sure where you fit?</strong> Start with a conversation about the site and the deadline you are working toward. <a href="#start" data-go="start">Start a conversation</a></p>
-        <p class="fineprint">By Matthew Cicanese · Litmus Collective · Fort Collins, Colorado</p>
         <p class="foot-bar">Fixing Friction. Helping communities and individuals feel seen, heard, understood, and connected. Fort Collins, Colorado. Accessibility guidance and coordination, not legal advice.</p>
+        <p class="fineprint">Outputs are assessments and recommendations, not legal determinations. Matthew Cicanese, ADAC.</p>
+        <p class="fineprint">Each client&#8217;s data stays that client&#8217;s property. Cross-client views are anonymized averages only. Data is never sold.</p>
+        <p class="fineprint">By Matthew Cicanese · Litmus Collective · Fort Collins, Colorado</p>
       </div>
     </footer>
 
@@ -5720,7 +5736,7 @@
              every dropdown item as a dark "current" block. Dropdown items,
              mobile sub-items, footer/sitemap links and in-page buttons all
              point at sections or repeat a page link: they are never current. */
-          document.querySelectorAll("[data-go][aria-current]").forEach(function (b) {
+          document.querySelectorAll("[data-go][aria-current], [data-nav-group][aria-current]").forEach(function (b) {
             b.removeAttribute("aria-current");
           });
           /* Active-page mapping: About, Who We Help, ADA Compliance,

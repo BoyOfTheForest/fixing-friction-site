@@ -701,7 +701,8 @@
       .announce-bar{background:#1E40AF;border-bottom:1px solid #1E3A8A;color:#FFFFFF;padding:9px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;text-align:center;font-size:.92rem;line-height:1.45;}
       .announce-bar p{margin:0;color:#FFFFFF;}
       .announce-bar p.announce-short{color:#FFFFFF;}
-      .sc-return-bar{background:var(--callout);border-bottom:1px solid var(--line);color:var(--ink);}
+      .sc-return-bar{background:var(--callout);border-bottom:1px solid var(--line);color:var(--ink);position:sticky;top:var(--hdr-h,64px);z-index:45;box-shadow:0 2px 6px rgba(15,23,42,.08);}
+      html{scroll-padding-top:var(--sc-bar-h,0px);}
       .sc-return-bar[hidden]{display:none;}
       .sc-return-in{max-width:1320px;margin:0 auto;padding:6px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;}
       .sc-return-bar p{margin:0;font-size:.92rem;font-weight:600;color:var(--ink);}
@@ -710,7 +711,7 @@
       .sc-return-btn:hover{background:var(--accent-deep);}
       .sc-return-dismiss{appearance:none;border:1px solid var(--line);background:#FFFFFF;color:var(--ink);font:inherit;font-size:1.25rem;line-height:1;width:44px;height:44px;min-width:44px;min-height:44px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
       .sc-return-dismiss:hover{border-color:var(--accent-deep);color:var(--accent-deep);}
-      @media (max-width:640px){.sc-return-in{padding:8px 16px;}}
+      @media (max-width:640px){.sc-return-in{padding:6px 12px;flex-wrap:nowrap;gap:8px;}.sc-return-bar p{display:none;}.sc-return-actions{flex:1 1 auto;width:100%;}.sc-return-btn{flex:1 1 auto;}}
       .announce-link{appearance:none;border:none;background:transparent;color:#BAE6FD;font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:2px 4px;cursor:pointer;white-space:nowrap;}
       .announce-link:hover{color:#E0F2FE;}
       .announce-link:focus-visible{outline-color:#7DD3FC;}
@@ -4918,7 +4919,7 @@
             <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><circle cx="220" cy="140" r="42" fill="#0F766E"/><path d="M150 300c0-62 32-96 70-96s70 34 70 96z" fill="#0F766E"/><circle cx="400" cy="140" r="42" fill="#102A43"/><path d="M330 300c0-62 32-96 70-96s70 34 70 96z" fill="#102A43"/><circle cx="310" cy="105" r="34" fill="#9A3412"/><path d="M248 300c0-52 28-80 62-80s62 28 62 80z" fill="#9A3412"/></svg></figure><p class="eyebrow">Stage 3 &middot; Join the room</p><h3>Community &amp; Support</h3><p class="small">Champions carry the case to the people who can fund it: name the barrier in plain words, take the scorecard, bring it to the ERG, and ask for the training.</p><p style="margin-top:12px;"><a href="#community" class="btn ghost" data-go="community" style="padding:9px 16px;font-size:.95rem;">Find the community routes</a></p></div>
             <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><path d="M320 110c-40-28-95-34-140-18v190c45-16 100-10 140 18z" fill="#0F766E"/><path d="M320 110c40-28 95-34 140-18v190c-45-16-100-10-140 18z" fill="#102A43"/><path d="M320 122c-34-22-78-27-114-15v158c36-12 80-7 114 15z" fill="#E0F2FE"/><path d="M320 122c34-22 78-27 114-15v158c-36-12-80-7-114 15z" fill="#FFFFFF"/><rect x="228" y="150" width="66" height="10" rx="5" fill="#9A3412" opacity=".6"/><rect x="228" y="182" width="66" height="10" rx="5" fill="#9A3412" opacity=".4"/><rect x="346" y="150" width="66" height="10" rx="5" fill="#9A3412" opacity=".6"/><rect x="346" y="182" width="66" height="10" rx="5" fill="#9A3412" opacity=".4"/></svg></figure><h3>The ADA Titles, in plain language</h3><p class="small">The Americans with Disabilities Act is organized in five Titles. Every checklist item and every finding is tagged to its Title, so one Title can be read at a time or the whole picture at once, without five disconnected lists.</p><p style="margin-top:12px;"><a href="#titles" class="btn ghost" data-go="titles" style="padding:9px 16px;font-size:.95rem;">Read the Titles</a></p></div>
             <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><path d="M120 210L320 70l200 140v110a12 12 0 01-12 12H132a12 12 0 01-12-12z" fill="#102A43"/><path d="M165 215l155-108 155 108v102H165z" fill="#E0F2FE"/><rect x="285" y="235" width="70" height="82" rx="6" fill="#0F766E"/><circle cx="338" cy="278" r="6" fill="#FFFFFF"/><circle cx="495" cy="82" r="30" fill="#D97706"/><g stroke="#D97706" stroke-width="8" stroke-linecap="round"><path d="M495 28v-14M495 136v14M441 82h-14M549 82h14M457 44l-10-10M543 130l10 10M543 44l10-10M457 130l-10 10"/></g></svg></figure><h3>At home: ND households</h3><p class="small">Private homes sit mostly outside the ADA itself. This page is about the other half of the same person&#8217;s life: how a house runs when its people are wired differently, and how daily life gets easier.</p><p style="margin-top:12px;"><a href="#athome" class="btn ghost" data-go="athome" style="padding:9px 16px;font-size:.95rem;">Go to the home page</a></p></div>
-            <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><rect x="110" y="120" width="180" height="180" rx="14" fill="#102A43"/><rect x="130" y="140" width="140" height="60" rx="8" fill="#0F766E"/><rect x="130" y="216" width="140" height="60" rx="8" fill="#D97706"/><rect x="350" y="120" width="180" height="180" rx="14" fill="#1E40AF"/><rect x="370" y="140" width="140" height="60" rx="8" fill="#E0F2FE"/><rect x="370" y="216" width="140" height="60" rx="8" fill="#7DD3FC"/><circle cx="200" cy="80" r="30" fill="#0284C7"/><path d="M200 62v18l14 10" stroke="#FFFFFF" stroke-width="7" fill="none" stroke-linecap="round"/></svg></figure><span class="tag">For families</span><h3>Room Doom &amp; the Clutter Stutter</h3><p class="small">When a messy room reads as one huge, impossible job, and every item seems to need a different decision. A three-step reset for neurodivergent adults and teens, and the families supporting them: set a timer and pick a category, cluster your clothes, group the grabbables.</p><p style="margin-top:12px;"><a href="../fixing-friction-library/#/prf-room-doom" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Read the full guide in the Library <span aria-hidden="true">&#8599;</span></a></p><p class="small" style="margin-top:10px;">The full guide lives in the Fixing Friction Library. Opens in a new tab.</p></div>
+            <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><rect x="110" y="120" width="180" height="180" rx="14" fill="#102A43"/><rect x="130" y="140" width="140" height="60" rx="8" fill="#0F766E"/><rect x="130" y="216" width="140" height="60" rx="8" fill="#D97706"/><rect x="350" y="120" width="180" height="180" rx="14" fill="#1E40AF"/><rect x="370" y="140" width="140" height="60" rx="8" fill="#E0F2FE"/><rect x="370" y="216" width="140" height="60" rx="8" fill="#7DD3FC"/><circle cx="200" cy="80" r="30" fill="#0284C7"/><path d="M200 62v18l14 10" stroke="#FFFFFF" stroke-width="7" fill="none" stroke-linecap="round"/></svg></figure><span class="tag">For families</span><h3>Room Doom &amp; the Clutter Stutter</h3><p class="small">When a messy room reads as one huge, impossible job, and every item seems to need a different decision. A three-step reset for neurodivergent adults and teens, and the families supporting them: set a timer and pick a category, cluster your clothes, group the grabbables.</p><p style="margin-top:12px;"><a href="#athome" class="btn ghost" data-go="athome" style="padding:9px 16px;font-size:.95rem;">Read the guide on the At Home page</a></p></div>
           </div>
         </div>
         <div class="callout" role="note">
@@ -5040,7 +5041,7 @@
           <h2 style="font-size:1.7rem;margin:8px 0 12px;">Start with the check that fits your seat</h2>
           <div class="grid2">
             <div class="card"><span class="tag">For organizations</span><h3>Find Your Starting Point</h3><p class="small">Nine questions, one honest starting point. Your result points to the service, program, or product that matches the problem in front of your organization.</p><p style="margin-top:12px;"><a href="#scorecard" class="btn ghost" data-go="scorecard" style="padding:9px 16px;font-size:.95rem;">Take the nine-question scorecard</a></p></div>
-            <div class="card"><span class="tag">For individuals and families</span><h3>Cognitive Clarity Scorecard</h3><p class="small">A free, two-minute check-in: a quick read on where your friction sits. Answer a few short questions about where your days stick, and see the pattern plainly, so your next step aims at the real sticking point, not the loudest one.</p><p style="margin-top:12px;"><a href="https://fixingfriction.com/scorecard" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Take the Cognitive Clarity Scorecard <span aria-hidden="true">&#8599;</span></a></p><p class="small" style="margin-top:10px;">Opens on Fixing Friction&#8217;s main site, in a new tab.</p></div>
+            <div class="card"><span class="tag">For individuals and families</span><h3>Cognitive Clarity Scorecard</h3><p class="small">A free, two-minute check-in: a quick read on where your friction sits. Answer a few short questions about where your days stick, and see the pattern plainly, so your next step aims at the real sticking point, not the loudest one.</p><p style="margin-top:12px;"><a href="#scorecard?role=individual" class="btn ghost" data-go="scorecard" data-role="individual" style="padding:9px 16px;font-size:.95rem;">Take the scorecard for yourself or your household</a></p></div>
           </div>
         </div>
 <div class="callout" role="note">
@@ -5137,8 +5138,6 @@
           <p class="eyebrow">New for families</p>
           <h2 style="font-size:1.5rem;margin:6px 0 8px;">Room Doom &amp; the Clutter Stutter</h2>
           <p style="color:var(--ink);">The doom piles in the corner. The start, stop, freeze loop when every item seems to need its own decision. This is the room reset built for exactly that: set a timer and pick a category, cluster your clothes, group the grabbables into zones. Made for neurodivergent adults and teens with executive function challenges, and the families supporting them.</p>
-          <div class="btnrow"><a href="../fixing-friction-library/#/prf-room-doom" class="btn primary" target="_blank" rel="noopener">Read the full guide in the Library <span aria-hidden="true">&#8599;</span></a></div>
-          <p class="small" style="margin-top:10px;">Opens in the Fixing Friction Library, in a new tab.</p>
         </div>
         <div class="grid2">
           <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><circle cx="320" cy="180" r="118" fill="#102A43"/><circle cx="320" cy="180" r="98" fill="#E0F2FE"/><path d="M320 105l28 75-28 75-28-75z" fill="#9A3412"/><path d="M245 180h150" stroke="#0F766E" stroke-width="6" opacity=".5"/><circle cx="320" cy="180" r="13" fill="#102A43"/></svg></figure><span class="tag">Concept</span><h3>Executive Function at Home</h3><p class="small">Starting, ordering, and remembering the household stuff: bills, laundry, appointments, the fridge. Executive dysfunction named without shame, and home systems that carry the load when a brain cannot.</p></div>
@@ -5395,7 +5394,6 @@
             <a href="#inside" data-go="inside">Start Here: Inside Fixing Friction</a>
             <a href="#athome" data-go="athome">At Home: ND Households</a>
             <a href="#community" data-go="community">Community for Champions &amp; ERGs</a>
-            <a href="../fixing-friction-library/#/prf-room-doom" target="_blank" rel="noopener">Room Doom &amp; the Clutter Stutter <span aria-hidden="true">&#8599;</span></a>
           </div>
           <div>
             <h3>Services</h3>
@@ -6156,6 +6154,20 @@
             if (!scReturnBar) return;
             var cur = pageId || window.__currentPageId || "home";
             scReturnBar.hidden = !(scHasSavedResult && !scBannerDismissed && cur !== "scorecard");
+            syncReturnBarOffsets();
+          }
+          function syncReturnBarOffsets() {
+            var hdr = document.querySelector("header.site");
+            var root = document.documentElement;
+            if (hdr) root.style.setProperty("--hdr-h", hdr.offsetHeight + "px");
+            root.style.setProperty("--sc-bar-h", (scReturnBar && !scReturnBar.hidden) ? scReturnBar.offsetHeight + "px" : "0px");
+          }
+          window.addEventListener("resize", syncReturnBarOffsets);
+          if (window.ResizeObserver) {
+            var scRo = new ResizeObserver(syncReturnBarOffsets);
+            var scHdrEl = document.querySelector("header.site");
+            if (scHdrEl) scRo.observe(scHdrEl);
+            if (scReturnBar) scRo.observe(scReturnBar);
           }
           window.__updateScReturnBar = updateScReturnBar;
 

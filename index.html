@@ -1346,6 +1346,40 @@
       .menupanel .menu-set[aria-current="page"]{box-shadow:inset 4px 0 0 var(--accent);}
       .menupanel a.sub{padding-left:18px;}
       .sitemap h3{font-size:.74rem;letter-spacing:.06em;white-space:normal;text-wrap:wrap;}
+
+      /* ===== Brief Phase 2: hero wording, self select, Three Outs overview. White surfaces. ===== */
+      .hero-bleed .hero-h1{max-width:980px;}
+      .hero-bleed-content:has(.hero-h1){max-width:980px;}
+      .hero-bleed .hero-h1 .h1-line{display:block;text-wrap:balance;color:#FFFFFF;}
+      .hero-bleed .hero-services{margin-top:6px;}
+      .ff-ss,.ff-outs{background:#FFFFFF;scroll-margin-top:92px;}
+      .ff-h2{font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.15;margin:8px 0 18px;text-wrap:balance;}
+      .ff-ss-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch;}
+      .ff-ss-card{display:flex;flex-direction:column;background:#FFFFFF;}
+      .ff-ss-card h3{font-size:1.3rem;text-wrap:balance;}
+      .ff-ss-card .ff-links{margin-top:auto;padding-top:14px;display:flex;flex-direction:column;}
+      .ff-links a,.ff-ctas a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px;width:fit-content;}
+      .ff-links a:hover,.ff-ctas a:hover{color:var(--ink);}
+      .ff-outs > .lede{max-width:46rem;}
+      .ff-stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:26px;}
+      .ff-stage{background:#FFFFFF;border-top:3px solid var(--ink);padding-top:14px;}
+      .ff-stage h3{font-size:1.35rem;margin:0 0 8px;}
+      .ff-stage .ff-plain{display:block;font-size:.95rem;font-weight:600;color:var(--muted);margin-top:2px;}
+      .ff-ctas{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 36px;}
+      .ff-ctas li{display:flex;flex-direction:column;}
+      .ff-ctas .ff-for{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+      .ff-lenses{margin-top:52px;border-top:1px solid var(--line);padding-top:30px;}
+      .ff-h3{font-size:clamp(1.35rem,2.6vw,1.75rem);line-height:1.2;margin:0 0 10px;text-wrap:balance;}
+      .ff-lenses > .lede{max-width:46rem;}
+      .ff-group{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin:28px 0 12px;}
+      .ff-lens-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;}
+      .ff-lens-list li{background:#FFFFFF;border-left:3px solid var(--line);padding-left:16px;}
+      .ff-lens-list h5,.ff-system h5{font-size:1.1rem;margin:0 0 6px;font-weight:700;}
+      .ff-system{max-width:46rem;background:#FFFFFF;border:1px solid var(--ink);border-radius:var(--radius);padding:20px 24px;margin-top:4px;}
+      .ff-system p + p{margin-top:10px;font-weight:600;}
+      .ff-close{margin-top:40px;font-size:1.2rem;font-weight:700;max-width:40rem;text-wrap:balance;}
+      @media (max-width:900px){.ff-stages{grid-template-columns:1fr;}.ff-lens-list{grid-template-columns:1fr;}}
+      @media (max-width:860px){.ff-ss-grid{grid-template-columns:1fr;}}
 </style>
     <script type="application/ld+json">
     {
@@ -1768,14 +1802,70 @@
           <div class="hero-bleed-shade" aria-hidden="true"></div>
           <div class="hero-bleed-in">
             <div class="hero-bleed-content">
-              <p class="eyebrow">Accessibility Solutions · Fort Collins, Colorado</p>
-              <h1>From barriers to belonging:<br />Speaking, Training, Consulting, and Compliance</h1>
-              <p class="lede">Helping communities and individuals feel <strong>seen, heard, understood, and connected</strong> to the tools, resources, and access <span style="text-decoration:underline;text-underline-offset:3px;">they deserve and have a right to.</span></p>
+              <p class="eyebrow">ACCESSIBILITY, FORT COLLINS, COLORADO</p>
+              <h1 class="hero-h1"><span class="h1-line">Burnout is what they feel.</span> <span class="h1-line">Turnout is what you see.</span> <span class="h1-line">Churn out is what it costs you.</span></h1>
+              <p class="lede">Fixing Friction helps communities and individuals feel <strong>seen, heard, understood, and connected</strong> to the tools, resources, and access <span style="text-decoration:underline;text-underline-offset:3px;">they deserve and have a right to.</span></p>
               <p class="small u01">Matthew Cicanese, ADAC · Certified ADA Coordinator | Accessibility Speaker, Trainer and Consultant · Founder, Fixing Friction</p>
+              <p class="small hero-services">Speaking, Training, Compliance, Consulting</p>
               <div class="btnrow"><a href="#scorecards" class="btn primary" data-go="scorecards">Take the Scorecard</a><a href="#audits" class="btn ghost" data-go="audits">Start with an assessment</a></div>
               <p class="micro">Now booking Q1 2027.<br />Not sure where to start?</p>
             </div>
           </div>
+        </div>
+        <div class="ff-ss" id="start-where">
+          <h2 class="ff-h2" data-otp-label="Pick your door">Start where it is hitting you</h2>
+          <div class="ff-ss-grid">
+            <div class="card ff-ss-card">
+              <h3>I lead a team or an organization</h3>
+              <p>People are burning out, not showing up, or leaving, and you can see it in the numbers. Start with speaking and training for your team, or with an assessment of the place and systems they work in.</p>
+              <p class="ff-links"><a href="#training" data-go="training">Speaking and training for teams</a><a href="#audits" data-go="audits">Start with an assessment</a></p>
+            </div>
+            <div class="card ff-ss-card">
+              <h3>I am an everyday worker</h3>
+              <p>A normal day costs more than it should, at work and at home. Whether you are on your own or holding a family together, start here for practical help in plain language.</p>
+              <p class="ff-links"><a href="#inside" data-go="inside">Inside Fixing Friction</a><a href="#scorecards" data-go="scorecards">Take the Scorecard</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="ff-outs" id="three-outs">
+          <p class="eyebrow">WHAT HAPPENS WHEN FRICTION BUILDS</p>
+          <h2 class="ff-h2" data-otp-label="The Three Outs">People do not leave all at once.</h2>
+          <p class="lede">First they burn out. Then they stop turning out. Then they churn out. It happens in teams, in organizations, and in whole communities, and it starts earlier than most leaders think.</p>
+          <div class="ff-stages">
+            <div class="ff-stage">
+              <h3>Burn Out<span class="vh">: </span><span class="ff-plain">What a person feels</span></h3>
+              <p>Burn out is what happens inside one person when daily friction uses up their capacity. They are still there, but they have nothing left to give.</p>
+            </div>
+            <div class="ff-stage">
+              <h3>Turn Out<span class="vh">: </span><span class="ff-plain">What you start to see</span></h3>
+              <p>Turn out is when people stop showing up before they quit. Meetings get thinner, volunteering dries up, and the people you count on go quiet.</p>
+            </div>
+            <div class="ff-stage">
+              <h3>Churn Out<span class="vh">: </span><span class="ff-plain">What it costs you</span></h3>
+              <p>Churn out is when people leave for good. You lose their skill, their relationships, and everything they knew, and you pay to replace all of it.</p>
+            </div>
+          </div>
+          <ul class="ff-ctas">
+            <li><span class="ff-for">For leaders</span><a href="#start" data-go="start">Start with a pilot session</a></li>
+            <li><span class="ff-for">For everyday workers</span><a href="#inside" data-go="inside">Inside Fixing Friction</a></li>
+          </ul>
+          <div class="ff-lenses">
+            <h3 class="ff-h3">Burn Out does not look the same on everyone</h3>
+            <p class="lede">Three lenses people live with, and one system they live inside. Most people here will recognise more than one.</p>
+            <h4 class="ff-group">Lenses you live with</h4>
+            <ul class="ff-lens-list">
+              <li><h5>Disability</h5><p>Doors, forms, and meetings that were not built with you in mind take extra effort every day.</p></li>
+              <li><h5>Neurodivergence</h5><p>Noise, unclear instructions, and constant switching can use up a mind that works differently long before the day is over.</p></li>
+              <li><h5>Chronic Health Conditions</h5><p>Managing a health condition every day leaves less energy for everything else, and work rarely plans for that.</p></li>
+            </ul>
+            <h4 class="ff-group">The system you live inside</h4>
+            <div class="ff-system">
+              <h5>Broken Systems at Work</h5>
+              <p>Call it what it is: corporate bullshit. The meetings about meetings, the tools that fight each other, the rules nobody can explain.</p>
+              <p>Friction is a systems mismatch, never a character flaw.</p>
+            </div>
+          </div>
+          <p class="ff-close">None of this starts with leaving. It starts with friction you can find and fix.</p>
         </div>
                 <div class="logo-banner" role="group" aria-label="Matthew Cicanese's notable clients">
           <p class="strip-lead">Matthew&rsquo;s notable clients</p>

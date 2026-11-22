@@ -70,6 +70,14 @@ for (const f of ["team-ioana-balcan.webp", "team-mircea-balcan.webp", "team-alin
 const cc = about.slice(about.indexOf('class="ab-cultcat"'), about.indexOf('id="about-team"'));
 ok(cc.includes("<h2 class=\"u12\">Built with CultCat</h2>") && cc.includes("The Fixing Friction brand and this site are built with CultCat, a branding agency founded in 2011 and rooted in a traditional Fine Arts education in Eastern Europe.") && cc.includes("Three of their people hold roles on the Fixing Friction team."), "CultCat block heading and body present word for word");
 
+// ---------- Phase 4.9: one team presentation on the About page
+ok((about.match(/src="assets\/team-[^"]+\.webp"/g) || []).length === 3, "About has exactly three team portraits (the zigzag headshots)");
+ok(!/class="avatar"|team-card|team-grid|aria-hidden="true">[IMA]<\/div>/.test(html), "no initial-letter avatar cards, card grid or card styles remain anywhere in the page");
+ok(!/<h3>(Ioana|Mircea|Alina)<\/h3>|leads the brand: how Fixing Friction looks|leads information and technology: the systems|leads operations: the day-to-day/.test(html), "no first-name-only team cards or older alternate bios remain");
+ok((about.match(/<p class="eyebrow">Our team<\/p>/g) || []).length === 1 && (about.match(/The people behind the practice/g) || []).length === 1 && (about.match(/A small team, built peer to peer/g) || []).length === 1, "exactly one team heading (Our team / The people behind the practice) and one introduction line");
+ok(about.indexOf('id="about-team"') < about.indexOf('class="ab-team"') && about.indexOf('class="ab-team"') - about.indexOf('id="about-team"') < 900, "the single team heading and introduction sit directly above the zigzag section");
+ok(!/5f10a6bafa87/.test(about) && !/colleagues around a studio table/.test(html), "the four-person team-at-work illustration is gone from the About page");
+
 // ---------- per width
 for (const [name, w, h] of sizes) {
   await load(w, h);

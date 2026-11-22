@@ -763,6 +763,36 @@
       .sc-tool-link:hover{border-color:var(--accent-deep);background:var(--callout);}
       .sc-tool-title{font-weight:700;font-size:.94rem;color:var(--accent-deep);}
       .sc-tool-desc{font-size:.84rem;font-weight:400;color:var(--muted);line-height:1.35;}
+      .sc-role-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:10px 14px;margin-bottom:14px;border-radius:10px;background:var(--bg-soft);border:1px solid var(--line);font-size:.88rem;color:var(--ink);}
+      .sc-role-bar[hidden]{display:none;}
+      .sc-also-wrap{display:grid;gap:10px;}
+      .sc-also-wrap[hidden]{display:none;}
+      .sc-also-wrap h3{font-size:1rem;margin:0;color:var(--ink);}
+      .sc-also-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+      @media (max-width:720px){.sc-also-grid{grid-template-columns:1fr;}}
+      .sc-also-card{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);text-decoration:none;color:var(--ink);transition:border-color .15s ease,background-color .15s ease;}
+      .sc-also-card:hover{border-color:var(--accent-deep);background:var(--callout);}
+      .sc-also-card .sc-also-title{font-weight:700;font-size:.98rem;color:var(--accent-deep);}
+      .sc-also-card .sc-also-desc{font-size:.88rem;color:var(--muted);line-height:1.4;}
+      .sc-sector-row{padding:14px 18px;border-radius:var(--radius);background:var(--callout);border:1px solid #BFDBFE;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;}
+      .sc-sector-row[hidden]{display:none;}
+      .sc-sector-row p{margin:0;font-size:.93rem;color:var(--ink);font-weight:600;}
+      .start-summary-box{margin-top:14px;padding:16px 18px;border-radius:10px;background:#FFFFFF;border:2px solid var(--accent);color:var(--ink);}
+      .start-summary-box[hidden]{display:none;}
+      .start-summary-box pre{margin:10px 0 0;padding:12px;border-radius:8px;background:var(--bg-soft);border:1px solid var(--line);font:inherit;font-size:.86rem;line-height:1.45;white-space:pre-wrap;color:var(--ink);}
+      .sc-print-head{display:none;}
+      @media print{
+        header.site,.announce-bar,#scReturnBar,.to-top,.toast,footer.site,.sc-intro,.sc-shell,.sc-about-details,.sc-res-hero .btnrow,.sc-res-foot button,#scCalBlock .btnrow,#scRoleBar{display:none !important;}
+        main{max-width:100%;padding:0;}
+        section.page{padding-top:0;}
+        .sc-print-head{display:block;border-bottom:2px solid #101F3C;padding-bottom:10px;margin-bottom:14px;}
+        .sc-print-head h2{font-size:1.25rem;margin:0;color:#101F3C;}
+        .sc-print-head p{margin:2px 0 0;font-size:.88rem;color:#334155;}
+        .sc-res-hero{background:#FFFFFF !important;color:#101F3C !important;border:2px solid #101F3C;padding:18px 20px;}
+        .sc-res-hero .eyebrow,.sc-res-hero h2,.sc-res-hero p,.sc-res-also{color:#101F3C !important;background:transparent !important;border-color:#CBD5E1 !important;}
+        .sc-res-grid{grid-template-columns:1fr 1fr;gap:14px;}
+        .sc-res-card,.sc-cal,.sc-also-card{break-inside:avoid;padding:14px 16px;}
+      }
       .sc-res-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start;}
       @media (max-width:860px){.sc-res-grid{grid-template-columns:1fr;}}
       .sc-res-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;}
@@ -2351,15 +2381,15 @@
           
         </div>
 
-        <div class="zig"><figure class="ph"><img src="assets/53f02a1a7888.jpg" alt="Photograph of a presenter standing and speaking to five seated colleagues around a table with laptops and notebooks, in a bright room with large windows." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Training is delivered to working groups, around the examples they will meet again on Monday.</figcaption></figure><div class="zig-text"><span class="tag warm">Sector 1 · Entry: Training</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Business and corporate teams</h3><p>For leadership, HR, facilities, digital teams, and the people who speak for the company in public. The usual starting problem is human: staff answer the same access question two different ways, an accommodation request stalls, or a public story is about to go out with the wrong framing. Training comes first because it gives the whole team one shared way to spot, handle, and prevent the barrier.</p><p style="margin-top:10px;">December brings a natural window for this sector. Programming for the International Day of Persons with Disabilities, which falls on December 3, can be shaped from the training themes for a single team, a communications group, or a whole organization marking the day.</p><p style="margin-top:10px;">As context for the communications side of this work, Matthew has written articles and content for Canon over a ten year client relationship.</p><p style="margin-top:10px;">Where the question is a place rather than people, the door in is physical: an Accessibility Assessment of one office or site, with the findings feeding the same pathway.</p><div class="sector-path"><b>Pathway:</b> Training &rarr; Consulting and Advising on live decisions &rarr; Accessible Communications and Media for outward channels &rarr; Consulting and Ongoing Support while fixes are worked and verified.</div><p style="margin-top:14px;"><a href="#training" class="btn ghost" data-go="training" style="padding:9px 16px;font-size:.95rem;">Explore Training</a> <a href="#communications" class="btn ghost" data-go="communications" style="padding:9px 16px;font-size:.95rem;">See communications</a></p></div></div>
+        <div class="zig" id="sector-business"><figure class="ph"><img src="assets/53f02a1a7888.jpg" alt="Photograph of a presenter standing and speaking to five seated colleagues around a table with laptops and notebooks, in a bright room with large windows." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Training is delivered to working groups, around the examples they will meet again on Monday.</figcaption></figure><div class="zig-text"><span class="tag warm">Sector 1 · Entry: Training</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Business and corporate teams</h3><p>For leadership, HR, facilities, digital teams, and the people who speak for the company in public. The usual starting problem is human: staff answer the same access question two different ways, an accommodation request stalls, or a public story is about to go out with the wrong framing. Training comes first because it gives the whole team one shared way to spot, handle, and prevent the barrier.</p><p style="margin-top:10px;">December brings a natural window for this sector. Programming for the International Day of Persons with Disabilities, which falls on December 3, can be shaped from the training themes for a single team, a communications group, or a whole organization marking the day.</p><p style="margin-top:10px;">As context for the communications side of this work, Matthew has written articles and content for Canon over a ten year client relationship.</p><p style="margin-top:10px;">Where the question is a place rather than people, the door in is physical: an Accessibility Assessment of one office or site, with the findings feeding the same pathway.</p><div class="sector-path"><b>Pathway:</b> Training &rarr; Consulting and Advising on live decisions &rarr; Accessible Communications and Media for outward channels &rarr; Consulting and Ongoing Support while fixes are worked and verified.</div><p style="margin-top:14px;"><a href="#training" class="btn ghost" data-go="training" style="padding:9px 16px;font-size:.95rem;">Explore Training</a> <a href="#communications" class="btn ghost" data-go="communications" style="padding:9px 16px;font-size:.95rem;">See communications</a></p></div></div>
 
-        <div class="zig"><div class="zig-text"><span class="tag warm">Sector 2 · Entry: Accessibility Assessment and field assessments</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Government and public programs</h3><p>For cities, counties, and public programs responsible for buildings, services, meetings, websites, and elections. The starting point is evidence: an on site assessment that walks a place or a service the way a resident meets it. Findings are photographed, matched to the standard, and tagged by Title.</p><p style="margin-top:10px;">Voting places are the worked example for this sector. The review follows a voter through parking, the route in, the entrance, check in, and the voting area itself. That voting work grows from Matthew&#8217;s independent spot check case studies of Larimer County polling places, carried out as an independent field study, not as a client engagement.</p><div class="sector-path"><b>Pathway:</b> Accessibility Assessment of one site, or a full Accessibility Audit &rarr; Plain language findings &rarr; Remediation support &rarr; Self-Evaluation and Transition Plan &rarr; Consulting and Ongoing Support or Fractional ADA Coordinator.</div><p style="margin-top:14px;"><a href="#audits" class="btn ghost" data-go="audits" style="padding:9px 16px;font-size:.95rem;">Explore Accessibility Audits</a> <a href="#modules" class="btn ghost" data-go="modules" style="padding:9px 16px;font-size:.95rem;">See the Voting module</a></p></div><figure class="ph"><img src="assets/f1ea8d9cb09c.jpg" alt="Photograph of a voter using a wheelchair at a lowered voting booth in a bright wood panelled hall, with two poll workers standing nearby at a check in table." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>A lowered voting booth in use, with wide clear space around it and poll workers nearby.</figcaption></figure></div>
+        <div class="zig" id="sector-gov"><div class="zig-text"><span class="tag warm">Sector 2 · Entry: Accessibility Assessment and field assessments</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Government and public programs</h3><p>For cities, counties, and public programs responsible for buildings, services, meetings, websites, and elections. The starting point is evidence: an on site assessment that walks a place or a service the way a resident meets it. Findings are photographed, matched to the standard, and tagged by Title.</p><p style="margin-top:10px;">Voting places are the worked example for this sector. The review follows a voter through parking, the route in, the entrance, check in, and the voting area itself. That voting work grows from Matthew&#8217;s independent spot check case studies of Larimer County polling places, carried out as an independent field study, not as a client engagement.</p><div class="sector-path"><b>Pathway:</b> Accessibility Assessment of one site, or a full Accessibility Audit &rarr; Plain language findings &rarr; Remediation support &rarr; Self-Evaluation and Transition Plan &rarr; Consulting and Ongoing Support or Fractional ADA Coordinator.</div><p style="margin-top:14px;"><a href="#audits" class="btn ghost" data-go="audits" style="padding:9px 16px;font-size:.95rem;">Explore Accessibility Audits</a> <a href="#modules" class="btn ghost" data-go="modules" style="padding:9px 16px;font-size:.95rem;">See the Voting module</a></p></div><figure class="ph"><img src="assets/f1ea8d9cb09c.jpg" alt="Photograph of a voter using a wheelchair at a lowered voting booth in a bright wood panelled hall, with two poll workers standing nearby at a check in table." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>A lowered voting booth in use, with wide clear space around it and poll workers nearby.</figcaption></figure></div>
 
-        <div class="zig"><figure class="ph"><img src="assets/3e839bcd890a.jpg" alt="Photograph of a civic building entrance reached by a wide ramp with handrails on both sides, with trees, planters, and clear ground markings guiding visitors to the doors." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Arrival first: the route, the slope, and the landing are checked before anything else, at a building entrance or at a stop.</figcaption></figure><div class="zig-text"><span class="tag warm">Sector 3 · Entry: Per-stop Accessibility Assessments</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Transit and public spaces</h3><p>For the stops, stations, and public spaces people use every day. The work here is physical and specific: an Accessibility Assessment at each stop, one stop at a time: slope and cross slope measured, the landing pad and boarding area checked, the path of travel from the sidewalk recorded, and shelter, seating, and signage noted in place.</p><p style="margin-top:10px;">Every stop is documented photographically, with notes tied to the finding they support, so each stop can become a clear transition plan entry with a fix, an owner, and a phase. This sector is presented in independent case study terms: stops assessed one by one as field study work, with no transit agency named as a client.</p><div class="sector-path"><b>Pathway:</b> Per-stop Accessibility Assessment &rarr; Photo documented findings &rarr; Transition plan entries, stop by stop &rarr; Phased fixes, then re-checks against the original photos and measurements.</div><p style="margin-top:14px;"><a href="#audits" class="btn ghost" data-go="audits" style="padding:9px 16px;font-size:.95rem;">Explore Accessibility Audits</a> <a href="#plans" class="btn ghost" data-go="plans" style="padding:9px 16px;font-size:.95rem;">See transition planning</a></p></div></div>
+        <div class="zig" id="sector-transit"><figure class="ph"><img src="assets/3e839bcd890a.jpg" alt="Photograph of a civic building entrance reached by a wide ramp with handrails on both sides, with trees, planters, and clear ground markings guiding visitors to the doors." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Arrival first: the route, the slope, and the landing are checked before anything else, at a building entrance or at a stop.</figcaption></figure><div class="zig-text"><span class="tag warm">Sector 3 · Entry: Per-stop Accessibility Assessments</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Transit and public spaces</h3><p>For the stops, stations, and public spaces people use every day. The work here is physical and specific: an Accessibility Assessment at each stop, one stop at a time: slope and cross slope measured, the landing pad and boarding area checked, the path of travel from the sidewalk recorded, and shelter, seating, and signage noted in place.</p><p style="margin-top:10px;">Every stop is documented photographically, with notes tied to the finding they support, so each stop can become a clear transition plan entry with a fix, an owner, and a phase. This sector is presented in independent case study terms: stops assessed one by one as field study work, with no transit agency named as a client.</p><div class="sector-path"><b>Pathway:</b> Per-stop Accessibility Assessment &rarr; Photo documented findings &rarr; Transition plan entries, stop by stop &rarr; Phased fixes, then re-checks against the original photos and measurements.</div><p style="margin-top:14px;"><a href="#audits" class="btn ghost" data-go="audits" style="padding:9px 16px;font-size:.95rem;">Explore Accessibility Audits</a> <a href="#plans" class="btn ghost" data-go="plans" style="padding:9px 16px;font-size:.95rem;">See transition planning</a></p></div></div>
 
-        <div class="zig"><div class="zig-text"><span class="tag warm">Sector 4 · Entry: Self-Evaluation and Transition Plans</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Schools and districts</h3><p>For schools and districts where access lives in two places at once: the program side, in policies, communication, and how services reach students, families, and staff, and the physical side, in arrival, entrances, routes, classrooms, and shared spaces. Treating only one side leaves the other to fail quietly.</p><p style="margin-top:10px;">The starting offer joins both sides in one Title II package: a self-evaluation of programs and policies, a physical audit of the sites included, and one transition plan that schedules both sets of findings together, with owners and dates. An Accessibility Assessment of one campus is the smaller first step when a district wants evidence from a single site before deciding on the full package.</p><div class="sector-path"><b>Pathway:</b> Accessibility Assessment of one campus, or Self-Evaluation &rarr; Physical Locations audit &rarr; One Transition Plan for program and building findings &rarr; Training for the staff who carry the plan &rarr; Ongoing Support through the phases.</div><p style="margin-top:14px;"><a href="#plans" class="btn ghost" data-go="plans" style="padding:9px 16px;font-size:.95rem;">Explore Transition Planning</a> <a href="#advising" class="btn ghost" data-go="advising" style="padding:9px 16px;font-size:.95rem;">See advising</a></p></div><figure class="ph"><img src="assets/24c64caf699f.jpg" alt="Photograph of three colleagues leaning over a large printed site plan spread across a table, each pointing at a different part of the drawing." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>One plan on the table, read the same way by everyone in the room: program findings and building findings in a single sequence.</figcaption></figure></div>
+        <div class="zig" id="sector-schools"><div class="zig-text"><span class="tag warm">Sector 4 · Entry: Self-Evaluation and Transition Plans</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Schools and districts</h3><p>For schools and districts where access lives in two places at once: the program side, in policies, communication, and how services reach students, families, and staff, and the physical side, in arrival, entrances, routes, classrooms, and shared spaces. Treating only one side leaves the other to fail quietly.</p><p style="margin-top:10px;">The starting offer joins both sides in one Title II package: a self-evaluation of programs and policies, a physical audit of the sites included, and one transition plan that schedules both sets of findings together, with owners and dates. An Accessibility Assessment of one campus is the smaller first step when a district wants evidence from a single site before deciding on the full package.</p><div class="sector-path"><b>Pathway:</b> Accessibility Assessment of one campus, or Self-Evaluation &rarr; Physical Locations audit &rarr; One Transition Plan for program and building findings &rarr; Training for the staff who carry the plan &rarr; Ongoing Support through the phases.</div><p style="margin-top:14px;"><a href="#plans" class="btn ghost" data-go="plans" style="padding:9px 16px;font-size:.95rem;">Explore Transition Planning</a> <a href="#advising" class="btn ghost" data-go="advising" style="padding:9px 16px;font-size:.95rem;">See advising</a></p></div><figure class="ph"><img src="assets/24c64caf699f.jpg" alt="Photograph of three colleagues leaning over a large printed site plan spread across a table, each pointing at a different part of the drawing." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>One plan on the table, read the same way by everyone in the room: program findings and building findings in a single sequence.</figcaption></figure></div>
 
-        <div class="zig"><figure class="ph"><img src="assets/bf39dbea1fa2.jpg" alt="Concept picture of a communications team at a table reviewing a video feature on a large screen with a plain caption bar beneath the picture, with a printed release and an open notebook on the table." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture. A public facing feature reviewed before it ships: the story on the screen, the caption bar beneath it, and the release on the table.</figcaption></figure><div class="zig-text"><span class="tag warm">Sector 5 · Entry: Training and communications</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Airports and public venues</h3><p>For airports and other high volume public venues, where a barrier is met by hundreds of people a day and where announcements, signage, and published stories carry as much weight as doors and counters. No airport is named as a client in this sector. The door in is people and messages first.</p><p style="margin-top:10px;">Training prepares front line and service teams to handle access well in the moment. The communications review checks the outward channels at the same time: announcements, social media, press material, video, and on site information, so the venue portrays people with respect and publishes in formats every visitor can use. An Accessibility Assessment of one public facing area, an entrance, a check in row, a concourse, is the physical door in when a venue wants to start with a place.</p><div class="sector-path"><b>Pathway:</b> Training &rarr; Accessible Communications and Media &rarr; Accessibility Assessment or full audit of public facing areas and digital services where needed &rarr; Remediation planning &rarr; Ongoing Support.</div><p style="margin-top:14px;"><a href="#training" class="btn ghost" data-go="training" style="padding:9px 16px;font-size:.95rem;">Explore Training</a> <a href="#communications" class="btn ghost" data-go="communications" style="padding:9px 16px;font-size:.95rem;">See communications</a></p></div></div>
+        <div class="zig" id="sector-venues"><figure class="ph"><img src="assets/bf39dbea1fa2.jpg" alt="Concept picture of a communications team at a table reviewing a video feature on a large screen with a plain caption bar beneath the picture, with a printed release and an open notebook on the table." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture. A public facing feature reviewed before it ships: the story on the screen, the caption bar beneath it, and the release on the table.</figcaption></figure><div class="zig-text"><span class="tag warm">Sector 5 · Entry: Training and communications</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Airports and public venues</h3><p>For airports and other high volume public venues, where a barrier is met by hundreds of people a day and where announcements, signage, and published stories carry as much weight as doors and counters. No airport is named as a client in this sector. The door in is people and messages first.</p><p style="margin-top:10px;">Training prepares front line and service teams to handle access well in the moment. The communications review checks the outward channels at the same time: announcements, social media, press material, video, and on site information, so the venue portrays people with respect and publishes in formats every visitor can use. An Accessibility Assessment of one public facing area, an entrance, a check in row, a concourse, is the physical door in when a venue wants to start with a place.</p><div class="sector-path"><b>Pathway:</b> Training &rarr; Accessible Communications and Media &rarr; Accessibility Assessment or full audit of public facing areas and digital services where needed &rarr; Remediation planning &rarr; Ongoing Support.</div><p style="margin-top:14px;"><a href="#training" class="btn ghost" data-go="training" style="padding:9px 16px;font-size:.95rem;">Explore Training</a> <a href="#communications" class="btn ghost" data-go="communications" style="padding:9px 16px;font-size:.95rem;">See communications</a></p></div></div>
 
         <div class="zig"><div class="zig-text"><span class="tag warm">Sector 6 · Entry: The Second Reading</span><h3 style="font-size:1.45rem;margin:8px 0 8px;">Training providers and course teams</h3><p>For providers, course teams, and organizations whose training library has grown over years, across authors and vendors. One module can be sound on its own page and still contradict the next module, miss the standard it cites, or describe a world disabled learners do not meet. No single module review can surface that.</p><p style="margin-top:10px;">The Second Reading is the entry offer: the whole library read at once, in sequence, checked text against text, text against the standard, and text against the world, with each contradiction or gap quoted, located, and given a plain language fix in priority order. Its First Look tier is this sector&#8217;s starting point: a limited first read of the library before the full review, priced on the Second Reading page.</p><div class="sector-path"><b>Pathway:</b> The Second Reading &rarr; Findings in priority order &rarr; Remediation guidance for the materials &rarr; Re-check of the revised library &rarr; Alignment summary for leadership.</div><p style="margin-top:14px;"><a href="#materials" class="btn ghost" data-go="materials" style="padding:9px 16px;font-size:.95rem;">Explore The Second Reading</a></p></div><figure class="ph"><img src="assets/7310e79820a0.jpg" alt="Concept picture of a reviewer at a desk marking an open training manual with a pen, a stack of binders with sticky notes beside her and a laptop open nearby." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture. A materials audit reads the whole library at one desk, in sequence, the way a learner meets it.</figcaption></figure></div>
 
@@ -2376,7 +2406,7 @@
           <p class="eyebrow">Not sure where you fit?</p>
           <h2>Let the scorecard route you.</h2>
           <p>Nine questions, one honest starting point. Your result points to the service, program, or product that matches the problem actually in front of you.</p>
-          <div class="btnrow"><a href="#scorecard" class="btn ghost" data-go="scorecard">Take the nine-question scorecard</a></div>
+          <div class="btnrow"><a href="#scorecard?role=leader" class="btn ghost" data-go="scorecard" data-role="leader">Take the scorecard for your organization</a></div>
         </div>
       </section>
 
@@ -4140,6 +4170,10 @@
         </div>
 
         <div class="sc-shell" id="scShell">
+          <div class="sc-role-bar" id="scRoleBar" hidden>
+            <span id="scRoleBarText"></span>
+            <button type="button" class="quiet-link" id="scChangeRole">Not you? Change who you&#8217;re answering as</button>
+          </div>
           <form class="sc-form" id="scForm" aria-label="Starting point scorecard" novalidate>
             <div class="sc-progress" id="scProgress" hidden>
               <p class="sc-progress-label" id="scProgressLabel" role="status" aria-live="polite">Step 1 of 4</p>
@@ -4158,6 +4192,10 @@
         </div>
 
         <div class="sc-result" id="scResult" hidden tabindex="-1" aria-live="polite">
+          <div class="sc-print-head">
+            <h2>Fixing Friction — Starting Point Summary</h2>
+            <p>https://fixingfriction.com · <span id="scPrintRole"></span></p>
+          </div>
           <div class="sc-res-hero">
             <p class="eyebrow">Your Results Summary</p>
             <h2 id="scRecTitle">The service to start with</h2>
@@ -4166,8 +4204,19 @@
             <div class="btnrow">
               <a href="#services" class="btn primary" id="scRecGo" data-go="services">See the recommended service</a>
               <a href="#start" class="btn ghost" id="scRecStart" data-go="start">Start a conversation</a>
-              <button type="button" class="btn ghost" id="scCopyMgrBtn" hidden>Copy a summary to share with my manager</button>
+              <button type="button" class="btn ghost" id="scCopyMgrBtn">Copy a summary</button>
+              <button type="button" class="btn ghost" id="scPrintBtn">Print or save my results</button>
             </div>
+          </div>
+
+          <div class="sc-also-wrap" id="scAlsoLook" hidden>
+            <h3>Also worth a look</h3>
+            <div class="sc-also-grid" id="scAlsoGrid"></div>
+          </div>
+
+          <div class="sc-sector-row" id="scSectorRow" hidden>
+            <p id="scSectorText"></p>
+            <a href="#verticals" class="btn ghost" id="scSectorLink" data-go="verticals" style="padding:9px 16px;font-size:.92rem;">See how this works for your sector</a>
           </div>
 
           <div class="sc-res-grid">
@@ -4469,8 +4518,13 @@
           <h2 style="font-size:1.5rem;">Write the email. That is the first step, and it commits you to nothing.</h2>
           <p style="margin-top:6px;">Email is the front door for reviews, assessments, trainings, and licensing questions alike. A first conversation sets the scope: you get a clear recommendation and an honest outline of the work, and you decide from there. No pressure, no obligation, and no claim that a conversation alone makes anything compliant.</p>
           <p style="margin-top:12px;font-size:1.15rem;font-weight:700;"><a href="mailto:info@MatthewCicanese.com">info@MatthewCicanese.com</a></p>
+          <div class="start-summary-box" id="startSummaryBox" role="status" aria-live="polite" hidden>
+            <p style="margin:0;font-weight:700;color:var(--ink);">Your scorecard summary has been copied to your clipboard. Paste it into your email below, or click Write an email to open it pre-filled.</p>
+            <pre id="startSummaryText"></pre>
+            <div class="btnrow" style="margin-top:10px;"><button type="button" class="btn ghost" id="startCopyAgain" style="padding:8px 14px;font-size:.88rem;">Copy summary again</button></div>
+          </div>
           <div class="btnrow">
-            <a class="btn primary" href="mailto:info@MatthewCicanese.com?subject=Fixing%20Friction%20ADA%20inquiry">Write an email</a>
+            <a class="btn primary" id="startWriteEmail" href="mailto:info@MatthewCicanese.com?subject=Fixing%20Friction%20ADA%20inquiry">Write an email</a>
             <button type="button" class="btn ghost" id="copyEmail">Copy the address</button>
           </div>
           <p class="small" style="margin-top:14px;">Based in Fort Collins, Colorado. On site service across Fort Collins and roughly a 50 mile radius. Every engagement is scoped individually after the first conversation.</p>
@@ -4874,7 +4928,7 @@
 <div class="callout" role="note">
           <h2 style="font-size:1.5rem;margin:6px 0 8px;">Not sure where you fit?</h2>
           <p style="color:var(--ink);">Let the scorecard route you. Nine questions, one honest starting point. Your result points to the service, program, or product that matches the problem actually in front of you.</p>
-          <div class="btnrow"><a href="#scorecard" class="btn ghost" data-go="scorecard">Take the nine-question scorecard</a></div>
+          <div class="btnrow"><a href="#scorecard?role=champion" class="btn ghost" data-go="scorecard" data-role="champion">Take the scorecard for champions and team members</a></div>
         </div>
       </section><section class="page" id="page-debt" aria-label="Accessibility Friction">
         <figure class="bleed-fig"><img src="assets/3d438d24ae9a.webp" alt="Concept illustration of an open ledger and calculator beside a tall stack of invoices, a cracked bar chart falling with a downward arrow, coins spilling from a tipped jar, and a customer walking out of a doorway." width="1920" height="1280" loading="lazy" decoding="async" /></figure>
@@ -4998,7 +5052,7 @@
           <p class="eyebrow">Where to go next</p>
           <h2>Start with the pattern, not the pile.</h2>
           <p>Burnout Bingo reads the load this page describes, one square at a time. The community routes gather the people working on the same friction, at home and at work.</p>
-          <div class="btnrow"><a href="#burnout" class="btn ghost" data-go="burnout">See Burnout Bingo</a><a href="#community" class="btn ghost" data-go="community">Community &amp; Support</a></div>
+          <div class="btnrow"><a href="#burnout" class="btn ghost" data-go="burnout">See Burnout Bingo</a><a href="#community" class="btn ghost" data-go="community">Community &amp; Support</a><a href="#scorecard?role=individual" class="btn ghost" data-go="scorecard" data-role="individual">Take the scorecard for yourself or your household</a></div>
         </div>
       </section><section class="page" id="page-burnout" aria-label="Burnout Bingo">
         <figure class="bleed-fig"><img src="assets/dcb23e66e274.webp" alt="Concept illustration of a person at a table with a notebook and a mug, looking up at a neat grid of square cards on the wall, a few marked with a circle, a wave, and a small flame, beginning to see the pattern across the board." width="1920" height="1280" loading="lazy" decoding="async" /></figure>
@@ -5384,12 +5438,29 @@
         }
         document.addEventListener("click", function (ev) {
           var t = ev.target.closest("[data-go]");
-          if (t) { ev.preventDefault(); pendingJump = t.getAttribute("data-jump"); go(t.getAttribute("data-go")); }
+          if (t) {
+            ev.preventDefault();
+            pendingJump = t.getAttribute("data-jump");
+            var roleAttr = t.getAttribute("data-role");
+            var targetPage = t.getAttribute("data-go");
+            go(targetPage);
+            if (targetPage === "scorecard" && roleAttr) {
+              window.__pendingScorecardRole = roleAttr;
+              if (typeof window.__applyScorecardRole === "function") window.__applyScorecardRole(roleAttr);
+            }
+          }
         });
-        var startHash = (location.hash || "").replace("#", "");
+        var rawStartHash = (location.hash || "").replace(/^#/, "");
+        var startParts = rawStartHash.split("?");
+        var startHash = startParts[0] || "";
+        var startQuery = startParts[1] || "";
         if (startHash === "assessments") startHash = "audits";
         if (startHash === "consulting") startHash = "advising";
         if (startHash === "apps") startHash = "prototypes";
+        if (startHash === "scorecard" && startQuery) {
+          var rm = startQuery.match(/(?:^|&)role=(leader|champion|individual)(?:&|$)/);
+          if (rm) window.__pendingScorecardRole = rm[1];
+        }
         if (startHash && pages.indexOf(startHash) !== -1) showPage(startHash);
 
         /* Per-section fade-up reveals. Content is visible by default;
@@ -5600,15 +5671,15 @@
           },
           areasByRole: {
             leader: [
-              { id: "buildings", service: "audits", label: "Our buildings and spaces", desc: "Entrances, routes, restrooms, counters, and signage." },
-              { id: "website", service: "audits", label: "Our website and documents", desc: "Real tasks on your website and in your documents for screen reader and keyboard users." },
-              { id: "training", service: "training", label: "Staff training and confidence", desc: "Staff meeting access questions in daily work and answering them consistently." },
-              { id: "policies", service: "advising", label: "Policies, self-evaluation, and plans", desc: "Access policies, self-evaluations, or transition plans you can hand to someone." },
-              { id: "materials", service: "materials", label: "Our own training materials", desc: "Courses and training content grown across authors and vendors." },
-              { id: "deadline", service: "support", label: "A deadline, a complaint, or a project", desc: "An election, opening, renovation, or complaint with a date on it." },
-              { id: "voting", service: "audits", label: "Voting access", desc: "Polling places or voter service centers you run or host." },
-              { id: "parks", service: "training", label: "Parks and recreation", desc: "Parks, trails, or recreation routes from arrival to the furthest point." },
-              { id: "calendar", service: "calendar", label: "Calendar based awareness programming", desc: "Programming tied to moments like Autism Acceptance Month, Disability Pride Month, or Dec. 3." }
+              { id: "calendar", service: "calendar", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "Calendar based awareness programming", desc: "Programming tied to moments like Autism Acceptance Month, Disability Pride Month, or Dec. 3." },
+              { id: "training", service: "training", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "Staff training and confidence", desc: "Staff meeting access questions in daily work and answering them consistently." },
+              { id: "buildings", service: "audits", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "Our buildings and spaces", desc: "Entrances, routes, restrooms, counters, and signage." },
+              { id: "website", service: "audits", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "Our website and documents", desc: "Real tasks on your website and in your documents for screen reader and keyboard users." },
+              { id: "policies", service: "advising", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "Policies, self-evaluation, and plans", desc: "Access policies, self-evaluations, or transition plans you can hand to someone.", nonGovLabel: "Policies and accommodation process", nonGovDesc: "How access requests and accommodations are handled, and who owns the process." },
+              { id: "deadline", service: "support", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "A deadline, a complaint, or a project", desc: "An election, opening, renovation, or complaint with a date on it." },
+              { id: "materials", service: "materials", showFor: ["gov","school","corp","smallbiz","nonprofit","venue","other","skip"], label: "Our own training materials", desc: "Courses and training content grown across authors and vendors." },
+              { id: "parks", service: "training", showFor: ["gov"], label: "Parks and recreation", desc: "Parks, trails, or recreation routes from arrival to the furthest point." },
+              { id: "voting", service: "audits", showFor: ["gov","school"], label: "Voting access", desc: "Polling places or voter service centers you run or host." }
             ],
             champion: [
               { id: "workday", label: "Barriers in my own workday", desc: "Tools, spaces, or workflows that slow down your day." },
@@ -5626,17 +5697,34 @@
             ]
           },
           helpOptions: [
-            { id: "tools", label: "Use tools myself" },
-            { id: "talk", label: "Talk to someone" },
-            { id: "training", label: "Bring in training or a keynote" },
-            { id: "audit", label: "Get a full audit and plan" },
-            { id: "community", label: "Join the community" }
+            { id: "tools", roles: ["leader","champion","individual"], label: "Use tools myself", leaderLabel: "Explore self-serve tools and checklists" },
+            { id: "talk", roles: ["leader","champion","individual"], label: "Talk to someone" },
+            { id: "training", roles: ["leader","champion"], label: "Bring in training or a keynote" },
+            { id: "audit", roles: ["leader"], label: "Get a full audit and plan" },
+            { id: "community", roles: ["leader","champion","individual"], label: "Join the community" }
           ],
           deadlineOptions: [
             { id: "yes", label: "Yes, within 90 days" },
             { id: "no", label: "No immediate deadline" },
             { id: "unsure", label: "Not sure yet" }
           ],
+          sectorOptions: [
+            { id: "gov", label: "Government (city, county, state, district)", go: "verticals", jump: "sector-gov", linkLabel: "See how this works for government and public programs" },
+            { id: "school", label: "School, college or university", go: "verticals", jump: "sector-schools", linkLabel: "See how this works for schools and districts" },
+            { id: "corp", label: "Corporation or employer", go: "verticals", jump: "sector-business", linkLabel: "See how this works for business and corporate teams" },
+            { id: "smallbiz", label: "Small business or start-up", go: "verticals", jump: "sector-business", linkLabel: "See how this works for business and corporate teams" },
+            { id: "nonprofit", label: "Nonprofit", go: "verticals", jump: "sector-venues", linkLabel: "See how this works for public venues and organizations" },
+            { id: "venue", label: "Venue, hospitality or events", go: "verticals", jump: "sector-venues", linkLabel: "See how this works for public venues and organizations" },
+            { id: "other", label: "Other or not sure", go: "verticals", jump: null, linkLabel: "See how this works by sector" },
+            { id: "skip", label: "Skip this question", go: null, jump: null, linkLabel: null }
+          ],
+          helpRecommendations: {
+            tools: { go: "tools", title: "Tools & Reference Guides", desc: "Start right away with self-checks, checklists, and plain-language guides." },
+            talk: { go: "start", title: "Start a Conversation", desc: "Send a few sentences about what is in front of you and get an honest first step." },
+            training: { go: "speaking", title: "Keynote Speaking & Training", desc: "Give your team or audience one shared plain language for Accessibility Friction." },
+            audit: { go: "audits", title: "Accessibility Audits & Assessments", desc: "Walk the place or site, document barriers plainly, and rank what to fix first." },
+            community: { go: "community", title: "Community & Support", desc: "Peer routes, ERG resources, and the Paid Coaching Community waitlist.", personalDesc: "Peer support and everyday friction guides with people working through the same things." }
+          },
           championResults: {
             workday: {
               title: "A good place to start: plain-language tools and community",
@@ -5769,7 +5857,11 @@
           var scReturnBtn = document.getElementById("scReturnBtn");
           var scReturnDismiss = document.getElementById("scReturnDismiss");
           var scCopyMgrBtn = document.getElementById("scCopyMgrBtn");
+          var scPrintBtn = document.getElementById("scPrintBtn");
           var scRecStart = document.getElementById("scRecStart");
+          var scRoleBar = document.getElementById("scRoleBar");
+          var scRoleBarText = document.getElementById("scRoleBarText");
+          var scChangeRole = document.getElementById("scChangeRole");
           var scBack = document.getElementById("scBack");
           var scContinue = document.getElementById("scContinue");
           var scSubmitBtn = document.getElementById("scSubmitBtn");
@@ -5783,8 +5875,8 @@
           var scBannerDismissed = false;
           var scCurrent = 0;
           var scAdvanceTimer = null;
-          var scLastMgrSummary = "";
-          var scState = { role: null, areas: [], ratings: {}, help: null, deadline90: null };
+          var scLastSummary = "";
+          var scState = { role: null, sector: null, areas: [], ratings: {}, help: null, deadline90: null, deepLinked: false };
 
           function scStoreGet(k) { try { return window.sessionStorage.getItem(k); } catch (e) { return null; } }
           function scStoreSet(k, v) { try { window.sessionStorage.setItem(k, v); } catch (e) {} }
@@ -5796,6 +5888,18 @@
           }
           window.__updateScReturnBar = updateScReturnBar;
 
+          function getRoleLabel(roleId) {
+            for (var i = 0; i < SC_BRANCH_CONFIG.roles.length; i++) {
+              if (SC_BRANCH_CONFIG.roles[i].id === roleId) return SC_BRANCH_CONFIG.roles[i].label;
+            }
+            return "";
+          }
+          function getSectorMeta(secId) {
+            for (var i = 0; i < SC_BRANCH_CONFIG.sectorOptions.length; i++) {
+              if (SC_BRANCH_CONFIG.sectorOptions[i].id === secId) return SC_BRANCH_CONFIG.sectorOptions[i];
+            }
+            return null;
+          }
           function getAreaMeta(role, areaId) {
             var list = SC_BRANCH_CONFIG.areasByRole[role] || [];
             for (var i = 0; i < list.length; i++) {
@@ -5803,10 +5907,32 @@
             }
             return null;
           }
+          function getVisibleAreas(role, sector) {
+            var list = SC_BRANCH_CONFIG.areasByRole[role] || [];
+            if (role !== "leader") return list;
+            var sec = sector || "skip";
+            return list.filter(function (a) {
+              return !a.showFor || a.showFor.indexOf(sec) !== -1;
+            });
+          }
+          function getAreaDisplay(meta, role, sector) {
+            if (!meta) return { label: "", desc: "" };
+            var isNonGov = (role === "leader" && sector && sector !== "gov");
+            return {
+              label: (isNonGov && meta.nonGovLabel) ? meta.nonGovLabel : meta.label,
+              desc: (isNonGov && meta.nonGovDesc) ? meta.nonGovDesc : meta.desc
+            };
+          }
+          function getVisibleHelpOptions(role) {
+            return SC_BRANCH_CONFIG.helpOptions.filter(function (h) {
+              return !h.roles || !role || h.roles.indexOf(role) !== -1;
+            });
+          }
 
           function buildStepList() {
             var steps = [{ type: "role" }];
             if (!scState.role) return steps;
+            if (scState.role === "leader") steps.push({ type: "sector" });
             steps.push({ type: "areas" });
             scState.areas.forEach(function (aid) {
               steps.push({ type: "rating", areaId: aid });
@@ -5814,6 +5940,16 @@
             steps.push({ type: "help" });
             if (scState.role === "leader") steps.push({ type: "deadline" });
             return steps;
+          }
+
+          function updateRoleBar() {
+            if (!scRoleBar) return;
+            if (scState.deepLinked && scState.role && scCurrent > 0) {
+              scRoleBar.hidden = false;
+              if (scRoleBarText) scRoleBarText.textContent = "Answering as: " + getRoleLabel(scState.role);
+            } else {
+              scRoleBar.hidden = true;
+            }
           }
 
           function renderCurrentStep(focusHead) {
@@ -5824,6 +5960,7 @@
             var total = scState.role ? steps.length : 4;
             var n = scCurrent + 1;
 
+            updateRoleBar();
             if (scProgress) scProgress.hidden = false;
             if (scProgressLabel) scProgressLabel.textContent = "Step " + n + " of " + total;
             if (scProgressBar) {
@@ -5855,12 +5992,25 @@
                 lab.appendChild(document.createTextNode(" " + r.label));
                 opts.appendChild(lab);
               });
+            } else if (step.type === "sector") {
+              leg.textContent = "What kind of organization?";
+              desc.textContent = "Optional. Used only to link you to the matching sector page in your results.";
+              SC_BRANCH_CONFIG.sectorOptions.forEach(function (s) {
+                var lab = document.createElement("label");
+                var inp = document.createElement("input");
+                inp.type = "radio"; inp.name = "scSector"; inp.value = s.id;
+                if (scState.sector === s.id) inp.checked = true;
+                lab.appendChild(inp);
+                lab.appendChild(document.createTextNode(" " + s.label));
+                opts.appendChild(lab);
+              });
             } else if (step.type === "areas") {
               isMulti = true;
               leg.textContent = "Where does the friction show up?";
               desc.textContent = "Choose up to " + SC_BRANCH_CONFIG.maxAreas + " areas that feel most relevant right now.";
-              var areaList = SC_BRANCH_CONFIG.areasByRole[scState.role] || [];
+              var areaList = getVisibleAreas(scState.role, scState.sector);
               areaList.forEach(function (a) {
+                var disp = getAreaDisplay(a, scState.role, scState.sector);
                 var lab = document.createElement("label");
                 var inp = document.createElement("input");
                 inp.type = "checkbox"; inp.name = "scAreas"; inp.value = a.id;
@@ -5868,11 +6018,11 @@
                 lab.appendChild(inp);
                 var span = document.createElement("span");
                 span.innerHTML = "<strong></strong>";
-                span.firstChild.textContent = a.label;
-                if (a.desc) {
+                span.firstChild.textContent = disp.label;
+                if (disp.desc) {
                   var sub = document.createElement("span");
                   sub.style.cssText = "display:block;font-size:.86rem;font-weight:400;color:var(--muted);margin-top:2px;";
-                  sub.textContent = a.desc;
+                  sub.textContent = disp.desc;
                   span.appendChild(sub);
                 }
                 lab.appendChild(span);
@@ -5880,8 +6030,9 @@
               });
             } else if (step.type === "rating") {
               var meta = getAreaMeta(scState.role, step.areaId);
-              leg.textContent = meta ? meta.label : "How stuck is this area?";
-              desc.textContent = meta && meta.desc ? meta.desc : "Give this area your best honest read.";
+              var rDisp = getAreaDisplay(meta, scState.role, scState.sector);
+              leg.textContent = rDisp.label || "How stuck is this area?";
+              desc.textContent = rDisp.desc || "Give this area your best honest read.";
               var scaleKey = (meta && meta.service === "calendar") ? "calendar" : (scState.role === "leader" ? "leader" : "personal");
               var scale = SC_BRANCH_CONFIG.scales[scaleKey];
               scale.forEach(function (o) {
@@ -5895,14 +6046,15 @@
               });
             } else if (step.type === "help") {
               leg.textContent = "What would help most right now?";
-              desc.textContent = "Pick the kind of next step that feels most realistic for you today.";
-              SC_BRANCH_CONFIG.helpOptions.forEach(function (h) {
+              desc.textContent = "Pick the kind of next step that feels most realistic right now.";
+              getVisibleHelpOptions(scState.role).forEach(function (h) {
                 var lab = document.createElement("label");
                 var inp = document.createElement("input");
                 inp.type = "radio"; inp.name = "scHelp"; inp.value = h.id;
                 if (scState.help === h.id) inp.checked = true;
                 lab.appendChild(inp);
-                lab.appendChild(document.createTextNode(" " + h.label));
+                var hLabel = (scState.role === "leader" && h.leaderLabel) ? h.leaderLabel : h.label;
+                lab.appendChild(document.createTextNode(" " + hLabel));
                 opts.appendChild(lab);
               });
             } else if (step.type === "deadline") {
@@ -6042,8 +6194,26 @@
             });
             ratedItems.sort(function (a, b) { return b.val - a.val; });
 
-            if (scCopyMgrBtn) scCopyMgrBtn.hidden = true;
+            if (scCopyMgrBtn) {
+              scCopyMgrBtn.hidden = false;
+              scCopyMgrBtn.textContent = scState.role === "champion"
+                ? "Copy a summary to share with my manager"
+                : "Copy a summary";
+            }
             if (scRecStart) scRecStart.hidden = false;
+
+            var primaryGo = "services";
+            var alsoCandidates = [];
+            function addAlso(go, jump, title, desc, score) {
+              if (!go || go === primaryGo) return;
+              for (var i = 0; i < alsoCandidates.length; i++) {
+                if (alsoCandidates[i].go === go) {
+                  if (score > alsoCandidates[i].score) alsoCandidates[i].score = score;
+                  return;
+                }
+              }
+              alsoCandidates.push({ go: go, jump: jump || null, title: title, desc: desc, score: score });
+            }
 
             if (scState.role === "leader") {
               var totals = {}, calendarVal = null;
@@ -6054,6 +6224,7 @@
               var totalAll = 0;
               Object.keys(totals).forEach(function (k) { totalAll += totals[k]; });
               if (totalAll === 0) {
+                primaryGo = "services";
                 titleEl.textContent = "A good place to start: a conversation";
                 whyEl.textContent = "Nothing you marked is sticking right now. That usually means one of two things: the basics are genuinely in hand, or nobody has yet walked the place, the site, and the materials with fresh eyes. A short conversation sorts out which, and the foundations training theme is the standing refresher either way.";
                 alsoEl.textContent = scState.deadline90 === "yes" ? "You noted a deadline within 90 days. Mention that date first in your note so scoping starts around it." : "";
@@ -6073,12 +6244,14 @@
                   if (norm > best + 0.0001) { best = norm; winner = k; }
                 });
                 var d = SC_DATA[winner];
+                primaryGo = d.go;
                 titleEl.textContent = "A good place to start: " + d.name;
                 whyEl.textContent = d.why;
                 var runner = null, runnerBest = -1;
                 SC_ORDER.forEach(function (k) {
                   if (k === winner) return;
                   var norm = (totals[k] || 0) / SC_DATA[k].max;
+                  if (norm > 0) addAlso(SC_DATA[k].go, null, SC_DATA[k].name, SC_DATA[k].step, norm * 10);
                   if (norm > runnerBest + 0.0001) { runnerBest = norm; runner = k; }
                 });
                 var alsoNotes = [];
@@ -6087,6 +6260,7 @@
                 }
                 if (scState.deadline90 === "yes") {
                   alsoNotes.push("With a deadline in the next 90 days, start by naming that date and what done needs to look like before it arrives.");
+                  addAlso("support", null, "Consulting and Ongoing Support", "Work beside your team through a fixed deadline until fixes are verified.", 8);
                 }
                 alsoEl.textContent = alsoNotes.join(" ");
                 renderTools(toolsEl, d.tools);
@@ -6099,6 +6273,7 @@
             } else if (scState.role === "champion") {
               var topChamp = ratedItems[0] ? ratedItems[0].id : "workday";
               var cr = SC_BRANCH_CONFIG.championResults[topChamp] || SC_BRANCH_CONFIG.championResults.workday;
+              primaryGo = cr.go;
               titleEl.textContent = cr.title;
               whyEl.textContent = cr.why;
               alsoEl.textContent = scState.help === "training"
@@ -6110,17 +6285,14 @@
               goBtn.setAttribute("href", "#" + cr.go);
               goBtn.textContent = cr.goLabel;
               if (calBlock) calBlock.hidden = true;
-              if (scCopyMgrBtn) scCopyMgrBtn.hidden = false;
-              var flaggedNames = ratedItems.filter(function (x) { return x.val > 0; }).map(function (x) { return x.meta.label + " (" + (x.val === 2 ? "sticking point" : "partly handled") + ")"; });
-              if (!flaggedNames.length) flaggedNames = ratedItems.map(function (x) { return x.meta.label; });
-              scLastMgrSummary = "Accessibility Friction Scorecard Summary\n"
-                + "Top areas flagged: " + flaggedNames.join("; ") + "\n"
-                + "Suggested starting point: " + cr.title.replace(/^A good place to start:\s*/i, "") + "\n"
-                + "Next step: " + cr.step + "\n"
-                + "More info: https://fixingfriction.com/#" + cr.go;
+              ratedItems.slice(1).forEach(function (it) {
+                var r2 = SC_BRANCH_CONFIG.championResults[it.id];
+                if (r2) addAlso(r2.go, null, r2.goLabel, r2.why, it.val * 4 + 2);
+              });
             } else {
               var topInd = ratedItems[0] ? ratedItems[0].id : "starting";
               var ir = SC_BRANCH_CONFIG.individualResults[topInd] || SC_BRANCH_CONFIG.individualResults.starting;
+              primaryGo = ir.go;
               titleEl.textContent = ir.title;
               whyEl.textContent = ir.why;
               alsoEl.textContent = scState.help === "community"
@@ -6132,7 +6304,83 @@
               goBtn.setAttribute("href", "#" + ir.go);
               goBtn.textContent = ir.goLabel;
               if (calBlock) calBlock.hidden = true;
+              ratedItems.slice(1).forEach(function (it) {
+                var r2 = SC_BRANCH_CONFIG.individualResults[it.id];
+                if (r2) addAlso(r2.go, null, r2.goLabel, r2.why, it.val * 4 + 2);
+              });
             }
+
+            if (scState.help && SC_BRANCH_CONFIG.helpRecommendations[scState.help]) {
+              var hr = SC_BRANCH_CONFIG.helpRecommendations[scState.help];
+              var hDesc = (scState.role === "individual" && hr.personalDesc) ? hr.personalDesc : hr.desc;
+              addAlso(hr.go, null, hr.title, hDesc, 7);
+            }
+            alsoCandidates.sort(function (a, b) { return b.score - a.score; });
+            var alsoWrap = document.getElementById("scAlsoLook");
+            var alsoGrid = document.getElementById("scAlsoGrid");
+            if (alsoWrap && alsoGrid) {
+              alsoGrid.innerHTML = "";
+              var topAlso = alsoCandidates.slice(0, 2);
+              if (topAlso.length) {
+                alsoWrap.hidden = false;
+                topAlso.forEach(function (c) {
+                  var a = document.createElement("a");
+                  a.className = "sc-also-card";
+                  a.setAttribute("href", "#" + c.go);
+                  a.setAttribute("data-go", c.go);
+                  if (c.jump) a.setAttribute("data-jump", c.jump);
+                  var t1 = document.createElement("span"); t1.className = "sc-also-title"; t1.textContent = c.title;
+                  var t2 = document.createElement("span"); t2.className = "sc-also-desc"; t2.textContent = c.desc;
+                  a.appendChild(t1); a.appendChild(t2);
+                  alsoGrid.appendChild(a);
+                });
+              } else {
+                alsoWrap.hidden = true;
+              }
+            }
+
+            var sectorRow = document.getElementById("scSectorRow");
+            var sectorText = document.getElementById("scSectorText");
+            var sectorLink = document.getElementById("scSectorLink");
+            if (sectorRow && sectorText && sectorLink) {
+              var sm = (scState.role === "leader" && scState.sector && scState.sector !== "skip") ? getSectorMeta(scState.sector) : null;
+              if (sm && sm.go) {
+                sectorRow.hidden = false;
+                sectorText.textContent = "Sector pathway for " + sm.label + ":";
+                sectorLink.textContent = sm.linkLabel;
+                sectorLink.setAttribute("href", "#" + (sm.jump || sm.go));
+                sectorLink.setAttribute("data-go", sm.go);
+                if (sm.jump) sectorLink.setAttribute("data-jump", sm.jump);
+                else sectorLink.removeAttribute("data-jump");
+              } else {
+                sectorRow.hidden = true;
+              }
+            }
+
+            var printRoleEl = document.getElementById("scPrintRole");
+            if (printRoleEl) printRoleEl.textContent = getRoleLabel(scState.role);
+
+            var flaggedLines = ratedItems.filter(function (x) { return x.val > 0; }).map(function (x) {
+              var dp = getAreaDisplay(x.meta, scState.role, scState.sector);
+              return dp.label + " (" + (x.val === 2 ? "sticking point" : "partly handled") + ")";
+            });
+            if (!flaggedLines.length) flaggedLines = ratedItems.map(function (x) { return getAreaDisplay(x.meta, scState.role, scState.sector).label; });
+            var sumParts = [
+              "Fixing Friction Scorecard Summary",
+              "Role: " + getRoleLabel(scState.role),
+              "Areas flagged: " + flaggedLines.join("; "),
+              "Suggested starting point: " + titleEl.textContent.replace(/^A good place to start:\s*/i, "")
+            ];
+            if (scState.role === "leader" && scState.deadline90) {
+              sumParts.push("90-day deadline: " + (scState.deadline90 === "yes" ? "Yes, within 90 days" : (scState.deadline90 === "no" ? "No immediate deadline" : "Not sure yet")));
+            }
+            if (scState.role === "leader" && scState.sector && scState.sector !== "skip") {
+              var sMeta = getSectorMeta(scState.sector);
+              if (sMeta) sumParts.push("Organization type: " + sMeta.label);
+            }
+            sumParts.push("Next step: " + stepEl.textContent);
+            sumParts.push("Link: https://fixingfriction.com/#" + primaryGo);
+            scLastSummary = sumParts.join("\n");
 
             if (findingsEl) {
               findingsEl.innerHTML = "";
@@ -6145,7 +6393,7 @@
                 shown.forEach(function (it) {
                   var li = document.createElement("li");
                   var sp = document.createElement("span");
-                  sp.textContent = it.meta.label;
+                  sp.textContent = getAreaDisplay(it.meta, scState.role, scState.sector).label;
                   var bd = document.createElement("span");
                   bd.className = "sc-badge " + (it.val === 2 ? "high" : "mid");
                   bd.textContent = it.val === 2 ? "Sticking point" : "Partly handled";
@@ -6193,11 +6441,21 @@
             if (step.type === "role" && t.name === "scRole") {
               if (scState.role !== t.value) {
                 scState.role = t.value;
+                scState.sector = null;
                 scState.areas = [];
                 scState.ratings = {};
                 scState.help = null;
                 scState.deadline90 = null;
+                scState.deepLinked = false;
               }
+              scQueueAdvance();
+            } else if (step.type === "sector" && t.name === "scSector") {
+              scState.sector = t.value;
+              var allowedIds = getVisibleAreas("leader", scState.sector).map(function (a) { return a.id; });
+              scState.areas = scState.areas.filter(function (aid) { return allowedIds.indexOf(aid) !== -1; });
+              Object.keys(scState.ratings).forEach(function (k) {
+                if (allowedIds.indexOf(k) === -1) delete scState.ratings[k];
+              });
               scQueueAdvance();
             } else if (step.type === "areas" && t.name === "scAreas") {
               var checked = Array.prototype.slice.call(scStepHost.querySelectorAll('input[name="scAreas"]:checked')).map(function (c) { return c.value; });
@@ -6250,7 +6508,7 @@
 
           function resetScorecard() {
             if (scAdvanceTimer) { clearTimeout(scAdvanceTimer); scAdvanceTimer = null; }
-            scState = { role: null, areas: [], ratings: {}, help: null, deadline90: null };
+            scState = { role: null, sector: null, areas: [], ratings: {}, help: null, deadline90: null, deepLinked: false };
             scCurrent = 0;
             scResult.hidden = true;
             scError.hidden = true;
@@ -6265,6 +6523,40 @@
             renderCurrentStep(true);
           }
 
+          function copyTextSummary(msg) {
+            if (!scLastSummary) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(scLastSummary).then(function () {
+                showToast(msg);
+              }, function () {
+                showToast("Summary ready to copy.");
+              });
+            } else {
+              showToast("Summary ready to copy.");
+            }
+          }
+
+          window.__applyScorecardRole = function (roleId) {
+            if (roleId !== "leader" && roleId !== "champion" && roleId !== "individual") return;
+            if (scAdvanceTimer) { clearTimeout(scAdvanceTimer); scAdvanceTimer = null; }
+            scState = { role: roleId, sector: null, areas: [], ratings: {}, help: null, deadline90: null, deepLinked: true };
+            scCurrent = 1;
+            scResult.hidden = true;
+            scError.hidden = true;
+            var scShell = document.getElementById("scShell");
+            if (scShell) scShell.hidden = false;
+            scForm.hidden = false;
+            renderCurrentStep(false);
+          };
+
+          if (scChangeRole) {
+            scChangeRole.addEventListener("click", function () {
+              scState.deepLinked = false;
+              scCurrent = 0;
+              renderCurrentStep(true);
+            });
+          }
+
           var scReset = document.getElementById("scReset");
           if (scReset) scReset.addEventListener("click", resetScorecard);
           var scRetake = document.getElementById("scRetake");
@@ -6272,16 +6564,30 @@
 
           if (scCopyMgrBtn) {
             scCopyMgrBtn.addEventListener("click", function () {
-              if (!scLastMgrSummary) return;
-              if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(scLastMgrSummary).then(function () {
-                  showToast("Summary copied to share with your manager.");
-                }, function () {
-                  showToast("Summary ready to copy.");
-                });
-              } else {
-                showToast("Summary ready to copy.");
+              copyTextSummary(scState.role === "champion" ? "Summary copied to share with your manager." : "Scorecard summary copied to clipboard.");
+            });
+          }
+          if (scPrintBtn) {
+            scPrintBtn.addEventListener("click", function () { window.print(); });
+          }
+          if (scRecStart) {
+            scRecStart.addEventListener("click", function () {
+              if (!scLastSummary) return;
+              copyTextSummary("Scorecard summary copied to clipboard for your email.");
+              var sBox = document.getElementById("startSummaryBox");
+              var sTxt = document.getElementById("startSummaryText");
+              var sMail = document.getElementById("startWriteEmail");
+              if (sTxt) sTxt.textContent = scLastSummary;
+              if (sBox) sBox.hidden = false;
+              if (sMail) {
+                sMail.setAttribute("href", "mailto:info@MatthewCicanese.com?subject=" + encodeURIComponent("Fixing Friction Scorecard Summary") + "&body=" + encodeURIComponent(scLastSummary));
               }
+            });
+          }
+          var startCopyAgain = document.getElementById("startCopyAgain");
+          if (startCopyAgain) {
+            startCopyAgain.addEventListener("click", function () {
+              copyTextSummary("Scorecard summary copied to clipboard.");
             });
           }
 
@@ -6309,21 +6615,29 @@
           }
 
           scForm.classList.add("sc-stepped");
-          renderCurrentStep(false);
+          if (window.__pendingScorecardRole) {
+            var initRole = window.__pendingScorecardRole;
+            window.__pendingScorecardRole = null;
+            window.__applyScorecardRole(initRole);
+          } else {
+            renderCurrentStep(false);
+          }
 
           (function restoreSavedScorecard() {
             var raw = scStoreGet(SC_SAVE_KEY);
             scBannerDismissed = scStoreGet(SC_DISMISS_KEY) === "1";
-            if (!raw) { updateScReturnBar(); return; }
+            if (!raw || scState.deepLinked) { updateScReturnBar(); return; }
             try {
               var parsed = JSON.parse(raw);
               if (parsed && parsed.role && Array.isArray(parsed.areas) && parsed.areas.length) {
                 scState = {
                   role: parsed.role,
+                  sector: parsed.sector || null,
                   areas: parsed.areas,
                   ratings: parsed.ratings || {},
                   help: parsed.help || null,
-                  deadline90: parsed.deadline90 || null
+                  deadline90: parsed.deadline90 || null,
+                  deepLinked: false
                 };
                 computeResults(true);
               }

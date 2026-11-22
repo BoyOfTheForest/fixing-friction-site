@@ -17,8 +17,6 @@ Area served: Fort Collins, Colorado and the surrounding region, on site; clients
 ## Published prices (USD)
 - Snapshot: free. Surface Audit: $950 for one place.
 - Full Accessibility Audit: single site facility audit $2,500; WCAG audit $1,500 for a single asset and $3,500 for a larger site; program and policy audit $3,500; multi-site work from $12,500.
-- Keynote speaking: $2,500 in person, $1,500 virtual.
-- The Second Reading: First Look $1,500, Full Second Reading $4,500, Audit and Alignment $7,500.
 
 ## Key facts
 - Accessibility Friction is the daily drag people hit when a form, doorway, hiring process or tool stack was not built for them. It builds in four places: digital, physical, communications and workplace, and technology. Left standing it compounds into legal, time and bottom-line friction.

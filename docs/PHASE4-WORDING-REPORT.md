@@ -21,10 +21,6 @@ Branch phase4-wording. Page names are page ids (the part after # in the address)
   AFTER: Speaking and training book a quarter ahead
 - [ai-scorecards, training] (6) BEFORE: Training and Speaking
   AFTER: Speaking and Training
-- [about, home] (2) BEFORE: my consulting, speaking, training, and accessibility audits
-  AFTER: my speaking, training, accessibility audits, and consulting
-- [about] (1) BEFORE: the audits, the speaking, the training, and the standard every deliverable
-  AFTER: the speaking, the training, the audits, and the standard every deliverable
 - [services] (1) BEFORE: Speaking, training, consulting, and ADA diagnosis are booked all year
   AFTER: Speaking, training, ADA diagnosis, and consulting are booked all year
 - [about] (1) BEFORE: Four ways the work happens: cards in the order Consulting, Speaking, Training, Accessibility audits
@@ -112,6 +108,6 @@ No instance of ADA Consulting and Compliance exists on the site (navigation and 
 
 ## Other items left for your decision (not changed)
 - About page card headed "Consulting" (Four ways the work happens, advice and plans for barriers) and the services page card "Consulting" (AI in live consulting): standalone label that is one of four ways or a method, not the pillar label. Not renamed to ADA Compliance and Consulting.
-- Lines in Matthew's voice reordered by mapping: "accessibility audits" and "ADA diagnosis" were treated as the Compliance item (About and home quote line, About "the audits", services "ADA diagnosis", llms.txt "accessibility audits and assessments"). Please confirm that mapping.
+- Correction after review: Matthew's own sentences "my consulting, speaking, training, and accessibility audits" (About and Home) and "the audits, the speaking, the training, and the standard every deliverable" (About) are restored to their original wording and order. The audits-as-Compliance mapping stands for the other Change 1 places (services "ADA diagnosis", llms.txt).
 - "For Everyday Workers and Families" now reads as a label on 15 kickers and audience tags. The literal replacement kept "and Families".
 - Generic labels left: "Learn more about our prototype programs" (names its object, 4 places), "Start with 2.1" scorecard buttons (names a scorecard number), "More ways in" and "More on the field work" expanders, and the scorecard controls Continue, Back, Next question, Start over (form controls, not site links).

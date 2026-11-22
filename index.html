@@ -1063,13 +1063,17 @@
       .more-text .more-body > * + *{margin-top:14px;}
       .proof .more-text summary{color:#FFFFFF;}
       .more-text figure.diagram{margin:0;}
-      .on-this-page{margin:22px 0 0;}
-      .on-this-page summary{cursor:pointer;font-weight:700;color:var(--accent-deep);min-height:44px;display:inline-flex;align-items:center;padding:0 2px;}
-      .on-this-page summary:focus-visible,.on-this-page a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px;}
-      .on-this-page ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 10px;}
-      .on-this-page a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--accent-deep);font-weight:600;font-size:.95rem;text-decoration:none;}
+      /* Lever 2: sticky On this page bar with scrollspy */
+      .on-this-page{position:sticky;top:var(--hdr-h,64px);z-index:44;margin:18px 0 0;background:var(--bg,#fff);border-bottom:1px solid var(--line);}
+      .on-this-page .otp-row{display:flex;align-items:center;gap:10px;overflow-x:auto;scrollbar-width:thin;padding:6px 2px;}
+      .on-this-page .otp-label{flex:0 0 auto;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--accent-deep);padding-right:4px;}
+      .on-this-page ul{list-style:none;margin:0;padding:0;display:flex;gap:8px;flex-wrap:nowrap;}
+      .on-this-page li{flex:0 0 auto;}
+      .on-this-page a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--accent-deep);font-weight:600;font-size:.92rem;text-decoration:none;white-space:nowrap;}
       .on-this-page a:hover{border-color:var(--accent);}
-      section.page h2[id^="otp-"]{scroll-margin-top:110px;}
+      .on-this-page a[aria-current="location"]{background:var(--accent-deep);border-color:var(--accent-deep);color:#FFFFFF;}
+      .on-this-page a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+      section.page h2[id^="otp-"]{scroll-margin-top:140px;}
       .page-after > * + *{margin-top:14px;}
       .page-after .micro{max-width:none;}
       .hero-bleed .micro strong,.hero-bleed .small strong{color:#FFFFFF;}
@@ -1577,7 +1581,7 @@
         </div>
         <div>
           <p class="eyebrow">Why this work, in his words</p>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">To be the resource I never had</h2>
+          <h2 data-otp-label="Why this work" style="font-size:1.9rem;margin:8px 0 12px;">To be the resource I never had</h2>
           <p class="lede" style="max-width:46rem;">&ldquo;To be the resource I never had as a person with disabilities and divergence.&rdquo;</p>
           <p style="color:var(--ink);max-width:46rem;margin-top:10px;">What I do is help communities and individuals feel seen, heard, understood, and connected to the tools, resources, and access they deserve and have a right to. And I do this through my consulting, speaking, training, and accessibility audits.</p>
           <div class="stattiles" role="group" aria-label="Proof in numbers from Matthew Cicanese's own work and research">
@@ -1591,7 +1595,7 @@
         </div>
         <div>
           <p class="eyebrow">Client stories</p>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">Three engagements, three outcomes</h2>
+          <h2 data-otp-label="Client stories" style="font-size:1.9rem;margin:8px 0 12px;">Three engagements, three outcomes</h2>
           <div class="grid3 story-cards">
             <div class="card"><span class="tag">CareFirst BlueCross BlueShield</span><p class="small">For CareFirst BlueCross BlueShield, I delivered two keynote training sessions to more than 1,200 employees, and they went on to charter the company&rsquo;s first Neurodiversity Employee Resource Group.</p></div>
             <div class="card"><span class="tag">Duke University</span><p class="small">For Duke University, I keynoted the State of Inaccessibility Summit, the anchor event of Disability Pride Week 2024, where students turned their own access barriers into recommendations for campus leadership.</p></div>
@@ -1613,7 +1617,7 @@
         </div>
         <div>
           <p class="eyebrow">Accessibility Friction</p>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">Every barrier you leave standing slows people down.</h2>
+          <h2 data-otp-label="The cost of barriers" style="font-size:1.9rem;margin:8px 0 12px;">Every barrier you leave standing slows people down.</h2>
           <div class="statband" role="group" aria-label="The scale of disability in the United States, the Title II web deadlines, and the cost of leaving barriers standing">
             <div>
               <p class="big">1 in 4</p>
@@ -1638,7 +1642,7 @@
         </div>
         <div>
           <p class="eyebrow">Where it builds, and what it becomes</p>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">Four kinds of Accessibility Friction, one practice</h2>
+          <h2 data-otp-label="Four kinds of friction" style="font-size:1.9rem;margin:8px 0 12px;">Four kinds of Accessibility Friction, one practice</h2>
           <p style="color:var(--ink);max-width:46rem;">When a form, a doorway, a hiring process, or the tool stack itself was not built for them, people have to push harder, wait longer, and find a way around it. That daily drag is Accessibility Friction, and it builds in four places.</p>
           <details class="more-text"><summary>See the four places as a chart</summary><div class="more-body"><figure class="diagram"><svg viewBox="0 0 880 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four kinds of Accessibility Friction, one practice"><text x="440" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#102A43">Four kinds of Accessibility Friction, one practice</text><text x="24" y="84" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Digital Friction</text><rect x="24" y="96" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="96" width="640" height="24" rx="8" fill="#2563EB"/><text x="24" y="152" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Physical Friction</text><rect x="24" y="164" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="164" width="540" height="24" rx="8" fill="#0F766E"/><text x="24" y="220" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Communications and</text><text x="24" y="242" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Workplace Friction</text><rect x="24" y="254" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="254" width="460" height="24" rx="8" fill="#9A3412"/><text x="24" y="310" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Technology Friction</text><rect x="24" y="322" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="322" width="370" height="24" rx="8" fill="#102A43"/></svg><figcaption>Infographic: the four kinds of friction this practice is built to close. Diagram bars are illustrative of scope, not measured figures.</figcaption></figure></div></details>
           <ul class="friction-index friction-grid"><li><span class="tag">Friction 1</span><div><h3>Digital Friction</h3><p class="small">Websites, forms, portals, PDFs, and application processes. This is the friction the two web deadlines above are asking you to remove.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-digital">Read the full Digital Friction card</a></p></div></li><li><span class="tag">Friction 2</span><div><h3>Physical Friction</h3><p class="small">Buildings, routes, parking, counters, signage, restrooms, meeting rooms, event spaces, and voting places. The barrier a visitor meets first is usually at arrival.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-physical">Read the full Physical Friction card</a></p></div></li><li><span class="tag">Friction 3</span><div><h3>Communications and Workplace Friction</h3><p class="small">The Title I part: hiring, onboarding, employee rights and resources, the accommodation process, etiquette, support, and awareness inside the workplace.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-comms">Read the full Communications and Workplace Friction card</a></p></div></li><li><span class="tag">Friction 4</span><div><h3>Technology Friction</h3><p class="small">The wrong software, or too much of it: too many overlapping tools, none of them quite right, costing time every day.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-technology">Read the full Technology Friction card</a></p></div></li></ul><details class="more-text"><summary>See how it compounds, and the prevention</summary><div class="more-body"><p>Left standing, it does not stay in those four places. It compounds into three more: Legal Friction, Time Friction, and Bottom-line Friction.</p><ul class="friction-index"><li><span class="tag">Friction 5</span><div><h3>Legal Friction</h3><p class="small">What ADA non-compliance becomes over time: complaints, investigations, and lawsuits, including class actions, aimed at barriers that were visible, reported, or documented and still left standing.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-legal">Read the full Legal Friction card</a></p></div></li><li><span class="tag">Friction 6</span><div><h3>Time Friction</h3><p class="small">The time Legal Friction pulls out of the week: leadership time, legal time, and staff time spent responding to a problem instead of doing the planned work that would have prevented it.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-time">Read the full Time Friction card</a></p></div></li><li><span class="tag">Friction 7</span><div><h3>Bottom-line Friction</h3><p class="small">What executives see in the numbers: penalties, legal and settlement costs, remediation done in a rush at a premium, and the quieter loss of customers, residents, and employees who hit a barrier and never come back.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-bottomline">Read the full Bottom-line Friction card</a></p></div></li><li><span class="tag warm">The prevention</span><div><h3>The work that stops the compounding</h3><p class="small">Training that stops new friction being built, audits and assessments that name what is standing, remediation that removes it, and transition planning that sequences the rest with owners and dates.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-prevention">Read the full prevention card</a></p></div></li></ul><p style="max-width:46rem;margin-top:18px;">People reveal this friction every day. When the paved route does not go where people need to go, they carve a desire path across the grass. People vote with their actions. Frame it correctly: they are revealing friction in the system, not misbehaving. This practice reads those signals, measures the friction, and puts the fixes in an order your team can finish.</p></div></details><div class="btnrow"><a href="#debt" class="btn ghost" data-go="debt">Read the full Friction cards in Reference</a></div>
@@ -1646,7 +1650,7 @@
         <div>
           <p class="eyebrow">The diagnostic ladder</p>
           <details class="more-text"><summary>See the order of the work as a picture</summary><div class="more-body"><figure class="diagram"><svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagnose first. Prescribe second.: Diagnose first, Name the barrier, Put fixes in order, Fix and re-check"><text x="400" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="22" font-weight="700" fill="#102A43">Diagnose first. Prescribe second.</text><rect x="16" y="64" width="176" height="108" rx="14" fill="#1D4ED8"/><text x="104" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Diagnose</text><text x="104" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">first</text><path d="M196 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="212" y="64" width="176" height="108" rx="14" fill="#0F766E"/><text x="300" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Name the</text><text x="300" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">barrier</text><path d="M392 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="408" y="64" width="176" height="108" rx="14" fill="#9A3412"/><text x="496" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Put fixes</text><text x="496" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">in order</text><path d="M588 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="604" y="64" width="176" height="108" rx="14" fill="#102A43"/><text x="692" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Fix and</text><text x="692" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">re-check</text><rect x="16" y="204" width="764" height="10" rx="5" fill="#E0F2FE"/></svg><figcaption>Infographic: the order the work always follows.</figcaption></figure></div></details>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">Diagnose first.<br />Prescribe second.</h2>
+          <h2 data-otp-label="Diagnose first" style="font-size:1.9rem;margin:8px 0 12px;">Diagnose first.<br />Prescribe second.</h2>
           <ul class="ladder-summary">
             <li><div><h3>Level 0: Accessibility Snapshot</h3><p class="small">A short look at one place or system, in person, in plain language. One genuine finding, properly documented.</p><p style="margin-top:8px;"><a href="#audits" class="quiet-link" data-go="audits" data-jump="surface">Read the Snapshot section</a></p></div><p class="lvl-price-tag">No charge</p></li>
             <li><div><h3>Level 1: Surface Audit</h3><p class="small">One place, public areas only, walked once in the order a visitor meets them: arrival, entrance, main route, service counter, and signage. Every barrier found on that surface route is named in a short written summary that says where it stands, whom it affects, and what to look at next. Fixed at $950 for one place.</p><p style="margin-top:8px;"><a href="#audits" class="quiet-link" data-go="audits" data-jump="surface-audit">Read the Surface Audit section</a></p></div><p class="lvl-price-tag">$950</p></li>
@@ -1659,7 +1663,7 @@
         </div>
         <div>
           <p class="eyebrow">Services, the practice, and timing</p>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">Start with the ADA work,<br />or start with your team</h2>
+          <h2 data-otp-label="Where to start" style="font-size:1.9rem;margin:8px 0 12px;">Start with the ADA work,<br />or start with your team</h2>
           <div class="summary-rows">
             <div class="summary-row"><div><h3>Services</h3><p class="small">ADA Services and Other Services, organized in two parts, and neither outranks the other. Start in the part that matches the problem in front of you.</p></div><a href="#services" class="quiet-link" data-go="services">Explore Services</a></div>
             <div class="summary-row"><div><h3>Voting, speaking, and coordinator support</h3><p class="small">Voting and polling places, keynote speaking ($2,500 in person, $1,500 virtual), and coordinator support for entities that must designate the role.</p></div><span class="summary-links"><a href="#voting" class="quiet-link" data-go="voting">Voting</a> <a href="#speaking" class="quiet-link" data-go="speaking">Speaking</a> <a href="#selfeval" class="quiet-link" data-go="selfeval">Coordinator support</a></span></div>
@@ -8051,13 +8055,23 @@
     /* On this page links, and scroll position restored on Back and Forward. */
     (function () {
       var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var SKIP = { home: 1, scorecard: 1, scorecards: 1, "ai-scorecards": 1, start: 1, about: 1 };
+      var SKIP = { scorecard: 1, scorecards: 1, "ai-scorecards": 1, start: 1, about: 1 };
       var EXCLUDE = ".card, .callout, .sc-strip, .proof, details, figure, .walk-card, .doors, .tile, .step";
       function plain(h) {
         var c = h.cloneNode(true);
         c.innerHTML = c.innerHTML.replace(/<br\s*\/?>/gi, " ");
         return c.textContent.replace(/\s+/g, " ").trim();
       }
+      function label(h) {
+        var l = h.getAttribute("data-otp-label");
+        if (l) return l;
+        var s = plain(h), first = s.split(/[:.?]\s/)[0];
+        if (first.length >= 10 && first.length < s.length) s = first;
+        s = s.replace(/[.:?]$/, "");
+        if (s.length > 38) s = s.slice(0, 38).replace(/\s+\S*$/, "") + "\u2026";
+        return s;
+      }
+      var spy = [];
       document.querySelectorAll("section.page").forEach(function (sec) {
         var pid = (sec.id || "").replace(/^page-/, "");
         if (!pid || SKIP[pid]) return;
@@ -8068,26 +8082,32 @@
         var nav = document.createElement("nav");
         nav.className = "on-this-page";
         nav.setAttribute("aria-label", "On this page");
-        var det = document.createElement("details");
-        var sum = document.createElement("summary");
-        sum.textContent = "On this page";
-        det.appendChild(sum);
+        var row = document.createElement("div");
+        row.className = "otp-row";
+        var lab = document.createElement("span");
+        lab.className = "otp-label";
+        lab.textContent = "On this page";
+        row.appendChild(lab);
         var ul = document.createElement("ul");
+        var links = [];
         hs.forEach(function (h, i) {
           if (!h.id) h.id = "otp-" + pid + "-" + (i + 1);
           var li = document.createElement("li");
           var a = document.createElement("a");
           a.href = "#" + h.id;
           a.setAttribute("data-otp", h.id);
-          a.textContent = plain(h);
+          a.title = plain(h);
+          a.textContent = label(h);
           li.appendChild(a);
           ul.appendChild(li);
+          links.push(a);
         });
-        det.appendChild(ul);
-        nav.appendChild(det);
+        row.appendChild(ul);
+        nav.appendChild(row);
         var first = hs[0];
         while (first.parentElement && first.parentElement !== sec) first = first.parentElement;
         sec.insertBefore(nav, first);
+        spy.push({ sec: sec, hs: hs, links: links, row: row });
       });
       document.addEventListener("click", function (ev) {
         var a = ev.target.closest && ev.target.closest("a[data-otp]");
@@ -8099,6 +8119,26 @@
         if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
         el.focus({ preventScroll: true });
       });
+      /* Scrollspy: the chip for the section being read is marked current. */
+      function markCurrent(s) {
+        if (!s.sec.classList.contains("active")) return;
+        var cur = -1;
+        s.hs.forEach(function (h, i) { if (h.getBoundingClientRect().top <= 170) cur = i; });
+        s.links.forEach(function (a, i) {
+          if (i === cur) {
+            if (a.getAttribute("aria-current") !== "location") {
+              a.setAttribute("aria-current", "location");
+              var r = s.row;
+              if (r.scrollWidth > r.clientWidth) r.scrollLeft = Math.max(0, a.offsetLeft - 120);
+            }
+          } else if (a.hasAttribute("aria-current")) a.removeAttribute("aria-current");
+        });
+      }
+      var spyTick = null;
+      window.addEventListener("scroll", function () {
+        if (spyTick) return;
+        spyTick = setTimeout(function () { spyTick = null; spy.forEach(markCurrent); }, 60);
+      }, { passive: true });
 
       /* Scroll restore: remember where each page was left, put it back on Back/Forward. */
       try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}

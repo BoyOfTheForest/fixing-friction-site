@@ -228,6 +228,7 @@
       p{margin:0;}
       a{color:var(--accent-deep);}
       :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px;}
+      [tabindex="-1"]:focus,[tabindex="-1"]:focus-visible{outline:none;}
       .skip{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}
       .skip:focus{position:fixed;top:10px;left:10px;width:auto;height:auto;margin:0;padding:12px 18px;overflow:visible;clip-path:none;background:var(--ink);color:#fff;z-index:200;border-radius:10px;font-weight:700;}
 
@@ -695,6 +696,16 @@
       .announce-bar{background:#1E40AF;border-bottom:1px solid #1E3A8A;color:#FFFFFF;padding:9px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;text-align:center;font-size:.92rem;line-height:1.45;}
       .announce-bar p{margin:0;color:#FFFFFF;}
       .announce-bar p.announce-short{color:#FFFFFF;}
+      .sc-return-bar{background:var(--callout);border-bottom:1px solid var(--line);color:var(--ink);}
+      .sc-return-bar[hidden]{display:none;}
+      .sc-return-in{max-width:1320px;margin:0 auto;padding:6px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;}
+      .sc-return-bar p{margin:0;font-size:.92rem;font-weight:600;color:var(--ink);}
+      .sc-return-actions{display:flex;align-items:center;gap:8px;}
+      .sc-return-btn{appearance:none;border:none;background:var(--grad);color:#FFFFFF;font:inherit;font-size:.88rem;font-weight:700;padding:10px 18px;min-height:44px;border-radius:999px;cursor:pointer;white-space:nowrap;}
+      .sc-return-btn:hover{background:var(--accent-deep);}
+      .sc-return-dismiss{appearance:none;border:1px solid var(--line);background:#FFFFFF;color:var(--ink);font:inherit;font-size:1.25rem;line-height:1;width:44px;height:44px;min-width:44px;min-height:44px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+      .sc-return-dismiss:hover{border-color:var(--accent-deep);color:var(--accent-deep);}
+      @media (max-width:640px){.sc-return-in{padding:8px 16px;}}
       .announce-link{appearance:none;border:none;background:transparent;color:#BAE6FD;font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:2px 4px;cursor:pointer;white-space:nowrap;}
       .announce-link:hover{color:#E0F2FE;}
       .announce-link:focus-visible{outline-color:#7DD3FC;}
@@ -1307,6 +1318,15 @@
         <a href="#scorecards" data-go="scorecards" class="menu-cta">Take the Scorecard</a>
       </div>
     </header>
+    <div class="sc-return-bar" id="scReturnBar" role="region" aria-label="Scorecard results" hidden>
+      <div class="sc-return-in">
+        <p>Your scorecard results are ready.</p>
+        <div class="sc-return-actions">
+          <button type="button" class="sc-return-btn" id="scReturnBtn">Return to my results</button>
+          <button type="button" class="sc-return-dismiss" id="scReturnDismiss" aria-label="Dismiss scorecard results banner">&times;</button>
+        </div>
+      </div>
+    </div>
     <main id="main">
 
       <!-- Navigation Review, founding run (2026-11-08, Bug and Optimization SOP Skill N1, run jointly by the Chris Do design roundtable, the general Design Roundtable, and the Leadership Roundtable, Council approved). BEFORE: Home, About, three audience and reference dropdowns (For Organizations, For Individuals and Families, Reference), and the Take the Scorecard CTA. The audience dropdowns mixed services, support, and tools under who the reader is, so a first time visitor could not say from the navigation alone where services, support, or tools live, and thirteen built pages (Services hub, Self-Evaluation, Findings, Materials, Communications, Pathways, Verticals, Support, Reporting, Directory, the nine-question Scorecard, Brain Blame, CareCircle) had no top navigation home at all. AFTER: Home and About stay plain links; four plainly named dropdowns carry the routing: Who It's For (grouped: If you decide and fund the work / If you feel the friction first, so organizational decision makers and individuals, families, champions, and the YouTube and lead magnet audiences are both first class, and the second group is routed upward to the first through Get Started and Proof), Services (Find and fix / Teach and speak / By setting, trigger opens the Services hub), Support (Keep the work moving / Coaching and community, trigger opens Consulting and Ongoing Support; the paid coaching community appears once, as Paid Coaching Community: Join the Waitlist, jumping to the membership section of the Community page, waitlist framing only, no price, no seat count, no join now language), and Tools and Resources (Free checks and scorecards / Do it yourself / Plain language reference, carrying the scorecards, the three checklists, and the self serve tools as the lead magnet layer; the old Reference dropdown is dissolved into this menu's reference group). The Take the Scorecard CTA is unchanged. The footer sitemap mirrors the same five columns and the same groups, and the mobile menu carries the identical structure. No destination was lost: every old top nav, mobile, and footer item maps to a new home (the per item map is in the build report); Prototypes stays footer only by design, as research and build material kept out of the main flow. Departures from standing navigation rulings, recorded: (1) the old segmented audience dropdowns are replaced by one Who It's For dropdown plus task named Services, Support, and Tools and Resources dropdowns, because the audience only structure was the unclearness Matthew named; audience routing is preserved inside Who It's For and in group labels. (2) Two deliberate cross links: Community appears in Who It's For (for champions and ERGs) and in Support (community and support, plus the waitlist jump), and Get Started appears in Who It's For and in the footer's Fixing Friction column, because those pages serve both audiences. Pass condition (Skill N1): a first time visitor from each named audience can say where they would go for services, for support, and for tools and resources, from the navigation alone. Zero em dashes and zero en dashes in new copy; no prices or claims changed. -->
@@ -3565,25 +3585,6 @@
             <li>Client data is never sold</li>
           </ul>
           <p style="margin-top:14px;">Benchmarks exist to help a client judge their own progress, not to rank clients against each other. If an average would rest on too few engagements to stay anonymous, it is not shown.</p>
-          <p style="margin-top:12px;"><a href="#reporting" class="btn ghost" data-go="reporting" style="padding:9px 16px;font-size:.95rem;">See workplace reporting</a></p>
-        </div>
-              <div>
-          <p class="eyebrow">Common questions</p>
-          <h2 style="font-size:1.7rem;margin:8px 0 16px;">Asked about the evidence</h2>
-          <div class="faq">
-            <details><summary>When is a benchmark not shown?</summary><p>If an average would rest on too few engagements to stay anonymous, it is not shown. Anonymity is the condition the whole benchmark rests on, and a thin average would break it.</p></details>
-            <details><summary>Can a case study identify our organization?</summary><p>No. The case studies describe patterns and mechanisms. They never carry a client name or a client site, and names and site details are removed before anything joins the pool.</p></details>
-            <details><summary>Do benchmarks rank clients against each other?</summary><p>No. Benchmarks exist to help a client judge their own progress against an anonymized average for their module and Title areas, not to rank clients against each other.</p></details>
-          </div>
-        </div>
-
-        <div class="cta-band">
-          <p class="eyebrow" style="color:#E0F2FE;">Ready when you are</p>
-          <h2 style="font-size:1.6rem;">Your findings deserve a record, not a drawer.</h2>
-          <p>Every review, training, and consult adds its findings to the same structure, under the same data rules. Start yours with a conversation about the site, the system, or the team in front of you.</p>
-          <div class="btnrow"><a href="#start" class="btn ghost" data-go="start">Start a conversation</a></div>
-        </div>
-<div class="sc-strip" role="note">
           <p class="eyebrow">Not sure where you fit?</p>
           <h2>Let the scorecard route you.</h2>
           <p>Nine questions, one honest starting point. Your result points to the service, program, or product that matches the problem actually in front of you.</p>
@@ -5398,6 +5399,8 @@
             else if (scrollPos() > 0) { scrollToTopNow(); }
           });
           if (window.__revealScan) window.__revealScan();
+          window.__currentPageId = id;
+          if (typeof window.__updateScReturnBar === "function") window.__updateScReturnBar(id);
         }
         function go(id) {
           if (id === "assessments") id = "audits";
@@ -5593,13 +5596,30 @@
         var scResult = document.getElementById("scResult");
         var scError = document.getElementById("scError");
         if (scForm && scResult) {
-          function computeResults() {
+          var SC_SAVE_KEY = "ff_scorecard_answers_v1";
+          var SC_DISMISS_KEY = "ff_scorecard_banner_dismissed_v1";
+          var scReturnBar = document.getElementById("scReturnBar");
+          var scReturnBtn = document.getElementById("scReturnBtn");
+          var scReturnDismiss = document.getElementById("scReturnDismiss");
+          var scHasSavedResult = false;
+          var scBannerDismissed = false;
+          function scStoreGet(k) { try { return window.sessionStorage.getItem(k); } catch (e) { return null; } }
+          function scStoreSet(k, v) { try { window.sessionStorage.setItem(k, v); } catch (e) {} }
+          function scStoreRemove(k) { try { window.sessionStorage.removeItem(k); } catch (e) {} }
+          function updateScReturnBar(pageId) {
+            if (!scReturnBar) return;
+            var cur = pageId || window.__currentPageId || "home";
+            scReturnBar.hidden = !(scHasSavedResult && !scBannerDismissed && cur !== "scorecard");
+          }
+          window.__updateScReturnBar = updateScReturnBar;
+          function computeResults(silent) {
             var groups = scForm.querySelectorAll("fieldset[data-service]");
-            var totals = {}, missing = [], firstMissing = null, calendarVal = null;
+            var totals = {}, missing = [], firstMissing = null, calendarVal = null, savedVals = [];
             groups.forEach(function (fs, i) {
               var svc = fs.getAttribute("data-service");
               var checked = fs.querySelector("input[type=radio]:checked");
               if (!checked) { missing.push(i + 1); if (!firstMissing) firstMissing = fs; return; }
+              savedVals.push(checked.value);
               if (svc === "calendar") { calendarVal = parseInt(checked.value, 10); return; }
               totals[svc] = (totals[svc] || 0) + parseInt(checked.value, 10);
             });
@@ -5728,8 +5748,15 @@
             })();
             scForm.hidden = true;
             scResult.hidden = false;
+            scHasSavedResult = true;
+            if (!silent) {
+              scBannerDismissed = false;
+              scStoreRemove(SC_DISMISS_KEY);
+              scStoreSet(SC_SAVE_KEY, JSON.stringify(savedVals));
+            }
+            updateScReturnBar();
             if (window.__revealScan) window.__revealScan();
-            scResult.focus();
+            if (!silent) scResult.focus();
           }
           scForm.addEventListener("submit", function (ev) {
             ev.preventDefault();
@@ -5822,6 +5849,11 @@
             scResult.hidden = true;
             scError.hidden = true;
             scForm.hidden = false;
+            scHasSavedResult = false;
+            scBannerDismissed = false;
+            scStoreRemove(SC_SAVE_KEY);
+            scStoreRemove(SC_DISMISS_KEY);
+            updateScReturnBar();
             showStep(0, false);
             var legend = scSteps[0] ? scSteps[0].querySelector("legend") : null;
             if (legend) legend.focus();
@@ -5830,6 +5862,25 @@
           if (scReset) scReset.addEventListener("click", resetScorecard);
           var scRetake = document.getElementById("scRetake");
           if (scRetake) scRetake.addEventListener("click", resetScorecard);
+          if (scReturnBtn) {
+            scReturnBtn.addEventListener("click", function () {
+              if (!scHasSavedResult) return;
+              showPage("scorecard");
+              scForm.hidden = true;
+              scResult.hidden = false;
+              updateScReturnBar("scorecard");
+              scResult.focus();
+            });
+          }
+          if (scReturnDismiss) {
+            scReturnDismiss.addEventListener("click", function () {
+              scBannerDismissed = true;
+              scStoreSet(SC_DISMISS_KEY, "1");
+              updateScReturnBar();
+              var h = document.querySelector("section.page.active h1, section.page.active h2");
+              if (h) { if (!h.hasAttribute("tabindex")) h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+            });
+          }
           scSteps.forEach(function (fs) {
             var legend = fs.querySelector("legend");
             if (legend) legend.setAttribute("tabindex", "-1");
@@ -5837,6 +5888,23 @@
           scForm.classList.add("sc-stepped");
           if (scProgress) scProgress.hidden = false;
           showStep(0, false);
+          (function restoreSavedScorecard() {
+            var raw = scStoreGet(SC_SAVE_KEY);
+            scBannerDismissed = scStoreGet(SC_DISMISS_KEY) === "1";
+            if (!raw) { updateScReturnBar(); return; }
+            try {
+              var vals = JSON.parse(raw);
+              if (Array.isArray(vals) && vals.length === scSteps.length) {
+                var allMatched = true;
+                scSteps.forEach(function (fs, i) {
+                  var inp = fs.querySelector('input[type="radio"][value="' + vals[i] + '"]');
+                  if (inp) inp.checked = true; else allMatched = false;
+                });
+                if (allMatched) computeResults(true);
+              }
+            } catch (e) {}
+            updateScReturnBar();
+          })();
         }
       })();
     </script>

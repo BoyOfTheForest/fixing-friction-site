@@ -1,0 +1,39 @@
+# Fixing Friction
+
+> Fixing Friction is an ADA accessibility practice based in Fort Collins, Colorado, led by Matthew Cicanese, ADAC (Certified ADA Coordinator). It offers accessibility audits and assessments, advising, training, keynote speaking, remediation and transition planning for organizations, plus tools and community for individuals and families. Guidance and coordination, not legal advice or a legal determination.
+
+Website: https://fixingfriction.com/ (one page, sections addressed with #names)
+Contact: hello@fixingfriction.com
+Area served: Fort Collins, Colorado and the surrounding region, on site; clients served virtually.
+
+## What it does
+- Accessibility audits and assessments for buildings, websites and documents, and voting places. Findings are written in plain language, ranked by what blocks access most, then turned into a plan with owners and dates.
+- ADA advising: self-evaluations, access policy, grievance procedures, accommodation questions, fractional ADA Coordinator support.
+- ADA training for leaders, coordinators, facilities, digital, HR and parks teams, and the Second Reading training materials audit.
+- Keynote speaking on Accessibility Friction and desire paths.
+- Remediation and transition planning, tracked until each fix is verified.
+- For individuals and families: scorecards, Brain Blame, CareCircle, Burnout Bingo, and community routes.
+
+## Published prices (USD)
+- Snapshot: free. Surface Audit: $950 for one place.
+- Full Accessibility Audit: single site facility audit $2,500; WCAG audit $1,500 for a single asset and $3,500 for a larger site; program and policy audit $3,500; multi-site work from $12,500.
+- Keynote speaking: $2,500 in person, $1,500 virtual.
+- The Second Reading: First Look $1,500, Full Second Reading $4,500, Audit and Alignment $7,500.
+
+## Key facts
+- Accessibility Friction is the daily drag people hit when a form, doorway, hiring process or tool stack was not built for them. It builds in four places: digital, physical, communications and workplace, and technology. Left standing it compounds into legal, time and bottom-line friction.
+- Title II web deadlines: April 26, 2027 for public entities serving 50,000 or more people; April 26, 2028 for smaller public entities.
+- An audit starts no statutory clock. It does create documented knowledge, which makes doing nothing afterwards the risky move.
+
+## Pages (section addresses on the one page)
+- Home: https://fixingfriction.com/#home
+- Services: https://fixingfriction.com/#services
+- Audits and assessments: https://fixingfriction.com/#audits
+- Remediation and transition planning: https://fixingfriction.com/#plans
+- Training: https://fixingfriction.com/#training
+- Keynote speaking: https://fixingfriction.com/#speaking
+- Voting and polling places: https://fixingfriction.com/#voting
+- Self-evaluation and coordinator support: https://fixingfriction.com/#selfeval
+- Scorecards: https://fixingfriction.com/#scorecards
+- About, and common questions: https://fixingfriction.com/#about
+- Start a conversation: https://fixingfriction.com/#start

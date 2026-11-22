@@ -6,9 +6,11 @@ The page has: size guide, filterable next steps with tick-to-bundle and one comb
 a change log, agent and human SOPs, and the commit list (read from git)."""
 import html, json, os, re, subprocess
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+# Internal notes and data live OUTSIDE the published repo (anything in the repo is served by GitHub Pages).
+INTERNAL = os.environ.get("FF_INTERNAL") or os.path.abspath(os.path.join(root, "..", "Fixing-Friction-site-v10-internal"))
 REPO = "G:\\CLAUDE\\Fixing-Friction-site-v10"
 TAIL = " Work on a new branch, run node tools/check.mjs and compare before and after screenshots, tag the work, add an entry to docs/changes-data.json and rebuild /changes/, and wait for my OK before merging and pushing."
-data = json.load(open(os.path.join(root, "docs", "changes-data.json"), encoding="utf-8"))
+data = json.load(open(os.path.join(INTERNAL, "docs", "changes-data.json"), encoding="utf-8"))
 SIZE = {s["key"]: s for s in data["sops"]["sizes"]}
 OWN = {"agent": "Agent", "human": "Human", "both": "Agent and human"}
 def esc(s): return html.escape(s, quote=True)

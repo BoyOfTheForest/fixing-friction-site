@@ -45,5 +45,15 @@ ok(!/Community[^.<]{0,40}(price|\$|cohort size|launch date|enroll)/i.test(html.s
 const core = "Fees are set by scope, audience, and format, and are agreed in a discovery call.";
 ok((html.split(core).length - 1) >= 10, "core sentence appears at the replaced listings (" + (html.split(core).length - 1) + " places)");
 ok(!/—/.test(core), "no em dash in the core sentence");
+// 6. closing rulings: seat price on the Inside page only, minimum term present, no docs folder published
+{
+  const seats = [...html.matchAll(/per seat/g)].length;
+  const insideStart = html.indexOf('id="page-inside"'); const insideEnd = html.indexOf("</section>", insideStart);
+  const seatPos = html.indexOf("$1,500 per seat");
+  ok(seats === 1 && seatPos > insideStart && seatPos < insideEnd, "the $1,500 per seat price appears once, on the Inside page only");
+  ok([...html.matchAll(/three month minimum|3-month minimum|3 month minimum|Three month minimum/g)].length === 9, "all nine three month minimum terms are present");
+  ok(!fs.existsSync(path.join(ROOT, "docs")), "no docs folder in the published repository");
+  ok(!/\/docs\//.test(html) && !/docs\//.test(llms), "no page or llms.txt links to a docs address");
+}
 console.log(fails.length ? "\nFAILED: " + fails.length : "\nALL PHASE 4.5 CHECKS PASSED");
 process.exit(fails.length ? 1 : 0);

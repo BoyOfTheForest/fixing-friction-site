@@ -4,6 +4,7 @@ Finds repeated words, spacing before punctuation, missing space after a full sto
 label spelling variants, and lists every price and date with its page, so mismatches are easy to spot."""
 import re, os, collections, html
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+INTERNAL = os.environ.get("FF_INTERNAL") or os.path.abspath(os.path.join(root, "..", "Fixing-Friction-site-v10-internal"))  # kept outside the published repo
 t = open(os.path.join(root, "index.html"), "rb").read().decode("utf-8")
 main = t[t.index("<main"):t.index("</main>")] if "<main" in t else t
 main = re.sub(r"<(script|style)\b[\s\S]*?</\1>", " ", main)
@@ -69,5 +70,5 @@ out.append("## Other")
 out.append("")
 out.append("- Em or en dashes in visible text: %d" % dash)
 out.append("- Email addresses in visible text: %s" % ", ".join(sorted(set(re.findall(r"[\w.+-]+@[\w-]+\.[\w.]+", alltxt)))))
-open(os.path.join(root, "docs", "COPY-REPORT.md"), "w", encoding="utf-8").write("\n".join(out) + "\n")
+open(os.path.join(INTERNAL, "docs", "COPY-REPORT.md"), "w", encoding="utf-8").write("\n".join(out) + "\n")
 print("report written;", len(rep), "repeats,", len(sp), "space-before-punct,", len(nosp), "missing-space,", len(prices), "prices")

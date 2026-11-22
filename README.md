@@ -22,8 +22,8 @@ Needs Node 22 or newer and Google Chrome.
 node tools/check.mjs             # full check: links, assets, structured data, accessibility on every page at 3 widths, keyboard, text spacing, script errors
 node tools/check.mjs --static    # fast, no browser
 node tools/check.mjs --shots DIR # also save a screenshot of every page (for before and after comparisons)
-python tools/copy_report.py      # copy consistency report in docs/COPY-REPORT.md (report only)
-python tools/build_changes_page.py  # rebuilds /changes/ from docs/changes-data.json and the git history
+python tools/copy_report.py      # copy consistency report, written to the internal folder (report only)
+python tools/build_changes_page.py  # rebuilds /changes/ from changes-data.json in the internal folder and the git history
 ```
 `tools/vendor/axe.min.js` is axe-core 4.10.2 (MPL 2.0). The check also runs on every push through `.github/workflows/check.yml`.
 
@@ -37,7 +37,6 @@ python tools/build_changes_page.py  # rebuilds /changes/ from docs/changes-data.
 ## Tags
 `before-levers` (old design), `lever-01` to `lever-05` (design changes), `lever-06`, `lever-07`, `aeo-08` (SEO and AEO), `launch-gate`, `buildout-page`, `launch-page`.
 
-## Other docs
-- `docs/BUILD-NOTES.md`: internal build history that used to sit inside `index.html`.
-- `docs/COPY-REPORT.md`: copy consistency report.
-- The private working checklist is outside the repo (`LAUNCH-CHECKLIST.md` in the Antigravity brain folder).
+## Internal notes (not published)
+Everything in this repository is served by GitHub Pages, so internal notes, review reports, build history, screenshots and the Changes data file live in a sibling folder outside the repository: `Fixing-Friction-site-v10-internal/docs/` (set `FF_INTERNAL` to use another location). The tools read and write there. Never add a `docs/` folder back to the repository.
+- The private working checklist is outside the repo too (`LAUNCH-CHECKLIST.md` in the Antigravity brain folder).

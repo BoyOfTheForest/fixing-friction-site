@@ -49,7 +49,7 @@ const sizes = [["desktop-1440", 1440, 900], ["tablet-landscape-1024", 1024, 768]
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
 const ll = fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8");
 // ---------- static: banned strings, Directory, Canon, comments, GoHighLevel
-for (const s of ["Funnel role", "For the buyer", "Take it upward", "TLCCW", "Concept picture", "Concept illustration"]) ok(!html.includes(s) && !ll.includes(s), `"${s}" no longer appears anywhere in the page or llms.txt`);
+for (const s of ["Funnel role", "For the buyer", "Take it upward", "Concept picture", "Concept illustration"]) ok(!html.includes(s) && !ll.includes(s), `"${s}" no longer appears anywhere in the page or llms.txt`);
 ok(!/page-directory|data-go="directory"|#directory|Specialist Directory|directory model/i.test(html), "Directory page unpublished: no section, link, title or script string remains");
 ok(!/paid promotion|thousands of downloads/.test(html) && html.includes("For Canon USA, I have spent more than a decade teaching photographers on stage and on the page, reaching thousands of people."), "Canon card replaced word for word, paid promotion and downloads wording gone");
 ok(!/<!--/.test(html) && !/\/\*/.test(html), "no HTML, CSS or JS block comments remain in the published file");

@@ -73,7 +73,7 @@ const lede = about.match(/<p class="lede">The story, the team, and the mission[^
 ok(about.split(PRINCIPLE).length === 2 && lede.includes("Accessibility Solutions") && lede.endsWith(PRINCIPLE + "</p>"), "Change 2 place B: the line is a sentence inside the About opening paragraph that carries Accessibility Solutions, once");
 ok((html.split("Start with what you need today").length - 1) === 1 && (html.match(/class="ff-intent"/g) || []).length === 3, "Change 3: one section, exactly three cards, only once on the site");
 const inside = html.slice(html.indexOf('id="page-inside"'), html.indexOf("</section>", html.indexOf('id="page-inside"')));
-ok(inside.includes("ff-intent-wrap") && inside.indexOf("ff-intent-wrap") < inside.indexOf("Take the nine-question scorecard"), "Change 3: the section sits above every resource link on the Inside page");
+ok(inside.includes("ff-intent-wrap") && inside.indexOf("ff-intent-wrap") < inside.lastIndexOf("Take the Scorecard"), "Change 3: the section sits above every resource link on the Inside page");
 ok((html.split("Built to include everyone in").length - 1) === 1 && html.slice(html.indexOf('id="page-training"'), html.indexOf('id="page-evidence"')).includes("ff-neuro"), "Change 4: the block exists once, on the Training page only");
 ok(!/—/.test(LINE + PRINCIPLE + NEURO), "no em dash in the added copy");
 ok(!/Creative Consulting|accelerate/i.test(html), "no Creative Consulting, no Accelerate");

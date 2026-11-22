@@ -669,14 +669,13 @@
          Prototypes dark-band diagram, scoped to #page-prototypes only. */
       .proof :focus-visible,.cta-band :focus-visible{outline-color:#7DD3FC;}
       #page-events .cta-band figure.diagram figcaption,#page-prototypes .cta-band figure.diagram figcaption{color:#EFF6FF;}
-      @media (prefers-reduced-motion:reduce){
+      /* Dark-band diagrams keep the band as their ground (all motion settings). */
         /* The visual-density diagram rule gives figures a white ground
-           in this mode only; on the Events dark band that ground would
+           in every mode now; on the Events dark band that ground would
            sit behind the diagram's now-light title and arrows, so the
            Events figure keeps the band as its ground. Same for the
            Prototypes figure after its targeted repair. */
         #page-events .cta-band figure.diagram,#page-prototypes .cta-band figure.diagram{background:transparent;}
-      }
       .btn{transition:background .15s ease,color .15s ease,border-color .15s ease;}
       .btn.primary:active{background:var(--grad-deep);border-color:#1E3A8A;}
       .btn.ghost:active{border-color:var(--accent-deep);color:var(--accent-deep);background:var(--callout);}
@@ -845,8 +844,6 @@
         .sc-progress-track span{transition:none;}
         .sc-form.sc-stepped fieldset.sc-active{animation:none;}
       }
-      @media (prefers-reduced-motion:reduce){
-  
       /* Visual density pass: card art, diagrams, wide figures */
       figure.concept-fig{margin:0 0 16px;}
       figure.concept-fig figcaption{font-size:.85rem;color:var(--faint);margin-top:8px;}
@@ -858,8 +855,7 @@
       figure.wide-fig{margin:0 0 20px;}
       figure.wide-fig img{aspect-ratio:21/9;}
       @media (max-width:560px){ figure.diagram{padding:14px 12px 10px;} figure.wide-fig img{aspect-ratio:16/10;} }
-      .btn, .card{transition:none;}
-      }
+      @media (prefers-reduced-motion:reduce){ .btn, .card{transition:none;} }
       .titles-table{width:100%;border-collapse:collapse;font-size:.95rem;} .titles-table th,.titles-table td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;} .titles-table th{background:var(--bg-soft);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);} @media(max-width:700px){.titles-table thead{display:none;} .titles-table tr{display:block;margin-bottom:12px;border:1px solid var(--line);border-radius:10px;} .titles-table td{display:block;border:none;border-top:1px solid var(--line);} .titles-table td:first-child{border-top:none;font-weight:700;}} .toast{
         position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);opacity:0;
         background:var(--ink);color:#FFFFFF;padding:11px 18px;border-radius:10px;font-weight:600;
@@ -990,6 +986,10 @@
       .friction-index li{display:flex;gap:16px;align-items:flex-start;border-top:1px solid var(--line);padding:16px 0;}
       .friction-index li:first-child{border-top:none;padding-top:4px;}
       .friction-index .tag{flex:0 0 auto;margin-top:2px;}
+      .friction-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+      .friction-grid li{flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:var(--card);}
+      .friction-grid li:first-child{border-top:1px solid var(--line);padding-top:18px;}
+      @media (max-width:700px){.friction-grid{grid-template-columns:1fr;}}
       .friction-index h3{margin:0 0 4px;font-size:1.12rem;}
       .friction-index p{margin:0;}
       .ladder-summary{list-style:none;margin:6px 0 0;padding:0;}
@@ -1061,6 +1061,13 @@
       .more-text[open] summary::after{content:"\00a0\25B4";}
       .more-text .more-body{margin-top:6px;}
       .more-text .more-body > * + *{margin-top:14px;}
+      .on-this-page{margin:22px 0 0;}
+      .on-this-page summary{cursor:pointer;font-weight:700;color:var(--accent-deep);min-height:44px;display:inline-flex;align-items:center;padding:0 2px;}
+      .on-this-page summary:focus-visible,.on-this-page a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px;}
+      .on-this-page ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 10px;}
+      .on-this-page a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--accent-deep);font-weight:600;font-size:.95rem;text-decoration:none;}
+      .on-this-page a:hover{border-color:var(--accent);}
+      section.page h2[id^="otp-"]{scroll-margin-top:110px;}
       .page-after > * + *{margin-top:14px;}
       .page-after .micro{max-width:none;}
       .hero-bleed .micro strong,.hero-bleed .small strong{color:#FFFFFF;}
@@ -1560,6 +1567,12 @@
             <p style="margin-top:12px;"><a href="#inside" class="btn ghost" data-go="inside" style="padding:9px 16px;font-size:.95rem;">Start here: Inside Fixing Friction</a></p>
           </div>
         </div>
+        <div class="sc-strip" role="note">
+          <p class="eyebrow">Not sure where you fit?</p>
+          <h2>Let the scorecard route you.</h2>
+          <p>Nine questions, one honest starting point. Your result points to the service, program, or product that matches the problem actually in front of you.</p>
+          <div class="btnrow"><a href="#scorecard" class="btn ghost" data-go="scorecard">Take the nine-question scorecard</a></div>
+        </div>
         <div>
           <p class="eyebrow">Why this work, in his words</p>
           <h2 style="font-size:1.9rem;margin:8px 0 12px;">To be the resource I never had</h2>
@@ -1624,21 +1637,9 @@
         <div>
           <p class="eyebrow">Where it builds, and what it becomes</p>
           <h2 style="font-size:1.9rem;margin:8px 0 12px;">Four kinds of Accessibility Friction, one practice</h2>
-          <p style="color:var(--ink);max-width:46rem;">When a form, a doorway, a hiring process, or the tool stack itself was not built for them, people have to push harder, wait longer, and find a way around it. That daily drag is Accessibility Friction, and it builds in four places. Left standing, it does not stay in those four places. It compounds into three more: Legal Friction, Time Friction, and Bottom-line Friction.</p>
+          <p style="color:var(--ink);max-width:46rem;">When a form, a doorway, a hiring process, or the tool stack itself was not built for them, people have to push harder, wait longer, and find a way around it. That daily drag is Accessibility Friction, and it builds in four places.</p>
           <figure class="diagram"><svg viewBox="0 0 880 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four kinds of Accessibility Friction, one practice"><text x="440" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#102A43">Four kinds of Accessibility Friction, one practice</text><text x="24" y="84" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Digital Friction</text><rect x="24" y="96" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="96" width="640" height="24" rx="8" fill="#2563EB"/><text x="24" y="152" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Physical Friction</text><rect x="24" y="164" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="164" width="540" height="24" rx="8" fill="#0F766E"/><text x="24" y="220" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Communications and</text><text x="24" y="242" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Workplace Friction</text><rect x="24" y="254" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="254" width="460" height="24" rx="8" fill="#9A3412"/><text x="24" y="310" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Technology Friction</text><rect x="24" y="322" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="322" width="370" height="24" rx="8" fill="#102A43"/></svg><figcaption>Infographic: the four kinds of friction this practice is built to close. Diagram bars are illustrative of scope, not measured figures.</figcaption></figure>
-          <ul class="friction-index">
-            <li><span class="tag">Friction 1</span><div><h3>Digital Friction</h3><p class="small">Websites, forms, portals, PDFs, and application processes. This is the friction the two web deadlines above are asking you to remove.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-digital">Read the full Digital Friction card</a></p></div></li>
-            <li><span class="tag">Friction 2</span><div><h3>Physical Friction</h3><p class="small">Buildings, routes, parking, counters, signage, restrooms, meeting rooms, event spaces, and voting places. The barrier a visitor meets first is usually at arrival.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-physical">Read the full Physical Friction card</a></p></div></li>
-            <li><span class="tag">Friction 3</span><div><h3>Communications and Workplace Friction</h3><p class="small">The Title I part: hiring, onboarding, employee rights and resources, the accommodation process, etiquette, support, and awareness inside the workplace.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-comms">Read the full Communications and Workplace Friction card</a></p></div></li>
-            <li><span class="tag">Friction 4</span><div><h3>Technology Friction</h3><p class="small">The wrong software, or too much of it: too many overlapping tools, none of them quite right, costing time every day.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-technology">Read the full Technology Friction card</a></p></div></li>
-            <li><span class="tag">Friction 5</span><div><h3>Legal Friction</h3><p class="small">What ADA non-compliance becomes over time: complaints, investigations, and lawsuits, including class actions, aimed at barriers that were visible, reported, or documented and still left standing.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-legal">Read the full Legal Friction card</a></p></div></li>
-            <li><span class="tag">Friction 6</span><div><h3>Time Friction</h3><p class="small">The time Legal Friction pulls out of the week: leadership time, legal time, and staff time spent responding to a problem instead of doing the planned work that would have prevented it.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-time">Read the full Time Friction card</a></p></div></li>
-            <li><span class="tag">Friction 7</span><div><h3>Bottom-line Friction</h3><p class="small">What executives see in the numbers: penalties, legal and settlement costs, remediation done in a rush at a premium, and the quieter loss of customers, residents, and employees who hit a barrier and never come back.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-bottomline">Read the full Bottom-line Friction card</a></p></div></li>
-            <li><span class="tag warm">The prevention</span><div><h3>The work that stops the compounding</h3><p class="small">Training that stops new friction being built, audits and assessments that name what is standing, remediation that removes it, and transition planning that sequences the rest with owners and dates.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-prevention">Read the full prevention card</a></p></div></li>
-          </ul>
-          <p style="max-width:46rem;margin-top:18px;">People reveal this friction every day. When the paved route does not go where people need to go, they carve a desire path across the grass. People vote with their actions. Frame it correctly: they are revealing friction in the system, not misbehaving. This practice reads those signals, measures the friction, and puts the fixes in an order your team can finish.</p>
-          <div class="btnrow"><a href="#debt" class="btn ghost" data-go="debt">Read the full Friction cards in Reference</a></div>
-          <p style="max-width:46rem;margin-top:18px;">Each kind has a full card on the Reference page: what it is, what it looks like inside an organization like yours, and what happens next.</p>
+          <ul class="friction-index friction-grid"><li><span class="tag">Friction 1</span><div><h3>Digital Friction</h3><p class="small">Websites, forms, portals, PDFs, and application processes. This is the friction the two web deadlines above are asking you to remove.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-digital">Read the full Digital Friction card</a></p></div></li><li><span class="tag">Friction 2</span><div><h3>Physical Friction</h3><p class="small">Buildings, routes, parking, counters, signage, restrooms, meeting rooms, event spaces, and voting places. The barrier a visitor meets first is usually at arrival.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-physical">Read the full Physical Friction card</a></p></div></li><li><span class="tag">Friction 3</span><div><h3>Communications and Workplace Friction</h3><p class="small">The Title I part: hiring, onboarding, employee rights and resources, the accommodation process, etiquette, support, and awareness inside the workplace.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-comms">Read the full Communications and Workplace Friction card</a></p></div></li><li><span class="tag">Friction 4</span><div><h3>Technology Friction</h3><p class="small">The wrong software, or too much of it: too many overlapping tools, none of them quite right, costing time every day.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-technology">Read the full Technology Friction card</a></p></div></li></ul><details class="more-text"><summary>See how it compounds, and the prevention</summary><div class="more-body"><p>Left standing, it does not stay in those four places. It compounds into three more: Legal Friction, Time Friction, and Bottom-line Friction.</p><ul class="friction-index"><li><span class="tag">Friction 5</span><div><h3>Legal Friction</h3><p class="small">What ADA non-compliance becomes over time: complaints, investigations, and lawsuits, including class actions, aimed at barriers that were visible, reported, or documented and still left standing.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-legal">Read the full Legal Friction card</a></p></div></li><li><span class="tag">Friction 6</span><div><h3>Time Friction</h3><p class="small">The time Legal Friction pulls out of the week: leadership time, legal time, and staff time spent responding to a problem instead of doing the planned work that would have prevented it.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-time">Read the full Time Friction card</a></p></div></li><li><span class="tag">Friction 7</span><div><h3>Bottom-line Friction</h3><p class="small">What executives see in the numbers: penalties, legal and settlement costs, remediation done in a rush at a premium, and the quieter loss of customers, residents, and employees who hit a barrier and never come back.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-bottomline">Read the full Bottom-line Friction card</a></p></div></li><li><span class="tag warm">The prevention</span><div><h3>The work that stops the compounding</h3><p class="small">Training that stops new friction being built, audits and assessments that name what is standing, remediation that removes it, and transition planning that sequences the rest with owners and dates.</p><p style="margin-top:8px;"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-prevention">Read the full prevention card</a></p></div></li></ul><p style="max-width:46rem;margin-top:18px;">People reveal this friction every day. When the paved route does not go where people need to go, they carve a desire path across the grass. People vote with their actions. Frame it correctly: they are revealing friction in the system, not misbehaving. This practice reads those signals, measures the friction, and puts the fixes in an order your team can finish.</p></div></details><div class="btnrow"><a href="#debt" class="btn ghost" data-go="debt">Read the full Friction cards in Reference</a></div>
         </div>
         <div>
           <p class="eyebrow">The diagnostic ladder</p>
@@ -1650,10 +1651,9 @@
             <li><div><h3>Level 2: Accessibility Assessment</h3><p class="small">One site or system, photographed and measured where it matters, mapped to the standard, ranked, and paired with a recommended roadmap. Scoped per site or system.</p><p style="margin-top:8px;"><a href="#audits" class="quiet-link" data-go="audits" data-jump="snapshot">Read the Accessibility Assessment section</a></p></div></li>
             <li><div><h3>Level 3: Full Accessibility Audit</h3><p class="small">Every site, service, and system in the agreed scope, including the policies and programs behind the buildings.</p><p style="margin-top:8px;"><a href="#audits" class="quiet-link" data-go="audits" data-jump="full-audit">Read the Full Accessibility Audit section</a></p></div><p class="lvl-price-tag">From $1,500</p></li>
           </ul>
-          <p class="small" style="margin-top:12px;max-width:46rem;">Full Audit pricing, exactly as scoped: single site facility audit $2,500. WCAG audit $1,500 for a single asset and $3,500 for a larger site. Program and policy audit $3,500. Multi-site work from $12,500.</p>
+          <div class="btnrow"><a href="#audits" class="btn primary" data-go="audits">See audits and assessments</a></div><details class="more-text"><summary>Full audit pricing and what comes next</summary><div class="more-body"><p class="small" style="margin-top:12px;max-width:46rem;">Full Audit pricing, exactly as scoped: single site facility audit $2,500. WCAG audit $1,500 for a single asset and $3,500 for a larger site. Program and policy audit $3,500. Multi-site work from $12,500.</p>
           <p class="small" style="margin-top:10px;max-width:46rem;">An audit starts no statutory clock. It does create documented knowledge, which makes doing nothing afterwards the risky move. The roadmap or transition plan is a separate paid step, training stops new friction being built while remediation removes what is standing, and a periodic Second Reading keeps it from building back.</p>
-          <div class="btnrow"><a href="#audits" class="btn primary" data-go="audits">See audits and assessments</a></div>
-          <p style="max-width:46rem;margin-top:18px;">Each level is set out in full on the Audits page: what it covers, what you receive, and where it leads.</p>
+          <p style="max-width:46rem;margin-top:18px;">Each level is set out in full on the Audits page: what it covers, what you receive, and where it leads.</p></div></details>
         </div>
         <div>
           <p class="eyebrow">Services, the practice, and timing</p>
@@ -1692,12 +1692,7 @@
           <p style="margin-top:6px;">Start with a conversation about the site and the deadline you are working toward. You leave it knowing what blocks people, what to fix first, and what it will cost. The review, the plan, and the tracking all build from there.</p>
           <div class="btnrow"><a href="#start" class="btn primary" data-go="start">Start a conversation</a></div>
         </div>
-        <div class="sc-strip" role="note">
-          <p class="eyebrow">Not sure where you fit?</p>
-          <h2>Let the scorecard route you.</h2>
-          <p>Nine questions, one honest starting point. Your result points to the service, program, or product that matches the problem actually in front of you.</p>
-          <div class="btnrow"><a href="#scorecard" class="btn ghost" data-go="scorecard">Take the nine-question scorecard</a></div>
-        </div>
+        
       </section>
 
       <!-- ============ PROTOTYPES ============ -->
@@ -8047,6 +8042,80 @@
         openScorecard(window.__pendingAiScorecard);
         window.__pendingAiScorecard = null;
       }
+    })();
+    </script>
+  
+    <script>
+    /* On this page links, and scroll position restored on Back and Forward. */
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var SKIP = { home: 1, scorecard: 1, scorecards: 1, "ai-scorecards": 1, start: 1, about: 1 };
+      var EXCLUDE = ".card, .callout, .sc-strip, .proof, details, figure, .walk-card, .doors, .tile, .step";
+      function plain(h) {
+        var c = h.cloneNode(true);
+        c.innerHTML = c.innerHTML.replace(/<br\s*\/?>/gi, " ");
+        return c.textContent.replace(/\s+/g, " ").trim();
+      }
+      document.querySelectorAll("section.page").forEach(function (sec) {
+        var pid = (sec.id || "").replace(/^page-/, "");
+        if (!pid || SKIP[pid]) return;
+        var hs = Array.prototype.filter.call(sec.querySelectorAll("h2"), function (h) {
+          return !h.closest(EXCLUDE) && plain(h).length > 3 && plain(h).length < 90;
+        });
+        if (hs.length < 4) return;
+        var nav = document.createElement("nav");
+        nav.className = "on-this-page";
+        nav.setAttribute("aria-label", "On this page");
+        var det = document.createElement("details");
+        var sum = document.createElement("summary");
+        sum.textContent = "On this page";
+        det.appendChild(sum);
+        var ul = document.createElement("ul");
+        hs.forEach(function (h, i) {
+          if (!h.id) h.id = "otp-" + pid + "-" + (i + 1);
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.setAttribute("data-otp", h.id);
+          a.textContent = plain(h);
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+        det.appendChild(ul);
+        nav.appendChild(det);
+        var first = hs[0];
+        while (first.parentElement && first.parentElement !== sec) first = first.parentElement;
+        sec.insertBefore(nav, first);
+      });
+      document.addEventListener("click", function (ev) {
+        var a = ev.target.closest && ev.target.closest("a[data-otp]");
+        if (!a) return;
+        ev.preventDefault();
+        var el = document.getElementById(a.getAttribute("data-otp"));
+        if (!el) return;
+        el.scrollIntoView({ block: "start" });
+        if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");
+        el.focus({ preventScroll: true });
+      });
+
+      /* Scroll restore: remember where each page was left, put it back on Back/Forward. */
+      try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (e) {}
+      var saved = {};
+      var quietUntil = 0;
+      function curPage() { return window.__currentPageId || ((location.hash || "").replace(/^#/, "").split("?")[0] || "home"); }
+      function remember() { if (Date.now() > quietUntil) saved[curPage()] = window.pageYOffset || 0; }
+      var tmr = null;
+      window.addEventListener("scroll", function () { clearTimeout(tmr); tmr = setTimeout(remember, 80); }, { passive: true });
+      document.addEventListener("click", function (ev) {
+        if (ev.target.closest && ev.target.closest("[data-go]")) { remember(); quietUntil = Date.now() + 700; }
+      }, true);
+      window.addEventListener("popstate", function () {
+        quietUntil = Date.now() + 900;
+        var h = (location.hash || "").replace(/^#/, "").split("?")[0] || "home";
+        var y = saved[h];
+        if (!y) return;
+        setTimeout(function () { window.scrollTo(0, y); }, 120);
+      });
     })();
     </script>
   </body>

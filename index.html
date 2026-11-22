@@ -725,16 +725,57 @@
       .lvl-price{margin-top:14px;font-size:.93rem;background:var(--callout);border:1px solid var(--callout-line);border-radius:10px;padding:10px 13px;}
       footer.site{border-top:2px solid var(--ink);}
       .sc-form{display:grid;gap:16px;}
-      .sc-form fieldset{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px 22px;margin:0;}
-      .sc-form legend{font-family:"Sora","Public Sans","Libre Franklin",system-ui,sans-serif;font-size:1.18rem;font-weight:700;color:var(--ink);padding:0 4px;}
-      .sc-form fieldset p{margin-top:2px;}
-      .sc-opts{display:grid;gap:8px;margin-top:14px;}
-      .sc-opts label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:.97rem;background:#fff;}
-      .sc-opts label:hover{border-color:var(--accent-deep);}
-      .sc-opts input{margin:3px 0 0;accent-color:var(--accent-deep);width:18px;height:18px;flex:0 0 auto;cursor:pointer;}
+      .sc-intro{max-width:48rem;}
+      .sc-intro h1{font-size:clamp(1.75rem,3.4vw,2.35rem);margin:6px 0 8px;line-height:1.18;}
+      .sc-intro .lede{margin-top:0;font-size:1.02rem;}
+      .sc-intro .sc-meta{font-size:.86rem;color:var(--muted);margin-top:8px;}
+      .sc-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin-top:20px !important;}
+      .sc-form fieldset{background:transparent;border:none;border-radius:0;padding:8px 0 0;margin:0;}
+      .sc-form legend{font-family:"Sora","Public Sans","Libre Franklin",system-ui,sans-serif;font-size:1.25rem;font-weight:700;color:var(--ink);padding:0;}
+      .sc-form fieldset p{margin-top:6px;max-width:44rem;}
+      .sc-opts{display:grid;gap:10px;margin-top:16px;}
+      .sc-opts label{display:flex;gap:12px;align-items:center;min-height:50px;border:1px solid var(--line);border-radius:10px;padding:12px 16px;cursor:pointer;font-size:.98rem;font-weight:600;color:var(--ink);background:#fff;transition:border-color .15s ease,background-color .15s ease;}
+      .sc-opts label:hover{border-color:var(--accent-deep);background:var(--bg-soft);}
+      .sc-opts input{margin:0;accent-color:var(--accent-deep);width:18px;height:18px;flex:0 0 auto;cursor:pointer;}
       .sc-opts label:has(input:checked){border-color:var(--accent);background:var(--callout);box-shadow:inset 0 0 0 2px var(--accent);}
       .sc-error{color:var(--accent-deep);font-weight:700;}
-      .sc-tools{display:grid;gap:10px;margin-top:6px;}
+      .sc-tools{display:grid;gap:8px;margin-top:10px;}
+      /* Revamped scorecard results dashboard */
+      .sc-result{display:grid;gap:20px;margin-top:20px !important;}
+      .sc-result[hidden]{display:none;}
+      .sc-res-hero{background:#101F3C;color:#FFFFFF;border-radius:var(--radius);padding:28px 30px;}
+      .sc-res-hero .eyebrow{color:#93C5FD;margin-bottom:4px;}
+      .sc-res-hero h2{color:#FFFFFF;font-size:clamp(1.45rem,3vw,1.95rem);margin:4px 0 10px;line-height:1.2;}
+      .sc-res-hero p{color:#E2E8F0;max-width:46rem;margin:0;}
+      .sc-res-also{margin-top:12px !important;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);color:#F8FAFC !important;font-size:.92rem;}
+      .sc-res-also:empty{display:none;}
+      .sc-res-hero .btnrow{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+      .sc-res-hero .btn.primary{background:#FFFFFF;color:#101F3C;border-color:#FFFFFF;}
+      .sc-res-hero .btn.primary:hover{background:#E0F2FE;border-color:#E0F2FE;color:#101F3C;}
+      .sc-res-hero .btn.ghost{border-color:rgba(255,255,255,.6);color:#FFFFFF;background:transparent;}
+      .sc-res-hero .btn.ghost:hover{border-color:#FFFFFF;background:rgba(255,255,255,.12);}
+      .sc-tool-link{display:flex;flex-direction:column;gap:2px;padding:11px 14px;min-height:44px;border:1px solid var(--line);border-radius:10px;background:#FFFFFF;text-decoration:none;color:var(--ink);transition:border-color .15s ease,background-color .15s ease;}
+      .sc-tool-link:hover{border-color:var(--accent-deep);background:var(--callout);}
+      .sc-tool-title{font-weight:700;font-size:.94rem;color:var(--accent-deep);}
+      .sc-tool-desc{font-size:.84rem;font-weight:400;color:var(--muted);line-height:1.35;}
+      .sc-res-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start;}
+      @media (max-width:860px){.sc-res-grid{grid-template-columns:1fr;}}
+      .sc-res-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;}
+      .sc-res-card h3{font-size:1.15rem;margin:0 0 12px;color:var(--ink);}
+      .sc-findings{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+      .sc-findings li{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:10px;background:var(--bg-soft);border:1px solid var(--line);font-size:.93rem;font-weight:600;color:var(--ink);}
+      .sc-badge{flex:0 0 auto;font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+      .sc-badge.high{background:#FEE2E2;color:#991B1B;}
+      .sc-badge.mid{background:#FEF3C7;color:#92400E;}
+      .sc-badge.ok{background:#DCFCE7;color:#166534;}
+      .sc-step-box{padding:14px 16px;border-radius:10px;background:var(--callout);border:1px solid #BFDBFE;margin-bottom:18px;}
+      .sc-step-box .sc-step-kicker{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px;}
+      .sc-step-box p{margin:0;color:var(--ink);font-size:.95rem;}
+      .sc-res-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:4px;}
+      .sc-res-foot .fineprint{margin:0;max-width:44rem;}
+      .sc-about-details{margin-top:36px !important;border-top:1px solid var(--line);padding-top:28px;display:grid;gap:20px;}
+      @media (max-width:640px){.sc-shell,.sc-res-hero,.sc-res-card{padding:20px 18px;}}
+      @media (prefers-reduced-motion:reduce){.sc-opts label{transition:none;}}
       /* Scorecard stepped flow: one question at a time.
          Without script the form keeps its all-questions fallback; script
          adds .sc-stepped and only the active question shows. */
@@ -4086,141 +4127,140 @@
 
       <!-- ============ FIND YOUR STARTING POINT (SCORECARD) ============ -->
       <section class="page" id="page-scorecard" aria-label="Find Your Starting Point">
-        <figure class="bleed-fig"><img src="assets/274737d111e2.webp" alt="Concept illustration marking the starting point of the scorecard: one clear first step on the path." width="1920" height="1280" loading="lazy" decoding="async" /></figure>
-        <p class="eyebrow">Find Your Starting Point</p>
-        <h1 style="font-size:2.1rem;margin:8px 0 10px;">Nine questions. One honest starting point. No verdict, just the next step.</h1>
-        <p class="lede">Answer nine short questions about where access work sticks in your organization. You get one service to start with, the tools to open first, and one concrete next step. Nothing is saved, and the result is guidance, not a determination.</p><p class="micro" style="margin-top:12px;"><strong>What you get:</strong> one clear first step, chosen from your own answers, instead of not knowing where to start.</p>
-        <div class="btnrow" style="margin-top:18px;"><a href="#start" class="btn primary" data-go="start">Start a conversation</a><a href="#services" class="btn ghost" data-go="services">Browse the services instead</a></div>
-        <p style="color:var(--ink);margin-top:12px;">Want the year view first? <a href="#training" class="btn ghost" data-go="training" data-jump="training-calendar" style="padding:9px 16px;font-size:.95rem;">See the calendar year program alignment on the Training page</a></p>
-        <figure class="band"><span class="band-clip"><img src="assets/597fb153fc5c.jpg" alt="Concept picture of a visitor pausing at a junction inside a bright public building, where a wide ramp with handrails, a staffed service desk, and a digital kiosk offer three routes onward, under hanging signs drawn as plain colored shapes." width="1920" height="1280" loading="lazy" decoding="async" /></span><figcaption>Concept picture. Three routes onward from one spot: the ramp, the desk, and the screen. The scorecard works the same way: one honest look, then the route that fits.</figcaption></figure>
-
-        <div class="callout" role="note">
-          <h2 style="font-size:1.5rem;">How to read the result</h2>
-          <p style="color:var(--ink);margin-top:6px;">The result is a suggested starting point, in plain language. It is not a compliance determination, and nothing here judges your organization against any other. There is no percentage and no ranking. Nothing you answer is saved or sent anywhere; the suggestion is worked out on this page, from your answers alone.</p>
+        <div class="sc-intro">
+          <p class="eyebrow">Find Your Starting Point · 9 Questions</p>
+          <h1>Find your clearest first step in under two minutes.</h1>
+          <p class="lede">Answer nine short questions about where access work sticks in your organization. You get one recommended service, your top findings, and concrete tools to open first.</p>
+          <p class="sc-meta">Guidance only, not a compliance determination. Your answers stay in this browser tab and are never sent anywhere.</p>
         </div>
 
-        <div class="callout" role="note">
-          <figure class="diagram"><svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How to read the result: Nine questions, The service to start with, Tools to open first, Your one next step"><text x="400" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="22" font-weight="700" fill="#102A43">How to read the result</text><rect x="16" y="64" width="176" height="108" rx="14" fill="#1D4ED8"/><text x="104" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Nine</text><text x="104" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">questions</text><path d="M196 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="212" y="64" width="176" height="108" rx="14" fill="#0F766E"/><text x="300" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">The service</text><text x="300" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">to start with</text><path d="M392 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="408" y="64" width="176" height="108" rx="14" fill="#9A3412"/><text x="496" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Tools to</text><text x="496" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">open first</text><path d="M588 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="604" y="64" width="176" height="108" rx="14" fill="#102A43"/><text x="692" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Your one</text><text x="692" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">next step</text><rect x="16" y="204" width="764" height="10" rx="5" fill="#E0F2FE"/></svg><figcaption>Infographic: what a scorecard result gives you, in order.</figcaption></figure><figure class="ph wide-fig"><img src="assets/aa40decfaf7c.jpg" alt="Concept picture of a wooden desk by a sunlit window, with an open blank notebook and a pen on it, a stack of blank paper, and a laptop with a dark screen beside them." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture: your starting point, worked out on paper first.</figcaption></figure><h2 style="font-size:1.5rem;">Where this scorecard sits in the sequence</h2>
-          <p style="color:var(--ink);margin-top:6px;">For work on a place, the scorecard is the meeting tool in the middle of the sequence. It often follows a Snapshot, the free Level 1 look where one genuine finding about your place was offered in person, and it comes before any paid work is ordered. You answer for your own place. We read your answers beside that first finding. Then the depth is your choice: Level 2, an Accessibility Assessment of one place, or Level 3, a Full Accessibility Audit of the whole scope. Taken on its own, online, it does the same job for organizations that arrive without a Snapshot first.</p>
-          <p style="margin-top:10px;"><a href="#audits" class="btn ghost" data-go="audits" data-jump="levels" style="padding:9px 16px;font-size:.95rem;">See the three levels on the Audits page</a></p>
+        <div class="sc-shell" id="scShell">
+          <form class="sc-form" id="scForm" aria-label="Starting point scorecard" novalidate>
+            <div class="sc-progress" id="scProgress" hidden>
+              <p class="sc-progress-label" id="scProgressLabel" role="status" aria-live="polite">Question 1 of 9</p>
+              <div class="sc-progress-track" id="scProgressBar" role="progressbar" aria-label="Scorecard progress" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><span id="scProgressFill"></span></div>
+            </div>
+            <fieldset data-service="audits">
+              <legend>1. Our buildings and spaces</legend>
+              <p class="small">Entrances, routes, restrooms, counters, and signage. We are not sure our buildings and outdoor spaces work for every visitor who arrives.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q1" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q1" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q1" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="audits">
+              <legend>2. Our website and documents</legend>
+              <p class="small">Residents and customers complete real tasks on our website and in our documents. We are not sure a screen reader user or a keyboard only user can finish them.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q2" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q2" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q2" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="training">
+              <legend>3. Staff training and confidence</legend>
+              <p class="small">Staff meet access questions in their daily work and are not sure they are answering them well, or the same way twice.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q3" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q3" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q3" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="advising">
+              <legend>4. Policies, self-evaluation, and plans</legend>
+              <p class="small">Our access policies are old, partial, or unwritten, and we have no current self-evaluation or transition plan we could hand to someone.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q4" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q4" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q4" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="materials">
+              <legend>5. Our own training materials</legend>
+              <p class="small">Our courses and training content have grown over years, across authors and vendors. Nobody has read the whole library at once.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q5" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q5" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q5" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="support">
+              <legend>6. A deadline, a complaint, or a project</legend>
+              <p class="small">Something with a date on it is coming: an election, an opening, a renovation, or a complaint we need to answer well.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q6" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q6" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q6" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="audits">
+              <legend>7. Voting access</legend>
+              <p class="small">We run polling places or voter service centers, or host them, and voting access is the question in front of us.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q7" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q7" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q7" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="training">
+              <legend>8. Parks and recreation</legend>
+              <p class="small">We run parks, trails, or recreation programs, and we are not sure the route from the car park to the furthest point works for everyone.</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q8" value="2" /> This is a sticking point for us</label>
+                <label><input type="radio" name="q8" value="1" /> Partly: some of this is handled, some is not</label>
+                <label><input type="radio" name="q8" value="0" /> Not really: this area is in good shape</label>
+              </div>
+            </fieldset>
+            <fieldset data-service="calendar">
+              <legend>9. Calendar based awareness programming</legend>
+              <p class="small">Does your organization run calendar based awareness programming, tied to moments such as Autism Acceptance Month, Disability Pride Month, or the International Day of Persons with Disabilities?</p>
+              <div class="sc-opts">
+                <label><input type="radio" name="q9" value="2" /> Yes, regularly</label>
+                <label><input type="radio" name="q9" value="1" /> Occasionally</label>
+                <label><input type="radio" name="q9" value="0" /> Not yet</label>
+              </div>
+            </fieldset>
+            <p class="sc-error" id="scError" role="alert" hidden></p>
+            <div class="sc-nav">
+              <button type="button" class="btn ghost" id="scBack" hidden>Back</button>
+              <button type="button" class="btn primary" id="scContinue" hidden>Continue</button>
+              <button type="submit" class="btn primary" id="scSubmitBtn">See my starting point</button>
+              <button type="button" class="btn ghost" id="scReset">Start over</button>
+              <p class="sc-hint" id="scHint" hidden>Pick one answer and you will move to the next question on its own.</p>
+            </div>
+          </form>
         </div>
-
-        <form class="sc-form" id="scForm" aria-label="Starting point scorecard" novalidate>
-          <div class="sc-progress" id="scProgress" hidden>
-            <p class="sc-progress-label" id="scProgressLabel" role="status" aria-live="polite">Question 1 of 9</p>
-            <div class="sc-progress-track" id="scProgressBar" role="progressbar" aria-label="Scorecard progress" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><span id="scProgressFill"></span></div>
-          </div>
-          <fieldset data-service="audits">
-            <legend>1. Our buildings and spaces</legend>
-            <p class="small">Entrances, routes, restrooms, counters, and signage. We are not sure our buildings and outdoor spaces work for every visitor who arrives.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q1" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q1" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q1" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="audits">
-            <legend>2. Our website and documents</legend>
-            <p class="small">Residents and customers complete real tasks on our website and in our documents. We are not sure a screen reader user or a keyboard only user can finish them.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q2" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q2" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q2" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="training">
-            <legend>3. Staff training and confidence</legend>
-            <p class="small">Staff meet access questions in their daily work and are not sure they are answering them well, or the same way twice.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q3" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q3" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q3" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="advising">
-            <legend>4. Policies, self-evaluation, and plans</legend>
-            <p class="small">Our access policies are old, partial, or unwritten, and we have no current self-evaluation or transition plan we could hand to someone.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q4" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q4" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q4" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="materials">
-            <legend>5. Our own training materials</legend>
-            <p class="small">Our courses and training content have grown over years, across authors and vendors. Nobody has read the whole library at once.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q5" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q5" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q5" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="support">
-            <legend>6. A deadline, a complaint, or a project</legend>
-            <p class="small">Something with a date on it is coming: an election, an opening, a renovation, or a complaint we need to answer well.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q6" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q6" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q6" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="audits">
-            <legend>7. Voting access</legend>
-            <p class="small">We run polling places or voter service centers, or host them, and voting access is the question in front of us.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q7" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q7" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q7" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="training">
-            <legend>8. Parks and recreation</legend>
-            <p class="small">We run parks, trails, or recreation programs, and we are not sure the route from the car park to the furthest point works for everyone.</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q8" value="2" /> This is a sticking point for us</label>
-              <label><input type="radio" name="q8" value="1" /> Partly: some of this is handled, some is not</label>
-              <label><input type="radio" name="q8" value="0" /> Not really: this area is in good shape</label>
-            </div>
-          </fieldset>
-          <fieldset data-service="calendar">
-            <legend>9. Calendar based awareness programming</legend>
-            <p class="small">Does your organization run calendar based awareness programming, tied to moments such as Autism Acceptance Month, Disability Pride Month, or the International Day of Persons with Disabilities?</p>
-            <div class="sc-opts">
-              <label><input type="radio" name="q9" value="2" /> Yes, regularly</label>
-              <label><input type="radio" name="q9" value="1" /> Occasionally</label>
-              <label><input type="radio" name="q9" value="0" /> Not yet</label>
-            </div>
-          </fieldset>
-          <p class="sc-error" id="scError" role="alert" hidden></p>
-          <div class="sc-nav">
-            <button type="button" class="btn ghost" id="scBack" hidden>Back</button>
-            <button type="button" class="btn primary" id="scContinue" hidden>Continue</button>
-            <button type="submit" class="btn primary" id="scSubmitBtn">See my starting point</button>
-            <button type="button" class="btn ghost" id="scReset">Start over</button>
-            <p class="sc-hint" id="scHint" hidden>Pick one answer and you will move to the next question on its own.</p>
-          </div>
-        </form>
 
         <div class="sc-result" id="scResult" hidden tabindex="-1" aria-live="polite">
-          <p class="eyebrow">Your suggested starting point</p>
-          <h2 style="font-size:1.8rem;margin:8px 0 10px;" id="scRecTitle">The service to start with</h2>
-          <p style="max-width:46rem;" id="scRecWhy"></p>
-          <p style="max-width:46rem;margin-top:10px;" id="scRecAlso"></p>
-          <div class="grid2" style="margin-top:18px;">
-            <div class="card">
-              <h3>Open these tools first</h3>
-              <div class="sc-tools" id="scRecTools"></div>
-            </div>
-            <div class="card">
-              <h3>Your one next step</h3>
-              <p class="small" id="scRecStep" style="margin-top:6px;"></p>
-              <div class="btnrow">
-                <a href="#start" class="btn ghost" data-go="start">Start a conversation</a>
-                <a href="#services" class="btn ghost" id="scRecGo" data-go="services">See the recommended service</a>
-              </div>
+          <div class="sc-res-hero">
+            <p class="eyebrow">Your Results Summary</p>
+            <h2 id="scRecTitle">The service to start with</h2>
+            <p id="scRecWhy"></p>
+            <p class="sc-res-also" id="scRecAlso"></p>
+            <div class="btnrow">
+              <a href="#services" class="btn primary" id="scRecGo" data-go="services">See the recommended service</a>
+              <a href="#start" class="btn ghost" data-go="start">Start a conversation</a>
             </div>
           </div>
-          <div class="sc-cal" id="scCalBlock">
+
+          <div class="sc-res-grid">
+            <div class="sc-res-card">
+              <h3>Your top findings</h3>
+              <ul class="sc-findings" id="scFindingsList"></ul>
+            </div>
+            <div class="sc-res-card">
+              <h3>Best next steps</h3>
+              <div class="sc-step-box">
+                <p class="sc-step-kicker">Do this first</p>
+                <p id="scRecStep"></p>
+              </div>
+              <h4 style="font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;">Open these tools first</h4>
+              <div class="sc-tools" id="scRecTools"></div>
+            </div>
+          </div>
+
+          <div class="sc-cal" id="scCalBlock" style="margin-top:0;">
             <span class="tag" id="scCalTag">Calendar programming</span>
             <h3 id="scCalTitle">This quarter on the calendar</h3>
             <p id="scCalText"></p>
@@ -4228,15 +4268,28 @@
             <p id="scCalBooking" style="margin-top:10px;"></p>
             <div class="btnrow"><a href="#training" class="btn ghost" data-go="training" data-jump="training-calendar" style="padding:9px 16px;font-size:.95rem;">Open the full calendar year on the Training page</a></div>
           </div>
-          <div class="btnrow"><button type="button" class="btn ghost" id="scRetake">Retake the scorecard</button></div>
-          <p class="fineprint" style="margin-top:14px;">A suggested starting point from your own answers, nothing more. It is not a compliance determination, and it does not replace a review of the actual place, site, or material.</p>
+
+          <div class="sc-res-foot">
+            <button type="button" class="btn ghost" id="scRetake">Retake the scorecard</button>
+            <p class="fineprint">A suggested starting point from your own answers, nothing more. It is not a compliance determination, and it does not replace a review of the actual place, site, or material.</p>
+          </div>
         </div>
 
-        <div class="cta-band">
-          <p class="eyebrow" style="color:#E0F2FE;">Already know the answer?</p>
-          <h2 style="font-size:1.6rem;">Skip the questions and bring the real one</h2>
-          <p>Every service on this site starts the same way: a short conversation about what you have, what is due, and what done looks like.</p>
-          <div class="btnrow"><a href="#start" class="btn ghost" data-go="start">Start a conversation</a><a href="#services" class="btn ghost" data-go="services">See the services</a></div>
+        <div class="sc-about-details">
+          <div class="callout" role="note">
+            <h2 style="font-size:1.35rem;">How this scorecard works</h2>
+            <p style="color:var(--ink);margin-top:6px;">The result is a suggested starting point, in plain language. It is not a compliance determination, and nothing here judges your organization against any other. There is no percentage and no ranking. For work on a place, it often follows a Snapshot (the free Level 1 look) and comes before any paid work is ordered.</p>
+            <div class="btnrow" style="margin-top:12px;">
+              <a href="#audits" class="btn ghost" data-go="audits" data-jump="levels" style="padding:9px 16px;font-size:.95rem;">See the three levels on the Audits page</a>
+              <a href="#training" class="btn ghost" data-go="training" data-jump="training-calendar" style="padding:9px 16px;font-size:.95rem;">See the calendar year on the Training page</a>
+            </div>
+          </div>
+          <div class="cta-band">
+            <p class="eyebrow" style="color:#E0F2FE;">Already know the answer?</p>
+            <h2 style="font-size:1.6rem;">Skip the questions and bring the real one</h2>
+            <p>Every service on this site starts the same way: a short conversation about what you have, what is due, and what done looks like.</p>
+            <div class="btnrow"><a href="#start" class="btn ghost" data-go="start">Start a conversation</a><a href="#services" class="btn ghost" data-go="services">See the services</a></div>
+          </div>
         </div>
       </section>
 
@@ -5572,23 +5625,43 @@
         var SC_DATA = {
           audits: { name: "Accessibility Audits", go: "audits", max: 6,
             why: "The areas you marked strongest are about places, sites, and systems nobody has yet walked with a checklist. Place based assessment runs at three levels: a free Snapshot offers one finding and opens the conversation, this scorecard helps you choose the depth, and the ordered work is an Accessibility Assessment (Level 2: one site, one focused visit, the barriers that block access most photographed and ranked) or a Full Accessibility Audit (Level 3) when the scope is the whole system. Start at Level 2 unless your scope is already clearly wider. Its findings are the evidence every other service builds on.",
-            tools: [["audits", "levels", "The three levels, side by side"], ["audits", "snapshot", "The Accessibility Assessment (Level 2)"], ["modules", "module-physical", "The Physical Locations module"]],
+            tools: [
+              ["audits", "levels", "The three audit levels, side by side", "Snapshot, Accessibility Assessment (Level 2), and Full Audit (Level 3)."],
+              ["audits", "snapshot", "Accessibility Assessment (Level 2)", "One site, one focused visit, barriers photographed and ranked."],
+              ["modules", "module-physical", "Physical Locations checklist", "Audit checklist for buildings, entrances, routes, and signage."]
+            ],
             step: "Walk your busiest entrance the way a first time visitor would, and write down the first three places the visit gets hard. Bring that short list to the first conversation." },
           advising: { name: "Accessibility Advising", go: "advising", max: 2,
             why: "The area you marked strongest is a decision, not a work order: what the policy should say, how the self-evaluation should run, what the plan should promise. Advising settles what to do next, in what order, and why, before anyone starts the work.",
-            tools: [["titles", null, "Findings by Title"], ["app", null, "The App"], ["services", null, "Services Overview"]],
+            tools: [
+              ["titles", null, "The ADA Titles, in plain language", "How ADA Titles I through V organize accessibility findings."],
+              ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."],
+              ["services", null, "ADA Services overview", "Audits, advising, training, and transition planning in one place."]
+            ],
             step: "Find the most recent document your organization wrote about its own accessibility, even if it is old or unfinished, and bring it exactly as it stands." },
           training: { name: "Training", go: "training", max: 4,
             why: "The areas you marked strongest live in people: what staff know, what they are confident answering, and what they meet outdoors and in public. Training is led by Matthew Cicanese, ADAC, and shaped around your own sites and questions.",
-            tools: [["training", null, "The eight training themes"], ["directory", null, "The Directory"], ["app", null, "The App"]],
+            tools: [
+              ["training", null, "The eight training themes", "ADA training for staff, leaders, coordinators, and parks teams."],
+              ["directory", null, "Specialist Directory model", "How inspectors, digital reviewers, and trainers match to the work."],
+              ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."]
+            ],
             step: "Name the team whose access questions come up most often, and the theme closest to their daily work. That pairing is the first session to scope." },
           support: { name: "Consulting and Ongoing Support", go: "support", max: 2,
             why: "The area you marked strongest has a date on it. When a deadline, a complaint, or a project is already moving, the risk is the work stalling between the finding and the fix. Ongoing support works beside your team until items are verified, and advising can settle the order first where a decision is blocking.",
-            tools: [["app", null, "The App"], ["plans", null, "Remediation and Transition Planning"], ["titles", null, "Findings by Title"]],
+            tools: [
+              ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."],
+              ["plans", null, "Remediation and Transition Planning", "Phased fixes with owners, dates, and verification re-checks."],
+              ["titles", null, "The ADA Titles, in plain language", "How ADA Titles I through V organize accessibility findings."]
+            ],
             step: "Write down the date you are working toward and what done has to look like by then. That pair of facts scopes everything that follows." },
           materials: { name: "The Second Reading", go: "materials", max: 2,
             why: "The area you marked strongest is your own library. A training library grown over years, across authors and vendors, can contradict itself in ways no single module shows. The audit reads the whole set at once, as one body of material.",
-            tools: [["modules", "module-digital", "The Digital module"], ["app", null, "The App"], ["findings", null, "Evidence-Based Findings Reports"]],
+            tools: [
+              ["modules", "module-digital", "Digital Accessibility checklist", "Audit checklist for websites, documents, and course materials."],
+              ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."],
+              ["findings", null, "Evidence-Based Findings Reports", "Standard and lived-experience readings in one report."]
+            ],
             step: "Gather your course list in one place: titles, owners, and when each was last revised. That inventory is step one of the audit." }
         };
         var SC_ORDER = ["audits", "advising", "training", "support", "materials"];
@@ -5645,11 +5718,19 @@
               list.forEach(function (t) {
                 var b = document.createElement("a");
                 b.setAttribute("href", "#" + t[0]);
-                b.className = "btn ghost";
-                b.setAttribute("style", "padding:9px 16px;font-size:.95rem;text-align:left;");
+                b.className = "sc-tool-link";
                 b.setAttribute("data-go", t[0]);
                 if (t[1]) b.setAttribute("data-jump", t[1]);
-                b.textContent = t[2];
+                var tt = document.createElement("span");
+                tt.className = "sc-tool-title";
+                tt.textContent = t[2];
+                b.appendChild(tt);
+                if (t[3]) {
+                  var td = document.createElement("span");
+                  td.className = "sc-tool-desc";
+                  td.textContent = t[3];
+                  b.appendChild(td);
+                }
                 toolsEl.appendChild(b);
               });
             }
@@ -5657,7 +5738,11 @@
               titleEl.textContent = "A good place to start: a conversation";
               whyEl.textContent = "Nothing you marked is sticking right now. That usually means one of two things: the basics are genuinely in hand, or nobody has yet walked the place, the site, and the materials with fresh eyes. A short conversation sorts out which, and the foundations training theme is the standing refresher either way.";
               alsoEl.textContent = "";
-              renderTools([["app", null, "The App"], ["titles", null, "Findings by Title"], ["services", null, "Services Overview"]]);
+              renderTools([
+                ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."],
+                ["titles", null, "The ADA Titles, in plain language", "How ADA Titles I through V organize accessibility findings."],
+                ["services", null, "ADA Services overview", "Audits, advising, training, and transition planning in one place."]
+              ]);
               stepEl.textContent = "Pick the one place, page, or document a visitor depends on most, and look at it once with fresh eyes before the conversation.";
               goBtn.setAttribute("data-go", "services");
               goBtn.setAttribute("href", "#services");
@@ -5746,6 +5831,41 @@
               block.setAttribute("data-focus-month", String(focus.month));
               block.setAttribute("data-focus-quarter", String(focus.quarter));
             })();
+            var scShell = document.getElementById("scShell");
+            var findingsEl = document.getElementById("scFindingsList");
+            if (findingsEl) {
+              findingsEl.innerHTML = "";
+              var items = [];
+              groups.forEach(function (fs) {
+                var svc = fs.getAttribute("data-service");
+                if (svc === "calendar") return;
+                var checked = fs.querySelector("input[type=radio]:checked");
+                if (!checked) return;
+                var val = parseInt(checked.value, 10);
+                var leg = fs.querySelector("legend");
+                var label = leg ? leg.textContent.replace(/^\d+\.\s*/, "") : "";
+                if (val > 0) items.push({ label: label, val: val });
+              });
+              items.sort(function (a, b) { return b.val - a.val; });
+              if (!items.length) {
+                var li0 = document.createElement("li");
+                li0.innerHTML = '<span>No urgent sticking points flagged</span><span class="sc-badge ok">In good shape</span>';
+                findingsEl.appendChild(li0);
+              } else {
+                items.slice(0, 5).forEach(function (it) {
+                  var li = document.createElement("li");
+                  var sp = document.createElement("span");
+                  sp.textContent = it.label;
+                  var bd = document.createElement("span");
+                  bd.className = "sc-badge " + (it.val === 2 ? "high" : "mid");
+                  bd.textContent = it.val === 2 ? "Sticking point" : "Partly handled";
+                  li.appendChild(sp);
+                  li.appendChild(bd);
+                  findingsEl.appendChild(li);
+                });
+              }
+            }
+            if (scShell) scShell.hidden = true;
             scForm.hidden = true;
             scResult.hidden = false;
             scHasSavedResult = true;
@@ -5848,6 +5968,8 @@
             scForm.reset();
             scResult.hidden = true;
             scError.hidden = true;
+            var scShell = document.getElementById("scShell");
+            if (scShell) scShell.hidden = false;
             scForm.hidden = false;
             scHasSavedResult = false;
             scBannerDismissed = false;

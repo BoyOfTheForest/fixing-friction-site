@@ -1,4 +1,5 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-Sitemap: https://fixingfriction.com/sitemap.xml
+# Launch gate: crawlers and answer engines are blocked until the full build is reviewed and approved by the team.
+# To open the site, restore buildout/archive/robots.allow.txt (see the Buildout page).

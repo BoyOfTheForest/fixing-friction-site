@@ -1290,6 +1290,48 @@
       .ai-arch-give{background:#F8FAFC;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:12px;}
       .ai-arch-give ul{margin:8px 0 0;padding-left:20px;display:grid;gap:6px;font-size:.94rem;color:var(--ink);}
       .ai-arch-note{font-size:.88rem;color:var(--muted);margin:10px 0 0;line-height:1.5;}
+
+      /* ===== Brief Phase 1: six-item navigation, six-column footer. White surfaces only. ===== */
+      .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}
+      nav.pages{gap:2px;}
+      nav.pages button.drop-btn{
+        appearance:none;border:0;background:#FFFFFF;color:var(--ink);display:inline-flex;align-items:center;min-height:44px;
+        font:inherit;font-size:.82rem;font-weight:600;padding:8px 8px;border-radius:8px;cursor:pointer;white-space:nowrap;
+      }
+      nav.pages > a:not(.cta){font-size:.82rem;}
+      nav.pages button.drop-btn:hover{background:#FFFFFF;color:var(--accent-deep);text-decoration:underline;text-underline-offset:4px;}
+      nav.pages .nav-drop > button.drop-btn[aria-current="page"]{background:#FFFFFF;color:var(--accent-deep);box-shadow:inset 0 -3px 0 var(--accent);}
+      nav.pages .nav-drop.g-start{margin-left:20px;}
+      nav.pages a.cta{margin-left:20px;padding:10px 18px;font-size:.84rem;}
+      nav.pages a:hover,nav.pages .nav-drop > a:hover{background:#FFFFFF;}
+      nav.pages a.cta:hover{background:var(--accent-deep);}
+      .nav-drop .drop-menu.wide{min-width:340px;max-width:min(420px,92vw);}
+      .nav-drop .drop-menu a{display:flex;flex-direction:column;justify-content:center;gap:1px;padding:10px 14px;}
+      .nav-drop .drop-menu a:hover,.nav-drop .drop-menu a:focus-visible{background:#FFFFFF;color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px;}
+      .nav-drop .drop-menu a:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;}
+      .di-t{display:block;font-weight:700;}
+      .di-s{display:block;font-size:.8rem;font-weight:500;color:var(--muted);line-height:1.35;}
+      .menupanel{background:#FFFFFF;}
+      .menupanel a:hover{background:#FFFFFF;text-decoration:underline;text-underline-offset:3px;}
+      .menupanel a.menu-cta:hover{background:var(--grad-deep);text-decoration:none;}
+      .menupanel .menu-group{display:block;margin:6px 0 0;padding:12px 10px 4px;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);}
+      .menupanel .menu-group.g-start{margin-top:18px;}
+      .menupanel .menu-group[aria-current="page"]{box-shadow:inset 4px 0 0 var(--accent);}
+      .menupanel .menu-group[aria-current="page"]::after{content:" (current section)";text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted);}
+      .menupanel a.sub{padding:11px 10px 11px 24px;min-height:44px;color:var(--ink);font-size:.98rem;}
+      .menupanel a.sub .di-s{font-size:.82rem;color:var(--muted);font-weight:500;}
+      footer.site{background:#FFFFFF;}
+      .foot-in{background:#FFFFFF;}
+      .sitemap{grid-template-columns:repeat(6,minmax(0,1fr));gap:28px 22px;}
+      .sitemap h3{text-wrap:balance;}
+      .sitemap a{min-height:44px;display:flex;align-items:center;overflow-wrap:anywhere;}
+      @media (max-width:1199px){.sitemap{grid-template-columns:repeat(2,minmax(0,1fr));}}
+      @media (max-width:599px){.sitemap{grid-template-columns:1fr;}}
+      .foot-bar{border-top:1px solid var(--line);padding-top:18px;margin-top:10px;font-size:.92rem;color:var(--ink);max-width:60rem;}
+      @media (max-width:1599px){.brand-sub{display:none;}}
+      @media (max-width:1339px){nav.pages{display:none;}.menubtn{display:block;}}
+      @media (min-width:1340px){.menupanel{display:none !important;}}
+      body:has(.menupanel.open) .to-top{display:none;}
 </style>
     <script type="application/ld+json">
     {
@@ -1595,52 +1637,57 @@
         </a>
         <nav class="pages" aria-label="Site pages" id="topnav">
           <span class="nav-drop">
-            <a href="#about" class="drop-btn" data-go="about" data-nav-group="about" aria-expanded="false">About <span class="caret" aria-hidden="true">&#9662;</span></a>
-            <span class="drop-menu" role="group" aria-label="About">
-              <a href="#about-story" data-go="about" data-jump="about-story">Our Story</a>
-              <a href="#about-team" data-go="about" data-jump="about-team">Our Team</a>
-              <a href="#about-mission" data-go="about" data-jump="about-mission">Our Mission</a>
-              <a href="#evidence" data-go="evidence">Proof &amp; Results</a>
-              <a href="#about-press" data-go="about" data-jump="about-press">Press &amp; News</a>
-              <a href="#about-contact" data-go="about" data-jump="about-contact">Contact Us</a>
+            <button type="button" class="drop-btn" data-nav-group="outs" aria-expanded="false" aria-controls="dm-outs">The Three Outs <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <span class="drop-menu wide" id="dm-outs" role="group" aria-label="The Three Outs">
+              <a href="#home" data-go="home"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
+              <a href="#home" data-go="home"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
+              <a href="#home" data-go="home"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
+              <a href="#debt" data-go="debt">How friction builds into all three</a>
+            </span>
+          </span>
+          <span class="nav-drop g-start">
+            <button type="button" class="drop-btn" data-nav-group="leaders" aria-expanded="false" aria-controls="dm-leaders">For Leaders <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <span class="drop-menu wide" id="dm-leaders" role="group" aria-label="For Leaders">
+              <a href="#training" data-go="training">Speaking and training for teams</a>
+              <a href="#start" data-go="start">Start with a pilot session</a>
+              <a href="#evidence" data-go="evidence">Client stories</a>
+              <a href="#speaking" data-go="speaking">Book Matthew to speak</a>
             </span>
           </span>
           <span class="nav-drop">
-            <a href="#inside" class="drop-btn" data-go="inside" data-nav-group="who" aria-expanded="false">Who We Help <span class="caret" aria-hidden="true">&#9662;</span></a>
-            <span class="drop-menu wide" role="group" aria-label="Who We Help">
-              <a href="#verticals" data-go="verticals">Organizations &amp; Sectors</a>
-              <a href="#athome" data-go="athome">At Home: ND Households</a>
-              <a href="#community-membership" data-go="community" data-jump="community-membership">Paid Coaching Community: Join the Waitlist</a>
+            <button type="button" class="drop-btn" data-nav-group="workers" aria-expanded="false" aria-controls="dm-workers">For Everyday Workers <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <span class="drop-menu wide" id="dm-workers" role="group" aria-label="For Everyday Workers">
+              <a href="#inside" data-go="inside">Inside Fixing Friction</a>
+              <a href="#inside" data-go="inside">Help at work</a>
+              <a href="#athome" data-go="athome">Help at home and for families</a>
+              <a href="#scorecards" data-go="scorecards">Take the Scorecard</a>
             </span>
           </span>
-          <span class="nav-drop">
-            <a href="#services" class="drop-btn" data-go="services" data-nav-group="ada" aria-expanded="false">ADA Compliance <span class="caret" aria-hidden="true">&#9662;</span></a>
-            <span class="drop-menu wide" role="group" aria-label="ADA Compliance">
-              <a href="#audits" data-go="audits">Accessibility Audits</a>
-              <a href="#plans" data-go="plans">Remediation &amp; Transition Planning</a>
-              <a href="#selfeval" data-go="selfeval">Self-Evaluation &amp; Coordinator Support</a>
-              <a href="#support" data-go="support">Consulting &amp; Ongoing Support</a>
-              <a href="#advising" data-go="advising">Accessibility Advising</a>
-              <a href="#start" data-go="start">Get Started &amp; Pricing</a>
-            </span>
-          </span>
-          <span class="nav-drop">
-            <a href="#speaking" class="drop-btn" data-go="speaking" data-nav-group="speaking" aria-expanded="false">Speaking &amp; Training <span class="caret" aria-hidden="true">&#9662;</span></a>
-            <span class="drop-menu wide" role="group" aria-label="Speaking and Training">
-              <a href="#training" data-go="training">ADA Training</a>
-              <a href="#communications" data-go="communications">Accessible Communications &amp; Media</a>
-              <a href="#materials" data-go="materials">Training Materials: The Second Reading</a>
-              <a href="#start" data-go="start">Get Started &amp; Pricing</a>
+          <span class="nav-drop g-start">
+            <button type="button" class="drop-btn" data-nav-group="speaking" aria-expanded="false" aria-controls="dm-speaking">Speaking and Training <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <span class="drop-menu wide" id="dm-speaking" role="group" aria-label="Speaking and Training">
+              <a href="#speaking" data-go="speaking">Keynote speaking</a>
+              <a href="#training" data-go="training">Team training and workshops</a>
+              <a href="#start" data-go="start">Start with a pilot session</a>
+              <a href="#speaking" data-go="speaking">Book Matthew to speak</a>
             </span>
           </span>
           <span class="nav-drop drop-end">
-            <a href="#tools" class="drop-btn" data-go="tools" data-nav-group="resources" aria-expanded="false">Resources <span class="caret" aria-hidden="true">&#9662;</span></a>
-            <span class="drop-menu wide" role="group" aria-label="Resources">
-              <a href="#modules" data-go="modules">Three Checklists: Voting, Digital, Physical</a>
-              <a href="#titles" data-go="titles">The ADA Titles, in Plain Language</a>
-              <a href="#debt" data-go="debt">Accessibility Friction, Explained</a>
-              <a href="#keydates" data-go="keydates">Key Dates &amp; Planning Calendar</a>
-              <a href="#ai-scorecards" data-go="ai-scorecards">AI Scorecards: Start Here</a>
+            <button type="button" class="drop-btn" data-nav-group="ada" aria-expanded="false" aria-controls="dm-ada">ADA Compliance and Consulting <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <span class="drop-menu wide" id="dm-ada" role="group" aria-label="ADA Compliance and Consulting">
+              <a href="#audits" data-go="audits"><span class="di-t">ADA Assessments and Audits<span class="vh">: </span></span><span class="di-s">One place or system, checked and documented in plain language</span></a>
+              <a href="#advising" data-go="advising"><span class="di-t">ADA Consulting and Coordinator Support<span class="vh">: </span></span><span class="di-s">Ongoing expert help, and support for your designated coordinator</span></a>
+              <a href="#support" data-go="support"><span class="di-t">Workplace and Team Consulting<span class="vh">: </span></span><span class="di-s">Help with hiring, onboarding, and the accommodation process at work</span></a>
+              <a href="#voting" data-go="voting"><span class="di-t">Voting and Polling Places<span class="vh">: </span></span><span class="di-s">Access checks for voting sites and polling places</span></a>
+            </span>
+          </span>
+          <span class="nav-drop g-start drop-end">
+            <button type="button" class="drop-btn" data-nav-group="about" aria-expanded="false" aria-controls="dm-about">About <span class="caret" aria-hidden="true">&#9662;</span></button>
+            <span class="drop-menu wide" id="dm-about" role="group" aria-label="About">
+              <a href="#about-story" data-go="about" data-jump="about-story">Matthew and his story</a>
+              <a href="#about-faq" data-go="about" data-jump="about-faq">What ADAC means</a>
+              <a href="#evidence" data-go="evidence">Proof from the field</a>
+              <a href="#about-contact" data-go="about" data-jump="about-contact">Contact</a>
             </span>
           </span>
           <a href="#scorecards" data-go="scorecards" class="cta">Take the Scorecard</a>
@@ -1648,36 +1695,36 @@
         <button type="button" class="menubtn" id="menubtn" aria-expanded="false" aria-controls="menupanel">Menu</button>
       </div>
       <div class="menupanel" id="menupanel" role="navigation" aria-label="Site menu">
-        <a href="#home" data-go="home" aria-current="page">Home</a>
-        <a href="#about" data-go="about" data-nav-group="about">About</a>
-        <a href="#about-story" class="sub" data-go="about" data-jump="about-story">Our Story</a>
-        <a href="#about-team" class="sub" data-go="about" data-jump="about-team">Our Team</a>
-        <a href="#about-mission" class="sub" data-go="about" data-jump="about-mission">Our Mission</a>
-        <a href="#evidence" class="sub" data-go="evidence">Proof &amp; Results</a>
-        <a href="#about-press" class="sub" data-go="about" data-jump="about-press">Press &amp; News</a>
-        <a href="#about-contact" class="sub" data-go="about" data-jump="about-contact">Contact Us</a>
-        <a href="#inside" data-go="inside" data-nav-group="who">Who We Help</a>
-        <a href="#verticals" class="sub" data-go="verticals">Organizations &amp; Sectors</a>
-        <a href="#athome" class="sub" data-go="athome">At Home: ND Households</a>
-        <a href="#community-membership" class="sub" data-go="community" data-jump="community-membership">Paid Coaching Community: Join the Waitlist</a>
-        <a href="#services" data-go="services" data-nav-group="ada">ADA Compliance</a>
-        <a href="#audits" class="sub" data-go="audits">Accessibility Audits</a>
-        <a href="#plans" class="sub" data-go="plans">Remediation &amp; Transition Planning</a>
-        <a href="#selfeval" class="sub" data-go="selfeval">Self-Evaluation &amp; Coordinator Support</a>
-        <a href="#support" class="sub" data-go="support">Consulting &amp; Ongoing Support</a>
-        <a href="#advising" class="sub" data-go="advising">Accessibility Advising</a>
-        <a href="#start" class="sub" data-go="start">Get Started &amp; Pricing</a>
-        <a href="#speaking" data-go="speaking" data-nav-group="speaking">Speaking &amp; Training</a>
-        <a href="#training" class="sub" data-go="training">ADA Training</a>
-        <a href="#communications" class="sub" data-go="communications">Accessible Communications &amp; Media</a>
-        <a href="#materials" class="sub" data-go="materials">Training Materials: The Second Reading</a>
-        <a href="#start" class="sub" data-go="start">Get Started &amp; Pricing</a>
-        <a href="#tools" data-go="tools" data-nav-group="resources">Resources</a>
-        <a href="#modules" class="sub" data-go="modules">Three Checklists: Voting, Digital, Physical</a>
-        <a href="#titles" class="sub" data-go="titles">The ADA Titles, in Plain Language</a>
-        <a href="#debt" class="sub" data-go="debt">Accessibility Friction, Explained</a>
-        <a href="#keydates" class="sub" data-go="keydates">Key Dates &amp; Planning Calendar</a>
-        <a href="#ai-scorecards" class="sub" data-go="ai-scorecards">AI Scorecards: Start Here</a>
+        <p class="menu-group" data-nav-group="outs">The Three Outs</p>
+        <a href="#home" data-go="home" class="sub"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
+        <a href="#home" data-go="home" class="sub"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
+        <a href="#home" data-go="home" class="sub"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
+        <a href="#debt" data-go="debt" class="sub">How friction builds into all three</a>
+        <p class="menu-group g-start" data-nav-group="leaders">For Leaders</p>
+        <a href="#training" data-go="training" class="sub">Speaking and training for teams</a>
+        <a href="#start" data-go="start" class="sub">Start with a pilot session</a>
+        <a href="#evidence" data-go="evidence" class="sub">Client stories</a>
+        <a href="#speaking" data-go="speaking" class="sub">Book Matthew to speak</a>
+        <p class="menu-group" data-nav-group="workers">For Everyday Workers</p>
+        <a href="#inside" data-go="inside" class="sub">Inside Fixing Friction</a>
+        <a href="#inside" data-go="inside" class="sub">Help at work</a>
+        <a href="#athome" data-go="athome" class="sub">Help at home and for families</a>
+        <a href="#scorecards" data-go="scorecards" class="sub">Take the Scorecard</a>
+        <p class="menu-group g-start" data-nav-group="speaking">Speaking and Training</p>
+        <a href="#speaking" data-go="speaking" class="sub">Keynote speaking</a>
+        <a href="#training" data-go="training" class="sub">Team training and workshops</a>
+        <a href="#start" data-go="start" class="sub">Start with a pilot session</a>
+        <a href="#speaking" data-go="speaking" class="sub">Book Matthew to speak</a>
+        <p class="menu-group" data-nav-group="ada">ADA Compliance and Consulting</p>
+        <a href="#audits" data-go="audits" class="sub"><span class="di-t">ADA Assessments and Audits<span class="vh">: </span></span><span class="di-s">One place or system, checked and documented in plain language</span></a>
+        <a href="#advising" data-go="advising" class="sub"><span class="di-t">ADA Consulting and Coordinator Support<span class="vh">: </span></span><span class="di-s">Ongoing expert help, and support for your designated coordinator</span></a>
+        <a href="#support" data-go="support" class="sub"><span class="di-t">Workplace and Team Consulting<span class="vh">: </span></span><span class="di-s">Help with hiring, onboarding, and the accommodation process at work</span></a>
+        <a href="#voting" data-go="voting" class="sub"><span class="di-t">Voting and Polling Places<span class="vh">: </span></span><span class="di-s">Access checks for voting sites and polling places</span></a>
+        <p class="menu-group g-start" data-nav-group="about">About</p>
+        <a href="#about-story" data-go="about" data-jump="about-story" class="sub">Matthew and his story</a>
+        <a href="#about-faq" data-go="about" data-jump="about-faq" class="sub">What ADAC means</a>
+        <a href="#evidence" data-go="evidence" class="sub">Proof from the field</a>
+        <a href="#about-contact" data-go="about" data-jump="about-contact" class="sub">Contact</a>
         <a href="#scorecards" data-go="scorecards" class="menu-cta">Take the Scorecard</a>
       </div>
     </header>
@@ -5472,86 +5519,53 @@
         <p class="fineprint">Outputs are assessments and recommendations, not legal determinations. Matthew Cicanese, ADAC.</p>
         <p class="fineprint">Each client&#8217;s data stays that client&#8217;s property. Cross-client views are anonymized averages only. Data is never sold.</p>
         <p class="fineprint"><a href="buildout/" rel="nofollow" class="quiet-link">Buildout</a> &middot; <a href="launch/" rel="nofollow" class="quiet-link">Launch checklist</a> &middot; <a href="changes/" rel="nofollow" class="quiet-link">Changes</a></p>
-        <nav class="sitemap" aria-label="Sitemap">
+        <nav class="sitemap" aria-label="Footer">
           <div>
-            <h3 role="heading" aria-level="2">Who We Help</h3>
-            <span class="sitemap-label first">If you decide and fund the work</span>
-            <a href="#start" data-go="start">Get Started: First Steps, Priced Plainly</a>
-            <a href="#evidence" data-go="evidence">Proof &amp; Results</a>
-            <a href="#verticals" data-go="verticals">Services by Sector</a>
-            <span class="sitemap-label">If you feel the friction first</span>
-            <a href="#inside" data-go="inside">Start Here: Inside Fixing Friction</a>
-            <a href="#athome" data-go="athome">At Home: ND Households</a>
-            <a href="#community" data-go="community">Community for Champions &amp; ERGs</a>
+            <h3 role="heading" aria-level="2">The Three&nbsp;Outs</h3>
+            <a href="#home" data-go="home">Burn Out</a>
+            <a href="#home" data-go="home">Turn Out</a>
+            <a href="#home" data-go="home">Churn Out</a>
+            <a href="#debt" data-go="debt">How friction builds</a>
           </div>
           <div>
-            <h3 role="heading" aria-level="2">Services</h3>
-            <span class="sitemap-label first">Find and fix</span>
-            <a href="#audits" data-go="audits">Accessibility Audits</a>
-            <a href="#selfeval" data-go="selfeval">Self-Evaluation &amp; Coordinator Support</a>
-            <a href="#plans" data-go="plans">Remediation &amp; Transition Planning</a>
-            <a href="#findings" data-go="findings">Findings Reports</a>
-            <span class="sitemap-label">Teach and speak</span>
-            <a href="#training" data-go="training">ADA Training</a>
-            <a href="#speaking" data-go="speaking">Keynote Speaking</a>
-            <a href="#materials" data-go="materials">The Second Reading: Training Materials</a>
-            <a href="#cohesion" data-go="cohesion">Team Cohesion Snapshot</a>
-            <a href="#communications" data-go="communications">Accessible Communications &amp; Media</a>
-            <span class="sitemap-label">By setting</span>
-            <a href="#voting" data-go="voting">Voting &amp; Polling Places</a>
-            <a href="#events" data-go="events">Event Accessibility</a>
-            <a href="#pathways" data-go="pathways">ADA Pathways: How It Fits Together</a>
-            <a href="#services" data-go="services">All Services</a>
+            <h3 role="heading" aria-level="2">For Leaders</h3>
+            <a href="#training" data-go="training">Speaking and training for teams</a>
+            <a href="#start" data-go="start">Start with a pilot session</a>
+            <a href="#evidence" data-go="evidence">Client stories</a>
+            <a href="#speaking" data-go="speaking">Book Matthew to speak</a>
           </div>
           <div>
-            <h3 role="heading" aria-level="2">Support</h3>
-            <span class="sitemap-label first">Keep the work moving</span>
-            <a href="#support" data-go="support">Consulting &amp; Ongoing Support</a>
-            <a href="#advising" data-go="advising">Ongoing Advising &amp; Coordinator Support</a>
-            <a href="#reporting" data-go="reporting">Workplace Reporting</a>
-            <a href="#directory" data-go="directory">Specialist Directory</a>
-            <span class="sitemap-label">Coaching and community</span>
-            <a href="#community" data-go="community" data-jump="community-membership">Paid Coaching Community: Join the Waitlist</a>
-            <a href="#community" data-go="community">Community &amp; Support</a>
-          </div>
-          <div>
-            <h3 role="heading" aria-level="2">Resources</h3>
-            <span class="sitemap-label first">Free checks and scorecards</span>
-            <a href="#scorecards" data-go="scorecards">Scorecards: Pick Your Path</a>
-            <a href="#scorecard" data-go="scorecard">The Nine-Question Scorecard</a>
-            <a href="#ai-scorecards" data-go="ai-scorecards">AI Scorecards: Start Here</a>
-            <a href="#modules" data-go="modules">Three Checklists: Voting, Digital, Physical</a>
-            <span class="sitemap-label">Do it yourself</span>
-            <a href="#brainblame" data-go="brainblame">Brain Blame Self Check</a>
-            <a href="#burnout" data-go="burnout">Burnout Bingo</a>
-            <a href="#carecircle" data-go="carecircle">CareCircle for Families</a>
-            <a href="#community" data-go="community" data-jump="community-membership">Courses, Tools, and Templates</a>
-            <a href="#athome" data-go="athome">Guides: At Home, ND Households</a>
-            <span class="sitemap-label">Plain language reference</span>
-            <a href="#titles" data-go="titles">The ADA Titles, in Plain Language</a>
-            <a href="#debt" data-go="debt">Accessibility Friction, Explained</a>
-            <a href="#keydates" data-go="keydates">Key Dates &amp; Planning Calendar</a>
-            <a href="#tools" data-go="tools">All Tools &amp; Resources</a>
-          </div>
-          <div>
-            <h3 role="heading" aria-level="2">Fixing Friction</h3>
-            <span class="sitemap-label first">About</span>
-            <a href="#home" data-go="home">Home</a>
-            <a href="#about" data-go="about">About</a>
-            <a href="#about" data-go="about" data-jump="about-story">Our Story</a>
-            <a href="#about" data-go="about" data-jump="about-team">Our Team</a>
-            <a href="#about" data-go="about" data-jump="about-mission">Our Mission</a>
-            <a href="#about" data-go="about" data-jump="about-press">Press &amp; News</a>
-            <a href="#about" data-go="about" data-jump="about-contact">Contact Us</a>
-            <a href="mailto:hello@fixingfriction.com">hello@fixingfriction.com</a>
-            <span class="sitemap-label">Start here</span>
-            <a href="#start" data-go="start">Get Started</a>
+            <h3 role="heading" aria-level="2">For Everyday&nbsp;Workers</h3>
+            <a href="#inside" data-go="inside">Inside Fixing Friction</a>
+            <a href="#inside" data-go="inside">Help at work</a>
+            <a href="#athome" data-go="athome">Help at home and for families</a>
             <a href="#scorecards" data-go="scorecards">Take the Scorecard</a>
-            <a href="#prototypes" data-go="prototypes">Prototypes</a>
+          </div>
+          <div>
+            <h3 role="heading" aria-level="2">Speaking and&nbsp;Training</h3>
+            <a href="#speaking" data-go="speaking">Keynote speaking</a>
+            <a href="#training" data-go="training">Team training and workshops</a>
+            <a href="#start" data-go="start">Start with a pilot session</a>
+            <a href="#speaking" data-go="speaking">Book Matthew to speak</a>
+          </div>
+          <div>
+            <h3 role="heading" aria-level="2">ADA Compliance and&nbsp;Consulting</h3>
+            <a href="#audits" data-go="audits">ADA Assessments and Audits</a>
+            <a href="#advising" data-go="advising">ADA Consulting and Coordinator Support</a>
+            <a href="#support" data-go="support">Workplace and Team Consulting</a>
+            <a href="#voting" data-go="voting">Voting and Polling Places</a>
+          </div>
+          <div>
+            <h3 role="heading" aria-level="2">About</h3>
+            <a href="#about-story" data-go="about" data-jump="about-story">Matthew and his story</a>
+            <a href="#about-faq" data-go="about" data-jump="about-faq">What ADAC means</a>
+            <a href="#evidence" data-go="evidence">Proof from the field</a>
+            <a href="mailto:hello@fixingfriction.com">Contact: hello@fixingfriction.com</a>
           </div>
         </nav>
         <p class="foot-cta"><strong>Not sure where you fit?</strong> Start with a conversation about the site and the deadline you are working toward. <a href="#start" data-go="start">Start a conversation</a></p>
         <p class="fineprint">By Matthew Cicanese · Litmus Collective · Fort Collins, Colorado</p>
+        <p class="foot-bar">Fixing Friction. Helping communities and individuals feel seen, heard, understood, and connected. Fort Collins, Colorado. Accessibility guidance and coordination, not legal advice.</p>
       </div>
     </footer>
 
@@ -5619,21 +5633,14 @@
             dropEl.classList.remove("open");
             dropBtn.setAttribute("aria-expanded", "false");
           }
-          dropEl.addEventListener("mouseenter", openDrop);
-          dropEl.addEventListener("mouseleave", scheduleCloseDrop);
-          dropEl.addEventListener("focusin", openDrop);
+          /* Phase 1 (brief): menus open and close on tap, click and keyboard
+             only, never on hover. The trigger is a real button that toggles. */
           dropEl.addEventListener("focusout", function (ev) {
-            if (!dropEl.contains(ev.relatedTarget)) scheduleCloseDrop();
+            if (ev.relatedTarget && !dropEl.contains(ev.relatedTarget)) closeDropNow();
           });
           dropBtn.addEventListener("click", function (ev) {
-            var noHover = window.matchMedia && window.matchMedia("(hover: none)").matches;
-            if (noHover && !dropEl.classList.contains("open")) {
-              ev.preventDefault();
-              ev.stopPropagation();
-              openDrop();
-              return;
-            }
-            closeDropNow();
+            ev.preventDefault();
+            if (dropEl.classList.contains("open")) closeDropNow(); else openDrop();
           });
           dropEl.querySelectorAll(".drop-menu a").forEach(function (item) {
             item.addEventListener("click", closeDropNow);
@@ -5721,13 +5728,12 @@
              No top-level menu is highlighted on #start. */
           var navGroupByPage = {
             about: "about", evidence: "about",
-            inside: "who", verticals: "who", athome: "who", community: "who",
+            verticals: "leaders",
+            inside: "workers", athome: "workers", community: "workers", brainblame: "workers", burnout: "workers", carecircle: "workers",
+            debt: "outs",
             services: "ada", audits: "ada", plans: "ada", selfeval: "ada", support: "ada", advising: "ada",
-            findings: "ada", voting: "ada", events: "ada", pathways: "ada", reporting: "ada",
-            speaking: "speaking", training: "speaking", communications: "speaking", materials: "speaking", cohesion: "speaking",
-            tools: "resources", modules: "resources", titles: "resources", debt: "resources", keydates: "resources",
-            brainblame: "resources", burnout: "resources", carecircle: "resources", directory: "resources",
-            scorecard: "resources", prototypes: "resources", app: "resources", "ai-scorecards": "resources"
+            findings: "ada", voting: "ada", events: "ada", pathways: "ada", reporting: "ada", modules: "ada", titles: "ada", keydates: "ada",
+            speaking: "speaking", training: "speaking", communications: "speaking", materials: "speaking", cohesion: "speaking"
           };
           if (id === "home") {
             var mHome = document.querySelector('#menupanel > a[data-go="home"]');

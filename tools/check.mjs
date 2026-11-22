@@ -204,7 +204,7 @@ async function browserChecks() {
     }
     // Escape closes a desktop dropdown and it stays closed
     await load(1280, false); await showHash("home"); await sleep(300);
-    const opened = await c.eval("(function(){var b=document.querySelector('.nav-drop .drop-btn');b.focus();b.dispatchEvent(new MouseEvent('mouseenter',{bubbles:true}));b.closest('.nav-drop').dispatchEvent(new MouseEvent('mouseenter'));return !!document.querySelector('.nav-drop.open')})()");
+    const opened = await c.eval("(function(){var b=document.querySelector('.nav-drop .drop-btn');b.focus();b.click();return !!document.querySelector('.nav-drop.open')})()");
     if (opened) {
       await c.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
       await c.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });

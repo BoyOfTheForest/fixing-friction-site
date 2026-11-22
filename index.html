@@ -933,6 +933,8 @@
          illustration, and Home puts its headline on the image the way the
          workshop heroes do. The home shade is a photographic scrim over the
          illustration, not a UI surface; UI bands stay flat. */
+      /* Full-bleed sections use 50vw, which includes the scrollbar width; hide the ~15px spill so no horizontal scrollbar appears. */
+      html{overflow-x:hidden;}
       .bleed-fig{margin:0;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:-46px;}
       .bleed-fig img{width:100%;height:clamp(230px,40vw,470px);object-fit:cover;display:block;background:#101F3C;}
       .hero-bleed{position:relative;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);margin-top:-46px;background:#101F3C;}
@@ -4705,7 +4707,7 @@
 
       <!-- ============ SPEAKING (NEW IN V2) ============ -->
       <section class="page" id="page-speaking" aria-label="Keynote Speaking">
-        <figure class="bleed-fig"><img src="assets/35362b2d7b14.webp" alt="Illustration of a keynote stage with navy curtains and walnut slat panels: a speaker at a walnut podium addressing a seated audience, a person using a wheelchair seated among them, beside a large blank screen." width="1920" height="1280" loading="lazy" decoding="async" /></figure>
+        <figure class="bleed-fig"><img src="assets/matthew-keynote.webp" alt="Matthew Cicanese speaking to a seated audience at National Geographic Headquarters in Washington, D.C." width="1024" height="503" loading="lazy" decoding="async" style="object-position:center 35%;" /></figure>
         <p class="eyebrow">Keynote speaking</p>
         <h1 style="font-size:2.1rem;margin:8px 0 10px;">A keynote that leaves the room with a plan, not just a feeling.</h1>
         <p class="lede">Speaking is not training with a bigger room. A keynote gives a whole room the same plain language for Accessibility Friction, then names the first step the host organization can take next.</p>

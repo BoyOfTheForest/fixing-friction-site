@@ -643,6 +643,11 @@
       .cta-band .btn.ghost{border-color:#EFF6FF;color:#FFFFFF;}
       .cta-band .btn.ghost:hover{border-color:#7DD3FC;color:#E0F2FE;}
       .cta-band .btn.ghost:active{border-color:#7DD3FC;color:#FFFFFF;background:transparent;}
+      .cta-band figure.ph figcaption,.cta-band figcaption,.proof figure.ph figcaption,.proof figcaption,.contact-band figure.ph figcaption,.contact-band figcaption{color:#DBEAFE;}
+      .cta-split{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;}
+      .cta-split figure{margin:0;}
+      .cta-split-copy{display:grid;gap:6px;align-content:center;}
+      @media (max-width:860px){.cta-split{grid-template-columns:1fr;gap:20px;}}
       /* Contrast sweep v2.16: elements measured on the dark bands. The
          focus ring keeps a color that passes 3:1 on the band gradients
          (the global sage ring measures 1.00 to 2.64:1 there), and the
@@ -4128,104 +4133,24 @@
       <!-- ============ FIND YOUR STARTING POINT (SCORECARD) ============ -->
       <section class="page" id="page-scorecard" aria-label="Find Your Starting Point">
         <div class="sc-intro">
-          <p class="eyebrow">Find Your Starting Point · 9 Questions</p>
+          <p class="eyebrow">Find Your Starting Point · Scorecard</p>
           <h1>Find your clearest first step in under two minutes.</h1>
-          <p class="lede">Answer nine short questions about where access work sticks in your organization. You get one recommended service, your top findings, and concrete tools to open first.</p>
+          <p class="lede">Answer a few short questions tailored to your role and where friction shows up. You get one suggested starting point, your top findings, and concrete tools to open first.</p>
           <p class="sc-meta">Guidance only, not a compliance determination. Your answers stay in this browser tab and are never sent anywhere.</p>
         </div>
 
         <div class="sc-shell" id="scShell">
           <form class="sc-form" id="scForm" aria-label="Starting point scorecard" novalidate>
             <div class="sc-progress" id="scProgress" hidden>
-              <p class="sc-progress-label" id="scProgressLabel" role="status" aria-live="polite">Question 1 of 9</p>
-              <div class="sc-progress-track" id="scProgressBar" role="progressbar" aria-label="Scorecard progress" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><span id="scProgressFill"></span></div>
+              <p class="sc-progress-label" id="scProgressLabel" role="status" aria-live="polite">Step 1 of 4</p>
+              <div class="sc-progress-track" id="scProgressBar" role="progressbar" aria-label="Scorecard progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><span id="scProgressFill"></span></div>
             </div>
-            <fieldset data-service="audits">
-              <legend>1. Our buildings and spaces</legend>
-              <p class="small">Entrances, routes, restrooms, counters, and signage. We are not sure our buildings and outdoor spaces work for every visitor who arrives.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q1" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q1" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q1" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="audits">
-              <legend>2. Our website and documents</legend>
-              <p class="small">Residents and customers complete real tasks on our website and in our documents. We are not sure a screen reader user or a keyboard only user can finish them.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q2" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q2" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q2" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="training">
-              <legend>3. Staff training and confidence</legend>
-              <p class="small">Staff meet access questions in their daily work and are not sure they are answering them well, or the same way twice.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q3" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q3" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q3" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="advising">
-              <legend>4. Policies, self-evaluation, and plans</legend>
-              <p class="small">Our access policies are old, partial, or unwritten, and we have no current self-evaluation or transition plan we could hand to someone.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q4" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q4" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q4" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="materials">
-              <legend>5. Our own training materials</legend>
-              <p class="small">Our courses and training content have grown over years, across authors and vendors. Nobody has read the whole library at once.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q5" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q5" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q5" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="support">
-              <legend>6. A deadline, a complaint, or a project</legend>
-              <p class="small">Something with a date on it is coming: an election, an opening, a renovation, or a complaint we need to answer well.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q6" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q6" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q6" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="audits">
-              <legend>7. Voting access</legend>
-              <p class="small">We run polling places or voter service centers, or host them, and voting access is the question in front of us.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q7" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q7" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q7" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="training">
-              <legend>8. Parks and recreation</legend>
-              <p class="small">We run parks, trails, or recreation programs, and we are not sure the route from the car park to the furthest point works for everyone.</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q8" value="2" /> This is a sticking point for us</label>
-                <label><input type="radio" name="q8" value="1" /> Partly: some of this is handled, some is not</label>
-                <label><input type="radio" name="q8" value="0" /> Not really: this area is in good shape</label>
-              </div>
-            </fieldset>
-            <fieldset data-service="calendar">
-              <legend>9. Calendar based awareness programming</legend>
-              <p class="small">Does your organization run calendar based awareness programming, tied to moments such as Autism Acceptance Month, Disability Pride Month, or the International Day of Persons with Disabilities?</p>
-              <div class="sc-opts">
-                <label><input type="radio" name="q9" value="2" /> Yes, regularly</label>
-                <label><input type="radio" name="q9" value="1" /> Occasionally</label>
-                <label><input type="radio" name="q9" value="0" /> Not yet</label>
-              </div>
-            </fieldset>
+            <div id="scStepHost"></div>
             <p class="sc-error" id="scError" role="alert" hidden></p>
             <div class="sc-nav">
               <button type="button" class="btn ghost" id="scBack" hidden>Back</button>
               <button type="button" class="btn primary" id="scContinue" hidden>Continue</button>
-              <button type="submit" class="btn primary" id="scSubmitBtn">See my starting point</button>
+              <button type="submit" class="btn primary" id="scSubmitBtn" hidden>See my starting point</button>
               <button type="button" class="btn ghost" id="scReset">Start over</button>
               <p class="sc-hint" id="scHint" hidden>Pick one answer and you will move to the next question on its own.</p>
             </div>
@@ -4240,7 +4165,8 @@
             <p class="sc-res-also" id="scRecAlso"></p>
             <div class="btnrow">
               <a href="#services" class="btn primary" id="scRecGo" data-go="services">See the recommended service</a>
-              <a href="#start" class="btn ghost" data-go="start">Start a conversation</a>
+              <a href="#start" class="btn ghost" id="scRecStart" data-go="start">Start a conversation</a>
+              <button type="button" class="btn ghost" id="scCopyMgrBtn" hidden>Copy a summary to share with my manager</button>
             </div>
           </div>
 
@@ -5119,45 +5045,24 @@
 
       <!-- ============ SCORECARDS HUB ============ -->
       <section class="page" id="page-scorecards" aria-label="Scorecards">
-        <figure class="bleed-fig"><img src="assets/044b4c3c76cd.webp" alt="Concept illustration of a large assessment scorecard on a clipboard, rows of checkboxes with several ticked and one circled, a magnifying glass and pencil beside it, and a stepped path with flags leading to a small accessible building with a ramp." width="1920" height="1280" loading="lazy" decoding="async" /></figure>
-        <p class="eyebrow">Scorecards</p>
-        <h1 style="font-size:2.1rem;margin:8px 0 10px;">One scorecard for the people who sign the work,<br />one for the people who feel the friction.</h1>
-        <p class="lede">Every engagement here starts with a short, honest read of where things stand, not a sales call. There are two scorecard paths: one built for organizations, and one built for individuals and families. Pick the path that sounds like you, answer a few questions, and leave with one clear first step. Every result is guidance, not a determination.</p>
-        <figure class="band"><span class="band-clip"><img src="assets/aa40decfaf7c.jpg" alt="Concept picture of a wooden desk by a sunlit window, with an open blank notebook and a pen on it, a stack of blank paper, and a laptop with a dark screen beside them." width="1920" height="1280" loading="lazy" decoding="async" /></span><figcaption>Concept picture. A scorecard is the desk work before the field work: a few honest answers, laid out where you can see them.</figcaption></figure>
-        <div>
-          <p class="eyebrow">For Organizations</p>
-          <figure class="diagram"><svg viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two scorecards, two doors: Find Your Starting Point, Cognitive Clarity Scorecard"><text x="320" y="42" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="21" font-weight="700" fill="#102A43">Two scorecards, two doors</text><rect x="20" y="78" width="278" height="104" rx="14" fill="#1D4ED8"/><circle cx="159.0" cy="102" r="0" fill="none"/><text x="159.0" y="116" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">Find Your</text><text x="159.0" y="144" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">Starting Point</text><path d="M308 130.0h24m0 0l-10-9m10 9l-10 9" stroke="#102A43" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="342" y="78" width="278" height="104" rx="14" fill="#0F766E"/><circle cx="481.0" cy="102" r="0" fill="none"/><text x="481.0" y="116" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">Cognitive Clarity</text><text x="481.0" y="144" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">Scorecard</text><rect x="20" y="216" width="600" height="10" rx="5" fill="#E0F2FE"/></svg><figcaption>Infographic: one scorecard for organizations, one for individuals and families.</figcaption></figure><h2 style="font-size:1.9rem;margin:8px 0 12px;">Scorecards for organizations</h2>
-          <p style="color:var(--ink);max-width:46rem;">Built for the people who carry the risk and sign the work: leaders, coordinators, and the teams responsible for buildings, websites, polling places, and programs.</p>
-          <div class="grid2" style="margin-top:18px;">
-            <div class="card">
-              <span class="tag">Main scorecard</span>
-              <h3>Find Your Starting Point</h3>
-              <p class="small">Answer nine short questions about where access work sticks in your organization. You get one service to start with, the tools to open first, and one concrete next step. Nothing is saved, and the result is guidance, not a determination.</p>
-              <p style="margin-top:12px;"><a href="#scorecard" class="btn primary" data-go="scorecard" style="padding:9px 16px;font-size:.95rem;">Take the nine-question scorecard</a></p>
-            </div>
+        <div class="zig">
+          <div class="zig-text">
+            <p class="eyebrow">Scorecard</p>
+            <h1 style="font-size:clamp(1.85rem,3.6vw,2.4rem);margin:8px 0 12px;line-height:1.18;">One scorecard. Tailored to your seat.</h1>
+            <p class="lede">Every engagement here starts with a short, honest read of where things stand, not a sales call. Whether you lead an organization, champion access on a team, or are answering for yourself or your household, this one scorecard adapts to your role and points to one clear first step.</p>
+            <div class="btnrow" style="margin-top:20px;"><a href="#scorecard" class="btn primary" data-go="scorecard">Take the Scorecard</a></div>
+            <p class="fineprint" style="margin-top:12px;">Guidance only, not a compliance determination. Takes under two minutes.</p>
           </div>
-          <p class="small" style="margin-top:16px;">More scorecards are being added to this category.</p>
+          <figure class="ph"><img src="assets/044b4c3c76cd.webp" alt="Concept illustration of a large assessment scorecard on a clipboard, rows of checkboxes with several ticked and one circled, a magnifying glass and pencil beside it, and a stepped path with flags leading to a small accessible building with a ramp." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>One honest look, then the route that fits your seat.</figcaption></figure>
         </div>
-        <div>
-          <p class="eyebrow">For Individuals &amp; Families</p>
-          <h2 style="font-size:1.9rem;margin:8px 0 12px;">Scorecards for individuals and families</h2>
-          <p style="color:var(--ink);max-width:46rem;">Built for the person who feels the friction first: staff hitting barriers in their own working day, and households working out how daily life runs when everyone in it is wired differently.</p>
-          <div class="grid2" style="margin-top:18px;">
-            <div class="card">
-              <span class="tag">Main scorecard</span>
-              <h3>Cognitive Clarity Scorecard</h3>
-              <p class="small">A free, two-minute check-in: a quick read on where your friction sits. Answer a few short questions about where your days stick, and see the pattern plainly, so your next step aims at the real sticking point, not the loudest one.</p>
-              <p style="margin-top:12px;"><a href="https://fixingfriction.com/scorecard" class="btn ghost" target="_blank" rel="noopener" style="padding:9px 16px;font-size:.95rem;">Take the Cognitive Clarity Scorecard <span aria-hidden="true">&#8599;</span></a></p>
-              <p class="small" style="margin-top:10px;">Opens on Fixing Friction&#8217;s main site, in a new tab.</p>
-            </div>
+        <div class="cta-band cta-split">
+          <figure class="ph"><img src="assets/a3a20e17cca6.webp" alt="Concept picture of a community circle in conversation, colleagues seated together in a bright room." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture: start with the check that fits your seat.</figcaption></figure>
+          <div class="cta-split-copy">
+            <p class="eyebrow" style="color:#E0F2FE;">Rather start with a conversation?</p>
+            <h2 style="font-size:1.6rem;">Talk first. The scorecard can wait.</h2>
+            <p>Send a few sentences about your organization, your household, or the deadline in front of you, and the first conversation does the rest. No forms to complete and no preparation packet.</p>
+            <div class="btnrow" style="margin-top:14px;"><a href="#start" class="btn ghost" data-go="start">Start a conversation</a></div>
           </div>
-          <p class="small" style="margin-top:16px;">More scorecards are being added to this category.</p>
-        </div>
-        <div class="cta-band">
-          <p class="eyebrow" style="color:#E0F2FE;">Rather start with a conversation?</p>
-          <figure class="ph wide-fig"><img src="assets/a3a20e17cca6.webp" alt="Concept picture of a community circle in conversation, colleagues seated together in a bright room." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Concept picture: start with the check that fits your seat.</figcaption></figure><h2 style="font-size:1.6rem;">Talk first. The scorecard can wait.</h2>
-          <p>Send a few sentences about your organization, your household, or the deadline in front of you, and the first conversation does the rest. No forms to complete and no preparation packet.</p>
-          <div class="btnrow"><a href="#start" class="btn ghost" data-go="start">Start a conversation</a></div>
         </div>
       </section>
       </main>
@@ -5665,17 +5570,222 @@
             step: "Gather your course list in one place: titles, owners, and when each was last revised. That inventory is step one of the audit." }
         };
         var SC_ORDER = ["audits", "advising", "training", "support", "materials"];
+        /* =====================================================================
+           BRANCHING SCORECARD CONFIGURATION (edit copy, areas, or routing here)
+           Every [go, jump, title, desc] tool entry points to an existing page.
+           ===================================================================== */
+        var SC_BRANCH_CONFIG = {
+          maxAreas: 3,
+          roles: [
+            { id: "leader", label: "I lead or manage a team, department or organization" },
+            { id: "champion", label: "I\u2019m on a team, or I\u2019m a champion or ERG member" },
+            { id: "individual", label: "I\u2019m answering for myself or my household" }
+          ],
+          scales: {
+            leader: [
+              { value: "2", label: "This is a sticking point for us" },
+              { value: "1", label: "Partly: some of this is handled, some is not" },
+              { value: "0", label: "Not really: this area is in good shape" }
+            ],
+            calendar: [
+              { value: "2", label: "Yes, regularly" },
+              { value: "1", label: "Occasionally" },
+              { value: "0", label: "Not yet" }
+            ],
+            personal: [
+              { value: "2", label: "This is a sticking point for me" },
+              { value: "1", label: "Partly: some days work, some do not" },
+              { value: "0", label: "Not really: this area is in good shape" }
+            ]
+          },
+          areasByRole: {
+            leader: [
+              { id: "buildings", service: "audits", label: "Our buildings and spaces", desc: "Entrances, routes, restrooms, counters, and signage." },
+              { id: "website", service: "audits", label: "Our website and documents", desc: "Real tasks on your website and in your documents for screen reader and keyboard users." },
+              { id: "training", service: "training", label: "Staff training and confidence", desc: "Staff meeting access questions in daily work and answering them consistently." },
+              { id: "policies", service: "advising", label: "Policies, self-evaluation, and plans", desc: "Access policies, self-evaluations, or transition plans you can hand to someone." },
+              { id: "materials", service: "materials", label: "Our own training materials", desc: "Courses and training content grown across authors and vendors." },
+              { id: "deadline", service: "support", label: "A deadline, a complaint, or a project", desc: "An election, opening, renovation, or complaint with a date on it." },
+              { id: "voting", service: "audits", label: "Voting access", desc: "Polling places or voter service centers you run or host." },
+              { id: "parks", service: "training", label: "Parks and recreation", desc: "Parks, trails, or recreation routes from arrival to the furthest point." },
+              { id: "calendar", service: "calendar", label: "Calendar based awareness programming", desc: "Programming tied to moments like Autism Acceptance Month, Disability Pride Month, or Dec. 3." }
+            ],
+            champion: [
+              { id: "workday", label: "Barriers in my own workday", desc: "Tools, spaces, or workflows that slow down your day." },
+              { id: "accommodation", label: "Asking for or getting an accommodation", desc: "Unclear steps or friction when requesting what you need to work well." },
+              { id: "comms", label: "Communication and meetings", desc: "Missing captions, unclear expectations, or meetings that leave people out." },
+              { id: "burnout", label: "Burnout from carrying this alone", desc: "Holding accessibility or advocacy on top of your actual job." },
+              { id: "inclusion", label: "My team doesn\u2019t know how to include me", desc: "Good intentions, but managers or peers are unsure what to do differently." },
+              { id: "erg", label: "Starting or growing a champion group", desc: "Building an ERG or peer group that leadership will actually back." }
+            ],
+            individual: [
+              { id: "routines", label: "Daily routines and mental load", desc: "Tasks, spaces, or plans that stall out before you can start." },
+              { id: "meetings", label: "School, work, or appointment meetings", desc: "Preparing for meetings where you have to advocate for access." },
+              { id: "caregiver", label: "Caregiver or family strain", desc: "Coordinating medical updates, care plans, or a mixed-neurotype household." },
+              { id: "starting", label: "Getting started with where to look first", desc: "Knowing which plain-language guide or self-check to open first." }
+            ]
+          },
+          helpOptions: [
+            { id: "tools", label: "Use tools myself" },
+            { id: "talk", label: "Talk to someone" },
+            { id: "training", label: "Bring in training or a keynote" },
+            { id: "audit", label: "Get a full audit and plan" },
+            { id: "community", label: "Join the community" }
+          ],
+          deadlineOptions: [
+            { id: "yes", label: "Yes, within 90 days" },
+            { id: "no", label: "No immediate deadline" },
+            { id: "unsure", label: "Not sure yet" }
+          ],
+          championResults: {
+            workday: {
+              title: "A good place to start: plain-language tools and community",
+              why: "When barriers sit inside your own workday, naming the friction in plain words makes it easier to document and share without turning it into a personal conflict.",
+              go: "community", goLabel: "Explore Community & Support",
+              step: "Write down one recurring workday barrier in two sentences: what happens, and what simple change removes it. Bring that to your manager or ERG.",
+              tools: [
+                ["brainblame", null, "Brain Blame Self Check", "Sort whether a stall is cognitive load, overload, or a system barrier."],
+                ["titles", null, "The ADA Titles, in plain language", "Plain-language reference for Title I workplace access and accommodations."],
+                ["community", "community-membership", "Paid Coaching Community: Join the Waitlist", "Peer support and coaching for internal champions and ERGs."]
+              ]
+            },
+            accommodation: {
+              title: "A good place to start: workplace access reference and support",
+              why: "Accommodation conversations go smoother when everyone starts from the same plain language about the job task and the barrier, rather than guessing what is reasonable.",
+              go: "titles", goLabel: "Read the ADA Titles in Plain Language",
+              step: "List the specific task that is blocked and the one adjustment that lets you finish it, then check the Title I overview before your meeting.",
+              tools: [
+                ["titles", null, "The ADA Titles, in plain language", "How Title I frames workplace accommodations in plain words."],
+                ["reporting", null, "Workplace Reporting", "How staff support and access findings connect at the organizational level."],
+                ["community", null, "Community & Support", "Routes for staff champions, ERGs, and peer support."]
+              ]
+            },
+            comms: {
+              title: "A good place to start: Team Cohesion and communication tools",
+              why: "Meeting and communication friction rarely belongs to one person. Naming the meeting habits that exclude people gives a manager something concrete to fix.",
+              go: "cohesion", goLabel: "See Team Cohesion Snapshot",
+              step: "Pick one recurring meeting and suggest one concrete habit to test for two weeks, such as live captions on by default or written agendas ahead of time.",
+              tools: [
+                ["cohesion", null, "Team Cohesion Snapshot", "A structured look at how a team talks, decides, and works together."],
+                ["communications", null, "Accessible Communications & Media", "Practical standards for clear, accessible internal and external communication."],
+                ["community", null, "Community & Support", "Champion routes and ERG tools you can share upward."]
+              ]
+            },
+            burnout: {
+              title: "A good place to start: Burnout Bingo and peer community",
+              why: "Carrying access advocacy alone on top of your regular job drains energy fast. Spotting the system pattern early helps you protect your bandwidth and stop carrying it solo.",
+              go: "burnout", goLabel: "Play Burnout Bingo",
+              step: "Run a quick Burnout Bingo check to name which friction is systemic, then decide one thing you will stop absorbing quietly this week.",
+              tools: [
+                ["burnout", null, "Burnout Bingo", "Spot burnout patterns early across personal, relational, and professional life."],
+                ["brainblame", null, "Brain Blame Self Check", "Separate system friction from self-blame in a few minutes."],
+                ["community", "community-membership", "Paid Coaching Community: Join the Waitlist", "Coaching and community so you are not carrying the work alone."]
+              ]
+            },
+            inclusion: {
+              title: "A good place to start: shared language your team can act on",
+              why: "When a team wants to be inclusive but doesn\u2019t know how, a short shared training or keynote gives everyone the same plain language without putting the teaching burden on you.",
+              go: "training", goLabel: "See ADA Training",
+              step: "Copy the short manager summary below and send it along with the Training or Keynote page so leadership sees a ready-made next step.",
+              tools: [
+                ["training", null, "ADA Training", "Practical training shaped around your team\u2019s real daily work."],
+                ["speaking", null, "Keynote Speaking", "Give the whole room the same plain language for Accessibility Friction."],
+                ["community", null, "Community & Support", "Resources built for internal champions bringing leaders into the work."]
+              ]
+            },
+            erg: {
+              title: "A good place to start: Community for Champions and ERGs",
+              why: "Employee groups gain traction fastest when they pair lived experience with one concrete first ask that leadership can approve and measure.",
+              go: "community", goLabel: "Explore Community & Support",
+              step: "Pick one visible calendar moment or one shared friction point for your group\u2019s first proposal, and bring the scorecard summary to your executive sponsor.",
+              tools: [
+                ["community", null, "Community & Support", "ERG routes, internal champion guides, and peer support."],
+                ["keydates", null, "Key Dates & Planning Calendar", "Five annual awareness moments that help get leadership approval."],
+                ["community", "community-membership", "Paid Coaching Community: Join the Waitlist", "Ongoing coaching and templates for champions and ERG leads."]
+              ]
+            }
+          },
+          individualResults: {
+            routines: {
+              title: "A good place to start: Brain Blame and At Home guides",
+              why: "When daily routines stall, it is usually friction in the setup, not a flaw in you. Sorting what is actually causing the stall points straight to one small change at home.",
+              go: "brainblame", goLabel: "Try Brain Blame",
+              step: "Take five minutes with Brain Blame on the one routine that stalled most this week, and test just one small adjustment tomorrow.",
+              tools: [
+                ["brainblame", null, "Brain Blame Self Check", "Sort whether a stall is cognitive load, overload, or environment."],
+                ["athome", null, "At Home: ND Households", "Plain-language guides for mixed households and executive function at home."],
+                ["burnout", null, "Burnout Bingo", "Spot energy drain patterns early before they stack up."],
+                ["community", null, "Community & Support", "Connect with people working through the same everyday friction."]
+              ]
+            },
+            meetings: {
+              title: "A good place to start: plain-language self-checks and guides",
+              why: "Walking into a school, work, or appointment meeting is much lighter when your top two friction points are written down in plain words ahead of time.",
+              go: "brainblame", goLabel: "Try Brain Blame",
+              step: "Before your next meeting, write down the one barrier that makes the room hardest and the one practical support that helps.",
+              tools: [
+                ["brainblame", null, "Brain Blame Self Check", "Put clear words to where a task or meeting stalls."],
+                ["titles", null, "The ADA Titles, in plain language", "Plain-language overview of rights and access across settings."],
+                ["athome", null, "At Home: ND Households", "Practical household and daily-life friction guides."],
+                ["community", null, "Community & Support", "Peer support and coaching community waitlist."]
+              ]
+            },
+            caregiver: {
+              title: "A good place to start: CareCircle and Burnout Bingo",
+              why: "Caregivers carry invisible coordination load every day. Putting updates in one shared place and protecting your own energy budget come first.",
+              go: "carecircle", goLabel: "See CareCircle",
+              step: "Look at CareCircle to see how one shared family update hub cuts down repeat calls, then take two minutes with Burnout Bingo for your own bandwidth.",
+              tools: [
+                ["carecircle", null, "CareCircle for Families", "One trusted place for family medical updates and shared care plans."],
+                ["burnout", null, "Burnout Bingo", "Spot caregiver and everyday overload patterns early."],
+                ["athome", null, "At Home: ND Households", "Guides for sensory homes, routines, and mixed households."],
+                ["community", null, "Community & Support", "Peer community and support routes."]
+              ]
+            },
+            starting: {
+              title: "A good place to start: pick one self-check to open first",
+              why: "You do not need to fix everything at once. Opening one five-minute self-check gives you a clear read on what is draining energy most right now.",
+              go: "tools", goLabel: "Browse Free DIY Tools",
+              step: "Open either Brain Blame (when something feels stuck) or Burnout Bingo (when you feel drained), and take just one small next step from it.",
+              tools: [
+                ["brainblame", null, "Brain Blame Self Check", "Sort a stall by domain and leave with one concrete next step."],
+                ["burnout", null, "Burnout Bingo", "Spot burnout patterns early across personal and work life."],
+                ["carecircle", null, "CareCircle for Families", "Shared medical updates and care plans for families."],
+                ["athome", null, "At Home: ND Households", "Guides for everyday routines and neurodivergent households."],
+                ["community", null, "Community & Support", "Join peers and champions working through everyday friction."]
+              ]
+            }
+          }
+        };
+
         var scForm = document.getElementById("scForm");
         var scResult = document.getElementById("scResult");
         var scError = document.getElementById("scError");
-        if (scForm && scResult) {
-          var SC_SAVE_KEY = "ff_scorecard_answers_v1";
-          var SC_DISMISS_KEY = "ff_scorecard_banner_dismissed_v1";
+        var scStepHost = document.getElementById("scStepHost");
+        if (scForm && scResult && scStepHost) {
+          var SC_SAVE_KEY = "ff_scorecard_state_v2";
+          var SC_DISMISS_KEY = "ff_scorecard_banner_dismissed_v2";
           var scReturnBar = document.getElementById("scReturnBar");
           var scReturnBtn = document.getElementById("scReturnBtn");
           var scReturnDismiss = document.getElementById("scReturnDismiss");
+          var scCopyMgrBtn = document.getElementById("scCopyMgrBtn");
+          var scRecStart = document.getElementById("scRecStart");
+          var scBack = document.getElementById("scBack");
+          var scContinue = document.getElementById("scContinue");
+          var scSubmitBtn = document.getElementById("scSubmitBtn");
+          var scHint = document.getElementById("scHint");
+          var scProgress = document.getElementById("scProgress");
+          var scProgressLabel = document.getElementById("scProgressLabel");
+          var scProgressBar = document.getElementById("scProgressBar");
+          var scProgressFill = document.getElementById("scProgressFill");
+
           var scHasSavedResult = false;
           var scBannerDismissed = false;
+          var scCurrent = 0;
+          var scAdvanceTimer = null;
+          var scLastMgrSummary = "";
+          var scState = { role: null, areas: [], ratings: {}, help: null, deadline90: null };
+
           function scStoreGet(k) { try { return window.sessionStorage.getItem(k); } catch (e) { return null; } }
           function scStoreSet(k, v) { try { window.sessionStorage.setItem(k, v); } catch (e) {} }
           function scStoreRemove(k) { try { window.sessionStorage.removeItem(k); } catch (e) {} }
@@ -5685,177 +5795,357 @@
             scReturnBar.hidden = !(scHasSavedResult && !scBannerDismissed && cur !== "scorecard");
           }
           window.__updateScReturnBar = updateScReturnBar;
-          function computeResults(silent) {
-            var groups = scForm.querySelectorAll("fieldset[data-service]");
-            var totals = {}, missing = [], firstMissing = null, calendarVal = null, savedVals = [];
-            groups.forEach(function (fs, i) {
-              var svc = fs.getAttribute("data-service");
-              var checked = fs.querySelector("input[type=radio]:checked");
-              if (!checked) { missing.push(i + 1); if (!firstMissing) firstMissing = fs; return; }
-              savedVals.push(checked.value);
-              if (svc === "calendar") { calendarVal = parseInt(checked.value, 10); return; }
-              totals[svc] = (totals[svc] || 0) + parseInt(checked.value, 10);
-            });
-            if (missing.length) {
-              scError.hidden = false;
-              scError.textContent = "A few questions are still open: " + missing.join(", ") + ". Give each one your best honest read; partly counts, and you can change any answer before you submit.";
-              if (typeof showStep === "function") showStep(missing[0] - 1, false);
-              var inp = firstMissing.querySelector("input[type=radio]");
-              if (inp) inp.focus();
-              return;
+
+          function getAreaMeta(role, areaId) {
+            var list = SC_BRANCH_CONFIG.areasByRole[role] || [];
+            for (var i = 0; i < list.length; i++) {
+              if (list[i].id === areaId) return list[i];
             }
+            return null;
+          }
+
+          function buildStepList() {
+            var steps = [{ type: "role" }];
+            if (!scState.role) return steps;
+            steps.push({ type: "areas" });
+            scState.areas.forEach(function (aid) {
+              steps.push({ type: "rating", areaId: aid });
+            });
+            steps.push({ type: "help" });
+            if (scState.role === "leader") steps.push({ type: "deadline" });
+            return steps;
+          }
+
+          function renderCurrentStep(focusHead) {
+            var steps = buildStepList();
+            if (scCurrent < 0) scCurrent = 0;
+            if (scCurrent > steps.length - 1) scCurrent = steps.length - 1;
+            var step = steps[scCurrent];
+            var total = scState.role ? steps.length : 4;
+            var n = scCurrent + 1;
+
+            if (scProgress) scProgress.hidden = false;
+            if (scProgressLabel) scProgressLabel.textContent = "Step " + n + " of " + total;
+            if (scProgressBar) {
+              scProgressBar.setAttribute("aria-valuemax", String(total));
+              scProgressBar.setAttribute("aria-valuenow", String(n));
+            }
+            if (scProgressFill) scProgressFill.style.width = (n / total * 100) + "%";
+
+            scStepHost.innerHTML = "";
+            var fs = document.createElement("fieldset");
+            fs.className = "sc-active";
+            var leg = document.createElement("legend");
+            leg.setAttribute("tabindex", "-1");
+            var desc = document.createElement("p");
+            desc.className = "small";
+            var opts = document.createElement("div");
+            opts.className = "sc-opts";
+
+            var isMulti = false;
+            if (step.type === "role") {
+              leg.textContent = "Who are you answering as?";
+              desc.textContent = "Pick the seat that fits you best right now so the questions stay relevant.";
+              SC_BRANCH_CONFIG.roles.forEach(function (r) {
+                var lab = document.createElement("label");
+                var inp = document.createElement("input");
+                inp.type = "radio"; inp.name = "scRole"; inp.value = r.id;
+                if (scState.role === r.id) inp.checked = true;
+                lab.appendChild(inp);
+                lab.appendChild(document.createTextNode(" " + r.label));
+                opts.appendChild(lab);
+              });
+            } else if (step.type === "areas") {
+              isMulti = true;
+              leg.textContent = "Where does the friction show up?";
+              desc.textContent = "Choose up to " + SC_BRANCH_CONFIG.maxAreas + " areas that feel most relevant right now.";
+              var areaList = SC_BRANCH_CONFIG.areasByRole[scState.role] || [];
+              areaList.forEach(function (a) {
+                var lab = document.createElement("label");
+                var inp = document.createElement("input");
+                inp.type = "checkbox"; inp.name = "scAreas"; inp.value = a.id;
+                if (scState.areas.indexOf(a.id) !== -1) inp.checked = true;
+                lab.appendChild(inp);
+                var span = document.createElement("span");
+                span.innerHTML = "<strong></strong>";
+                span.firstChild.textContent = a.label;
+                if (a.desc) {
+                  var sub = document.createElement("span");
+                  sub.style.cssText = "display:block;font-size:.86rem;font-weight:400;color:var(--muted);margin-top:2px;";
+                  sub.textContent = a.desc;
+                  span.appendChild(sub);
+                }
+                lab.appendChild(span);
+                opts.appendChild(lab);
+              });
+            } else if (step.type === "rating") {
+              var meta = getAreaMeta(scState.role, step.areaId);
+              leg.textContent = meta ? meta.label : "How stuck is this area?";
+              desc.textContent = meta && meta.desc ? meta.desc : "Give this area your best honest read.";
+              var scaleKey = (meta && meta.service === "calendar") ? "calendar" : (scState.role === "leader" ? "leader" : "personal");
+              var scale = SC_BRANCH_CONFIG.scales[scaleKey];
+              scale.forEach(function (o) {
+                var lab = document.createElement("label");
+                var inp = document.createElement("input");
+                inp.type = "radio"; inp.name = "scRate_" + step.areaId; inp.value = o.value;
+                if (scState.ratings[step.areaId] === o.value) inp.checked = true;
+                lab.appendChild(inp);
+                lab.appendChild(document.createTextNode(" " + o.label));
+                opts.appendChild(lab);
+              });
+            } else if (step.type === "help") {
+              leg.textContent = "What would help most right now?";
+              desc.textContent = "Pick the kind of next step that feels most realistic for you today.";
+              SC_BRANCH_CONFIG.helpOptions.forEach(function (h) {
+                var lab = document.createElement("label");
+                var inp = document.createElement("input");
+                inp.type = "radio"; inp.name = "scHelp"; inp.value = h.id;
+                if (scState.help === h.id) inp.checked = true;
+                lab.appendChild(inp);
+                lab.appendChild(document.createTextNode(" " + h.label));
+                opts.appendChild(lab);
+              });
+            } else if (step.type === "deadline") {
+              leg.textContent = "Is there a deadline in the next 90 days?";
+              desc.textContent = "For example, an opening, election, renovation, Title II milestone, or open complaint.";
+              SC_BRANCH_CONFIG.deadlineOptions.forEach(function (d) {
+                var lab = document.createElement("label");
+                var inp = document.createElement("input");
+                inp.type = "radio"; inp.name = "scDeadline"; inp.value = d.id;
+                if (scState.deadline90 === d.id) inp.checked = true;
+                lab.appendChild(inp);
+                lab.appendChild(document.createTextNode(" " + d.label));
+                opts.appendChild(lab);
+              });
+            }
+
+            fs.appendChild(leg);
+            fs.appendChild(desc);
+            fs.appendChild(opts);
+            scStepHost.appendChild(fs);
+
+            if (scBack) { scBack.hidden = false; scBack.disabled = (scCurrent === 0); }
+            if (scContinue) scContinue.hidden = !isMulti;
+            if (scSubmitBtn) scSubmitBtn.hidden = true;
+            if (scHint) {
+              scHint.hidden = false;
+              var isLast = (scState.role && scCurrent === steps.length - 1);
+              scHint.textContent = isMulti
+                ? "Choose 1 to " + SC_BRANCH_CONFIG.maxAreas + " areas, then press Continue."
+                : (isLast
+                  ? "Pick one answer and you will see your starting point."
+                  : "Pick one answer and you will move to the next question on its own.");
+            }
+            if (focusHead !== false) leg.focus();
+          }
+
+          function renderTools(toolsEl, list) {
+            toolsEl.innerHTML = "";
+            list.forEach(function (t) {
+              var b = document.createElement("a");
+              b.setAttribute("href", "#" + t[0]);
+              b.className = "sc-tool-link";
+              b.setAttribute("data-go", t[0]);
+              if (t[1]) b.setAttribute("data-jump", t[1]);
+              var tt = document.createElement("span");
+              tt.className = "sc-tool-title";
+              tt.textContent = t[2];
+              b.appendChild(tt);
+              if (t[3]) {
+                var td = document.createElement("span");
+                td.className = "sc-tool-desc";
+                td.textContent = t[3];
+                b.appendChild(td);
+              }
+              toolsEl.appendChild(b);
+            });
+          }
+
+          function renderCalendarBlock(calendarVal) {
+            var block = document.getElementById("scCalBlock");
+            var tagEl = document.getElementById("scCalTag");
+            var calTitle = document.getElementById("scCalTitle");
+            var calText = document.getElementById("scCalText");
+            var calOffer = document.getElementById("scCalOffer");
+            var calBooking = document.getElementById("scCalBooking");
+            if (!block || !calTitle || !calText || !calOffer) return;
+            block.hidden = false;
+            var anchors = [
+              { month: 4, quarter: 2, monthName: "April", name: "Autism Acceptance Month", offering: "Aligned offering: Theme 4, Employment, and Theme 5, Effective Communication, the Team Cohesion and Communication Snapshot, and neuroinclusion focused Training and Speaking." },
+              { month: 5, quarter: 2, monthName: "May", name: "Mental Health Awareness Month", offering: "Aligned offering: Mental health and workplace etiquette sessions in Training and Speaking, the Team Cohesion and Communication Snapshot, and Accessible Communications and Media." },
+              { month: 7, quarter: 3, monthName: "July", name: "Disability Pride Month, with the ADA Anniversary on July 26", offering: "Aligned offering: Theme 1, ADA Foundations, a Snapshot or Accessibility Assessment as the anniversary action, and leadership speaking for the anniversary." },
+              { month: 10, quarter: 4, monthName: "October", name: "Hidden and Invisible Disabilities, with National Disability Employment Awareness Month", offering: "Aligned offering: Invisible disabilities etiquette training, employment focused sessions, and Accessible Communications and Media." },
+              { month: 12, quarter: 4, monthName: "December", name: "International Day of Persons with Disabilities, on December 3", offering: "Aligned offering: Flagship speaking for the day, Accessible Communications and Media, and The Second Reading for the materials the day will feature." }
+            ];
+            var now = new Date();
+            var m = now.getMonth() + 1;
+            var q = Math.ceil(m / 3);
+            var focus = null, isCurrentQuarter = false, isThisMonth = false;
+            for (var i = 0; i < anchors.length; i++) {
+              if (anchors[i].quarter === q && anchors[i].month >= m) { focus = anchors[i]; isCurrentQuarter = true; isThisMonth = anchors[i].month === m; break; }
+            }
+            if (!focus) {
+              for (var j = 0; j < anchors.length; j++) {
+                if (anchors[j].month > m) { focus = anchors[j]; break; }
+              }
+              if (!focus) focus = anchors[0];
+            }
+            var quarterLabel = "Quarter " + q;
+            var whenText = isCurrentQuarter
+              ? (isThisMonth ? "This quarter, this month" : "This quarter, in " + focus.monthName)
+              : "Next anchor ahead, in " + focus.monthName;
+            if (calendarVal === 0) {
+              block.classList.add("first");
+              if (tagEl) tagEl.textContent = "Recommended first program";
+              calTitle.textContent = "Start with the calendar: " + focus.name;
+              calText.textContent = "You marked calendar based awareness programming as not yet in place. That makes it the recommended first program here: it is the easiest year of programming an organization can approve, because the dates, the audiences, and the purpose are already set. " + quarterLabel + " focus: " + whenText + ", " + focus.monthName + " brings " + focus.name + ". This kind of programming supports progress toward ADA obligations and gives leadership documented evidence of training activity.";
+            } else if (calendarVal === 1) {
+              block.classList.remove("first");
+              if (tagEl) tagEl.textContent = "Calendar programming, this quarter";
+              calTitle.textContent = whenText + ": " + focus.name;
+              calText.textContent = "You run calendar programming occasionally. The calendar on the Training page turns occasional moments into a planned year. " + quarterLabel + " focus: " + focus.monthName + ", " + focus.name + ".";
+            } else {
+              block.classList.remove("first");
+              if (tagEl) tagEl.textContent = "Calendar programming, this quarter";
+              calTitle.textContent = whenText + ": " + focus.name;
+              calText.textContent = "You already run calendar programming regularly. Use this quarter anchor to deepen it and keep the evidence together. " + quarterLabel + " focus: " + focus.monthName + ", " + focus.name + ".";
+            }
+            calOffer.textContent = focus.offering;
+            if (calBooking) {
+              var yr = now.getFullYear();
+              var nq = q === 4 ? 1 : q + 1;
+              var ny = q === 4 ? yr + 1 : yr;
+              var bookingLine = "Programs book a quarter ahead. Now booking Q" + nq + " " + ny + ".";
+              if (q === 4 && yr === 2026) bookingLine += " Only 3 bookings remain in Q4 2026.";
+              calBooking.textContent = bookingLine;
+            }
+          }
+
+          function computeResults(silent) {
             scError.hidden = true;
-            var totalAll = 0;
-            Object.keys(totals).forEach(function (k) { totalAll += totals[k]; });
             var titleEl = document.getElementById("scRecTitle");
             var whyEl = document.getElementById("scRecWhy");
             var alsoEl = document.getElementById("scRecAlso");
             var toolsEl = document.getElementById("scRecTools");
             var stepEl = document.getElementById("scRecStep");
             var goBtn = document.getElementById("scRecGo");
-            function renderTools(list) {
-              toolsEl.innerHTML = "";
-              list.forEach(function (t) {
-                var b = document.createElement("a");
-                b.setAttribute("href", "#" + t[0]);
-                b.className = "sc-tool-link";
-                b.setAttribute("data-go", t[0]);
-                if (t[1]) b.setAttribute("data-jump", t[1]);
-                var tt = document.createElement("span");
-                tt.className = "sc-tool-title";
-                tt.textContent = t[2];
-                b.appendChild(tt);
-                if (t[3]) {
-                  var td = document.createElement("span");
-                  td.className = "sc-tool-desc";
-                  td.textContent = t[3];
-                  b.appendChild(td);
-                }
-                toolsEl.appendChild(b);
-              });
-            }
-            if (totalAll === 0) {
-              titleEl.textContent = "A good place to start: a conversation";
-              whyEl.textContent = "Nothing you marked is sticking right now. That usually means one of two things: the basics are genuinely in hand, or nobody has yet walked the place, the site, and the materials with fresh eyes. A short conversation sorts out which, and the foundations training theme is the standing refresher either way.";
-              alsoEl.textContent = "";
-              renderTools([
-                ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."],
-                ["titles", null, "The ADA Titles, in plain language", "How ADA Titles I through V organize accessibility findings."],
-                ["services", null, "ADA Services overview", "Audits, advising, training, and transition planning in one place."]
-              ]);
-              stepEl.textContent = "Pick the one place, page, or document a visitor depends on most, and look at it once with fresh eyes before the conversation.";
-              goBtn.setAttribute("data-go", "services");
-              goBtn.setAttribute("href", "#services");
-              goBtn.textContent = "Browse the services";
-            } else {
-              var winner = null, best = -1;
-              SC_ORDER.forEach(function (k) {
-                var norm = (totals[k] || 0) / SC_DATA[k].max;
-                if (norm > best + 0.0001) { best = norm; winner = k; }
-              });
-              var d = SC_DATA[winner];
-              titleEl.textContent = "A good place to start: " + d.name;
-              whyEl.textContent = d.why;
-              var runner = null, runnerBest = -1;
-              SC_ORDER.forEach(function (k) {
-                if (k === winner) return;
-                var norm = (totals[k] || 0) / SC_DATA[k].max;
-                if (norm > runnerBest + 0.0001) { runnerBest = norm; runner = k; }
-              });
-              alsoEl.textContent = (runner && runnerBest > 0 && runnerBest >= best - 0.26)
-                ? "Also close behind: " + SC_DATA[runner].name + ". The two often run in sequence, and the first conversation can settle the order."
-                : "";
-              renderTools(d.tools);
-              stepEl.textContent = d.step;
-              goBtn.setAttribute("data-go", d.go);
-              goBtn.setAttribute("href", "#" + d.go);
-              goBtn.textContent = "See " + d.name;
-            }
-            (function renderCalendar() {
-              var block = document.getElementById("scCalBlock");
-              var tagEl = document.getElementById("scCalTag");
-              var calTitle = document.getElementById("scCalTitle");
-              var calText = document.getElementById("scCalText");
-              var calOffer = document.getElementById("scCalOffer");
-              var calBooking = document.getElementById("scCalBooking");
-              if (!block || !calTitle || !calText || !calOffer) return;
-              var anchors = [
-                { month: 4, quarter: 2, monthName: "April", name: "Autism Acceptance Month", offering: "Aligned offering: Theme 4, Employment, and Theme 5, Effective Communication, the Team Cohesion and Communication Snapshot, and neuroinclusion focused Training and Speaking." },
-                { month: 5, quarter: 2, monthName: "May", name: "Mental Health Awareness Month", offering: "Aligned offering: Mental health and workplace etiquette sessions in Training and Speaking, the Team Cohesion and Communication Snapshot, and Accessible Communications and Media." },
-                { month: 7, quarter: 3, monthName: "July", name: "Disability Pride Month, with the ADA Anniversary on July 26", offering: "Aligned offering: Theme 1, ADA Foundations, a Snapshot or Accessibility Assessment as the anniversary action, and leadership speaking for the anniversary." },
-                { month: 10, quarter: 4, monthName: "October", name: "Hidden and Invisible Disabilities, with National Disability Employment Awareness Month", offering: "Aligned offering: Invisible disabilities etiquette training, employment focused sessions, and Accessible Communications and Media." },
-                { month: 12, quarter: 4, monthName: "December", name: "International Day of Persons with Disabilities, on December 3", offering: "Aligned offering: Flagship speaking for the day, Accessible Communications and Media, and The Second Reading for the materials the day will feature." }
-              ];
-              var now = new Date();
-              var m = now.getMonth() + 1;
-              var q = Math.ceil(m / 3);
-              var focus = null, isCurrentQuarter = false, isThisMonth = false;
-              for (var i = 0; i < anchors.length; i++) {
-                if (anchors[i].quarter === q && anchors[i].month >= m) { focus = anchors[i]; isCurrentQuarter = true; isThisMonth = anchors[i].month === m; break; }
-              }
-              if (!focus) {
-                for (var j = 0; j < anchors.length; j++) {
-                  if (anchors[j].month > m) { focus = anchors[j]; break; }
-                }
-                if (!focus) focus = anchors[0];
-              }
-              var quarterLabel = "Quarter " + q;
-              var whenText = isCurrentQuarter
-                ? (isThisMonth ? "This quarter, this month" : "This quarter, in " + focus.monthName)
-                : "Next anchor ahead, in " + focus.monthName;
-              if (calendarVal === 0) {
-                block.classList.add("first");
-                if (tagEl) tagEl.textContent = "Recommended first program";
-                calTitle.textContent = "Start with the calendar: " + focus.name;
-                calText.textContent = "You marked calendar based awareness programming as not yet in place. That makes it the recommended first program here: it is the easiest year of programming an organization can approve, because the dates, the audiences, and the purpose are already set. " + quarterLabel + " focus: " + whenText + ", " + focus.monthName + " brings " + focus.name + ". This kind of programming supports progress toward ADA obligations and gives leadership documented evidence of training activity.";
-              } else if (calendarVal === 1) {
-                block.classList.remove("first");
-                if (tagEl) tagEl.textContent = "Calendar programming, this quarter";
-                calTitle.textContent = whenText + ": " + focus.name;
-                calText.textContent = "You run calendar programming occasionally. The calendar on the Training page turns occasional moments into a planned year. " + quarterLabel + " focus: " + focus.monthName + ", " + focus.name + ".";
-              } else {
-                block.classList.remove("first");
-                if (tagEl) tagEl.textContent = "Calendar programming, this quarter";
-                calTitle.textContent = whenText + ": " + focus.name;
-                calText.textContent = "You already run calendar programming regularly. Use this quarter anchor to deepen it and keep the evidence together. " + quarterLabel + " focus: " + focus.monthName + ", " + focus.name + ".";
-              }
-              calOffer.textContent = focus.offering;
-              if (calBooking) {
-                var yr = now.getFullYear();
-                var nq = q === 4 ? 1 : q + 1;
-                var ny = q === 4 ? yr + 1 : yr;
-                var bookingLine = "Programs book a quarter ahead. Now booking Q" + nq + " " + ny + ".";
-                if (q === 4 && yr === 2026) bookingLine += " Only 3 bookings remain in Q4 2026.";
-                calBooking.textContent = bookingLine;
-              }
-              block.setAttribute("data-focus-month", String(focus.month));
-              block.setAttribute("data-focus-quarter", String(focus.quarter));
-            })();
-            var scShell = document.getElementById("scShell");
+            var calBlock = document.getElementById("scCalBlock");
             var findingsEl = document.getElementById("scFindingsList");
+            var scShell = document.getElementById("scShell");
+
+            var ratedItems = [];
+            scState.areas.forEach(function (aid) {
+              var meta = getAreaMeta(scState.role, aid);
+              if (!meta) return;
+              var val = parseInt(scState.ratings[aid] || "0", 10);
+              ratedItems.push({ id: aid, meta: meta, val: val });
+            });
+            ratedItems.sort(function (a, b) { return b.val - a.val; });
+
+            if (scCopyMgrBtn) scCopyMgrBtn.hidden = true;
+            if (scRecStart) scRecStart.hidden = false;
+
+            if (scState.role === "leader") {
+              var totals = {}, calendarVal = null;
+              ratedItems.forEach(function (it) {
+                if (it.meta.service === "calendar") { calendarVal = it.val; return; }
+                totals[it.meta.service] = (totals[it.meta.service] || 0) + it.val;
+              });
+              var totalAll = 0;
+              Object.keys(totals).forEach(function (k) { totalAll += totals[k]; });
+              if (totalAll === 0) {
+                titleEl.textContent = "A good place to start: a conversation";
+                whyEl.textContent = "Nothing you marked is sticking right now. That usually means one of two things: the basics are genuinely in hand, or nobody has yet walked the place, the site, and the materials with fresh eyes. A short conversation sorts out which, and the foundations training theme is the standing refresher either way.";
+                alsoEl.textContent = scState.deadline90 === "yes" ? "You noted a deadline within 90 days. Mention that date first in your note so scoping starts around it." : "";
+                renderTools(toolsEl, [
+                  ["app", null, "The Consulting App", "One shared record for reviews, findings, plans, and tracking."],
+                  ["titles", null, "The ADA Titles, in plain language", "How ADA Titles I through V organize accessibility findings."],
+                  ["services", null, "ADA Services overview", "Audits, advising, training, and transition planning in one place."]
+                ]);
+                stepEl.textContent = "Pick the one place, page, or document a visitor depends on most, and look at it once with fresh eyes before the conversation.";
+                goBtn.setAttribute("data-go", "services");
+                goBtn.setAttribute("href", "#services");
+                goBtn.textContent = "Browse the services";
+              } else {
+                var winner = null, best = -1;
+                SC_ORDER.forEach(function (k) {
+                  var norm = (totals[k] || 0) / SC_DATA[k].max;
+                  if (norm > best + 0.0001) { best = norm; winner = k; }
+                });
+                var d = SC_DATA[winner];
+                titleEl.textContent = "A good place to start: " + d.name;
+                whyEl.textContent = d.why;
+                var runner = null, runnerBest = -1;
+                SC_ORDER.forEach(function (k) {
+                  if (k === winner) return;
+                  var norm = (totals[k] || 0) / SC_DATA[k].max;
+                  if (norm > runnerBest + 0.0001) { runnerBest = norm; runner = k; }
+                });
+                var alsoNotes = [];
+                if (runner && runnerBest > 0 && runnerBest >= best - 0.26) {
+                  alsoNotes.push("Also close behind: " + SC_DATA[runner].name + ". The two often run in sequence, and the first conversation can settle the order.");
+                }
+                if (scState.deadline90 === "yes") {
+                  alsoNotes.push("With a deadline in the next 90 days, start by naming that date and what done needs to look like before it arrives.");
+                }
+                alsoEl.textContent = alsoNotes.join(" ");
+                renderTools(toolsEl, d.tools);
+                stepEl.textContent = d.step;
+                goBtn.setAttribute("data-go", d.go);
+                goBtn.setAttribute("href", "#" + d.go);
+                goBtn.textContent = "See " + d.name;
+              }
+              renderCalendarBlock(calendarVal === null ? 0 : calendarVal);
+            } else if (scState.role === "champion") {
+              var topChamp = ratedItems[0] ? ratedItems[0].id : "workday";
+              var cr = SC_BRANCH_CONFIG.championResults[topChamp] || SC_BRANCH_CONFIG.championResults.workday;
+              titleEl.textContent = cr.title;
+              whyEl.textContent = cr.why;
+              alsoEl.textContent = scState.help === "training"
+                ? "Because bringing in training or a keynote would help most right now, you can copy the manager summary below to share a ready-made next step upward."
+                : (scState.help === "community" ? "Peer support is ready right away in Community & Support, along with the Paid Coaching Community waitlist." : "");
+              renderTools(toolsEl, cr.tools);
+              stepEl.textContent = cr.step;
+              goBtn.setAttribute("data-go", cr.go);
+              goBtn.setAttribute("href", "#" + cr.go);
+              goBtn.textContent = cr.goLabel;
+              if (calBlock) calBlock.hidden = true;
+              if (scCopyMgrBtn) scCopyMgrBtn.hidden = false;
+              var flaggedNames = ratedItems.filter(function (x) { return x.val > 0; }).map(function (x) { return x.meta.label + " (" + (x.val === 2 ? "sticking point" : "partly handled") + ")"; });
+              if (!flaggedNames.length) flaggedNames = ratedItems.map(function (x) { return x.meta.label; });
+              scLastMgrSummary = "Accessibility Friction Scorecard Summary\n"
+                + "Top areas flagged: " + flaggedNames.join("; ") + "\n"
+                + "Suggested starting point: " + cr.title.replace(/^A good place to start:\s*/i, "") + "\n"
+                + "Next step: " + cr.step + "\n"
+                + "More info: https://fixingfriction.com/#" + cr.go;
+            } else {
+              var topInd = ratedItems[0] ? ratedItems[0].id : "starting";
+              var ir = SC_BRANCH_CONFIG.individualResults[topInd] || SC_BRANCH_CONFIG.individualResults.starting;
+              titleEl.textContent = ir.title;
+              whyEl.textContent = ir.why;
+              alsoEl.textContent = scState.help === "community"
+                ? "You noted that joining the community would help most right now. Community & Support is linked in your tools below."
+                : "";
+              renderTools(toolsEl, ir.tools);
+              stepEl.textContent = ir.step;
+              goBtn.setAttribute("data-go", ir.go);
+              goBtn.setAttribute("href", "#" + ir.go);
+              goBtn.textContent = ir.goLabel;
+              if (calBlock) calBlock.hidden = true;
+            }
+
             if (findingsEl) {
               findingsEl.innerHTML = "";
-              var items = [];
-              groups.forEach(function (fs) {
-                var svc = fs.getAttribute("data-service");
-                if (svc === "calendar") return;
-                var checked = fs.querySelector("input[type=radio]:checked");
-                if (!checked) return;
-                var val = parseInt(checked.value, 10);
-                var leg = fs.querySelector("legend");
-                var label = leg ? leg.textContent.replace(/^\d+\.\s*/, "") : "";
-                if (val > 0) items.push({ label: label, val: val });
-              });
-              items.sort(function (a, b) { return b.val - a.val; });
-              if (!items.length) {
+              var shown = ratedItems.filter(function (it) { return it.meta.service !== "calendar" && it.val > 0; });
+              if (!shown.length) {
                 var li0 = document.createElement("li");
                 li0.innerHTML = '<span>No urgent sticking points flagged</span><span class="sc-badge ok">In good shape</span>';
                 findingsEl.appendChild(li0);
               } else {
-                items.slice(0, 5).forEach(function (it) {
+                shown.forEach(function (it) {
                   var li = document.createElement("li");
                   var sp = document.createElement("span");
-                  sp.textContent = it.label;
+                  sp.textContent = it.meta.label;
                   var bd = document.createElement("span");
                   bd.className = "sc-badge " + (it.val === 2 ? "high" : "mid");
                   bd.textContent = it.val === 2 ? "Sticking point" : "Partly handled";
@@ -5865,6 +6155,7 @@
                 });
               }
             }
+
             if (scShell) scShell.hidden = true;
             scForm.hidden = true;
             scResult.hidden = false;
@@ -5872,90 +6163,83 @@
             if (!silent) {
               scBannerDismissed = false;
               scStoreRemove(SC_DISMISS_KEY);
-              scStoreSet(SC_SAVE_KEY, JSON.stringify(savedVals));
+              scStoreSet(SC_SAVE_KEY, JSON.stringify(scState));
             }
             updateScReturnBar();
             if (window.__revealScan) window.__revealScan();
             if (!silent) scResult.focus();
           }
-          scForm.addEventListener("submit", function (ev) {
-            ev.preventDefault();
-            computeResults();
-          });
-          /* Stepped flow: one question at a time, single
-             answer questions auto-advance after a brief calm pause,
-             multi-select questions keep an explicit Continue, Back always
-             preserves answers, and focus moves to each new question. */
-          var scSteps = Array.prototype.slice.call(scForm.querySelectorAll("fieldset[data-service]"));
-          var scBack = document.getElementById("scBack");
-          var scContinue = document.getElementById("scContinue");
-          var scSubmitBtn = document.getElementById("scSubmitBtn");
-          var scHint = document.getElementById("scHint");
-          var scProgress = document.getElementById("scProgress");
-          var scProgressLabel = document.getElementById("scProgressLabel");
-          var scProgressBar = document.getElementById("scProgressBar");
-          var scProgressFill = document.getElementById("scProgressFill");
-          var scCurrent = 0;
-          var scAdvanceTimer = null;
-          function scIsMulti(fs) { return !!fs.querySelector("input[type=checkbox]"); }
-          function showStep(i, focusHead) {
-            if (i < 0) i = 0;
-            if (i > scSteps.length - 1) i = scSteps.length - 1;
-            scCurrent = i;
-            scSteps.forEach(function (fs, j) { fs.classList.toggle("sc-active", j === i); });
-            var n = i + 1, total = scSteps.length;
-            if (scProgressLabel) scProgressLabel.textContent = "Question " + n + " of " + total;
-            if (scProgressBar) scProgressBar.setAttribute("aria-valuenow", String(n));
-            if (scProgressFill) scProgressFill.style.width = (n / total * 100) + "%";
-            var multi = scIsMulti(scSteps[i]);
-            if (scBack) { scBack.hidden = false; scBack.disabled = (i === 0); }
-            if (scContinue) scContinue.hidden = !multi;
-            if (scSubmitBtn) scSubmitBtn.hidden = true;
-            if (scHint) {
-              scHint.hidden = false;
-              scHint.textContent = multi
-                ? "Choose all that apply, then press Continue."
-                : (i === total - 1
-                  ? "Pick one answer and you will see your starting point."
-                  : "Pick one answer and you will move to the next question on its own.");
-            }
-            if (focusHead !== false) {
-              var legend = scSteps[i].querySelector("legend");
-              if (legend) legend.focus();
-            }
-          }
+
           function scAdvance() {
-            if (scCurrent >= scSteps.length - 1) { computeResults(); return; }
-            showStep(scCurrent + 1);
+            var steps = buildStepList();
+            if (scCurrent >= steps.length - 1) { computeResults(false); return; }
+            scCurrent += 1;
+            renderCurrentStep(true);
           }
+
           function scQueueAdvance() {
             if (scAdvanceTimer) clearTimeout(scAdvanceTimer);
             if (reduceMotion) { scAdvance(); return; }
-            scAdvanceTimer = setTimeout(function () { scAdvanceTimer = null; scAdvance(); }, 450);
+            scAdvanceTimer = setTimeout(function () { scAdvanceTimer = null; scAdvance(); }, 380);
           }
+
           scForm.addEventListener("change", function (ev) {
             var t = ev.target;
             if (!t || (t.type !== "radio" && t.type !== "checkbox")) return;
-            var fs = t.closest ? t.closest("fieldset[data-service]") : null;
-            if (!fs) return;
-            var idx = scSteps.indexOf(fs);
-            if (idx < 0) return;
+            var steps = buildStepList();
+            var step = steps[scCurrent];
+            if (!step) return;
             scError.hidden = true;
-            if (t.type === "radio" && idx === scCurrent) scQueueAdvance();
+            if (step.type === "role" && t.name === "scRole") {
+              if (scState.role !== t.value) {
+                scState.role = t.value;
+                scState.areas = [];
+                scState.ratings = {};
+                scState.help = null;
+                scState.deadline90 = null;
+              }
+              scQueueAdvance();
+            } else if (step.type === "areas" && t.name === "scAreas") {
+              var checked = Array.prototype.slice.call(scStepHost.querySelectorAll('input[name="scAreas"]:checked')).map(function (c) { return c.value; });
+              if (checked.length > SC_BRANCH_CONFIG.maxAreas) {
+                t.checked = false;
+                scError.hidden = false;
+                scError.textContent = "Choose up to " + SC_BRANCH_CONFIG.maxAreas + " areas so your starting point stays focused.";
+                return;
+              }
+              scState.areas = checked;
+            } else if (step.type === "rating") {
+              scState.ratings[step.areaId] = t.value;
+              scQueueAdvance();
+            } else if (step.type === "help" && t.name === "scHelp") {
+              scState.help = t.value;
+              scQueueAdvance();
+            } else if (step.type === "deadline" && t.name === "scDeadline") {
+              scState.deadline90 = t.value;
+              scQueueAdvance();
+            }
           });
+
+          scForm.addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            computeResults(false);
+          });
+
           if (scBack) {
             scBack.addEventListener("click", function () {
               if (scAdvanceTimer) { clearTimeout(scAdvanceTimer); scAdvanceTimer = null; }
-              if (scCurrent > 0) showStep(scCurrent - 1);
+              if (scCurrent > 0) { scCurrent -= 1; renderCurrentStep(true); }
             });
           }
+
           if (scContinue) {
             scContinue.addEventListener("click", function () {
-              var fs = scSteps[scCurrent];
-              if (!fs.querySelector("input:checked")) {
+              var steps = buildStepList();
+              var step = steps[scCurrent];
+              if (step && step.type === "areas" && !scState.areas.length) {
                 scError.hidden = false;
-                scError.textContent = "Choose at least one answer for this question, then press Continue.";
-                var firstBox = fs.querySelector("input");
+                scError.textContent = "Choose at least one area where friction shows up, then press Continue.";
+                var firstBox = scStepHost.querySelector("input");
                 if (firstBox) firstBox.focus();
                 return;
               }
@@ -5963,9 +6247,11 @@
               scAdvance();
             });
           }
+
           function resetScorecard() {
             if (scAdvanceTimer) { clearTimeout(scAdvanceTimer); scAdvanceTimer = null; }
-            scForm.reset();
+            scState = { role: null, areas: [], ratings: {}, help: null, deadline90: null };
+            scCurrent = 0;
             scResult.hidden = true;
             scError.hidden = true;
             var scShell = document.getElementById("scShell");
@@ -5976,24 +6262,42 @@
             scStoreRemove(SC_SAVE_KEY);
             scStoreRemove(SC_DISMISS_KEY);
             updateScReturnBar();
-            showStep(0, false);
-            var legend = scSteps[0] ? scSteps[0].querySelector("legend") : null;
-            if (legend) legend.focus();
+            renderCurrentStep(true);
           }
+
           var scReset = document.getElementById("scReset");
           if (scReset) scReset.addEventListener("click", resetScorecard);
           var scRetake = document.getElementById("scRetake");
           if (scRetake) scRetake.addEventListener("click", resetScorecard);
+
+          if (scCopyMgrBtn) {
+            scCopyMgrBtn.addEventListener("click", function () {
+              if (!scLastMgrSummary) return;
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(scLastMgrSummary).then(function () {
+                  showToast("Summary copied to share with your manager.");
+                }, function () {
+                  showToast("Summary ready to copy.");
+                });
+              } else {
+                showToast("Summary ready to copy.");
+              }
+            });
+          }
+
           if (scReturnBtn) {
             scReturnBtn.addEventListener("click", function () {
               if (!scHasSavedResult) return;
               showPage("scorecard");
+              var scShell = document.getElementById("scShell");
+              if (scShell) scShell.hidden = true;
               scForm.hidden = true;
               scResult.hidden = false;
               updateScReturnBar("scorecard");
               scResult.focus();
             });
           }
+
           if (scReturnDismiss) {
             scReturnDismiss.addEventListener("click", function () {
               scBannerDismissed = true;
@@ -6003,26 +6307,25 @@
               if (h) { if (!h.hasAttribute("tabindex")) h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
             });
           }
-          scSteps.forEach(function (fs) {
-            var legend = fs.querySelector("legend");
-            if (legend) legend.setAttribute("tabindex", "-1");
-          });
+
           scForm.classList.add("sc-stepped");
-          if (scProgress) scProgress.hidden = false;
-          showStep(0, false);
+          renderCurrentStep(false);
+
           (function restoreSavedScorecard() {
             var raw = scStoreGet(SC_SAVE_KEY);
             scBannerDismissed = scStoreGet(SC_DISMISS_KEY) === "1";
             if (!raw) { updateScReturnBar(); return; }
             try {
-              var vals = JSON.parse(raw);
-              if (Array.isArray(vals) && vals.length === scSteps.length) {
-                var allMatched = true;
-                scSteps.forEach(function (fs, i) {
-                  var inp = fs.querySelector('input[type="radio"][value="' + vals[i] + '"]');
-                  if (inp) inp.checked = true; else allMatched = false;
-                });
-                if (allMatched) computeResults(true);
+              var parsed = JSON.parse(raw);
+              if (parsed && parsed.role && Array.isArray(parsed.areas) && parsed.areas.length) {
+                scState = {
+                  role: parsed.role,
+                  areas: parsed.areas,
+                  ratings: parsed.ratings || {},
+                  help: parsed.help || null,
+                  deadline90: parsed.deadline90 || null
+                };
+                computeResults(true);
               }
             } catch (e) {}
             updateScReturnBar();

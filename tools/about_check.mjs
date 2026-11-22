@@ -58,9 +58,9 @@ ok(!/—|&mdash;/.test(html), "no em dash anywhere in the page");
 ok(!fs.existsSync(path.join(ROOT, "docs")) && !fs.existsSync(path.join(ROOT, "buildout")) && !fs.existsSync(path.join(ROOT, "launch")) && !fs.existsSync(path.join(ROOT, "changes")), "no internal folders in the published repository");
 ok((html.match(/<figcaption>Illustration[:.]/g) || []).length === 91 && !/Concept (picture|illustration)/.test(html), "91 captions now start with Illustration (colon or full stop kept) and no Concept caption or alt text remains: 92 were converted, 2 went with the unpublished Directory page");
 const about = html.slice(html.indexOf('id="page-about"'), html.indexOf("</section>", html.indexOf('id="page-about"')));
-const order = ["Seen. Heard. Understood.", 'class="ab-matthew"', 'class="ab-cultcat"', 'id="about-team"', 'id="about-mission"', 'id="about-faq"', 'id="about-contact"', 'class="ab-stories"', 'class="ff-begin"'].map((k) => about.indexOf(k));
-ok(order.every((p, i) => p >= 0 && (i === 0 || p > order[i - 1])), "About order: brand opening, Matthew, CultCat, team, mission, FAQ, contact, Brand stories (last), starting point line");
-const team = about.slice(about.indexOf('id="about-team"'), about.indexOf('id="about-mission"'));
+const order = ["Seen. Heard. Understood.", 'class="ab-matthew"', 'class="ab-cultcat"', 'id="about-team"', 'class="ab-stories"', 'id="about-mission"', 'id="about-faq"', 'id="about-contact"', 'class="ff-begin"'].map((k) => about.indexOf(k));
+ok(order.every((p, i) => p >= 0 && (i === 0 || p > order[i - 1])), "About order: brand opening, Matthew, CultCat, team, Brand stories, mission, FAQ, contact, starting point line");
+const team = about.slice(about.indexOf('id="about-team"'), about.indexOf('class="ab-stories"'));
 ok((team.match(/class="ab-person"/g) || []).length === 3 && (team.match(/<img /g) || []).length === 3, "team section has exactly three people and three photographs");
 ok(["Ioana Balcan", "Mircea Balcan", "Alina Ghervase"].every((n, i) => team.indexOf('alt="' + n + '"') >= 0 && (i === 0 || team.indexOf('alt="' + n + '"') > team.indexOf('alt="' + ["Ioana Balcan", "Mircea Balcan", "Alina Ghervase"][i - 1] + '"'))), "team order Ioana, Mircea, Alina, alt text is the person name");
 ok(/Chief Brand Officer[\s\S]*Chief Information Officer[\s\S]*Chief Operations Officer/.test(team), "titles in order: Chief Brand Officer, Chief Information Officer, Chief Operations Officer");
@@ -95,7 +95,7 @@ for (const [name, w, h] of sizes) {
     ok(g.mp.t < g.mx.t && g.persons.every((p) => p.img.t < p.txt.t && Math.abs(p.img.l - p.txt.l) < 4), `${name}: stacked, each portrait above its text in a single column`);
   }
   ok(g.storiesTop > g.teamTop, `${name}: Brand stories come after the team section`);
-  const lw = await ev(`(${LINEFN})('#page-about .ab-matthew h2, #page-about .ab-matthew h3, #page-about .ab-cultcat h2, #page-about #about-team h2, #page-about .ab-person h3, #page-about .ab-stories h2, #page-about .ab-stories h3')`);
+  const lw = await ev(`(${LINEFN})('#page-about .ab-matthew h2, #page-about .ab-matthew h3, #page-about .ab-cultcat h2, #page-about #about-team h2, #page-about .ab-person h3, #page-about .ab-stories h2, #page-about .ab-stories h3, #page-about h1')`);
   ok(lw === "[]", `${name}: About headings have no widow, lone first word or stranded preposition ${lw}`);
   // screenshots
   const shots = [
@@ -119,6 +119,28 @@ for (const [name, w, h] of sizes) {
   ok(cr.txt === "For Canon USA, I have spent more than a decade teaching photographers on stage and on the page, reaching thousands of people.", `${name}: Canon card text exact`);
   const r2 = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: Math.max(0, cr.top - 140), width: w, height: Math.min(cr.h + 240, 2600), scale: 1 } });
   fs.writeFileSync(path.join(OUT, `canon-card-${name}.png`), Buffer.from(r2.data, "base64"));
+}
+const H1LINES = `(function(){
+  var h=document.querySelector('#page-about h1'), NB=String.fromCharCode(160);
+  var r=document.createRange(), w=document.createTreeWalker(h,NodeFilter.SHOW_TEXT), n, lines={};
+  while((n=w.nextNode())){ for(var i=0;i<n.length;i++){ r.setStart(n,i); r.setEnd(n,i+1); var b=r.getBoundingClientRect(); if(!b.width) continue; var y=Math.round(b.top/6); (lines[y]=lines[y]||[]).push(n.data[i]); } }
+  var ys=Object.keys(lines).map(Number).sort(function(a,b){return a-b;});
+  return JSON.stringify({lines:ys.map(function(y){return lines[y].join('').replace(new RegExp(NB,'g'),' ').trim()}), fs:getComputedStyle(h).fontSize, text:h.textContent.replace(new RegExp(NB,'g'),' ').replace(/\\s+/g,' ').trim(), ov:document.documentElement.scrollWidth>innerWidth});
+})()`;
+for (const w of [390, 360]) {
+  await load(w, 800); await show("about");
+  const r = JSON.parse(await ev(H1LINES));
+  ok(r.text === "Seen. Heard. Understood. Connected to the access they have a right to.", `phone ${w}: About h1 wording unchanged`);
+  ok(JSON.stringify(r.lines) === JSON.stringify(["Seen. Heard. Understood.", "Connected to the access", "they have a right to."]), `phone ${w}: About h1 breaks into three lines with no widow or stranded preposition (${r.lines.join(" | ")}, ${r.fs})`);
+  ok(!r.ov, `phone ${w}: no sideways scroll`);
+  const hy = JSON.parse(await ev(`(function(){var e=document.querySelector('#page-about h1').getBoundingClientRect();return JSON.stringify([e.top+scrollY-60,e.bottom+scrollY+160])})()`));
+  const sr = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: Math.max(0, hy[0]), width: w, height: hy[1] - Math.max(0, hy[0]), scale: 1 } });
+  fs.writeFileSync(path.join(OUT, `about-h1-phone-${w}.png`), Buffer.from(sr.data, "base64"));
+}
+await load(1440, 900); await show("about");
+{
+  const r = JSON.parse(await ev(H1LINES));
+  ok(JSON.stringify(r.lines) === JSON.stringify(["Seen. Heard. Understood.", "Connected to the access", "they have a right to."]) && r.fs === "46.4px", `desktop 1440: About h1 renders exactly as before the fix, three lines at 46.4px (${r.lines.join(" | ")}, ${r.fs})`);
 }
 await load(1440, 900);
 await show("directory");

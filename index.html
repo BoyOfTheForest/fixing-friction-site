@@ -1360,6 +1360,10 @@
         .ab-matthew-photo,.ab-person-photo{max-width:460px;}
         .ab-cultcat{flex-direction:column;align-items:flex-start;gap:14px;}
       }
+      @media (max-width:600px){
+        #page-about h1{font-size:clamp(1.35rem,6.6vw,1.9rem) !important;}
+        #page-about h1 .ab-h1-b,#page-about h1 .ab-h1-c{display:block;}
+      }
 </style>
     <script type="application/ld+json">
     {
@@ -1875,7 +1879,7 @@
           <p class="eyebrow">Client stories</p>
           <h2 data-otp-label="Client stories" class="u16">Three engagements, three outcomes</h2>
           <div class="grid3 story-cards">
-            <div class="card"><span class="tag">CareFirst BlueCross BlueShield</span><p class="small">For CareFirst BlueCross BlueShield, I delivered two keynote training sessions to more than 1,200 employees, and they went on to charter the company&rsquo;s first Neurodiversity Employee Resource Group.</p></div>
+            <div class="card"><span class="tag">CareFirst BlueCross BlueShield</span><p class="small">For CareFirst BlueCross BlueShield, I delivered two keynote training sessions to more than 1,200 employees, and employees there went on to charter the company&rsquo;s first Neurodiversity Employee Resource Group.</p></div>
             <div class="card"><span class="tag">Duke University</span><p class="small">For Duke University, I keynoted the State of Inaccessibility Summit, the anchor event of Disability Pride Week 2024, where students turned their own access barriers into recommendations for campus leadership.</p></div>
             <div class="card"><span class="tag">Canon USA</span><p class="small">For Canon USA, I have spent more than a decade teaching photographers on stage and on the page, reaching thousands of people.</p></div>
           </div>
@@ -4491,7 +4495,7 @@
             <section class="page" id="page-about" aria-label="About">
         <div>
           <p class="eyebrow">About · From barriers to belonging</p>
-          <h1 style="font-size:clamp(2rem,4.4vw,2.9rem);margin:8px 0 12px;line-height:1.18;text-wrap:balance;"><span style="display:block;">Seen. Heard. Understood.</span> <span style="display:block;text-wrap:balance;">Connected to the access they have a right&nbsp;to.</span></h1>
+          <h1 style="font-size:clamp(2rem,4.4vw,2.9rem);margin:8px 0 12px;line-height:1.18;text-wrap:balance;"><span style="display:block;">Seen. Heard. Understood.</span> <span style="display:block;text-wrap:balance;"><span class="ab-h1-b">Connected to the access</span> <span class="ab-h1-c">they have a right&nbsp;to.</span></span></h1>
           <p class="lede">The story, the team, and the mission behind Fixing Friction: Accessibility Solutions through Speaking, Training, Compliance, and Consulting, from Fort Collins, Colorado. Friction is a systems mismatch, never a character flaw.</p>
         </div>
         <figure class="about-bleed"><img src="assets/ee4ea5baa37e.webp" srcset="assets/ee4ea5baa37e-800.webp 800w, assets/ee4ea5baa37e-1280.webp 1280w, assets/ee4ea5baa37e.webp 2352w" sizes="(max-width: 900px) 100vw, 1020px" alt="Illustration of three people arriving together at a modern civic building entrance by way of a wide ramp with teal handrails: a person using a wheelchair, a man with a hearing aid carrying a tablet, and a woman with a white cane, in warm late-afternoon light." width="2352" height="1008" fetchpriority="high" decoding="async" /><figcaption>Illustration: the accessible route as the main arrival, the kind of entrance this practice works toward.</figcaption></figure>
@@ -4547,6 +4551,25 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="ab-stories" id="about-brand-stories">
+          <h2 class="u12">Brand stories</h2>
+          <div class="ab-story">
+            <p class="eyebrow">The CultCat story</p>
+            <h3 class="ab-story-h">CultCat</h3>
+            <p class="u08">CultCat started in 2011 as a creative studio, rooted in a traditional Fine Arts education in Eastern Europe. It grew into a branding agency whose work has been featured in Forbes US and on The Futur. Its mission is to show up and deliver work that has substance.</p>
+          </div>
+        <div class="ab-story">
+          <p class="eyebrow">The Fixing Friction story</p>
+          <h3 class="ab-story-h">Three decades on&nbsp;the&nbsp;other side of&nbsp;the&nbsp;barrier</h3>
+          <p class="u08">Matthew Cicanese caught meningitis at age one. It left him Deaf, with a capital D, and with vision in one eye. He has met, in his own daily life, the barriers he now audits for other people: the door closer set too heavy, the sign printed too faint, the form that fails at midnight. That is where this practice starts. The person checking your building, your website, or your polling place knows from the inside what a barrier costs the person who meets it.</p>
+          <p class="u22">The trained eye came from photography. As a macro photographer, Matthew learned to find the small, camouflaged thing everyone else walked past. Accessibility field work turned out to need the same eye. The barrier that ends a visit is rarely the dramatic one. It is the small one nobody noticed, until it stopped somebody.</p>
+          <p class="u22">The audit work came first: a proactive ADA audit for the JB Duke Hotel at Duke University, and accessibility discovery work at Fort Collins City Hall that led to new high contrast signage. Today the work has two homes. Litmus Collective is the corporate training practice, where Matthew trains teams inside organizations. Fixing Friction is the home for individuals and families, and Fixing Friction ADA is the accessibility practice you are reading now. He is based in Fort Collins, Colorado, serves the surrounding region, roughly a 50 mile radius, for on site reviews, and works with clients anywhere on digital reviews. The voting place field study across Larimer County is the newest piece of the work, and it is where the Voting module comes from.</p>
+        </div>
+
+        <div class="zig"><figure class="ph"><img src="assets/matthew-fieldwork.webp" alt="Matthew Cicanese crouching on the forest floor among palmetto fronds, wearing a brown brimmed hat and plaid flannel shirt, looking closely at the ground." width="960" height="540" loading="lazy" decoding="async" style="object-position:center 35%;" /><figcaption>Matthew Cicanese in the field: close looking, in place, before anything is written down.</figcaption></figure><div class="zig-text"><h3 class="u14">The eye is the instrument.</h3><p>The same eye that finds a camouflaged insect in the field finds the barrier everyone else walked past. That is not a figure of speech here. It is the method. Every review starts by looking closely, in the place itself. Findings are written only after the looking is done.</p></div></div>
+
         </div>
 
         <div id="about-mission">
@@ -4675,25 +4698,6 @@
           <p class="u01"><strong style="color:#FFFFFF;">Matthew Cicanese, ADAC</strong> · Founder of Fixing Friction · Fort Collins, Colorado<br />On-site reviews across Fort Collins and the surrounding region, roughly a 50 mile radius; digital reviews anywhere.</p>
           <div class="btnrow"><a href="mailto:hello@fixingfriction.com" class="btn primary">hello@fixingfriction.com</a><a href="#start" class="btn ghost" data-go="start">Start a conversation</a></div>
         </div>
-        <div class="ab-stories" id="about-brand-stories">
-          <h2 class="u12">Brand stories</h2>
-          <div class="ab-story">
-            <p class="eyebrow">The CultCat story</p>
-            <h3 class="ab-story-h">CultCat</h3>
-            <p class="u08">CultCat started in 2011 as a creative studio, rooted in a traditional Fine Arts education in Eastern Europe. It grew into a branding agency whose work has been featured in Forbes US and on The Futur. Its mission is to show up and deliver work that has substance.</p>
-          </div>
-        <div class="ab-story">
-          <p class="eyebrow">The Fixing Friction story</p>
-          <h3 class="ab-story-h">Three decades on&nbsp;the&nbsp;other side of&nbsp;the&nbsp;barrier</h3>
-          <p class="u08">Matthew Cicanese caught meningitis at age one. It left him Deaf, with a capital D, and with vision in one eye. He has met, in his own daily life, the barriers he now audits for other people: the door closer set too heavy, the sign printed too faint, the form that fails at midnight. That is where this practice starts. The person checking your building, your website, or your polling place knows from the inside what a barrier costs the person who meets it.</p>
-          <p class="u22">The trained eye came from photography. As a macro photographer, Matthew learned to find the small, camouflaged thing everyone else walked past. Accessibility field work turned out to need the same eye. The barrier that ends a visit is rarely the dramatic one. It is the small one nobody noticed, until it stopped somebody.</p>
-          <p class="u22">The audit work came first: a proactive ADA audit for the JB Duke Hotel at Duke University, and accessibility discovery work at Fort Collins City Hall that led to new high contrast signage. Today the work has two homes. Litmus Collective is the corporate training practice, where Matthew trains teams inside organizations. Fixing Friction is the home for individuals and families, and Fixing Friction ADA is the accessibility practice you are reading now. He is based in Fort Collins, Colorado, serves the surrounding region, roughly a 50 mile radius, for on site reviews, and works with clients anywhere on digital reviews. The voting place field study across Larimer County is the newest piece of the work, and it is where the Voting module comes from.</p>
-        </div>
-
-        <div class="zig"><figure class="ph"><img src="assets/matthew-fieldwork.webp" alt="Matthew Cicanese crouching on the forest floor among palmetto fronds, wearing a brown brimmed hat and plaid flannel shirt, looking closely at the ground." width="960" height="540" loading="lazy" decoding="async" style="object-position:center 35%;" /><figcaption>Matthew Cicanese in the field: close looking, in place, before anything is written down.</figcaption></figure><div class="zig-text"><h3 class="u14">The eye is the instrument.</h3><p>The same eye that finds a camouflaged insect in the field finds the barrier everyone else walked past. That is not a figure of speech here. It is the method. Every review starts by looking closely, in the place itself. Findings are written only after the looking is done.</p></div></div>
-
-        </div>
-
       <p class="ff-begin">Not sure where to begin? <a href="#scorecards" data-go="scorecards">Take the Scorecard</a> and get one honest starting point.</p>
       </section>
 

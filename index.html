@@ -1381,25 +1381,52 @@
       @media (max-width:900px){.ff-stages{grid-template-columns:1fr;}.ff-lens-list{grid-template-columns:1fr;}}
       @media (max-width:860px){.ff-ss-grid{grid-template-columns:1fr;}}
 
-      /* ===== Brief Phase 3: the A Ladder (How it works). A journey in order, not a scope menu. ===== */
+    
+      /* ===== Brief Phase 3 (layout revision): A Ladder as a rising-steps summary plus an offset stepped list with a small schematic per step. ===== */
       .ff-ladder-wrap{scroll-margin-top:92px;}
-      .ff-ladder-wrap > .lede{max-width:46rem;}
-      .ff-ladder{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:none;}
-      .ff-ladder > li{position:relative;border-top:2px solid var(--ink);padding-top:58px;}
-      .ff-ladder .ff-num{position:absolute;top:-2px;left:0;width:44px;height:44px;margin-top:6px;border:2px solid var(--ink);border-radius:50%;background:#FFFFFF;color:var(--ink);font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;font-family:"Sora","Public Sans",system-ui,sans-serif;}
-      .ff-ladder h3{font-size:1.3rem;margin:0 0 8px;}
-      .ff-ladder p{font-size:.97rem;}
-      .ff-step-links{display:flex;flex-direction:column;align-items:flex-start;margin-top:12px;}
+      .ff-ladder-wrap .ln{display:block;}
+      .ff-ladder-h2{text-wrap:balance;}
+      .ff-ladder-intro{max-width:46rem;}
+      .ff-stairs{margin-top:34px;display:flex;align-items:flex-end;gap:10px;padding:18px 18px 0;overflow:hidden;}
+      .ff-stair{flex:1 1 0;min-width:0;height:var(--h);border-radius:10px 10px 0 0;color:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:10px;text-align:center;}
+      .ff-stair-n{color:#FFFFFF;font-family:"Sora","Public Sans",system-ui,sans-serif;font-weight:800;font-size:1.35rem;line-height:1.1;}
+      .ff-stair-t{color:#FFFFFF;font-weight:700;font-size:1rem;line-height:1.2;}
+      .ff-ladder{list-style:none;margin:34px 0 0;padding:0;display:flex;flex-direction:column;gap:26px;}
+      .ff-ladder > li{display:grid;grid-template-columns:104px minmax(0,30.5rem);column-gap:24px;align-items:start;border-left:4px solid var(--ink);padding-left:22px;}
+      .ff-ladder > li:nth-child(1){margin-left:0;}
+      .ff-ladder > li:nth-child(2){margin-left:36px;}
+      .ff-ladder > li:nth-child(3){margin-left:72px;}
+      .ff-ladder > li:nth-child(4){margin-left:108px;}
+      .ff-ladder > li:nth-child(5){margin-left:144px;}
+      .ff-tile{width:104px;height:104px;display:block;}
+      .ff-ladder h3{font-size:1.35rem;margin:0 0 6px;display:flex;align-items:center;gap:12px;}
+      .ff-ladder .ff-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--ink);border-radius:50%;font-family:"Sora","Public Sans",system-ui,sans-serif;font-weight:800;font-size:1rem;flex:0 0 auto;}
+      .ff-ladder .ff-step-body > p:not(.ff-step-links){font-size:1rem;line-height:1.55;}
+      .ff-step-links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:12px;}
       .ff-step-links a:not(.btn){display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--accent-deep);text-decoration:underline;text-underline-offset:3px;}
       .ff-step-links a:not(.btn):hover{color:var(--ink);}
-      .ff-step-links a.btn{min-height:44px;}
-      .ff-note{margin-top:34px;max-width:46rem;font-size:1.05rem;}
-      @media (max-width:1099px){
-        .ff-ladder{grid-template-columns:1fr;gap:0;}
-        .ff-ladder > li{border-top:0;border-left:2px solid var(--ink);margin-left:21px;padding:0 0 30px 40px;}
-        .ff-ladder > li:last-child{border-left-color:transparent;padding-bottom:0;}
-        .ff-ladder .ff-num{top:0;left:-23px;margin-top:0;}
-        .ff-ladder h3{padding-top:8px;}
+      .ff-step-links a.btn{min-height:44px;white-space:nowrap;width:fit-content;}
+      .ff-note{margin-top:36px;max-width:46rem;font-size:1.05rem;}
+      .ff-ladder-wrap .ff-close{text-wrap:balance;max-width:none;}
+      @media (max-width:900px){
+        .ff-ladder > li:nth-child(2){margin-left:20px;}
+        .ff-ladder > li:nth-child(3){margin-left:40px;}
+        .ff-ladder > li:nth-child(4){margin-left:60px;}
+        .ff-ladder > li:nth-child(5){margin-left:80px;}
+      }
+      @media (max-width:600px){
+        .ff-stairs{gap:6px;padding:14px 10px 0;}
+        .ff-stair{padding-top:8px;}
+        .ff-stair-n{font-size:1.1rem;}
+        .ff-stair-t{font-size:.78rem;}
+        .ff-ladder > li{grid-template-columns:56px minmax(0,1fr);column-gap:10px;padding-left:10px;}
+        .ff-ladder > li:nth-child(2){margin-left:4px;}
+        .ff-ladder > li:nth-child(3){margin-left:8px;}
+        .ff-ladder > li:nth-child(4){margin-left:12px;}
+        .ff-ladder > li:nth-child(5){margin-left:16px;}
+        .ff-tile{width:56px;height:56px;}
+        .ff-ladder h3{font-size:1.2rem;gap:10px;}
+        .ff-step-links a.btn{padding-left:18px;padding-right:18px;font-size:.95rem;}
       }
 </style>
     <script type="application/ld+json">
@@ -1991,45 +2018,6 @@
           <details class="more-text"><summary>See the four places as a chart</summary><div class="more-body"><figure class="diagram"><svg viewBox="0 0 880 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four kinds of Accessibility Friction, one practice"><text x="440" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="19" font-weight="700" fill="#102A43">Four kinds of Accessibility Friction, one practice</text><text x="24" y="84" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Digital Friction</text><rect x="24" y="96" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="96" width="640" height="24" rx="8" fill="#2563EB"/><text x="24" y="152" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Physical Friction</text><rect x="24" y="164" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="164" width="540" height="24" rx="8" fill="#0F766E"/><text x="24" y="220" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Communications and</text><text x="24" y="242" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Workplace Friction</text><rect x="24" y="254" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="254" width="460" height="24" rx="8" fill="#9A3412"/><text x="24" y="310" font-family="Libre Franklin, sans-serif" font-size="16" font-weight="600" fill="#102A43">Technology Friction</text><rect x="24" y="322" width="832" height="24" rx="8" fill="none" stroke="#BFDBFE" stroke-width="2"/><rect x="24" y="322" width="370" height="24" rx="8" fill="#102A43"/></svg><figcaption>Infographic: the four kinds of friction this practice is built to close. Diagram bars are illustrative of scope, not measured figures.</figcaption></figure></div></details>
           <ul class="friction-index friction-grid"><li><span class="tag">Friction 1</span><div><h3>Digital Friction</h3><p class="small">Websites, forms, portals, PDFs, and application processes. This is the friction the two web deadlines above are asking you to remove.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-digital">Read the full Digital Friction card</a></p></div></li><li><span class="tag">Friction 2</span><div><h3>Physical Friction</h3><p class="small">Buildings, routes, parking, counters, signage, restrooms, meeting rooms, event spaces, and voting places. The barrier a visitor meets first is usually at arrival.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-physical">Read the full Physical Friction card</a></p></div></li><li><span class="tag">Friction 3</span><div><h3>Communications and Workplace Friction</h3><p class="small">The Title I part: hiring, onboarding, employee rights and resources, the accommodation process, etiquette, support, and awareness inside the workplace.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-comms">Read the full Communications and Workplace Friction card</a></p></div></li><li><span class="tag">Friction 4</span><div><h3>Technology Friction</h3><p class="small">The wrong software, or too much of it: too many overlapping tools, none of them quite right, costing time every day.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-technology">Read the full Technology Friction card</a></p></div></li></ul><details class="more-text"><summary>See how it compounds, and the prevention</summary><div class="more-body"><p>Left standing, it does not stay in those four places. It compounds into three more: Legal Friction, Time Friction, and Bottom-line Friction.</p><ul class="friction-index"><li><span class="tag">Friction 5</span><div><h3>Legal Friction</h3><p class="small">What ADA non-compliance becomes over time: complaints, investigations, and lawsuits, including class actions, aimed at barriers that were visible, reported, or documented and still left standing.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-legal">Read the full Legal Friction card</a></p></div></li><li><span class="tag">Friction 6</span><div><h3>Time Friction</h3><p class="small">The time Legal Friction pulls out of the week: leadership time, legal time, and staff time spent responding to a problem instead of doing the planned work that would have prevented it.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-time">Read the full Time Friction card</a></p></div></li><li><span class="tag">Friction 7</span><div><h3>Bottom-line Friction</h3><p class="small">What executives see in the numbers: penalties, legal and settlement costs, remediation done in a rush at a premium, and the quieter loss of customers, residents, and employees who hit a barrier and never come back.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-bottomline">Read the full Bottom-line Friction card</a></p></div></li><li><span class="tag warm">The prevention</span><div><h3>The work that stops the compounding</h3><p class="small">Training that stops new friction being built, audits and assessments that name what is standing, remediation that removes it, and transition planning that sequences the rest with owners and dates.</p><p class="u04"><a href="#debt" class="quiet-link" data-go="debt" data-jump="friction-prevention">Read the full prevention card</a></p></div></li></ul><p style="max-width:46rem;margin-top:18px;">People reveal this friction every day. When the paved route does not go where people need to go, they carve a desire path across the grass. People vote with their actions. Frame it correctly: they are revealing friction in the system, not misbehaving. This practice reads those signals, measures the friction, and puts the fixes in an order your team can finish.</p></div></details><div class="btnrow"><a href="#debt" class="btn ghost" data-go="debt">Read the full Friction cards in Reference</a></div>
         </div>
-        <div class="ff-ladder-wrap" id="how-it-works">
-          <p class="eyebrow">HOW IT WORKS</p>
-          <h2 class="ff-h2" data-otp-label="How it works">Assess, address, align, advance, ascend</h2>
-          <p class="lede">Five steps, in order, for every engagement. Friction shows where it builds and what it becomes. This is how we work on it, together, from where you stand now to actually moving.</p>
-          <ol class="ff-ladder">
-            <li>
-              <span class="ff-num" aria-hidden="true">1</span>
-              <h3>Assess</h3>
-              <p>We audit where you stand now, in your building, your systems, or your own working life, before anyone prescribes a fix.</p>
-              <p class="ff-step-links"><a href="#scorecards" data-go="scorecards">Take the Scorecard</a><a href="#audits" data-go="audits">Start with an assessment</a></p>
-            </li>
-            <li>
-              <span class="ff-num" aria-hidden="true">2</span>
-              <h3>Address</h3>
-              <p>In a discovery call, we go through the findings together, face to face, and name honestly what needs attention.</p>
-              <p class="ff-step-links"><a href="#start" data-go="start">Start a conversation</a></p>
-            </li>
-            <li>
-              <span class="ff-num" aria-hidden="true">3</span>
-              <h3>Align</h3>
-              <p>Through Socratic conversation and coaching, we get clear together on what matters most, what comes first, and what good looks like.</p>
-              <p class="ff-step-links"><a href="#inside" data-go="inside">Inside Fixing Friction</a></p>
-            </li>
-            <li>
-              <span class="ff-num" aria-hidden="true">4</span>
-              <h3>Advance</h3>
-              <p>We map the route you need to make progress, step by step, with an order you can follow and owners for each part.</p>
-              <p class="ff-step-links"><a href="#audits" data-go="audits" data-jump="levels">See the Diagnostic Ladder</a></p>
-            </li>
-            <li>
-              <span class="ff-num" aria-hidden="true">5</span>
-              <h3>Ascend</h3>
-              <p>We put in place what you need to get off the ground and actually start making movement, and the work begins for real.</p>
-              <p class="ff-step-links"><a href="#start" class="btn primary" data-go="start">Start with a pilot session</a></p>
-            </li>
-          </ol>
-          <p class="ff-note">Here for yourself? Your first step is the same one. Start with the Scorecard, and the conversation that follows it.</p>
-          <p class="ff-close">Every engagement starts at Assess. Nobody starts at Ascend, and nobody is asked to.</p>
-        </div>
         <div>
           <p class="eyebrow">The diagnostic ladder</p>
           <details class="more-text"><summary>See the order of the work as a picture</summary><div class="more-body"><figure class="diagram"><svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagnose first. Prescribe second.: Diagnose first, Name the barrier, Put fixes in order, Fix and re-check"><text x="400" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="22" font-weight="700" fill="#102A43">Diagnose first. Prescribe second.</text><rect x="16" y="64" width="176" height="108" rx="14" fill="#1D4ED8"/><text x="104" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Diagnose</text><text x="104" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">first</text><path d="M196 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="212" y="64" width="176" height="108" rx="14" fill="#0F766E"/><text x="300" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Name the</text><text x="300" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">barrier</text><path d="M392 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="408" y="64" width="176" height="108" rx="14" fill="#9A3412"/><text x="496" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Put fixes</text><text x="496" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">in order</text><path d="M588 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="604" y="64" width="176" height="108" rx="14" fill="#102A43"/><text x="692" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Fix and</text><text x="692" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">re-check</text><rect x="16" y="204" width="764" height="10" rx="5" fill="#E0F2FE"/></svg><figcaption>Infographic: the order the work always follows.</figcaption></figure></div></details>
@@ -2054,6 +2042,56 @@
             </div><details class="more-text"><summary>More ways in</summary><div class="more-body"><div class="summary-rows"><div class="summary-row"><div><h3>The old way</h3><p class="small">The report lands. Then nothing moves. Here, the review writes the plan as it goes, in words your team already speaks, and the plan stays current until the last item is verified.</p></div><a href="#plans" class="quiet-link" data-go="plans">See remediation and transition planning</a></div>
             <div class="summary-row"><div><h3>Timing and awareness</h3><p class="small">Awareness dates do not create the need. They create the deadline.</p></div><a href="#keydates" class="quiet-link" data-go="keydates">See key dates and the planning calendar</a></div>
           </div></div></details>
+        </div>
+        <div class="ff-ladder-wrap" id="how-it-works">
+          <p class="eyebrow">HOW IT WORKS</p>
+          <h2 class="ff-h2 ff-ladder-h2" data-otp-label="How it works">Assess, address, align,&nbsp;advance, ascend</h2>
+          <p class="lede ff-ladder-intro"><span class="ln">Five steps, in&nbsp;order, for&nbsp;every&nbsp;engagement.</span><span class="ln">Friction shows where it&nbsp;builds and&nbsp;what it&nbsp;becomes.</span><span class="ln">This is&nbsp;how we&nbsp;work on&nbsp;it,&nbsp;together,</span><span class="ln">from&nbsp;where you&nbsp;stand now to&nbsp;actually&nbsp;moving.</span></p>
+          <figure class="diagram ff-stairs" role="img" aria-label="Five rising steps, in order: 1 Assess, 2 Address, 3 Align, 4 Advance, 5 Ascend"><span class="ff-stair" style="--h:70px;background:#1D4ED8"><span class="ff-stair-n">1</span><span class="ff-stair-t">Assess</span></span><span class="ff-stair" style="--h:104px;background:#0F766E"><span class="ff-stair-n">2</span><span class="ff-stair-t">Address</span></span><span class="ff-stair" style="--h:138px;background:#9A3412"><span class="ff-stair-n">3</span><span class="ff-stair-t">Align</span></span><span class="ff-stair" style="--h:172px;background:#102A43"><span class="ff-stair-n">4</span><span class="ff-stair-t">Advance</span></span><span class="ff-stair" style="--h:206px;background:#1D4ED8"><span class="ff-stair-n">5</span><span class="ff-stair-t">Ascend</span></span></figure>
+          <ol class="ff-ladder">
+            <li>
+              <svg class="ff-tile" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Magnifying glass over a document"><rect x="1.5" y="1.5" width="93" height="93" rx="14" fill="#F4F8FE" stroke="#DFE6F0" stroke-width="3"/><rect x="26" y="16" width="38" height="50" rx="4" fill="#FFFFFF" stroke="#102A43" stroke-width="3"/><path d="M34 30h22M34 40h22M34 50h12" stroke="#102A43" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="58" r="14" fill="#E0F2FE" fill-opacity=".85" stroke="#1D4ED8" stroke-width="5"/><path d="M70 69l12 12" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round"/></svg>
+              <div class="ff-step-body">
+                <h3><span class="ff-num" aria-hidden="true">1</span>Assess</h3>
+                <p>We&nbsp;audit where you&nbsp;stand now, in&nbsp;your&nbsp;building, your&nbsp;systems, or&nbsp;your&nbsp;own working life, before anyone prescribes a&nbsp;fix.</p>
+                <p class="ff-step-links"><a href="#scorecards" data-go="scorecards">Take the Scorecard</a><a href="#audits" data-go="audits">Start with an assessment</a></p>
+              </div>
+            </li>
+            <li>
+              <svg class="ff-tile" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two conversation bubbles facing each other"><rect x="1.5" y="1.5" width="93" height="93" rx="14" fill="#F4F8FE" stroke="#DFE6F0" stroke-width="3"/><path d="M14 20h42a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H32l-10 9v-9h-8a6 6 0 0 1-6-6V26a6 6 0 0 1 6-6z" fill="#1D4ED8" stroke="#102A43" stroke-width="3" transform="translate(0 -2)"/><path d="M40 46h38a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6h-6v9l-10-9H40a6 6 0 0 1-6-6V52a6 6 0 0 1 6-6z" fill="#FFFFFF" stroke="#102A43" stroke-width="3" transform="translate(4 0)"/><path d="M48 62h26M48 69h16" stroke="#102A43" stroke-width="3" stroke-linecap="round" transform="translate(4 -3)"/><path d="M22 28h30M22 35h18" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" transform="translate(0 -2)"/></svg>
+              <div class="ff-step-body">
+                <h3><span class="ff-num" aria-hidden="true">2</span>Address</h3>
+                <p>In&nbsp;a&nbsp;discovery call, we&nbsp;go through the&nbsp;findings together, face to&nbsp;face, and&nbsp;name honestly what needs&nbsp;attention.</p>
+                <p class="ff-step-links"><a href="#start" data-go="start">Start a conversation</a></p>
+              </div>
+            </li>
+            <li>
+              <svg class="ff-tile" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three lines converging into one aligned line"><rect x="1.5" y="1.5" width="93" height="93" rx="14" fill="#F4F8FE" stroke="#DFE6F0" stroke-width="3"/><path d="M12 22L50 48M12 48H50M12 74L50 48" stroke="#102A43" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M50 48H86" stroke="#1D4ED8" stroke-width="6" stroke-linecap="round"/><circle cx="50" cy="48" r="7" fill="#FFFFFF" stroke="#102A43" stroke-width="3"/><circle cx="12" cy="22" r="3.5" fill="#102A43"/><circle cx="12" cy="48" r="3.5" fill="#102A43"/><circle cx="12" cy="74" r="3.5" fill="#102A43"/></svg>
+              <div class="ff-step-body">
+                <h3><span class="ff-num" aria-hidden="true">3</span>Align</h3>
+                <p>Through Socratic conversation and&nbsp;coaching, we&nbsp;get clear together on&nbsp;what matters most, what comes first, and&nbsp;what good looks&nbsp;like.</p>
+                <p class="ff-step-links"><a href="#inside" data-go="inside">Inside Fixing Friction</a></p>
+              </div>
+            </li>
+            <li>
+              <svg class="ff-tile" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A route with a clear path and markers"><rect x="1.5" y="1.5" width="93" height="93" rx="14" fill="#F4F8FE" stroke="#DFE6F0" stroke-width="3"/><path d="M16 76C30 76 30 52 44 52S58 72 70 56 74 30 80 22" fill="none" stroke="#1D4ED8" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 0"/><circle cx="16" cy="76" r="7" fill="#102A43"/><circle cx="44" cy="52" r="6" fill="#FFFFFF" stroke="#102A43" stroke-width="3"/><circle cx="70" cy="56" r="6" fill="#FFFFFF" stroke="#102A43" stroke-width="3"/><path d="M80 22V8" stroke="#102A43" stroke-width="3" stroke-linecap="round"/><path d="M80 8h12l-4 5 4 5H80z" fill="#1D4ED8" stroke="#102A43" stroke-width="2" stroke-linejoin="round"/></svg>
+              <div class="ff-step-body">
+                <h3><span class="ff-num" aria-hidden="true">4</span>Advance</h3>
+                <p>We&nbsp;map the&nbsp;route you&nbsp;need to&nbsp;make progress, step by&nbsp;step, with&nbsp;an&nbsp;order you&nbsp;can follow and&nbsp;owners for&nbsp;each&nbsp;part.</p>
+                <p class="ff-step-links"><a href="#audits" data-go="audits" data-jump="levels">See the Diagnostic Ladder</a></p>
+              </div>
+            </li>
+            <li>
+              <svg class="ff-tile" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rising steps going up"><rect x="1.5" y="1.5" width="93" height="93" rx="14" fill="#F4F8FE" stroke="#DFE6F0" stroke-width="3"/><path d="M12 80h20V64h18V48h18V32h16" fill="none" stroke="#102A43" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><rect x="12" y="68" width="20" height="12" fill="#E0F2FE" stroke="#102A43" stroke-width="3"/><rect x="32" y="52" width="18" height="28" fill="#E0F2FE" stroke="#102A43" stroke-width="3"/><rect x="50" y="36" width="18" height="44" fill="#E0F2FE" stroke="#102A43" stroke-width="3"/><rect x="68" y="20" width="16" height="60" fill="#1D4ED8" stroke="#102A43" stroke-width="3"/></svg>
+              <div class="ff-step-body">
+                <h3><span class="ff-num" aria-hidden="true">5</span>Ascend</h3>
+                <p>We&nbsp;put in&nbsp;place what you&nbsp;need to&nbsp;get off the&nbsp;ground and&nbsp;actually start making movement, and&nbsp;the&nbsp;work begins for&nbsp;real.</p>
+                <p class="ff-step-links"><a href="#start" class="btn primary" data-go="start">Start with a pilot session</a></p>
+              </div>
+            </li>
+          </ol>
+          <p class="ff-note"><span class="ln">Here for&nbsp;yourself? Your&nbsp;first step is&nbsp;the&nbsp;same&nbsp;one.</span><span class="ln">Start with&nbsp;the&nbsp;Scorecard,</span><span class="ln">and&nbsp;the&nbsp;conversation that follows&nbsp;it.</span></p>
+          <p class="ff-close"><span class="ln">Every engagement starts at&nbsp;Assess.</span><span class="ln">Nobody starts at&nbsp;Ascend, and&nbsp;nobody is&nbsp;asked&nbsp;to.</span></p>
         </div>
         <div class="proof">
           <p class="eyebrow u20">Proof from the field</p>

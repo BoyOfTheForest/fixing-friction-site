@@ -1,0 +1,27 @@
+From 7af82365277c3196426a053cab1f473d402a6265 Mon Sep 17 00:00:00 2001
+From: boyoftheforest <info@matthewcicanese.com>
+Date: Sun, 22 Nov 2026 09:09:21 -0700
+Subject: [PATCH] Lever 5: no box inside a box (inner callouts keep a slim
+ accent bar)
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+---
+ index.html | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/index.html b/index.html
+index 563eb87..6b67477 100644
+--- a/index.html
++++ b/index.html
+@@ -1078,6 +1078,8 @@
+       .on-this-page a[aria-current="location"]{background:var(--accent-deep);border-color:var(--accent-deep);color:#FFFFFF;}
+       .on-this-page a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+       section.page h2[id^="otp-"]{scroll-margin-top:140px;}
++      /* Lever 5: no box inside a box. Inner callouts lose their frame and keep a slim accent bar. */
++      .card .answerline,.card .sector-path,.callout .idpd-note,.cal-anchor .cal-capacity{background:transparent;border:0;border-left:3px solid var(--accent);border-radius:0;padding:2px 0 2px 14px;}
+       .page-after > * + *{margin-top:14px;}
+       .page-after .micro{max-width:none;}
+       .hero-bleed .micro strong,.hero-bleed .small strong{color:#FFFFFF;}
+-- 
+2.52.0.windows.1
+

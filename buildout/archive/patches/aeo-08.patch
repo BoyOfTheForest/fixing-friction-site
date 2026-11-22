@@ -1,0 +1,436 @@
+From ec9f304131b9558c7bf3b0b3480b0db9f821eeef Mon Sep 17 00:00:00 2001
+From: boyoftheforest <info@matthewcicanese.com>
+Date: Sun, 22 Nov 2026 09:09:26 -0700
+Subject: [PATCH] SEO and AEO: structured data with prices, static FAQ, FAQPage
+ schema, llms.txt, share image, Buildout footer link
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+---
+ index.html | 314 +++++++++++++++++++++++++++++++++++++++++++++++++----
+ llms.txt   |  39 +++++++
+ 2 files changed, 334 insertions(+), 19 deletions(-)
+ create mode 100644 llms.txt
+
+diff --git a/index.html b/index.html
+index e0181b6..22b5e9c 100644
+--- a/index.html
++++ b/index.html
+@@ -14,7 +14,13 @@
+     <meta property="og:url" content="https://fixingfriction.com/" />
+     <meta property="og:title" id="ogTitle" content="Fixing Friction | Accessibility Solutions: Speaking, Training, Consulting, and Compliance" />
+     <meta property="og:description" id="ogDesc" content="Helping communities and individuals feel seen, heard, understood, and connected to the tools, resources, and access they deserve and have a right to. Accessibility Solutions through Speaking, Training, Consulting, and Compliance, by Matthew Cicanese, ADAC, in Fort Collins, Colorado." />
+-    <meta name="twitter:card" content="summary" />
++    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
++    <meta property="og:image" content="https://fixingfriction.com/assets/og-share.jpg" />
++    <meta property="og:image:width" content="1200" />
++    <meta property="og:image:height" content="630" />
++    <meta property="og:image:alt" content="A consultant and a wheelchair user at a building entrance: Fixing Friction ADA accessibility consulting." />
++    <meta name="twitter:card" content="summary_large_image" />
++    <meta name="twitter:image" content="https://fixingfriction.com/assets/og-share.jpg" />
+     <style>
+       /* Fonts self-hosted: no external requests. */
+ /* latin-ext */
+@@ -1259,21 +1265,289 @@
+ </style>
+     <script type="application/ld+json">
+     {
+-      "@context": "https://schema.org",
+-      "@type": "ProfessionalService",
+-      "name": "Fixing Friction ADA, by Litmus Collective",
+-      "description": "ADA accessibility consulting in Fort Collins, Colorado: Accessibility Assessments, accessibility audits, advising, training, remediation and transition planning.",
+-      "areaServed": "Fort Collins, Colorado and the surrounding region",
+-      "email": "hello@fixingfriction.com",
+-      "makesOffer": [
+-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Snapshot", "description": "Level 1 of the assessment ladder. A free look at a place from the areas open to any visitor: one genuine finding observed on the day, offered in person in plain language with an invitation to talk. No charge and no report. Its job is to open the conversation that the Find Your Starting Point scorecard then guides." } },
+-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accessibility Assessment", "description": "Level 2 of the assessment ladder. A focused accessibility assessment of a single site, on site or digital: one visit, the barriers that block access most photographed, measured where it matters, mapped to the standard and ranked, delivered as a written findings report in plain language, paired with a recommended roadmap, with photographs, measurements where they matter, and the fixes in order." } },
+-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full Accessibility Audit", "description": "Level 3 of the assessment ladder. The complete accessibility assessment of every site, service, and system in the agreed scope, producing the full findings report, a remediation roadmap, and, for public entities, the findings material a self-evaluation and transition plan are built from." } },
+-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ADA Accessibility Advising" } },
+-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ADA Training" } },
+-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ADA Remediation and Transition Planning" } }
+-      ]
++  "@context": "https://schema.org",
++  "@type": "ProfessionalService",
++  "name": "Fixing Friction ADA, by Litmus Collective",
++  "description": "ADA accessibility consulting in Fort Collins, Colorado: Accessibility Assessments, accessibility audits, advising, training, remediation and transition planning.",
++  "areaServed": "Fort Collins, Colorado and the surrounding region",
++  "email": "hello@fixingfriction.com",
++  "makesOffer": [
++    {
++      "@type": "Offer",
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Snapshot",
++        "description": "Level 1 of the assessment ladder. A free look at a place from the areas open to any visitor: one genuine finding observed on the day, offered in person in plain language with an invitation to talk. No charge and no report. Its job is to open the conversation that the Find Your Starting Point scorecard then guides."
++      }
++    },
++    {
++      "@type": "Offer",
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Accessibility Assessment",
++        "description": "Level 2 of the assessment ladder. A focused accessibility assessment of a single site, on site or digital: one visit, the barriers that block access most photographed, measured where it matters, mapped to the standard and ranked, delivered as a written findings report in plain language, paired with a recommended roadmap, with photographs, measurements where they matter, and the fixes in order."
++      }
++    },
++    {
++      "@type": "Offer",
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Full Accessibility Audit",
++        "description": "Level 3 of the assessment ladder. The complete accessibility assessment of every site, service, and system in the agreed scope, producing the full findings report, a remediation roadmap, and, for public entities, the findings material a self-evaluation and transition plan are built from."
++      }
++    },
++    {
++      "@type": "Offer",
++      "itemOffered": {
++        "@type": "Service",
++        "name": "ADA Accessibility Advising"
++      }
++    },
++    {
++      "@type": "Offer",
++      "itemOffered": {
++        "@type": "Service",
++        "name": "ADA Training"
++      }
++    },
++    {
++      "@type": "Offer",
++      "itemOffered": {
++        "@type": "Service",
++        "name": "ADA Remediation and Transition Planning"
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#audits",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 950
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Surface Audit",
++        "description": "One place, public areas only, walked once in the order a visitor meets them. Every barrier found on that surface route is named in a short written summary. Fixed fee for one place."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#audits",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 2500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Single site facility audit",
++        "description": "A full accessibility audit of a single site, priced as scoped."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#audits",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 1500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "WCAG audit, single asset",
++        "description": "A WCAG accessibility audit of a single digital asset."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#audits",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 3500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "WCAG audit, larger site",
++        "description": "A WCAG accessibility audit of a larger website."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#audits",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 3500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Program and policy audit",
++        "description": "An audit of the policies and programs behind the buildings."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#audits",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "minPrice": 12500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Multi-site audit work",
++        "description": "Accessibility audit work across several sites, priced from this amount."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#speaking",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 2500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Keynote speaking, in person",
++        "description": "ADA keynote speaking on Accessibility Friction and desire paths."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#speaking",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 1500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "Keynote speaking, virtual",
++        "description": "ADA keynote speaking on Accessibility Friction and desire paths, delivered virtually."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#materials",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 1500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "The Second Reading: First Look",
++        "description": "First tier of a training materials audit that reads a whole course library at once."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#materials",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 4500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "The Second Reading: Full Second Reading",
++        "description": "Second tier of the training materials audit."
++      }
++    },
++    {
++      "@type": "Offer",
++      "url": "https://fixingfriction.com/#materials",
++      "priceSpecification": {
++        "@type": "PriceSpecification",
++        "priceCurrency": "USD",
++        "price": 7500
++      },
++      "itemOffered": {
++        "@type": "Service",
++        "name": "The Second Reading: Audit and Alignment",
++        "description": "Third tier of the training materials audit."
++      }
++    }
++  ],
++  "url": "https://fixingfriction.com/",
++  "sameAs": [
++    "https://fixingfriction.substack.com/"
++  ],
++  "address": {
++    "@type": "PostalAddress",
++    "addressLocality": "Fort Collins",
++    "addressRegion": "CO",
++    "addressCountry": "US"
++  },
++  "founder": {
++    "@type": "Person",
++    "name": "Matthew Cicanese",
++    "jobTitle": "Certified ADA Coordinator (ADAC), accessibility speaker, trainer and consultant",
++    "hasCredential": {
++      "@type": "EducationalOccupationalCredential",
++      "name": "Certified ADA Coordinator (ADAC)"
++    }
++  }
++}
++    </script>
++    <script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    {
++      "@type": "Question",
++      "name": "What is the ADA?",
++      "acceptedAnswer": {
++        "@type": "Answer",
++        "text": "The Americans with Disabilities Act is the federal civil rights law that requires equal access in employment, public services, public accommodations, and telecommunications, so disabled people can take part on equal terms."
++      }
++    },
++    {
++      "@type": "Question",
++      "name": "What is an ADA Coordinator, and what does ADAC mean?",
++      "acceptedAnswer": {
++        "@type": "Answer",
++        "text": "ADAC is the Certified ADA Coordinator credential. It marks a coordinator trained to help an organization understand its ADA duties, coordinate access work across teams, and keep that work documented and moving. An ADA Coordinator is the person who carries that coordinating role inside an organization. Matthew Cicanese, ADAC, brings three decades of lived experience to the work alongside the credential: the eye came first, and the credential formalized it."
++      }
++    },
++    {
++      "@type": "Question",
++      "name": "What are the key disability awareness days, and when are they?",
++      "acceptedAnswer": {
++        "@type": "Answer",
++        "text": "Five moments a year already put disability on board, HR, and communications calendars. April is Autism Acceptance Month. May is Mental Health Awareness Month, and it includes Global Accessibility Awareness Day. July is Disability Pride Month, with the ADA Anniversary on July 26. October is National Disability Employment Awareness Month, and it includes Invisible Disabilities Week. December 3 is the International Day of Persons with Disabilities. Awareness dates do not create the need. They create the deadline, so planning starts a quarter ahead. See the key dates and planning calendar."
++      }
++    },
++    {
++      "@type": "Question",
++      "name": "How can I ask my workplace to host one of Matthew’s workshops or trainings?",
++      "acceptedAnswer": {
++        "@type": "Answer",
++        "text": "You do not need a budget line or a title to start. First, pick the session that fits what your team is actually hitting: the keynotes are on the Speaking page and the training themes on the Training page. Then give your manager the short version of what the workplace gets: one shared plain language for accessibility, and a team that can spot a barrier before someone hits it. Send them the page, or take the nine-question scorecard and forward your result, so the next step is in writing they can pass along. When the workplace is ready, it writes to hello@fixingfriction.com to hold a date. Most engagements start with one Q1 pilot session."
++      }
++    },
++    {
++      "@type": "Question",
++      "name": "What happens in a Q1 pilot session?",
++      "acceptedAnswer": {
++        "@type": "Answer",
++        "text": "One session, started properly. We set a baseline, run the session, and meet for a debrief to decide the next step together. Nothing longer is promised before that debrief: you see what the session showed, in plain language, and the next step is decided with the evidence in front of you."
++      }
++    },
++    {
++      "@type": "Question",
++      "name": "Is this legal advice?",
++      "acceptedAnswer": {
++        "@type": "Answer",
++        "text": "No. Accessibility guidance and coordination, not legal advice or a legal determination. This practice finds barriers, names them in plain language, and puts the fixes in order. A question that needs a legal determination belongs with your lawyer."
++      }
+     }
++  ]
++}
+     </script>
+   </head>
+   <body>
+@@ -1617,7 +1891,7 @@
+           <p style="margin-top:14px;"><a href="mailto:hello@fixingfriction.com?subject=Booking%20for%20IDPD%20week" class="quiet-link">Limited virtual availability remains for IDPD week: learn more and book</a> &middot; <a href="#start" class="quiet-link" data-go="start">Start with one Q1 pilot session: hello@fixingfriction.com</a></p>
+           <div style="margin-top:30px;">
+             <p class="eyebrow">Common questions</p>
+-            <div class="faq" data-faq="top" style="margin-top:10px;"></div>
++            <div class="faq" data-faq="top" style="margin-top:10px;"><details><summary>What are the key disability awareness days, and when are they?</summary><p>Five moments a year already put disability on board, HR, and communications calendars. April is Autism Acceptance Month. May is Mental Health Awareness Month, and it includes Global Accessibility Awareness Day. July is Disability Pride Month, with the ADA Anniversary on July 26. October is National Disability Employment Awareness Month, and it includes Invisible Disabilities Week. December 3 is the International Day of Persons with Disabilities. Awareness dates do not create the need. They create the deadline, so planning starts a quarter ahead. <a href="#keydates" data-go="keydates">See the key dates and planning calendar</a>.</p></details><details><summary>How can I ask my workplace to host one of Matthew’s workshops or trainings?</summary><p>You do not need a budget line or a title to start. First, pick the session that fits what your team is actually hitting: the keynotes are on the <a href="#speaking" data-go="speaking">Speaking page</a> and the training themes on the <a href="#training" data-go="training">Training page</a>. Then give your manager the short version of what the workplace gets: one shared plain language for accessibility, and a team that can spot a barrier before someone hits it. Send them the page, or take the <a href="#scorecard" data-go="scorecard">nine-question scorecard</a> and forward your result, so the next step is in writing they can pass along. When the workplace is ready, it writes to <a href="mailto:hello@fixingfriction.com">hello@fixingfriction.com</a> to hold a date. Most engagements start with one Q1 pilot session.</p></details><details><summary>What happens in a Q1 pilot session?</summary><p>One session, started properly. We set a baseline, run the session, and meet for a debrief to decide the next step together. Nothing longer is promised before that debrief: you see what the session showed, in plain language, and the next step is decided with the evidence in front of you.</p></details><details><summary>Is this legal advice?</summary><p>No. Accessibility guidance and coordination, not legal advice or a legal determination. This practice finds barriers, names them in plain language, and puts the fixes in order. A question that needs a legal determination belongs with your lawyer.</p></details></div>
+             <p style="margin-top:14px;"><a href="#about" class="quiet-link" data-go="about" data-jump="about-faq">See every common question on the About page</a></p>
+           </div>
+         </div>
+@@ -2460,7 +2734,7 @@
+         <div>
+           <p class="eyebrow">Common questions</p>
+           <h2 style="font-size:1.7rem;margin:8px 0 10px;">Asked, in plain language</h2>
+-          <div class="faq" data-faq="host" style="margin-top:14px;"></div>
++          <div class="faq" data-faq="host" style="margin-top:14px;"><details><summary>How can I ask my workplace to host one of Matthew’s workshops or trainings?</summary><p>You do not need a budget line or a title to start. First, pick the session that fits what your team is actually hitting: the keynotes are on the <a href="#speaking" data-go="speaking">Speaking page</a> and the training themes on the <a href="#training" data-go="training">Training page</a>. Then give your manager the short version of what the workplace gets: one shared plain language for accessibility, and a team that can spot a barrier before someone hits it. Send them the page, or take the <a href="#scorecard" data-go="scorecard">nine-question scorecard</a> and forward your result, so the next step is in writing they can pass along. When the workplace is ready, it writes to <a href="mailto:hello@fixingfriction.com">hello@fixingfriction.com</a> to hold a date. Most engagements start with one Q1 pilot session.</p></details></div>
+         </div>
+ 
+       </section>
+@@ -3683,7 +3957,7 @@
+         <div>
+           <p class="eyebrow">Common questions</p>
+           <h2 style="font-size:1.7rem;margin:8px 0 10px;">Asked, in plain language</h2>
+-          <div class="faq" data-faq="host" style="margin-top:14px;"></div>
++          <div class="faq" data-faq="host" style="margin-top:14px;"><details><summary>How can I ask my workplace to host one of Matthew’s workshops or trainings?</summary><p>You do not need a budget line or a title to start. First, pick the session that fits what your team is actually hitting: the keynotes are on the <a href="#speaking" data-go="speaking">Speaking page</a> and the training themes on the <a href="#training" data-go="training">Training page</a>. Then give your manager the short version of what the workplace gets: one shared plain language for accessibility, and a team that can spot a barrier before someone hits it. Send them the page, or take the <a href="#scorecard" data-go="scorecard">nine-question scorecard</a> and forward your result, so the next step is in writing they can pass along. When the workplace is ready, it writes to <a href="mailto:hello@fixingfriction.com">hello@fixingfriction.com</a> to hold a date. Most engagements start with one Q1 pilot session.</p></details></div>
+         </div>
+ 
+       </section>
+@@ -4507,7 +4781,7 @@
+         <div id="about-faq">
+           <p class="eyebrow">Common questions</p>
+           <h2 style="font-size:1.7rem;margin:8px 0 10px;">Asked, in plain language</h2>
+-          <div class="faq" data-faq="full" style="margin-top:14px;"></div>
++          <div class="faq" data-faq="full" style="margin-top:14px;"><details><summary>What is the ADA?</summary><p>The Americans with Disabilities Act is the federal civil rights law that requires equal access in employment, public services, public accommodations, and telecommunications, so disabled people can take part on equal terms.</p></details><details><summary>What is an ADA Coordinator, and what does ADAC mean?</summary><p>ADAC is the Certified ADA Coordinator credential. It marks a coordinator trained to help an organization understand its ADA duties, coordinate access work across teams, and keep that work documented and moving. An ADA Coordinator is the person who carries that coordinating role inside an organization. Matthew Cicanese, ADAC, brings three decades of lived experience to the work alongside the credential: the eye came first, and the credential formalized it.</p></details><details><summary>What are the key disability awareness days, and when are they?</summary><p>Five moments a year already put disability on board, HR, and communications calendars. April is Autism Acceptance Month. May is Mental Health Awareness Month, and it includes Global Accessibility Awareness Day. July is Disability Pride Month, with the ADA Anniversary on July 26. October is National Disability Employment Awareness Month, and it includes Invisible Disabilities Week. December 3 is the International Day of Persons with Disabilities. Awareness dates do not create the need. They create the deadline, so planning starts a quarter ahead. <a href="#keydates" data-go="keydates">See the key dates and planning calendar</a>.</p></details><details><summary>How can I ask my workplace to host one of Matthew’s workshops or trainings?</summary><p>You do not need a budget line or a title to start. First, pick the session that fits what your team is actually hitting: the keynotes are on the <a href="#speaking" data-go="speaking">Speaking page</a> and the training themes on the <a href="#training" data-go="training">Training page</a>. Then give your manager the short version of what the workplace gets: one shared plain language for accessibility, and a team that can spot a barrier before someone hits it. Send them the page, or take the <a href="#scorecard" data-go="scorecard">nine-question scorecard</a> and forward your result, so the next step is in writing they can pass along. When the workplace is ready, it writes to <a href="mailto:hello@fixingfriction.com">hello@fixingfriction.com</a> to hold a date. Most engagements start with one Q1 pilot session.</p></details><details><summary>What happens in a Q1 pilot session?</summary><p>One session, started properly. We set a baseline, run the session, and meet for a debrief to decide the next step together. Nothing longer is promised before that debrief: you see what the session showed, in plain language, and the next step is decided with the evidence in front of you.</p></details><details><summary>Is this legal advice?</summary><p>No. Accessibility guidance and coordination, not legal advice or a legal determination. This practice finds barriers, names them in plain language, and puts the fixes in order. A question that needs a legal determination belongs with your lawyer.</p></details></div>
+         </div>
+         <div class="cta-band">
+           <p class="eyebrow" style="color:#E0F2FE;">Ready when you are</p>
+@@ -5357,6 +5631,7 @@
+         <p class="small" style="max-width:46rem;">Written in plain language and checked against lived reality as well as the standard: the same two readings this practice gives every finding.</p>
+         <p class="fineprint">Outputs are assessments and recommendations, not legal determinations. Matthew Cicanese, ADAC.</p>
+         <p class="fineprint">Each client&#8217;s data stays that client&#8217;s property. Cross-client views are anonymized averages only. Data is never sold.</p>
++        <p class="fineprint"><a href="buildout/" rel="nofollow" class="quiet-link">Buildout</a></p>
+         <nav class="sitemap" aria-label="Sitemap">
+           <div>
+             <h3 role="heading" aria-level="2">Who We Help</h3>
+@@ -6952,6 +7227,7 @@
+       ];
+       var SETS = { full: [0, 1, 2, 3, 4, 5], top: [2, 3, 4, 5], host: [3] };
+       document.querySelectorAll("[data-faq]").forEach(function (box) {
++        if (box.children.length) return;
+         var set = SETS[box.getAttribute("data-faq")] || SETS.full;
+         set.forEach(function (i) {
+           var d = document.createElement("details");
+diff --git a/llms.txt b/llms.txt
+new file mode 100644
+index 0000000..ec6efde
+--- /dev/null
++++ b/llms.txt
+@@ -0,0 +1,39 @@
++# Fixing Friction
++
++> Fixing Friction is an ADA accessibility practice based in Fort Collins, Colorado, led by Matthew Cicanese, ADAC (Certified ADA Coordinator). It offers accessibility audits and assessments, advising, training, keynote speaking, remediation and transition planning for organizations, plus tools and community for individuals and families. Guidance and coordination, not legal advice or a legal determination.
++
++Website: https://fixingfriction.com/ (one page, sections addressed with #names)
++Contact: hello@fixingfriction.com
++Area served: Fort Collins, Colorado and the surrounding region, on site; clients served virtually.
++
++## What it does
++- Accessibility audits and assessments for buildings, websites and documents, and voting places. Findings are written in plain language, ranked by what blocks access most, then turned into a plan with owners and dates.
++- ADA advising: self-evaluations, access policy, grievance procedures, accommodation questions, fractional ADA Coordinator support.
++- ADA training for leaders, coordinators, facilities, digital, HR and parks teams, and the Second Reading training materials audit.
++- Keynote speaking on Accessibility Friction and desire paths.
++- Remediation and transition planning, tracked until each fix is verified.
++- For individuals and families: scorecards, Brain Blame, CareCircle, Burnout Bingo, and community routes.
++
++## Published prices (USD)
++- Snapshot: free. Surface Audit: $950 for one place.
++- Full Accessibility Audit: single site facility audit $2,500; WCAG audit $1,500 for a single asset and $3,500 for a larger site; program and policy audit $3,500; multi-site work from $12,500.
++- Keynote speaking: $2,500 in person, $1,500 virtual.
++- The Second Reading: First Look $1,500, Full Second Reading $4,500, Audit and Alignment $7,500.
++
++## Key facts
++- Accessibility Friction is the daily drag people hit when a form, doorway, hiring process or tool stack was not built for them. It builds in four places: digital, physical, communications and workplace, and technology. Left standing it compounds into legal, time and bottom-line friction.
++- Title II web deadlines: April 26, 2027 for public entities serving 50,000 or more people; April 26, 2028 for smaller public entities.
++- An audit starts no statutory clock. It does create documented knowledge, which makes doing nothing afterwards the risky move.
++
++## Pages (section addresses on the one page)
++- Home: https://fixingfriction.com/#home
++- Services: https://fixingfriction.com/#services
++- Audits and assessments: https://fixingfriction.com/#audits
++- Remediation and transition planning: https://fixingfriction.com/#plans
++- Training: https://fixingfriction.com/#training
++- Keynote speaking: https://fixingfriction.com/#speaking
++- Voting and polling places: https://fixingfriction.com/#voting
++- Self-evaluation and coordinator support: https://fixingfriction.com/#selfeval
++- Scorecards: https://fixingfriction.com/#scorecards
++- About, and common questions: https://fixingfriction.com/#about
++- Start a conversation: https://fixingfriction.com/#start
+-- 
+2.52.0.windows.1
+

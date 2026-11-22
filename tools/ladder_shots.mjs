@@ -69,6 +69,7 @@ for (const [name, w, h] of sizes) {
   ok(g.tiles.length === 5 && g.tiles.every((t) => t[0] === g.tiles[0][0] && t[1] === g.tiles[0][1]) && g.tiles.every((t, i) => t[2] < g.body[i]), `${name}: five equal-size tiles, each beside its step text (${g.tiles[0][0]}px)`);
   ok(g.stairs.length === 5 && g.stairs.every((s, i) => i === 0 || (s.h > g.stairs[i - 1].h && s.l > g.stairs[i - 1].l)) && g.stairs.every((s) => !s.ov), `${name}: summary diagram rises left to right, labels fit`);
   ok(await ev(`(function(){var w=document.getElementById('how-it-works').getBoundingClientRect().right;var b=document.querySelector('.ff-ladder .btn').getBoundingClientRect().right;return b<=w+1})()`), `${name}: Ascend button stays inside the content width`);
+  ok(await ev(`[].every.call(document.querySelectorAll('.ff-ladder > li'),function(l){var c=getComputedStyle(l);return c.borderLeftWidth==='0px'&&c.borderTopWidth==='0px'&&c.borderRightWidth==='0px'&&c.borderBottomWidth==='0px'})`), `${name}: no vertical bars or borders beside the steps`);
   ok(g.btnH < 60 && g.btnW < 330, `${name}: Ascend button on one line at natural width (${g.btnW}x${g.btnH})`);
   ok(g.links[1][0] - g.links[0][1] >= 8, `${name}: Assess two links on their own lines, separated by ${g.links[1][0] - g.links[0][1]}px`);
   ok(g.pw.every((c) => c <= 68), `${name}: step sentences max ${Math.max(...g.pw)} characters per line (target 45 to 65)`);

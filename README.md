@@ -14,7 +14,7 @@ Static, one-page site. No build step. Live at https://fixingfriction.com (GitHub
 |---|---|
 | `/buildout/` | Design levers: undo and redo prompts, live copy of the old design, patches |
 | `/launch/` | Launch checklist with prompts, including how to open the site to crawlers |
-| `/changes/` | Recent changes, and suggested next changes as copy-paste prompts |
+| `/changes/` | Change log and next steps: sized (small, medium, large), filterable, tick-to-bundle one combined prompt, agent and human SOPs. Data in `docs/changes-data.json` |
 
 ## Check everything with one command
 Needs Node 22 or newer and Google Chrome.
@@ -23,7 +23,7 @@ node tools/check.mjs             # full check: links, assets, structured data, a
 node tools/check.mjs --static    # fast, no browser
 node tools/check.mjs --shots DIR # also save a screenshot of every page (for before and after comparisons)
 python tools/copy_report.py      # copy consistency report in docs/COPY-REPORT.md (report only)
-python tools/build_changes_page.py  # rebuilds /changes/ from the git history
+python tools/build_changes_page.py  # rebuilds /changes/ from docs/changes-data.json and the git history
 ```
 `tools/vendor/axe.min.js` is axe-core 4.10.2 (MPL 2.0). The check also runs on every push through `.github/workflows/check.yml`.
 

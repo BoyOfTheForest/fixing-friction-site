@@ -1,0 +1,479 @@
+{
+ "updated": "2026-11-22",
+ "next": [
+  {
+   "id": "n01",
+   "title": "Real favicon and share image",
+   "size": "S",
+   "owner": "both",
+   "why": "The tab icon is blank and the share image is a temporary crop of the home hero.",
+   "needs": "The logo or mark files (you supply).",
+   "prompt": "Add this favicon and 1200 by 630 share image to fixingfriction.com: [file paths]. Replace assets/og-share.jpg, add the favicon link tags and an apple touch icon, and check the share preview. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 20 minutes of agent work, one commit.",
+   "status": "suggested"
+  },
+  {
+   "id": "n02",
+   "title": "Pick one service as the usual starting point",
+   "size": "S",
+   "owner": "both",
+   "why": "Showing a recommended first step reduces choice overload (Pareto, Von Restorff).",
+   "needs": "Which service books or earns the most.",
+   "prompt": "On fixingfriction.com mark [service] as the usual starting point on the Services page and the home doors, with one short line saying why. Keep everything else equal. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 20 minutes, one commit.",
+   "status": "suggested"
+  },
+  {
+   "id": "n03",
+   "title": "Section-separator images on the homepage",
+   "size": "S",
+   "owner": "both",
+   "why": "Two or three full-bleed bands break up the long page without adding text.",
+   "needs": "Your pick of images already on the site, or new ones.",
+   "prompt": "Add full-bleed image bands as section separators at the top of two or three long sections of the fixingfriction.com homepage, using these existing images: [list]. Keep each band under 320 pixels tall and decorative (empty alt text). Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes, one commit.",
+   "status": "suggested"
+  },
+  {
+   "id": "n04",
+   "title": "Privacy-friendly analytics",
+   "size": "S",
+   "owner": "both",
+   "why": "Shows which pages and scorecard steps people use.",
+   "needs": "Your choice of tool and account.",
+   "prompt": "Add [tool] analytics to fixingfriction.com tracking scorecard started, completed and result shown, and the main buttons, without cookies if possible. Add a sentence to the privacy policy. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n05",
+   "title": "Booking calendar on Start a conversation",
+   "size": "S",
+   "owner": "both",
+   "why": "Lets people book instead of emailing.",
+   "needs": "The GoHighLevel calendar link.",
+   "prompt": "Embed the GoHighLevel booking calendar at [URL] on the Start page of fixingfriction.com, loaded only when the visitor asks for it so the page stays fast, with an accessible fallback link. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n06",
+   "title": "Performance budget in the automatic check",
+   "size": "S",
+   "owner": "agent",
+   "why": "Stops pages quietly getting heavier.",
+   "needs": "Nothing.",
+   "prompt": "Add a performance budget to tools/check.mjs for fixingfriction.com: page weight on a phone connection for the home page and the five heaviest pages, largest image, and font bytes, failing the check when a limit is passed. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n07",
+   "title": "Add LinkedIn and other profiles to the structured data",
+   "size": "S",
+   "owner": "both",
+   "why": "Helps search and answer engines connect the practice to its profiles.",
+   "needs": "The profile URLs.",
+   "prompt": "Add these profile links to the sameAs list in the structured data of fixingfriction.com: [URLs]. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 10 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n08",
+   "title": "Phones: let the Return to my results bar slide away on scroll down",
+   "size": "S",
+   "owner": "agent",
+   "why": "Frees screen space on small phones; the bar returns on scroll up.",
+   "needs": "Nothing; check how it feels on a real phone.",
+   "prompt": "On fixingfriction.com phones, let the sticky Return to my results bar slide out of view while scrolling down and back in on scroll up, respecting reduced motion. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n09",
+   "title": "Tidy the copy report items",
+   "size": "S",
+   "owner": "both",
+   "why": "Mixed Scorecard and scorecard capitalisation and a few straight apostrophes on four pages.",
+   "needs": "Your decision on the preferred spelling.",
+   "prompt": "Using docs/COPY-REPORT.md for fixingfriction.com, apply this decision: [for example: lowercase scorecard except at the start of a sentence or in a name; curly apostrophes everywhere]. Change wording nowhere else and list every edit. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n10",
+   "title": "Print stylesheet",
+   "size": "S",
+   "owner": "agent",
+   "why": "Pages print cleanly (no menus, readable links) for people who print audit and pricing pages.",
+   "needs": "Nothing.",
+   "prompt": "Add a print stylesheet to fixingfriction.com so any page prints without the menu, footer bars and animations, with link addresses shown after links on the pricing and audits pages. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "About 30 minutes.",
+   "status": "suggested"
+  },
+  {
+   "id": "n11",
+   "title": "Answer-first summaries on the main service pages",
+   "size": "M",
+   "owner": "both",
+   "why": "Answer engines quote short, direct answers. A 40 to 60 word summary under each headline plus matching structured data makes each page quotable.",
+   "needs": "A quick read of the wording afterwards.",
+   "prompt": "On the top eight service pages of fixingfriction.com (audits, training, speaking, voting, self-evaluation, advising, plans, services) add a 40 to 60 word answer-first summary under the headline, written only from facts already on the site, and add a matching Service entry with price where one is published to the structured data. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10. List every sentence you wrote so I can review the wording.",
+   "effort": "A few hours, one commit per page group.",
+   "status": "suggested"
+  },
+  {
+   "id": "n12",
+   "title": "Draft the privacy policy, SMS terms and accessibility statement",
+   "size": "M",
+   "owner": "both",
+   "why": "Needed before collecting emails or texting, and expected on an ADA consultancy site.",
+   "needs": "Your approval of the wording before anything is published.",
+   "prompt": "Draft three pages for fixingfriction.com as plain-language drafts for my review: privacy policy, SMS terms (message frequency, Msg and data rates may apply, reply STOP to cancel, HELP for help), and an accessibility statement. Do not publish or link them until I approve the text. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "A few hours plus your review.",
+   "status": "suggested"
+  },
+  {
+   "id": "n13",
+   "title": "Wire the scorecard contact block to GoHighLevel",
+   "size": "M",
+   "owner": "both",
+   "why": "Turns scorecard results into leads and follow-up.",
+   "needs": "The webhook URL (never an API key) and the approved consent text; privacy and SMS pages published first.",
+   "prompt": "Wire the AI scorecard contact block on fixingfriction.com to the GoHighLevel inbound webhook at [URL], set AI_SC_CONTACT_ENABLED to true, add consent wording and spam protection, and test one submission. Never put API keys in the repo. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "A few hours.",
+   "status": "suggested"
+  },
+  {
+   "id": "n14",
+   "title": "Latest posts from the Substack",
+   "size": "M",
+   "owner": "agent",
+   "why": "Fresh content signals and a reason to come back.",
+   "needs": "Nothing, but check how it looks.",
+   "prompt": "Add a Latest from the Substack strip (three most recent post titles and links) to the fixingfriction.com homepage, built at publish time from the Substack feed so the page stays static and fast, with a fallback link if the feed is empty. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "A few hours; adds a small build step.",
+   "status": "suggested"
+  },
+  {
+   "id": "n15",
+   "title": "Case studies from the proof section",
+   "size": "M",
+   "owner": "both",
+   "why": "The JB Duke, Fort Collins City Hall and CareFirst results are the strongest trust signal.",
+   "needs": "Facts and permission for anything beyond what is already public.",
+   "prompt": "Turn the existing proof on fixingfriction.com (JB Duke Hotel, Fort Collins City Hall, CareFirst, Duke, Canon) into short case-study sections on the Proof page, using only facts already on the site. List anything that needs my confirmation. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "A few hours.",
+   "status": "suggested"
+  },
+  {
+   "id": "n16",
+   "title": "Plain-language ADA answers hub",
+   "size": "M",
+   "owner": "both",
+   "why": "A question-and-answer hub built from the existing FAQ and page facts is what answer engines and people search for.",
+   "needs": "A read of every answer before launch.",
+   "prompt": "Build a plain-language ADA questions hub on fixingfriction.com from the existing FAQ and facts already on the site (what the ADA is, ADA Title II web deadlines, what an audit costs, what ADAC means, and similar), each answer 40 to 80 words with FAQPage structured data kept in sync with the visible text. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10. List every answer for my review.",
+   "effort": "A few hours.",
+   "status": "suggested"
+  },
+  {
+   "id": "n17",
+   "title": "Visual regression and scorecard flows in the automatic check",
+   "size": "M",
+   "owner": "agent",
+   "why": "Catches accidental design changes and broken scorecard routes before they go live; adds forced-colours testing.",
+   "needs": "Nothing.",
+   "prompt": "Extend tools/check.mjs for fixingfriction.com: store reference screenshots of every page and fail on unexpected differences, drive the scorecard and AI scorecards through every branch to a result, and test Windows high-contrast (forced colours). Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "A few hours.",
+   "status": "suggested"
+  },
+  {
+   "id": "n18",
+   "title": "Automatic image pipeline",
+   "size": "M",
+   "owner": "agent",
+   "why": "New photos get their 800 and 1280 wide copies, recompression and width and height set without manual steps.",
+   "needs": "Nothing.",
+   "prompt": "Add tools/images.py for fixingfriction.com: given new files in assets/, create the 800 and 1280 wide webp copies, recompress when it is safe, and print the img tag with srcset, sizes, width and height. Document it in the README. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10.",
+   "effort": "A few hours.",
+   "status": "suggested"
+  },
+  {
+   "id": "n19",
+   "title": "Give every page its own web address",
+   "size": "L",
+   "owner": "both",
+   "why": "Today all 38 pages share one address, so search and answer engines can only cite the home page. Separate addresses (for example /audits/) are the biggest search and answer-engine gain left.",
+   "needs": "Your go-ahead after seeing the plan.",
+   "prompt": "Plan and build separate, crawlable web addresses for every page of fixingfriction.com (for example /audits/), each with its own title, description, canonical link and structured data, keeping the site fast and the current # links and the 404 redirects working. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10. Show me the plan first, keep the single-page version reachable through a tag, and make the build repeatable.",
+   "effort": "Several sessions: plan, build step, redirects, testing, launch.",
+   "status": "suggested"
+  },
+  {
+   "id": "n20",
+   "title": "Split the one big file into reusable pieces",
+   "size": "L",
+   "owner": "agent",
+   "why": "A 1 MB index.html is slow and risky to edit. Pieces (header, footer, each page, shared styles) built into the same site make every future change safer and faster.",
+   "needs": "Your go-ahead after seeing the plan; goes together with per-page addresses.",
+   "prompt": "Plan and build a small static build for fixingfriction.com that assembles the site from separate files (shared head, header, footer, one file per page, shared styles and scripts) and produces output identical to today. Prove identical output with the screenshot comparison in tools/check.mjs. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10. Show me the plan first.",
+   "effort": "Several sessions.",
+   "status": "suggested"
+  },
+  {
+   "id": "n21",
+   "title": "Spanish version of the key pages",
+   "size": "L",
+   "owner": "both",
+   "why": "Reaches more of the people the ADA serves and adds a real differentiator.",
+   "needs": "Translation review by a fluent human and your go-ahead.",
+   "prompt": "Plan a Spanish version of the key fixingfriction.com pages (home, audits, scorecard, start) with language alternates in the structured data, a language switch, and accessible markup (lang attributes). Do not machine-publish; produce drafts for human review. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10. Show me the plan first.",
+   "effort": "Several sessions plus human translation review.",
+   "status": "suggested"
+  },
+  {
+   "id": "n22",
+   "title": "Client app front door and member area",
+   "size": "L",
+   "owner": "both",
+   "why": "Connects the site to the Fixing Friction ADA app so clients can sign in and see their findings and plan.",
+   "needs": "Decisions on the app, accounts and data handling.",
+   "prompt": "Plan how fixingfriction.com links to the Fixing Friction ADA app: sign-in entry point, what is public and what is private, data handling and privacy text, and an accessible design. Plan only, no build. Repo: G:\\CLAUDE\\Fixing-Friction-site-v10. List every decision you need from me.",
+   "effort": "Planning session first.",
+   "status": "suggested"
+  }
+ ],
+ "recent": [
+  {
+   "date": "2026-11-22",
+   "title": "Changes page rebuilt as a change log and next-steps hub",
+   "size": "M",
+   "owner": "agent",
+   "tag": "changes-hub",
+   "what": "Small, medium and large sizing for every item, owner tags (agent, human, both), filters, tick-to-bundle with one combined prompt, status tracking, change log with how it was checked and how to undo it, and agent and human SOPs.",
+   "why": "So every future change can be planned, sized, run from one pasted prompt, and logged in one place.",
+   "verified": "Full site check including this page.",
+   "undo": "git revert --no-edit changes-hub"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "No-input pass and polish sweep",
+   "size": "L",
+   "owner": "agent",
+   "tag": "sweep-1",
+   "what": "One-command site check (also run by GitHub on every push); internal build notes moved out of the public source; typed addresses like /audits land on the right section; safe external link attributes and referrer policy; preloaded fonts and 20 large images recompressed (5 MB saved); 1,076 repeated inline styles turned into 24 shared classes; copy consistency report; developer README; reusable skill no-input-polish-pass.",
+   "why": "Safer, faster, easier to maintain, with no visible change.",
+   "verified": "38 pages at 3 widths: 0 violations; 38 before and after screenshots visually identical.",
+   "undo": "git revert --no-edit sweep-1"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Launch checklist page",
+   "size": "M",
+   "owner": "both",
+   "tag": "launch-page",
+   "what": "Hidden /launch/ page: 27 launch steps in six phases with owners, ticks saved in the browser and prompts for the steps Claude can do.",
+   "why": "One place for the human and agent steps to launch, including opening the site to search engines.",
+   "verified": "Accessibility check at two widths.",
+   "undo": "git revert --no-edit launch-page"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Launch gate: robots.txt blocks crawlers",
+   "size": "S",
+   "owner": "both",
+   "tag": "launch-gate",
+   "what": "robots.txt now blocks all crawlers until the team approves the full build; allow-all copy saved with a prompt to restore it.",
+   "why": "Keeps the site out of search and answer engines until it is reviewed.",
+   "verified": "Live file checked.",
+   "undo": "Restore buildout/archive/robots.allow.txt (prompt on /launch/)."
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Buildout page and design levers",
+   "size": "M",
+   "owner": "both",
+   "tag": "buildout-page",
+   "what": "Hidden /buildout/ page with undo and redo prompts for levers 1 to 5, a live copy of the old design and patch files.",
+   "why": "Old design is never deleted, so any change can be undone.",
+   "verified": "Accessibility check at two widths.",
+   "undo": "git revert --no-edit buildout-page"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "SEO and AEO",
+   "size": "M",
+   "owner": "agent",
+   "tag": "aeo-08",
+   "what": "Structured data with founder, credential, address, Substack link and published prices; FAQ answers written into the page source with matching FAQPage schema; llms.txt; share image tags; larger search previews allowed.",
+   "why": "Prepares the site for search and answer engines for when the launch gate opens.",
+   "verified": "Structured data parses and matches the visible FAQ (checked on every run).",
+   "undo": "git revert --no-edit aeo-08"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Responsive images",
+   "size": "M",
+   "owner": "agent",
+   "tag": "lever-07",
+   "what": "800 and 1280 wide copies of every large image, chosen through srcset.",
+   "why": "Looks the same, loads faster on phones.",
+   "verified": "All 178 images carry srcset; no missing files.",
+   "undo": "git revert --no-edit lever-07"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Design levers 1 to 6",
+   "size": "M",
+   "owner": "both",
+   "tag": "lever-01 to lever-06",
+   "what": "Homepage charts and trailing rows folded; sticky On this page bar with scrollspy; hero buttons on 12 pages; intro text beside its photo on 9 pages and duplicate hero photos removed; no box inside a box; one label per destination.",
+   "why": "Shorter pages, clearer next steps, calmer layout.",
+   "verified": "0 violations on all pages; screenshots reviewed.",
+   "undo": "git revert --no-edit lever-0N (see /buildout/)"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Homepage trims, On this page links, Back scroll restore",
+   "size": "M",
+   "owner": "agent",
+   "tag": "937338d",
+   "what": "Four kinds of friction as a 2 by 2 grid, scorecard strip after the two doors, On this page links, scroll restored on Back, stray reduced-motion CSS fixed.",
+   "why": "Less scrolling and a working Back button.",
+   "verified": "Live checks, real click then Back.",
+   "undo": "git revert --no-edit 937338d"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Header polish",
+   "size": "M",
+   "owner": "agent",
+   "tag": "d684ff4",
+   "what": "Shorter, punchier headlines on 15 pages and at most three visible sentences under each headline; the rest sits in a More detail fold-out.",
+   "why": "Faster to read, one idea at a time.",
+   "verified": "No page over 3 visible sentences; 0 violations.",
+   "undo": "git revert --no-edit d684ff4"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Overnight UX pass",
+   "size": "L",
+   "owner": "agent",
+   "tag": "509dbeb",
+   "what": "Hero style chosen per page (full-bleed photo or two-column illustration), working Back button, photo beside callout on 12 pages, SEO basics, 404 page, footer email.",
+   "why": "Better first impression and basic findability.",
+   "verified": "0 violations on 38 pages.",
+   "undo": "git revert --no-edit 509dbeb"
+  },
+  {
+   "date": "2026-11-22",
+   "title": "Accessibility fixes and dead links",
+   "size": "M",
+   "owner": "agent",
+   "tag": "22503d7",
+   "what": "0 axe violations on all 38 pages; dead links fixed; sticky Return to my results bar; hello@fixingfriction.com used everywhere.",
+   "why": "Compliance and trust on an ADA consultancy site.",
+   "verified": "Axe on all pages.",
+   "undo": "git revert --no-edit 22503d7"
+  },
+  {
+   "date": "2026-11-21",
+   "title": "Scorecards and navigation",
+   "size": "L",
+   "owner": "both",
+   "tag": "scorecard work",
+   "what": "Five-menu navigation, unified branching scorecard, revamped results page, three AI scorecards.",
+   "why": "The main route into the services.",
+   "verified": "Walked through live.",
+   "undo": "Per-commit revert."
+  },
+  {
+   "date": "2026-11-21",
+   "title": "Site launched on fixingfriction.com",
+   "size": "L",
+   "owner": "both",
+   "tag": "initial commit",
+   "what": "Single-file site turned into a clean static repo, deployed on GitHub Pages, domain pointed from Squarespace with HTTPS.",
+   "why": "Get the site live.",
+   "verified": "Live and HTTPS.",
+   "undo": "n/a"
+  }
+ ],
+ "sops": {
+  "sizes": [
+   {
+    "key": "S",
+    "name": "Small",
+    "rule": "About 10 to 30 minutes of agent work, one commit, usually one page or one file. Low risk, easy to undo."
+   },
+   {
+    "key": "M",
+    "name": "Medium",
+    "rule": "A few hours. Touches many pages or adds a tool. A few commits, screenshots to review, a tag per piece."
+   },
+   {
+    "key": "L",
+    "name": "Large",
+    "rule": "Several sessions. Changes how the site is built or what it does. Plan first, your approval before building, staged launch."
+   }
+  ],
+  "agent": [
+   {
+    "title": "Run a no-input pass and polish sweep",
+    "when": "After any batch of changes, or on a schedule.",
+    "prompt": "Run the no-input-polish-pass skill on the Fixing Friction site. Repo: {R}. Work on a new branch, run node tools/check.mjs before and after, keep only safe and reversible changes, and finish with the report. Do not merge or push."
+   },
+   {
+    "title": "Log what you just did",
+    "when": "At the end of every piece of work, by the agent.",
+    "prompt": "Add an entry for the work you just finished to docs/changes-data.json (date, title, size S, M or L, owner, tag, what, why, how it was verified, how to undo it), set any finished suggestion to status done, add any new suggestions you noticed, then run python tools/build_changes_page.py and node tools/check.mjs. Repo: {R}."
+   },
+   {
+    "title": "Apply my status updates",
+    "when": "After you tick statuses on the page and copy your updates.",
+    "prompt": "Apply these status updates to docs/changes-data.json, rebuild the page with python tools/build_changes_page.py, and commit: [paste the copied updates]. Repo: {R}."
+   },
+   {
+    "title": "Run the site check",
+    "when": "Before every merge.",
+    "prompt": "Run node tools/check.mjs in {R} and report any failure with the page and rule. Fix what is safe, list the rest."
+   }
+  ],
+  "human": [
+   {
+    "title": "Pick and bundle changes",
+    "steps": [
+     "Open the next-steps list and filter by size or owner.",
+     "Tick the items you want, or press Select all small.",
+     "Press Copy combined prompt and paste it into Claude Code in the site folder.",
+     "Fill any [brackets] in the prompt first (files, links, choices). Items marked Needs: show what to prepare."
+    ]
+   },
+   {
+    "title": "Review a branch before it goes live",
+    "steps": [
+     "Ask Claude for before and after screenshots of the pages named.",
+     "Look at the pages on your phone and your laptop.",
+     "Check the changes entry on this page: what changed, how it was checked, how to undo it.",
+     "Say merge and push, or say what to change."
+    ]
+   },
+   {
+    "title": "Track your decisions",
+    "steps": [
+     "Use the status menus on suggested changes: Suggested, In progress, Done, Skipped.",
+     "Press Copy my status updates and send them to Claude with the Apply my status updates prompt.",
+     "Statuses you set are saved in your browser until Claude records them in the data file."
+    ]
+   },
+   {
+    "title": "Launch steps and approvals",
+    "steps": [
+     "Use the launch checklist page for team approval, legal pages, email DNS, GHL, Twilio and the step that opens the site to crawlers."
+    ],
+    "link": "/launch/"
+   }
+  ]
+ }
+}

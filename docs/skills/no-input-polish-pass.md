@@ -33,7 +33,7 @@ Write or reuse the one-command check (`templates/check.mjs`: static checks plus 
 ## 4. Developer pages (hidden from search, linked discreetly in the footer, `noindex`)
 - Levers or undo page: per-change undo and redo prompts, live copy of the old design, patches.
 - Launch checklist page: phased steps with owners (Claude, Owner, Team), ticks saved locally, prompts for steps Claude can do, and the step that opens the site to crawlers.
-- Changes and next steps page (`templates/build_changes_page.py`): suggested next changes first as copy-paste prompts (each with what it needs from the owner), then recent changes, then the commit list. Regenerate it at the end of every pass.
+- Changes and next steps page (`templates/build_changes_page.py`, data in `docs/changes-data.json`): every suggestion is sized Small, Medium or Large and owned by agent, human or both; filters; tick items to bundle them into one combined prompt (small first, plan-only for large); status tracking; a change log with what, why, how it was checked and how to undo; agent and human SOPs. **At the end of every pass add log entries and new suggestions to the JSON (the page has a Log what you just did prompt) and rebuild the page.**
 - Each page must pass the same accessibility check.
 
 ## 5. Launch gate

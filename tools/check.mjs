@@ -81,11 +81,8 @@ if (faqLd && faqSrc) {
 } else fail("jsonld", "FAQPage schema or FAQ data not found");
 
 // hygiene
-for (const d of ["buildout", "launch", "changes"]) {
-  const f = path.join(ROOT, d, "index.html");
-  if (!fs.existsSync(f)) { fail("devpages", d + " page missing"); continue; }
-  if (!/name="robots" content="noindex/.test(fs.readFileSync(f, "utf8"))) fail("devpages", d + " is not marked noindex");
-}
+// internal build-out pages are not published: they must not exist in the repository (served by GitHub Pages)
+for (const d of ["buildout", "launch", "changes", "docs"]) if (fs.existsSync(path.join(ROOT, d))) fail("unpublish", "/" + d + "/ is in the repository and would be served publicly");
 if (/info@/i.test(html)) fail("email", "old info@ address found");
 for (const f of ["robots.txt", "sitemap.xml", "llms.txt", "404.html", "CNAME"]) if (!fs.existsSync(path.join(ROOT, f))) fail("files", f + " missing");
 const robots = fs.existsSync(path.join(ROOT, "robots.txt")) ? fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8") : "";
@@ -166,17 +163,6 @@ async function browserChecks() {
       note("viewport " + width + "px: " + list.length + " pages scanned");
     }
     if (!SHOTS_ONLY) {
-    // hidden developer pages: accessibility at two widths
-    for (const width of [1280, 375]) {
-      await c.send("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 1, mobile: width < 500 });
-      for (const d of ["buildout", "launch", "changes"]) {
-        await c.send("Page.navigate", { url: base.replace("index.html", d + "/") }); await sleep(900);
-        await c.eval(axeSrc);
-        const v = await c.eval("axe.run(document,{runOnly:{type:'tag',values:" + JSON.stringify(AXE_TAGS) + "}}).then(function(r){return r.violations.map(function(x){return x.id+'('+x.nodes.length+')'})})");
-        if (v.length) fail("axe", "/" + d + "/ @" + width + ": " + v.join(", "));
-        if (await c.eval("document.documentElement.scrollWidth>innerWidth+1")) fail("overflow", "/" + d + "/ scrolls sideways at " + width + "px");
-      }
-    }
     // text spacing override (WCAG 1.4.12): nothing important may clip
     await load(1280, false);
     await c.eval("(function(){var s=document.createElement('style');s.id='ts';s.textContent='*{line-height:1.5 !important;letter-spacing:.12em !important;word-spacing:.16em !important} p{margin-bottom:2em !important}';document.head.appendChild(s)})()");

@@ -73,6 +73,9 @@ const navFoot = ((html.match(/<header class="site">[\s\S]*?<\/header>/) || [""])
 ok(!/For Individuals|ADA Consulting and Compliance/.test(html), "For Individuals and ADA Consulting and Compliance appear nowhere on the site");
 ok(!/Speaking, Training, Consulting, and Compliance/.test(html), "the old services order is gone from the page, titles, meta and structured text");
 ok(!/accelerate/i.test(html) && !/Creative Consulting/i.test(html), "no Accelerate and no Creative Consulting");
+const llmsTxt = fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8");
+ok(!/capital D|with a capital|vision in one eye/i.test(html) && !/capital D|with a capital|vision in one eye/i.test(llmsTxt), "Matthew's bio never uses the phrase capital D or vision in one eye (page, JSON-LD, meta, alt text and llms.txt)");
+ok(html.includes("Deaf on his right and with low vision on his left") && html.includes("Deaf on his right, with low vision on his left"), "the specific wording is present: Deaf on his right, low vision on his left");
 ok(!navFoot.includes("—"), "no em dash in navigation or footer");
 console.log(fails.length ? "\nFAILED: " + fails.length : "\nALL PHASE 4 CHECKS PASSED");
 ws.close(); proc.kill(); srv.close(); process.exit(fails.length ? 1 : 0);

@@ -236,16 +236,17 @@
         position:sticky;top:0;z-index:50;background:#FFFFFF;
         border-bottom:1px solid var(--line);
       }
-      .head-in{max-width:1060px;margin:0 auto;padding:10px 20px;display:flex;flex-wrap:nowrap;align-items:center;gap:12px;}
-      .brandblock{display:flex;flex-direction:column;line-height:1.2;flex:0 1 auto;min-width:0;}
+      .head-in{max-width:1320px;margin:0 auto;padding:10px 28px;display:flex;flex-wrap:nowrap;align-items:center;gap:28px;}
+      .brandblock{display:flex;flex-direction:column;line-height:1.2;flex:0 0 auto;}
       a.brandblock{text-decoration:none;color:inherit;cursor:pointer;}
       .brand{font-family:"Sora","Public Sans","Libre Franklin",system-ui,sans-serif;font-weight:700;font-size:1.12rem;white-space:nowrap;color:var(--ink);}
       .brand .ada{color:var(--accent-deep);}
       .brand-sub{font-size:.78rem;color:var(--muted);font-weight:600;white-space:nowrap;}
-      nav.pages{display:flex;flex-wrap:nowrap;gap:8px;align-items:center;margin-left:auto;}
+      nav.pages{display:flex;flex-wrap:nowrap;gap:4px;align-items:center;margin-left:auto;}
       nav.pages a{
         appearance:none;border:none;background:transparent;color:var(--ink);
-        font:inherit;font-size:.86rem;font-weight:600;padding:10px 11px;border-radius:8px;cursor:pointer;white-space:nowrap;
+        display:inline-flex;align-items:center;min-height:44px;
+        font:inherit;font-size:.86rem;font-weight:600;padding:8px 11px;border-radius:8px;cursor:pointer;white-space:nowrap;
       }
       nav.pages a:hover{color:var(--accent-deep);background:var(--callout);}
       /* Current-page highlight applies ONLY to primary top-level nav items:
@@ -257,7 +258,7 @@
       nav.pages .nav-drop > a[aria-current="page"]{background:transparent;color:var(--accent-deep);box-shadow:inset 0 -3px 0 var(--accent);}
       nav.pages > a[aria-current="page"]:hover,
       nav.pages .nav-drop > a[aria-current="page"]:hover{background:var(--callout);color:var(--accent-deep);}
-      nav.pages a.cta{background:var(--grad);color:#FFFFFF;margin-left:16px;padding:12px 24px;border-radius:999px;}
+      nav.pages a.cta{background:var(--grad);color:#FFFFFF;margin-left:14px;padding:10px 22px;border-radius:999px;flex-shrink:0;}
       nav.pages a.cta:hover{background:var(--accent-deep);color:#FFFFFF;}
       nav.pages a.cta[aria-current="page"]{background:var(--accent-deep);color:#FFFFFF;}
       .menubtn{
@@ -288,6 +289,7 @@
       .nav-drop > a{min-height:44px;padding-left:13px;padding-right:13px;}
       .nav-drop .drop-menu{
         display:none;position:absolute;top:calc(100% - 6px);left:-6px;min-width:248px;
+        max-height:calc(100dvh - 84px);overflow-y:auto;overscroll-behavior:contain;
         background:var(--card);border:1px solid var(--line);border-radius:12px;
         box-shadow:0 18px 34px rgba(16,42,67,.16);padding:8px;z-index:80;
       }
@@ -302,7 +304,9 @@
       .nav-drop .drop-menu a:hover,.nav-drop .drop-menu a:focus-visible{background:var(--callout);color:var(--accent-deep);}
       .nav-drop .drop-menu a[aria-current]{background:transparent;color:var(--ink);}
       .nav-drop .drop-menu a[aria-current]:hover{background:var(--callout);color:var(--accent-deep);}
-      .nav-drop .caret{font-size:.68rem;margin-left:3px;}
+      .nav-drop .caret{display:inline-block;font-size:.68rem;margin-left:4px;transition:transform .18s ease;}
+      .nav-drop.open .caret{transform:rotate(180deg);}
+      @media (prefers-reduced-motion:reduce){.nav-drop .caret{transition:none;}}
       .nav-drop.drop-end .drop-menu{left:auto;right:-6px;}
       .quiet-link{appearance:none;background:none;border:none;padding:0;font:inherit;color:var(--accent-deep);font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
       .quiet-link:hover{color:var(--ink);}
@@ -596,16 +600,17 @@
       .theme h3{font-size:1.5rem;margin:6px 0 8px;}
       .theme p{max-width:46rem;color:var(--muted);}
       .theme .aud{margin-top:8px;color:var(--ink);}
-      .sitemap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;border-top:1px solid var(--line);padding-top:20px;margin-top:16px;}
-      .sitemap h3{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:8px;font-family:"Public Sans","Libre Franklin",system-ui,sans-serif;}
-      .sitemap a{display:block;appearance:none;border:none;background:transparent;color:var(--ink);font:inherit;font-size:.92rem;font-weight:600;padding:4px 0;cursor:pointer;text-align:left;}
+      .sitemap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 24px;border-top:1px solid var(--line);padding-top:24px;margin-top:18px;}
+      .sitemap h3{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line);font-family:"Public Sans","Libre Franklin",system-ui,sans-serif;}
+      .sitemap a{display:block;appearance:none;border:none;background:transparent;color:var(--ink);font:inherit;font-size:.9rem;font-weight:600;line-height:1.35;padding:6px 0;cursor:pointer;text-align:left;}
       .sitemap a:hover{color:var(--accent-deep);text-decoration:underline;}
       @media (max-width:860px){
         .zig{grid-template-columns:1fr;}
-        .sitemap{grid-template-columns:1fr 1fr;}
+        .sitemap a{min-height:44px;display:flex;align-items:center;padding:8px 0;}
       }
       footer.site{border-top:1px solid var(--line);background:var(--bg-soft);}
-      .foot-in{max-width:1060px;margin:0 auto;padding:28px 20px 40px;display:grid;gap:8px;}
+      .foot-in{max-width:1320px;margin:0 auto;padding:36px 28px 48px;display:grid;gap:8px;}
+      .foot-cta{border-top:1px solid var(--line);padding-top:20px;margin-top:14px;max-width:46rem;}
 
       /* Conversion polish: scroll progress, back to top, hero facts */
       .scroll-progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--grad);z-index:120;pointer-events:none;}
@@ -904,13 +909,12 @@
       /* Navigation clarity pass (2026-11-08): five column footer sitemap
          mirroring the top navigation, a wider grouped dropdown measure,
          and the waitlist jump target on the Community page. */
-      .sitemap{grid-template-columns:repeat(5,1fr);}
-      @media (max-width:1000px){.sitemap{grid-template-columns:1fr 1fr;}}
-      @media (max-width:560px){.sitemap{grid-template-columns:1fr;}}
+      .sitemap{grid-template-columns:repeat(5,minmax(0,1fr));}
+      @media (max-width:1100px){.sitemap{grid-template-columns:repeat(3,minmax(0,1fr));}}
+      @media (max-width:720px){.sitemap{grid-template-columns:repeat(2,minmax(0,1fr));}}
+      @media (max-width:520px){.sitemap{grid-template-columns:1fr;}}
       .nav-drop .drop-menu.wide{min-width:330px;}
       #community-membership{scroll-margin-top:92px;}
-      nav.pages{gap:4px;}
-      nav.pages a{padding-left:11px;padding-right:11px;}
       .to-top{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:box-shadow .25s ease;}
       .to-top.show{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
       @media (prefers-reduced-motion: reduce){.to-top{transition:none;transform:none;}}
@@ -1262,6 +1266,8 @@
               <a href="#voting" data-go="voting">Voting &amp; Polling Places</a>
               <a href="#events" data-go="events">Event Accessibility</a>
               <a href="#pathways" data-go="pathways">ADA Pathways: How It Fits Together</a>
+              <span class="drop-sep" role="separator"></span>
+              <a href="#services" data-go="services">All Services</a>
             </span>
           </span>
           <span class="nav-drop">
@@ -1297,6 +1303,8 @@
               <a href="#titles" data-go="titles">The ADA Titles, in Plain Language</a>
               <a href="#debt" data-go="debt">Accessibility Friction, Explained</a>
               <a href="#keydates" data-go="keydates">Key Dates &amp; Planning Calendar</a>
+              <span class="drop-sep" role="separator"></span>
+              <a href="#tools" data-go="tools">All Tools &amp; Resources</a>
             </span>
           </span>
           <a href="#scorecards" data-go="scorecards" class="cta">Take the Scorecard</a>
@@ -5234,6 +5242,7 @@
           </div>
           <div>
             <h3>Fixing Friction</h3>
+            <span class="sitemap-label first">About</span>
             <a href="#home" data-go="home">Home</a>
             <a href="#about" data-go="about">About</a>
             <a href="#about" data-go="about" data-jump="about-story">Our Story</a>
@@ -5241,12 +5250,13 @@
             <a href="#about" data-go="about" data-jump="about-mission">Our Mission</a>
             <a href="#about" data-go="about" data-jump="about-press">Press &amp; News</a>
             <a href="#about" data-go="about" data-jump="about-contact">Contact Us</a>
+            <span class="sitemap-label">Start here</span>
             <a href="#start" data-go="start">Get Started</a>
             <a href="#scorecards" data-go="scorecards">Take the Scorecard</a>
             <a href="#prototypes" data-go="prototypes">Prototypes</a>
           </div>
         </nav>
-        <p style="max-width:46rem;"><strong>Not sure where you fit?</strong> Start with a conversation about the site and the deadline you are working toward. <a href="#start" data-go="start">Start a conversation</a></p>
+        <p class="foot-cta"><strong>Not sure where you fit?</strong> Start with a conversation about the site and the deadline you are working toward. <a href="#start" data-go="start">Start a conversation</a></p>
         <p class="fineprint">By Matthew Cicanese · Litmus Collective · Fort Collins, Colorado</p>
       </div>
     </footer>

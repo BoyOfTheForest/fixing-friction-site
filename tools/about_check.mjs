@@ -50,13 +50,14 @@ const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\
 const ll = fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8");
 // ---------- static: banned strings, Directory, Canon, comments, GoHighLevel
 for (const s of ["Funnel role", "For the buyer", "Take it upward", "Concept picture", "Concept illustration"]) ok(!html.includes(s) && !ll.includes(s), `"${s}" no longer appears anywhere in the page or llms.txt`);
-ok(!/page-directory|data-go="directory"|#directory|Specialist Directory|directory model/i.test(html), "Directory page unpublished: no section, link, title or script string remains");
+const htmlNoBO = html.replace(/<section class="page" id="page-buildout-page"[\s\S]*?<\/section>/, "");
+ok(!/page-directory|data-go="directory"|#directory|Specialist Directory|directory model/i.test(htmlNoBO) && /Specialist(&nbsp;| )Directory/.test(html), "Directory page unpublished: no section, link, title or script string remains outside the Developer Build Out page, where it lives as a concept entry");
 ok(!/paid promotion|thousands of downloads/.test(html) && html.includes("For Canon USA, I have spent more than a decade teaching photographers on stage and on the page, reaching thousands of people."), "Canon card replaced word for word, paid promotion and downloads wording gone");
 ok(!/<!--/.test(html) && !/\/\*/.test(html), "no HTML, CSS or JS block comments remain in the published file");
 ok(!/GoHighLevel|webhook|TODO/i.test(html), "the GoHighLevel webhook TODO comment is gone and nothing connects to it");
 ok(!/—|&mdash;/.test(html), "no em dash anywhere in the page");
 ok(!fs.existsSync(path.join(ROOT, "docs")) && !fs.existsSync(path.join(ROOT, "buildout")) && !fs.existsSync(path.join(ROOT, "launch")) && !fs.existsSync(path.join(ROOT, "changes")), "no internal folders in the published repository");
-ok((html.match(/<figcaption>Illustration[:.]/g) || []).length === 85 && !/Concept (picture|illustration)/.test(html), "85 captions now start with Illustration (colon or full stop kept) and no Concept caption or alt text remains: 92 were converted, 2 went with the unpublished Directory page, and 6 went with the four unpublished product pages in Phase 5 fix round 2");
+ok((html.match(/<figcaption>Illustration[:.]/g) || []).length === 88 && !/Concept (picture|illustration)/.test(html), "88 captions now start with Illustration (colon or full stop kept) and no Concept caption or alt text remains: 92 were converted, 2 went with the unpublished Directory page, and 6 went with the four unpublished product pages in Phase 5 fix round 2, and 3 came back on the Developer Build Out page (CareCircle, Brain Blame, Specialist Directory)");
 const about = html.slice(html.indexOf('id="page-about"'), html.indexOf("</section>", html.indexOf('id="page-about"')));
 const order = ["Seen. Heard. Understood.", 'class="ab-matthew"', 'class="ab-cultcat"', 'id="about-team"', 'class="ab-stories"', 'id="about-mission"', 'id="about-faq"', 'id="about-contact"', 'class="ff-begin"'].map((k) => about.indexOf(k));
 ok(order.every((p, i) => p >= 0 && (i === 0 || p > order[i - 1])), "About order: brand opening, Matthew, CultCat, team, Brand stories, mission, FAQ, contact, starting point line");

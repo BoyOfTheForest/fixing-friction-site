@@ -191,6 +191,19 @@ for (const [sn, w, h] of sizes) {
 }
 fs.writeFileSync(path.join(OUT, "band-contrast.txt"), bandLog.join("\n") + "\n");
 
+// ---------- Phase 5 fix round 3: no time promise anywhere, AI Scorecards carry no contact form or tracking field and still work
+{
+  ok(!/under two minutes/i.test(html), "no 'under two minutes' claim for the Scorecard anywhere on the site");
+  ok(!/guides and templates you can inspect/i.test(html), "the AI result no longer promises guides and templates");
+  const aiSec = html.slice(html.indexOf('id="page-ai-scorecards"'), html.indexOf("</section>", html.indexOf('id="page-ai-scorecards"')));
+  ok(!/<form|<input[^>]*type="(email|text|hidden)"|<textarea|aiScContact|AI_SC_CONTACT/.test(aiSec), "the AI Scorecards page contains no form element, no email, text or hidden field and no contact step");
+  ok(!/\bghl|ghl_|ghlTag|data-ghl|GoHighLevel|AI_SC_CONTACT|aiScContact/i.test(html.replace(/highlight/gi, "")), "no GoHighLevel tag, field or flag anywhere in the page source");
+}
+await startFresh(1440, 900); await show("ai-scorecards");
+await ev("window.__openAiScorecard('1.1'); 1"); await sleep(300);
+for (let i = 0; i < 7; i++) { await ev("var r=document.querySelector('input[name=\"aiScQ\"]'); if(r){r.click();} document.getElementById('aiScNextBtn').click(); 1"); await sleep(120); }
+ok(await ev(`!document.getElementById('aiScResultWrap').hidden && document.getElementById('aiScResultWrap').innerText.length>200 && document.querySelectorAll('#page-ai-scorecards form').length===0 && !document.querySelector('[name=ghl_tag],[data-ghl-tag]')`), "an AI scorecard still runs from question one to a result on screen, with no form and no tracking attribute");
+
 // ---------- guide map extras (desktop)
 await startFresh(1440, 900);
 const x1 = await run("lead", ["hr"], [], all7("burn")); ok(x1.primary === "Start with a pilot session" && x1.secondary === "Workplace and Team Consulting" && x1.secondaryHref === "#support", "leader HR hat: pilot session primary, Workplace and Team Consulting secondary");

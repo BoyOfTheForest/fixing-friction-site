@@ -726,7 +726,7 @@
       .sc-sector-row p{margin:0;font-size:.93rem;color:var(--ink);font-weight:600;}
       .sc-print-head{display:none;}
       @media print{
-        header.site,.announce-bar,.to-top,.toast,footer.site,.sc-intro,.sc-shell,.sc-about-details,.sc-res-hero .btnrow,.sc-res-foot button,.ai-sc-back,#aiScStepWrap,#aiScContactWrap,.ai-sc-library-links,.ai-sc-copy-row,.ai-sc-brief button{display:none !important;}
+        header.site,.announce-bar,.to-top,.toast,footer.site,.sc-intro,.sc-shell,.sc-about-details,.sc-res-hero .btnrow,.sc-res-foot button,.ai-sc-back,#aiScStepWrap,.ai-sc-library-links,.ai-sc-copy-row,.ai-sc-brief button{display:none !important;}
         main{max-width:100%;padding:0;}
         section.page{padding-top:0;}
         .sc-print-head{display:block;border-bottom:2px solid #101F3C;padding-bottom:10px;margin-bottom:14px;}
@@ -1123,14 +1123,7 @@
       .ai-sc-opt.selected::after{content:"Selected";margin-left:auto;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--brand);padding:2px 8px;border:1px solid var(--brand);border-radius:999px;flex-shrink:0;}
       .ai-sc-opt:focus-within{outline:3px solid var(--brand);outline-offset:2px;}
       .ai-sc-nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:20px;}
-      .ai-sc-contact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;}
-      .ai-sc-contact[hidden],#aiScHub[hidden],#aiScRunner[hidden],#aiScStepWrap[hidden],#aiScResultWrap[hidden]{display:none !important;}
-      .ai-sc-field{display:grid;gap:6px;}
-      .ai-sc-field label{font-weight:700;font-size:.94rem;color:var(--ink);}
-      .ai-sc-field input[type="text"],.ai-sc-field input[type="email"],.ai-sc-field textarea{width:100%;min-height:44px;padding:10px 12px;border:1.5px solid #94A3B8;border-radius:8px;font:inherit;font-size:1rem;color:var(--ink);background:#FFFFFF;}
-      .ai-sc-field textarea{min-height:96px;resize:vertical;}
-      .ai-sc-consent{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;color:var(--ink);line-height:1.45;cursor:pointer;}
-      .ai-sc-consent input[type="checkbox"]{width:20px;height:20px;margin-top:2px;flex-shrink:0;accent-color:var(--brand);}
+      #aiScHub[hidden],#aiScRunner[hidden],#aiScStepWrap[hidden],#aiScResultWrap[hidden]{display:none !important;}
       .ai-sc-privacy-flag{background:#FEF3C7;border:2px solid #B45309;border-radius:12px;padding:18px 20px;margin-bottom:18px;color:#1E293B;}
       .ai-sc-privacy-flag h3{margin:0 0 6px;font-size:1.08rem;color:#78350F;}
       .ai-sc-note-flag{background:#EFF6FF;border:1.5px solid #1D4ED8;border-radius:10px;padding:14px 16px;margin-top:14px;color:var(--ink);font-size:.95rem;}
@@ -1195,6 +1188,7 @@
       .sitemap a{min-height:44px;display:flex;align-items:center;overflow-wrap:anywhere;}
       @media (max-width:1279px){.sitemap{grid-template-columns:repeat(2,minmax(0,1fr));}}
       @media (max-width:599px){.sitemap{grid-template-columns:1fr;}}
+      .foot-dev{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
       .foot-bar{border-top:1px solid var(--line);padding-top:18px;margin-top:10px;font-size:.92rem;color:var(--ink);max-width:60rem;}
       @media (max-width:1599px){.brand-sub{display:none;}}
       @media (max-width:1279px){nav.pages{display:none;}.menubtn{display:block;}}
@@ -2022,6 +2016,25 @@
       </section>
 
       
+      <section class="page" id="page-buildout-page" aria-label="Developer Build Out">
+        <div class="page-intro"><div class="page-intro-text"><p class="eyebrow">In build out</p>
+        <h1 class="u09">Developer Build Out</h1>
+        <p class="lede hero-line">Products and lead magnets in build out. Not available yet, and no dates are promised.</p></div></div>
+        <div class="page-after"><p class="lede">These are ideas on the bench. Nothing here is a working product, an offer, or a list you can join.</p></div>
+        <div style="margin-top:26px;">
+          <div class="grid2">
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">CareCircle</h2><figure class="concept-fig"><img src="assets/79aab21cf0c4.jpg" srcset="assets/79aab21cf0c4-800.webp 800w, assets/79aab21cf0c4-1280.webp 1280w, assets/79aab21cf0c4.jpg 1920w" sizes="(max-width: 900px) 100vw, 520px" alt="Illustration of a family kitchen table in soft morning window light, with a phone lying beside an open blank notebook, a pen, and two mugs of coffee, and a person&#8217;s hands resting calmly by the notebook." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration. Where family care gets coordinated: the kitchen table, the phone, and the shared notebook.</figcaption></figure><p class="small">CareCircle is one trusted place for family medical updates, so the person doing the caring stops repeating the same news five times a day. Primary caregivers should not have to be phone operators too.</p></div>
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">Brain Blame</h2><figure class="concept-fig"><img src="assets/7330e3472320.jpg" srcset="assets/7330e3472320-800.webp 800w, assets/7330e3472320-1280.webp 1280w, assets/7330e3472320.jpg 1920w" sizes="(max-width: 900px) 100vw, 520px" alt="Illustration of a woman sitting at a wooden kitchen table in morning window light, a blank open notebook and a pen in front of her, with a phone face down beside a mug of coffee." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration. Where a check-in usually happens: the kitchen table, a quiet minute, and one honest sort.</figcaption></figure><p class="small">In a few minutes, sort whether a stall is personal, relational, or professional, and whether it is cognitive load, overload, or something under the surface. Then leave with one next step.</p></div>
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">Fixing Friction ADA, the consulting&nbsp;app</h2><figure class="concept-fig"><img src="assets/24c64caf699f.jpg" srcset="assets/24c64caf699f-800.webp 800w, assets/24c64caf699f-1280.webp 1280w, assets/24c64caf699f.jpg 1920w" sizes="(max-width: 900px) 100vw, 520px" alt="Photograph of three colleagues leaning over a large printed site plan spread across a table, each pointing at a different part of the drawing." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>One plan on the table, read the same way by everyone in the room.</figcaption></figure><p class="small">One record for the consulting engagement: the review, the findings, the plan, and the tracking, shared by consultant and client from the first walk to the re-audit.</p><p class="small">Same findings, same plan, same progress, each in the form that fits their job.</p></div>
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">The three apps, side by&nbsp;side</h2><figure class="concept-fig"><img src="assets/52583330d20c.webp" srcset="assets/52583330d20c-800.webp 800w, assets/52583330d20c-1280.webp 1280w, assets/52583330d20c.webp 1920w" sizes="(max-width: 900px) 100vw, 520px" alt="Illustration of a tidy workbench with the tools laid out in a row: a checklist clipboard, a progress tracker with rising bars, a calendar card, and a stack of template documents with a pencil, with three folders in shades of blue above." width="1920" height="1280" loading="lazy" decoding="async" /></figure><p class="small">Three apps. Three problems. One clear tool for each. One app serves organizations and the professionals inside them. Two serve individuals and families. Pick by the problem in front of you, not by the product name.</p></div>
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">Cognitive Clarity Scorecard</h2><p class="small">A free, two-minute check-in: a quick read on where your friction sits. Answer a few short questions about where your days stick, and see the pattern plainly, so your next step aims at the real sticking point, not the loudest one.</p></div>
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">AI Scorecards optional contact&nbsp;step</h2><p class="small">Add your details if you want a copy sent to you, or skip straight to your result profile now. This step arrives together with the site&#8217;s data plumbing, and not before.</p></div>
+            <div class="card"><span class="tag warm">In build out</span><h2 style="font-size:1.3rem;margin:10px 0 8px;">Specialist&nbsp;Directory</h2><figure class="concept-fig"><img src="assets/b69722d69094.webp" srcset="assets/b69722d69094-800.webp 800w, assets/b69722d69094-1280.webp 1280w, assets/b69722d69094.webp 1920w" sizes="(max-width: 900px) 100vw, 520px" alt="Illustration of a findings card with checked rows on the left, a dotted path leading to four specialist profile cards on the right, and a hand picking the one bright card that matches." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration. Matching starts from the finding, not from a cold search: the right specialist for the barrier in front of you.</figcaption></figure><p class="small">Any serious review needs specialists around it. The directory would match the right inspector, reviewer, trainer, or specialist to the work, credentials checked first.</p><p class="small">What you get: a matched specialist who picks up your existing record, instead of starting every search from zero.</p></div>
+          </div>
+        </div>
+      <p class="ff-begin">Not sure where to begin? <a href="#scorecards" data-go="scorecards">Take the Scorecard</a> and get one honest starting point.</p>
+      </section>
+
       <section class="page" id="page-services" aria-label="Services">
         <div class="page-intro"><div class="page-intro-text"><p class="eyebrow">Services · Accessibility</p>
         <h1 class="u09">From barriers to belonging.</h1>
@@ -2098,7 +2111,7 @@
           <p>This is what an audit produces, and the working plan a public entity carries. Findings stop being a report and become scheduled work with owners and dates, tracked until each fix is checked and confirmed done. The self-evaluation and transition plan packages live here, because both are built from audit findings.</p>
         </div>
 
-<div class="zig"><div class="zig-text"><span class="tag warm">Sequence the fixes</span><h3 class="u13">Remediation and Transition Planning</h3><p>Findings become a phased plan with owners and dates, sorted by what blocks access most, then tracked in a client view until each item is verified at re-check. This is where an assessment turns into finished work.</p><p class="u05"><a href="#plans" class="btn ghost u02" data-go="plans">Explore Planning</a></p></div><figure class="ph"><img src="assets/604acd6e6229.jpg" srcset="assets/604acd6e6229-800.webp 800w, assets/604acd6e6229-1280.webp 1280w, assets/604acd6e6229.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of a wide wooden boardwalk winding through parkland with benches at the side, as a person using a wheelchair and a companion travel away along it in warm evening light." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>A finished remediation, verified: the boardwalk a plan promised, checked against the original finding.</figcaption></figure></div>
+<div class="zig"><div class="zig-text"><span class="tag warm">Sequence the fixes</span><h3 class="u13">Remediation and Transition Planning</h3><p>Findings become a phased plan with owners and dates, sorted by what blocks access most, then tracked on the plan until each item is verified at re-check. This is where an assessment turns into finished work.</p><p class="u05"><a href="#plans" class="btn ghost u02" data-go="plans">Explore Planning</a></p></div><figure class="ph"><img src="assets/604acd6e6229.jpg" srcset="assets/604acd6e6229-800.webp 800w, assets/604acd6e6229-1280.webp 1280w, assets/604acd6e6229.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of a wide wooden boardwalk winding through parkland with benches at the side, as a person using a wheelchair and a companion travel away along it in warm evening light." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>A finished remediation, verified: the boardwalk a plan promised, checked against the original finding.</figcaption></figure></div>
 
         <div class="grid2">
           <div class="card">
@@ -2226,8 +2239,8 @@
               <p class="small">Drafting plans and checking them for missing pieces; organizing notes; suggesting possible patterns for the consultant to confirm or reject; and summarizing material for the consultant to review.</p>
             </div>
             <div class="card">
-              <h3 style="font-size:1.15rem;">The app layer</h3>
-              <p class="small">Inside Fixing Friction ADA, software shaped to each client, site, and area turns field notes a consultant has verified into finding drafts matched to the standards they touch, and verified findings into plain language summaries, transition plans, roadmaps, and one page summaries for leadership.</p>
+              <h3 style="font-size:1.15rem;">Drafting</h3>
+              <p class="small">AI helps turn field notes a consultant has verified into finding drafts matched to the standards they touch, and verified findings into plain language summaries, transition plans, roadmaps, and one page summaries for leadership. Each one is a draft until the consultant checks it.</p>
             </div>
             <div class="card">
               <h3 style="font-size:1.15rem;">Consulting</h3>
@@ -2383,7 +2396,7 @@
           </div>
         </div>
 
-        <div class="zig"><figure class="ph"><img src="assets/dfe2e7b67cd9.jpg" srcset="assets/dfe2e7b67cd9-800.webp 800w, assets/dfe2e7b67cd9-1280.webp 1280w, assets/dfe2e7b67cd9.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of an assessor carrying a tablet while walking a bright building corridor with large colourful wayfinding shapes on the wall and a handrail along the windows." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>An audit in progress: findings captured where they happen, ready to hand straight into the plan.</figcaption></figure><div class="zig-text"><h3 class="u14">The handoff is the product.</h3><p>Most access work fails between services, not inside them: training that never leads to a decision, an audit that never becomes a plan, a plan that nobody carries. Here, each step hands its record to the next one, in plain language, in the same client view. Nothing has to be rebuilt or re-argued where the steps meet.</p></div></div>
+        <div class="zig"><figure class="ph"><img src="assets/dfe2e7b67cd9.jpg" srcset="assets/dfe2e7b67cd9-800.webp 800w, assets/dfe2e7b67cd9-1280.webp 1280w, assets/dfe2e7b67cd9.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of an assessor carrying a tablet while walking a bright building corridor with large colourful wayfinding shapes on the wall and a handrail along the windows." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>An audit in progress: findings captured where they happen, ready to hand straight into the plan.</figcaption></figure><div class="zig-text"><h3 class="u14">The handoff is the product.</h3><p>Most access work fails between services, not inside them: training that never leads to a decision, an audit that never becomes a plan, a plan that nobody carries. Here, each step hands its record to the next one, in plain language, in the same shared record. Nothing has to be rebuilt or re-argued where the steps meet.</p></div></div>
 
         <div>
           <p class="eyebrow">Two parallel pathways</p>
@@ -2812,7 +2825,7 @@
           <p class="u08">The audit rests on the walk itself: a consultant in the place, reading it the way a disabled visitor lives it, with findings photographed and mapped to the standard. That judgment is the service, backed by the credentials and field record on the About page: Matthew Cicanese, ADAC, and the ADACC Advanced Web Accessibility Certificate. AI sits underneath that work, in three supporting roles.</p>
           <ul class="checks">
             <li><strong>Before the visit:</strong> drafting the review plan and checking it for missing pieces, and organizing notes and prior findings for the auditor to work from</li>
-            <li><strong>During the write up:</strong> software in the app, shaped to this site and area, turns field notes the auditor has verified into finding drafts matched to the standards they touch, and verified findings into plain language summaries and roadmap entries</li>
+            <li><strong>During the write up:</strong> AI assisted drafting turns field notes the auditor has verified into finding drafts matched to the standards they touch, and verified findings into plain language summaries and roadmap entries</li>
             <li><strong>As a second set of eyes:</strong> assisted review can flag possible contradictions, gaps, and inaccessible formats, which means files or documents disabled people cannot use, for the human auditor to verify or reject</li>
           </ul>
           <p class="fineprint u05">A flag is a prompt to look, not a finding. Every draft is verified against the evidence and the standard before it reaches a client, and AI never issues a finding, a compliance call, or a legal determination.</p>
@@ -3257,7 +3270,7 @@
         <div>
           <p class="eyebrow">How the work is done</p>
           <h2 class="u12">Support is a relationship first. AI helps keep the record straight.</h2>
-          <p class="u08">Ongoing support works because a consultant who knows your plan stays beside your team while the work moves. AI supports that record keeping, it does not replace the relationship. Inside the app, verified findings become plain language summaries, roadmap updates, and one page summaries for leadership, each one a draft until the consultant checks it. In coaching and working sessions, AI asks questions that draw out the expert&#8217;s own words. It never writes for them, and summaries are checked in the room. Sessions are recorded and turned into written text only with consent, stated plainly beforehand, never automatically and never as surveillance.</p>
+          <p class="u08">Ongoing support works because a consultant who knows your plan stays beside your team while the work moves. AI supports that record keeping, it does not replace the relationship. Verified findings become plain language summaries, roadmap updates, and one page summaries for leadership, each one a draft until the consultant checks it. In coaching and working sessions, AI asks questions that draw out the expert&#8217;s own words. It never writes for them, and summaries are checked in the room. Sessions are recorded and turned into written text only with consent, stated plainly beforehand, never automatically and never as surveillance.</p>
           <p class="fineprint u01">Every assisted output is a draft until a consultant verifies it against the evidence and the standard. AI never issues a finding, a compliance call, or a legal determination, and each client&#8217;s data stays that client&#8217;s property.</p>
         </div>
         <div class="callout" role="note">
@@ -3690,12 +3703,12 @@
         <div class="titleblock">
           <p class="roman">Title V</p>
           <h3 style="font-size:1.4rem;margin:4px 0 8px;">Miscellaneous</h3>
-          <p>The provisions that hold the rest together, including protection from retaliation for exercising ADA rights and the relationship between the ADA and other laws. In the app, Title V is where findings about process are kept: how complaints are handled, whether people are safe raising a barrier, and whether a fix actually held.</p><p class="u03"><strong>Inside an organization like yours,</strong> this is whether an employee or a resident can raise a barrier and trust the process that follows. <strong>What happens next:</strong> grievance handling is reviewed as part of the program, because a safe route to raise a barrier is what keeps the other four Titles working.</p>
+          <p>The provisions that hold the rest together, including protection from retaliation for exercising ADA rights and the relationship between the ADA and other laws. In the findings record, Title V is where findings about process are kept: how complaints are handled, whether people are safe raising a barrier, and whether a fix actually held.</p><p class="u03"><strong>Inside an organization like yours,</strong> this is whether an employee or a resident can raise a barrier and trust the process that follows. <strong>What happens next:</strong> grievance handling is reviewed as part of the program, because a safe route to raise a barrier is what keeps the other four Titles working.</p>
         </div>
 
         <div class="callout" role="note">
           <figure class="diagram"><svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ADA Titles, at a glance: Title I Employment, Title II Government, Title III Public places, Titles IV and V Phone and more"><text x="400" y="36" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="22" font-weight="700" fill="#102A43">ADA Titles, at a glance</text><rect x="16" y="64" width="176" height="108" rx="14" fill="#1D4ED8"/><text x="104" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Title I</text><text x="104" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Employment</text><path d="M196 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="212" y="64" width="176" height="108" rx="14" fill="#0F766E"/><text x="300" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Title II</text><text x="300" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Government</text><path d="M392 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="408" y="64" width="176" height="108" rx="14" fill="#9A3412"/><text x="496" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Title III</text><text x="496" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Public places</text><path d="M588 118h12m0 0l-8-7m8 7l-8 7" stroke="#102A43" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="604" y="64" width="176" height="108" rx="14" fill="#102A43"/><text x="692" y="112" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Titles IV and V</text><text x="692" y="140" text-anchor="middle" font-family="Libre Franklin, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Phone and more</text><rect x="16" y="204" width="764" height="10" rx="5" fill="#E0F2FE"/></svg><figcaption>Infographic: the five Titles, mapped to where life happens.</figcaption></figure><h2 class="u17">How mapping works in practice</h2>
-          <p class="u06">One visit can produce findings under several Titles at once. A county office might have a Title II facilities finding, a Title II digital finding for its public website, and a Title I finding for the staff system behind the counter. The app keeps them tagged and separate for reporting, then brings them together in one transition plan with one timeline, so the client manages a single program of work instead of five disconnected lists.</p>
+          <p class="u06">One visit can produce findings under several Titles at once. A county office might have a Title II facilities finding, a Title II digital finding for its public website, and a Title I finding for the staff system behind the counter. The findings record keeps them tagged and separate for reporting, then brings them together in one transition plan with one timeline, so the client manages a single program of work instead of five disconnected lists.</p>
           <p class="fineprint u01">Title tags organize an assessment. They are a working structure for planning, not a legal determination of which Title applies in a given situation.</p>
         </div>
               <div class="cta-band">
@@ -3727,7 +3740,7 @@
             <div class="step"><h3>Sort by what blocks access most</h3><p class="small">Severity and the number of people affected set the order. A door nobody can open outranks a sign nobody can read, and both outrank a cosmetic fix.</p></div>
             <div class="step"><h3>Phase the work</h3><p class="small">Items are grouped into phases: quick corrections that need no construction, near term work that needs scheduling or a vendor, and capital work that belongs in a budget cycle.</p></div>
             <div class="step"><h3>Name an owner and a date</h3><p class="small">Every item gets a person responsible and a target date. An item without an owner is a wish, and this plan contains no wishes.</p></div>
-            <div class="step"><h3>Publish it to the client view</h3><p class="small">The client sees the same plan in plain language, with the one page summary on top and the full detail behind it, plus a PDF export for the public record where one is needed.</p></div>
+            <div class="step"><h3>Share it with the client</h3><p class="small">The client receives the same plan in plain language, with the one page summary on top and the full detail behind it, plus a PDF export for the public record where one is needed.</p></div>
           </div>
         </div>
 
@@ -3766,7 +3779,7 @@
         <div class="grid2">
           <div class="card">
             <h3>Next steps, always visible</h3>
-            <p class="small">The client home leads with what is due next, not with the whole plan. Three open items with owners and dates do more than a spreadsheet of two hundred.</p>
+            <p class="small">The one page summary leads with what is due next, not with the whole plan. Three open items with owners and dates do more than a spreadsheet of two hundred.</p>
           </div>
           <div class="card">
             <h3>Re-audits measure the baseline</h3>
@@ -3774,7 +3787,7 @@
           </div>
         </div>
 
-<div class="card"><span class="tag warm">What you receive</span><figure class="ph wide-fig"><img src="assets/62e3b2722e3b.jpg" srcset="assets/62e3b2722e3b-800.webp 800w, assets/62e3b2722e3b-1280.webp 1280w, assets/62e3b2722e3b.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Illustration of an architectural design detail being checked closely against the plan." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration: the plan, checked detail by detail.</figcaption></figure><h3>The plan and its tracking</h3><ul class="checks"><li>A plan built only from found, photographed, and standards mapped findings</li><li>Phases set as quick corrections, near term scheduled work, and capital work for a budget cycle</li><li>An owner and a target date on every item</li><li>A client view that leads with next steps, with PDF exports for boards and the public record</li><li>Re-audit checks against the original baseline, item by item</li></ul></div><div class="zig"><figure class="ph"><img src="assets/24c64caf699f.jpg" srcset="assets/24c64caf699f-800.webp 800w, assets/24c64caf699f-1280.webp 1280w, assets/24c64caf699f.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of three colleagues leaning over a large printed site plan spread across a table, each pointing at a different part of the drawing." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Phasing is a table conversation: what blocks access most, what can move now, what needs a budget cycle.</figcaption></figure><div class="zig-text"><h3 class="u14">Order is the whole craft.</h3><p>A plan that lists everything at once gets nothing done. Sorting by what blocks access most, then scheduling the work so quick corrections happen now while big items wait for their budget cycle, is what turns a findings list into a finished building.</p></div></div><div class="zig"><div class="zig-text"><h3 class="u14">Big items get phases, not apologies.</h3><p>Some fixes are a work order. Others are a boardwalk: designed, budgeted, built in a season, and verified at the end against the original finding. The plan treats both for what they are, with dates that match the kind of work each item really is.</p></div><figure class="ph"><img src="assets/604acd6e6229.jpg" srcset="assets/604acd6e6229-800.webp 800w, assets/604acd6e6229-1280.webp 1280w, assets/604acd6e6229.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of a wide wooden boardwalk winding through parkland with benches at the side, as a person using a wheelchair and a companion travel away along it in warm evening light." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Capital phases can be large: a boardwalk is a plan item with a season, a budget, and a verification walk at the end.</figcaption></figure></div><div class="card"><span class="tag warm">Who it is for</span><h3>Who books this</h3><p class="small">Public entities that owe a transition plan, organizations holding findings from any review and wondering what happens next, and leadership teams who need progress they can show a board, a council, or the public.</p></div><div><p class="eyebrow">Common questions</p><h2 class="u10">Asked about the plan</h2><div class="faq"><details><summary>Who does the construction and vendor work?</summary><p>Your own licensed architects, engineers, and contractors. This service specifies what needs to change and verifies the result against the original finding. Work that needs a license stays licensed.</p></details><details><summary>How long does a transition plan take to build?</summary><p>A transition plan is built directly from the findings of a review, so it starts when the findings exist. How long it takes depends on the number of sites and findings in scope, and that scope and timeline are set together in the first conversation, before the work begins. What you receive is a phased plan with an owner and a target date on every item, ready to track from the day it is delivered.</p></details><details><summary>How is the order decided?</summary><p>By severity and by how many people a barrier affects. A door nobody can open outranks a sign nobody can read, and both outrank a cosmetic fix.</p></details><details><summary>What if we cannot fix everything at once?</summary><p>That is what the phases are for. Quick corrections move first, near term work gets scheduled, and capital work is placed in a budget cycle with an owner and a date, so nothing quietly disappears.</p></details><details><summary>How do we show progress?</summary><p>Through the client view and its tracking, and through PDF exports of the plan and its progress, in the plain language version for the public and the full findings version for the file.</p></details></div></div>        <div class="callout" role="note">
+<div class="card"><span class="tag warm">What you receive</span><figure class="ph wide-fig"><img src="assets/62e3b2722e3b.jpg" srcset="assets/62e3b2722e3b-800.webp 800w, assets/62e3b2722e3b-1280.webp 1280w, assets/62e3b2722e3b.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Illustration of an architectural design detail being checked closely against the plan." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration: the plan, checked detail by detail.</figcaption></figure><h3>The plan and its tracking</h3><ul class="checks"><li>A plan built only from found, photographed, and standards mapped findings</li><li>Phases set as quick corrections, near term scheduled work, and capital work for a budget cycle</li><li>An owner and a target date on every item</li><li>A plan summary that leads with next steps, with PDF exports for boards and the public record</li><li>Re-audit checks against the original baseline, item by item</li></ul></div><div class="zig"><figure class="ph"><img src="assets/24c64caf699f.jpg" srcset="assets/24c64caf699f-800.webp 800w, assets/24c64caf699f-1280.webp 1280w, assets/24c64caf699f.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of three colleagues leaning over a large printed site plan spread across a table, each pointing at a different part of the drawing." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Phasing is a table conversation: what blocks access most, what can move now, what needs a budget cycle.</figcaption></figure><div class="zig-text"><h3 class="u14">Order is the whole craft.</h3><p>A plan that lists everything at once gets nothing done. Sorting by what blocks access most, then scheduling the work so quick corrections happen now while big items wait for their budget cycle, is what turns a findings list into a finished building.</p></div></div><div class="zig"><div class="zig-text"><h3 class="u14">Big items get phases, not apologies.</h3><p>Some fixes are a work order. Others are a boardwalk: designed, budgeted, built in a season, and verified at the end against the original finding. The plan treats both for what they are, with dates that match the kind of work each item really is.</p></div><figure class="ph"><img src="assets/604acd6e6229.jpg" srcset="assets/604acd6e6229-800.webp 800w, assets/604acd6e6229-1280.webp 1280w, assets/604acd6e6229.jpg 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Photograph of a wide wooden boardwalk winding through parkland with benches at the side, as a person using a wheelchair and a companion travel away along it in warm evening light." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Capital phases can be large: a boardwalk is a plan item with a season, a budget, and a verification walk at the end.</figcaption></figure></div><div class="card"><span class="tag warm">Who it is for</span><h3>Who books this</h3><p class="small">Public entities that owe a transition plan, organizations holding findings from any review and wondering what happens next, and leadership teams who need progress they can show a board, a council, or the public.</p></div><div><p class="eyebrow">Common questions</p><h2 class="u10">Asked about the plan</h2><div class="faq"><details><summary>Who does the construction and vendor work?</summary><p>Your own licensed architects, engineers, and contractors. This service specifies what needs to change and verifies the result against the original finding. Work that needs a license stays licensed.</p></details><details><summary>How long does a transition plan take to build?</summary><p>A transition plan is built directly from the findings of a review, so it starts when the findings exist. How long it takes depends on the number of sites and findings in scope, and that scope and timeline are set together in the first conversation, before the work begins. What you receive is a phased plan with an owner and a target date on every item, ready to track from the day it is delivered.</p></details><details><summary>How is the order decided?</summary><p>By severity and by how many people a barrier affects. A door nobody can open outranks a sign nobody can read, and both outrank a cosmetic fix.</p></details><details><summary>What if we cannot fix everything at once?</summary><p>That is what the phases are for. Quick corrections move first, near term work gets scheduled, and capital work is placed in a budget cycle with an owner and a date, so nothing quietly disappears.</p></details><details><summary>How do we show progress?</summary><p>Through the plan and its tracking, and through PDF exports of the plan and its progress, in the plain language version for the public and the full findings version for the file.</p></details></div></div>        <div class="callout" role="note">
           <p class="eyebrow">Scope and fees</p>
 <h2 class="u11">Plan scope, by where you are starting from</h2>
           <ul class="dots">
@@ -3826,7 +3839,7 @@
 
         <div>
           <p class="eyebrow">Workplace reporting</p>
-          <h2 class="u16">The business app reports on people, not just barriers</h2>
+          <h2 class="u16">Business reporting covers people, not just barriers</h2>
           <p class="u08">On the government and business side, reporting adds a second part alongside the accessibility findings: how the people who work in a place are doing, and whether the support the organization promises is the support staff actually get. The two halves below are read together, in the same report, from the same engagement.</p>
           <p class="u22">This workplace layer is delivered as a service in its own right, the Evidence-Based Findings Report, built on the Behavioral Experience Impact Assessment method.</p>
           <p class="u01"><a href="#findings" class="btn ghost u02" data-go="findings">See the findings report service</a></p>
@@ -3850,7 +3863,7 @@
           <div class="card mini">
             
             <h3>Compliance and support</h3>
-            <p class="small">Whether the organization is meeting its obligations, and whether its people are actually supported. Findings stay tagged by Title, as everywhere in the app.</p>
+            <p class="small">Whether the organization is meeting its obligations, and whether its people are actually supported. Findings stay tagged by Title, as everywhere in the findings record.</p>
             <h4>Title I: employment</h4>
             <p class="small">Hiring, reasonable accommodations, and workplace support for staff with disabilities, drawn from the review findings tagged to Title I.</p>
             <h4>Title II: public entities</h4>
@@ -4185,7 +4198,7 @@
           <div class="steps">
             <div class="step"><h3>Send a few sentences</h3><p class="small">Your organization, your role, and what you are working on: the place, service, or system in question, any deadline on it, and who would own the fixes on your side. That is the whole ask. No forms, no portal, no preparation packet.</p></div>
             <div class="step"><h3>Have one short conversation</h3><p class="small">We cover the site or system, the deadline you are working toward, and what done looks like for your organization. You will hear straight whether this practice is the right fit, which service should come first, and what it will ask of your team in time and attention.</p></div>
-            <div class="step"><h3>Agree the scope, then the work starts</h3><p class="small">The service is scoped to your sites and systems, the visit or session is set, and you receive findings in plain language, a one page summary, and a step by step plan you can follow online, with a PDF record for your files.</p></div>
+            <div class="step"><h3>Agree the scope, then the work starts</h3><p class="small">The service is scoped to your sites and systems, the visit or session is set, and you receive findings in plain language, a one page summary, and a step by step plan you can follow, with a PDF record for your files.</p></div>
           </div>
         </div>
 
@@ -4385,7 +4398,7 @@
           <p class="eyebrow">For broader audiences</p>
           <h2 class="u19">Talks the whole room can carry home</h2>
           <p class="answerline">Beyond the ADA keynotes above, Matthew speaks to general audiences on AI at work, cognitive load, burnout, creativity, family life, and personal growth. Every talk below is written twice on purpose: once for the person in the seat, and once for the leader that person can reach.</p>
-          <p style="margin-top:14px;color:var(--muted);max-width:46rem;">Most people meet this work in a crowd first: at a conference, in an employee session, on video, or through a free guide. Each talk ends with one line you can pass to the person who plans the training. When a whole team wants the session, the options are a Custom Team Workshop, a Multi Session Track, or a Leadership Friction Review.</p>
+          <p style="margin-top:14px;color:var(--muted);max-width:46rem;">Most people meet this work in a crowd first: at a conference, in an employee session, or on video. Each talk ends with one line you can pass to the person who plans the training. When a whole team wants the session, the options are a Custom Team Workshop, a Multi Session Track, or a Leadership Friction Review.</p>
           <div class="grid2" style="margin-top:22px;">
 <div class="card"><h3>Work Smarter with AI</h3><p class="answerline">Work Smarter with AI is a practical session that helps people use AI to reduce overwhelm, get unstuck, and make everyday work easier, starting with the problem before the tool.</p><p class="small u01"><strong>For the room:</strong> You leave with one stuck task understood better and one small AI assisted workflow you can test the same week. The method is CALM: give the tool context, a clear assignment, limits, and the shape of a useful result, and keep your own judgment in charge.</p><p class="small u04"><strong>What your organization gets:</strong> Your teams gain a shared, safe way to use AI on real work, chosen by the task in front of them rather than by the newest product. It is the evergreen course of the same name, offered for whole organizations.</p><p class="small u04"><strong>Formats:</strong> Keynote, interactive workshop, team training, multi session track.</p><p class="small u04"><strong>What to pass on:</strong> One repeatable line to carry upward: start with the problem, not the product. Plus the Scorecard link to send to the person who books training.</p><p class="small u03">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the Scorecard</a> · Or check how you brief AI first: <a href="#ai-scorecards?sc=3.1" class="quiet-link" data-go="ai-scorecards" data-ai-sc="3.1">Get Muse, Meta&#8217;s AI, to Behave Better</a>.</p></div>
 <div class="card"><h3>Reduce Cognitive Load at Work</h3><p class="answerline">Reducing cognitive load at work means removing the extra mental effort a task should never have cost, so people with different ways of working can do their best work.</p><p class="small u01"><strong>For the room:</strong> You learn to spot where work takes more mental effort than it should, and practical tools for executive function and different ways of working, including the 10% Polish idea: small finishes that make work usable.</p><p class="small u04"><strong>What your organization gets:</strong> Your organization gets language and tools for neuroinclusion that managers can use on Monday, taught through your own meetings, documents, and tools.</p><p class="small u04"><strong>Formats:</strong> Keynote, workshop, leadership briefing, team training.</p><p class="small u04"><strong>What to pass on:</strong> The question to take upward: where does this work cost more mental effort than it should? Plus the Scorecard as the named next step for the team.</p><p class="small u03">Next step: <a href="#scorecard" class="quiet-link" data-go="scorecard">Take the Scorecard</a>.</p></div>
@@ -4586,7 +4599,7 @@
           <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><path d="M320 62l200 82-200 82-200-82z" fill="#102A43"/><path d="M140 205l180 74 180-74 34 40-214 88-214-88z" fill="#0F766E" opacity=".85"/><path d="M140 268l180 74 180-74 34 40-214 88-214-88z" fill="#9A3412" opacity=".6"/></svg></figure><h3>Three checklists: voting, digital, physical</h3><p class="small">A polling place, a website, and a hotel fail in different ways. Each module carries its own checklist, written for the failures that setting actually produces, and all three write into the same record and the same kind of plan.</p><p class="u01"><a href="#modules" class="btn ghost u02" data-go="modules">See the three checklists</a></p></div>
           
           <div class="card"><figure class="card-art" aria-hidden="true"><svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="640" height="360" fill="#EFF6FF"/><circle cx="556" cy="52" r="90" fill="#E0F2FE"/><circle cx="60" cy="322" r="70" fill="#E0F2FE"/><rect x="130" y="70" width="380" height="220" rx="14" fill="#102A43"/><rect x="152" y="92" width="336" height="176" rx="8" fill="#E0F2FE"/><rect x="180" y="120" width="180" height="16" rx="8" fill="#0F766E"/><rect x="180" y="152" width="250" height="12" rx="6" fill="#9A3412" opacity=".55"/><rect x="180" y="180" width="220" height="12" rx="6" fill="#0369A1" opacity=".35"/><rect x="180" y="222" width="280" height="18" rx="9" fill="#102A43" opacity=".85"/><rect x="192" y="228" width="150" height="6" rx="3" fill="#FFFFFF"/><rect x="292" y="290" width="56" height="22" fill="#102A43"/><rect x="240" y="312" width="160" height="10" rx="5" fill="#102A43"/></svg></figure><h3>Fixing Friction on Substack</h3><p class="small">Writing about fixing the frictions of everyday life, across art, accessibility, AI, and AI empowerment.</p><p class="u01"><a href="https://fixingfriction.substack.com/" class="btn ghost u02" target="_blank" rel="noopener noreferrer">Read on Substack <span aria-hidden="true">&#8599;</span><span class="sr-only"> (Opens in a new tab)</span></a> <span class="fineprint" style="margin-left:8px;">Opens in a new tab.</span></p></div>
-          <div class="card"><h3>Burnout Bingo</h3><p class="small">Spot burnout patterns early across personal, relational, and professional life.</p><p class="u01"><a href="#burnout" class="btn ghost u02" data-go="burnout">Play Burnout Bingo</a></p></div>
+          <div class="card"><h3>Burnout Bingo</h3><p class="small">Spot burnout patterns early across personal, relational, and professional life.</p><p class="u01"><a href="#burnout" class="btn ghost u02" data-go="burnout">See the Burnout Bingo board</a></p></div>
         </div>
         <div id="tools-ai-scorecards" style="margin-top:36px;">
           <p class="eyebrow">AI Scorecards Library</p>
@@ -4675,11 +4688,10 @@
           <div class="btnrow u23"><a href="#inside" class="btn primary" data-go="inside">Inside Fixing Friction</a><a href="#tools" class="btn ghost" data-go="tools">Open the tools</a></div>
         </div>
         <div>
-          <p class="eyebrow">Two scorecards, two doors</p>
+          <p class="eyebrow">One Scorecard</p>
           <h2 class="u19">Start with the check that fits your seat</h2>
           <div class="grid2">
-            <div class="card"><span class="tag">For organizations</span><h3>Find Your Starting Point</h3><p class="small">A few short questions, one honest starting point. Your result points to one starting point, a pilot session, an assessment, or Inside Fixing Friction, matched to the problem in front of your organization.</p><p class="u01"><a href="#scorecard" class="btn ghost u02" data-go="scorecard">Take the Scorecard</a></p></div>
-            <div class="card"><span class="tag">For individuals and families</span><h3>Cognitive Clarity Scorecard</h3><p class="small">A free, two-minute check-in: a quick read on where your friction sits. Answer a few short questions about where your days stick, and see the pattern plainly, so your next step aims at the real sticking point, not the loudest one.</p><p class="u01"><a href="#scorecard?role=individual" class="btn ghost u02" data-go="scorecard" data-role="individual">Take the Scorecard for yourself or your household</a></p></div>
+            <div class="card"><span class="tag">For leaders and everyday workers</span><h3>Find Your Starting Point</h3><p class="small">A few short questions, one honest starting point. Your result points to one starting point, a pilot session, an assessment, or Inside Fixing Friction, matched to the problem actually in front of you.</p><p class="u01"><a href="#scorecard" class="btn ghost u02" data-go="scorecard">Take the Scorecard</a> <a href="#scorecard?role=individual" class="btn ghost u02" data-go="scorecard" data-role="individual">Take the Scorecard for yourself or your household</a></p></div>
           </div>
         </div>
 <div class="callout" role="note">
@@ -4828,7 +4840,7 @@
           <p style="color:var(--ink);max-width:46rem;">Read down your last two weeks. Mark what is true. The board is not a game about burnout and it is not a diagnosis. It is a pattern-recognition tool with a sense of humor about the squares and total seriousness about the rows: one square is a bad day, a row is a signal, and a full board is a conversation you have this week, with yourself first, then with whoever shares the load.</p>
           <figure class="concept-fig"><img src="assets/dcb23e66e274.webp" srcset="assets/dcb23e66e274-800.webp 800w, assets/dcb23e66e274-1280.webp 1280w, assets/dcb23e66e274.webp 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Illustration of a person at a table with a notebook and a mug, looking up at a neat grid of square cards on the wall, a few marked with a circle, a wave, and a small flame, beginning to see the pattern across the board." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration. The board, read as a pattern: a few marked squares say more than a bad week does.</figcaption></figure>
           <div class="bingo-grid" role="group" aria-label="The Burnout Bingo board: twenty-four signs and a free center square"><div class="sq">Forgot why I walked into the room</div><div class="sq">Inbox dread before coffee</div><div class="sq">Re-read the same line five times</div><div class="sq">Everything urgent, nothing doable</div><div class="sq">Snapped at someone I like</div><div class="sq">Skipped lunch, again</div><div class="sq">Stared at a simple task for an hour</div><div class="sq">Too tired to actually rest</div><div class="sq">Sunday night dread</div><div class="sq">Brain tabs: all open</div><div class="sq">Cancelled the fun thing, again</div><div class="sq">Doing everyone&#8217;s remembering</div><div class="sq center">A full row is a signal, not a score</div><div class="sq">Awake at 3 a.m. rehearsing tomorrow</div><div class="sq">Coffee is doing the executive functioning</div><div class="sq">No patience left for people I love</div><div class="sq">Starting feels impossible</div><div class="sq">Busy all day, finished nothing</div><div class="sq">Body says stop, calendar says go</div><div class="sq">Lost the word mid-sentence</div><div class="sq">Helping everyone, asking no one</div><div class="sq">Recovery keeps getting postponed</div><div class="sq">Small tasks feel enormous</div><div class="sq">Needed a locked-door minute to breathe</div><div class="sq">&#8220;I am fine&#8221; on autopilot</div></div>
-          <p class="small u05">Play it solo, with a partner, or with a household, and compare boards instead of arguing about who is more tired. Three squares in a week is information, not weakness. Your squares are data about your life, and they will not match anyone else&#8217;s board exactly. That difference is part of the lesson.</p>
+          <p class="small u05">Use it solo, with a partner, or with a household, and compare boards instead of arguing about who is more tired. Three squares in a week is information, not weakness. Your squares are data about your life, and they will not match anyone else&#8217;s board exactly. That difference is part of the lesson.</p>
         </div>
         <div>
           <p class="eyebrow">The arc</p>
@@ -4858,9 +4870,14 @@
             <h1 style="font-size:clamp(1.85rem,3.6vw,2.4rem);margin:8px 0 12px;line-height:1.18;">One Scorecard. Tailored to your seat.</h1>
             <p class="lede">Every engagement here starts with a short, honest read of where things stand, not a sales call. Whether you lead an organization, champion access on a team, or are answering for yourself or your household, the Scorecard adapts to your role and points to one clear first step.</p>
             <div class="btnrow" style="margin-top:20px;"><a href="#scorecard" class="btn primary" data-go="scorecard">Take the Scorecard</a></div>
-            <p class="fineprint u01">Guidance only, not a compliance determination. Takes under two minutes.</p>
+            <p class="fineprint u01">Guidance only, not a compliance determination.</p>
           </div>
           <figure class="ph"><img src="assets/044b4c3c76cd.webp" srcset="assets/044b4c3c76cd-800.webp 800w, assets/044b4c3c76cd-1280.webp 1280w, assets/044b4c3c76cd.webp 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Illustration of a large assessment scorecard on a clipboard, rows of checkboxes with several ticked and one circled, a magnifying glass and pencil beside it, and a stepped path with flags leading to a small accessible building with a ramp." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>One honest look, then the route that fits your seat.</figcaption></figure>
+        </div>
+        <div class="callout" role="note">
+          <h2 class="u11">Looking at AI at work?</h2>
+          <p style="color:var(--ink);">Three short, plain-language scorecards to match AI to the work in front of you.</p>
+          <div class="btnrow"><a href="#ai-scorecards" class="btn ghost" data-go="ai-scorecards">Open the AI Scorecards library</a></div>
         </div>
         <div class="cta-band cta-split">
           <figure class="ph"><img src="assets/a3a20e17cca6.webp" srcset="assets/a3a20e17cca6-800.webp 800w, assets/a3a20e17cca6-1280.webp 1280w, assets/a3a20e17cca6.webp 1920w" sizes="(max-width: 900px) 100vw, 1020px" alt="Illustration of a community circle in conversation, colleagues seated together in a bright room." width="1920" height="1280" loading="lazy" decoding="async" /><figcaption>Illustration: start with the check that fits your seat.</figcaption></figure>
@@ -4974,40 +4991,6 @@
               <button type="button" class="btn primary" id="aiScNextBtn">Next question</button>
             </div>
           </div>
-          <div id="aiScContactWrap" class="ai-sc-contact" hidden>
-            <div>
-              <p class="eyebrow" style="margin:0;">Optional &middot; Separate from the 7 questions</p>
-              <h2 id="aiScContactHeading" style="font-size:1.45rem;margin:6px 0 6px;">Where should we send your result?</h2>
-              <p class="small" style="margin:0;">All 7 questions are complete. Add your details if you want a copy sent to you, or skip straight to your result profile now.</p>
-            </div>
-            <form id="aiScContactForm" novalidate style="display:grid;gap:14px;">
-              <input type="hidden" id="aiScGhlTagInput" name="ghl_tag" value="" />
-              <div class="ai-sc-field">
-                <label for="aiScName">Name</label>
-                <input type="text" id="aiScName" name="name" autocomplete="name" />
-              </div>
-              <div class="ai-sc-field">
-                <label for="aiScEmail">Email</label>
-                <input type="email" id="aiScEmail" name="email" autocomplete="email" />
-              </div>
-              <div class="ai-sc-field">
-                <label for="aiScOrg">Organization (optional)</label>
-                <input type="text" id="aiScOrg" name="organization" autocomplete="organization" />
-              </div>
-              <label class="ai-sc-consent">
-                <input type="checkbox" id="aiScConsent" name="consent" />
-                <span>I agree to receive my result summary and occasional plain-language updates from Fixing Friction. You can unsubscribe anytime, and your information is never sold.</span>
-              </label>
-              <div class="ai-sc-field">
-                <label for="aiScAnythingElse">Anything else you want us to know? (optional)</label>
-                <textarea id="aiScAnythingElse" name="anything_else" placeholder="Share any context, question, or constraint if you would like."></textarea>
-              </div>
-              <div class="btnrow" style="margin-top:4px;">
-                <button type="submit" class="btn primary">Show my result</button>
-                <button type="button" class="btn ghost" id="aiScSkipContact">Skip and show my result</button>
-              </div>
-            </form>
-          </div>
           <div id="aiScResultWrap" hidden aria-live="polite"></div>
         </div>
       </section>
@@ -5062,7 +5045,7 @@
         <p class="foot-bar">Fixing Friction. Helping communities and individuals feel seen, heard, understood, and connected. Fort Collins, Colorado. Accessibility guidance and coordination, not legal advice.</p>
         <p class="fineprint">Outputs are assessments and recommendations, not legal determinations. Matthew Cicanese, ADAC.</p>
         <p class="fineprint">Each client&#8217;s data stays that client&#8217;s property. Cross-client views are anonymized averages only. Data is never sold.</p>
-        <p class="fineprint">By Matthew Cicanese · Litmus Collective · Fort Collins, Colorado</p>
+        <p class="fineprint">By Matthew Cicanese · Litmus Collective · Fort Collins, Colorado · <a href="#buildout-page" data-go="buildout-page" class="foot-dev">Developer Build Out</a></p>
       </div>
     </footer>
 
@@ -5076,7 +5059,7 @@
       (function () {
         var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if ("scrollRestoration" in history) { try { history.scrollRestoration = "manual"; } catch (e) {} }
-        var pages = ["home", "voting", "speaking", "selfeval", "events", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
+        var pages = ["home", "voting", "speaking", "selfeval", "events", "buildout-page", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
         var mainEl = document.getElementById("main");
         var panel = document.getElementById("menupanel");
         var menubtn = document.getElementById("menubtn");
@@ -5219,8 +5202,8 @@
               b.setAttribute("aria-current", "page");
             });
           }
-          var titlesMap = {home:"ADA Accessibility Consulting in Fort Collins, CO | Fixing Friction", scorecard:"Find Your Starting Point Scorecard | Fixing Friction", services:"ADA Consulting Services: Audits, Advising, Training and Plans | Fort Collins, CO", verticals:"ADA Consulting by Sector: Find Your First Barrier and Fix It First | Fixing Friction", pathways:"ADA Pathways: Enter Anywhere, Leave With a Plan, an Owner and a Finish Line", audits:"ADA Accessibility Assessments and Accessibility Audits for Buildings, Websites and Voting Places | Fort Collins, CO", advising:"ADA Accessibility Advising for Policies, Self-Evaluations and Decisions", support:"ADA Consulting and Ongoing Support for Coordinators and Teams", materials:"The Second Reading: A Training Materials Audit for Course Libraries", plans:"ADA Remediation and Transition Planning With Owners, Dates and Re-Checks", findings:"Evidence-Based ADA Findings Reports: Compliance and Lived Experience", communications:"Accessible Communications and Media for Companies | Fixing Friction", cohesion:"Team Cohesion and Communication Snapshot: Read the Team, Land on a Training Plan | Fixing Friction", training:"ADA Training for Staff, Leaders and Coordinators | Fort Collins and Virtual", modules:"ADA Audit Modules: Voting, Digital and Physical Checklists | Fixing Friction", titles:"ADA Titles I to V: One Clear Picture of Where You Stand", reporting:"Workplace Accessibility Reporting: Staff Support and Customer Outcomes", evidence:"Accessibility Evidence: What the Work Found, Fixed and Proved, No Client Exposed", voting:"Voting and Polling Place Accessibility: Pre-Planning, Inspections, Remediation and Multi-Site Management", speaking:"ADA Keynote Speaking: Accessibility Friction and Desire Paths | Fixing Friction", selfeval:"ADA Self-Evaluation, Self-Evaluation Training and Fractional Coordinator Support", events:"Event Accessibility Consulting: Pre-Planning, Live Support and Debrief", about:"About Matthew Cicanese, ADA Consultant in Fort Collins, CO | Litmus Collective", start:"Get Started: Name What Is in Front of You, Leave With the Honest First Step | Fort Collins, CO", inside:"Inside Fixing Friction: Where the Friction Is Felt | Fixing Friction", tools:"Tools and Resources for Individuals and Families | Fixing Friction", community:"Community and Support for Staff Champions and ERGs | Fixing Friction", debt:"Accessibility Friction: Four Places and What They Cost | Fixing Friction", keydates:"Key Dates and Planning Calendar | Fixing Friction", athome:"At Home: Neurodivergent Households | Fixing Friction", burnout:"Burnout Bingo: Spot the Pattern Before It Spots You | Fixing Friction", scorecards:"Scorecards: Start With a Diagnostic, Pick Your Path | Fixing Friction", "ai-scorecards":"AI Scorecards: Start Here | Fixing Friction"};
-          var descMap = {home:"Helping communities and individuals feel seen, heard, understood, and connected to the tools, resources, and access they deserve and have a right to. Accessibility Solutions through Speaking, Training, Compliance, and Consulting, by Matthew Cicanese, ADAC, in Fort Collins, Colorado.", voting:"Voting and polling place accessibility: pre-planning strategy, site selection, readiness inspections and audits, Election Day support, remediation, post-election debrief and multi-site management.", speaking:"ADA keynote speaking on Accessibility Friction, desire paths, and disability etiquette and the media.", selfeval:"Self-evaluation facilitation, self-evaluation training, Coordinator Setup Sprint and fractional ADA Coordinator support.", events:"Event accessibility consulting: pre-planning, live event support, and post-event case study and debrief.", scorecard:"Answer a few short questions and get one honest starting point, shown on screen straight away. No email is needed, and nothing is saved or sent.", services:"Accessibility Solutions in Fort Collins, CO: Keynote Speaking, Training and Workshops, Fractional Consulting and Advising, and Accessibility and Usability Testing, detailed as ADA Services and Beyond Compliance.", verticals:"Client verticals for ADA consulting: business and corporate teams, government and public programs, transit and public spaces, schools and districts, airports and public venues, training providers, and fire and life safety, each with its entry offer and pathway. Most place-based doors open with an Accessibility Assessment.", pathways:"ADA pathways show how training leads to consulting and advising, audits surface findings, findings lead to remediation, and remediation matures into a Self-Evaluation and Transition Plan carried by ongoing support or a Fractional ADA Coordinator, with parallel routes for training materials and outward communications.", audits:"Start with an Accessibility Assessment: one site, one focused visit, the barriers that block access most photographed, measured and ranked. Full accessibility audits for buildings, campuses, websites, documents and polling places in Fort Collins and the surrounding region. Findings in plain language, ranked by what blocks access most.", advising:"ADA accessibility advising for self-evaluations, access policy, grievance procedures and accommodation questions. Leave with a documented decision and the reasons behind it.", support:"ADA consulting and ongoing support beside your team and your coordinator: progress monitored, coaching through the real work, and finished fixes verified against the original finding.", materials:"The Second Reading is a training materials audit in three tiers, First Look, Full Second Reading, and Audit and Alignment, reading your whole course library at once for contradictions, gaps against the standards, and barriers disabled learners actually meet.", plans:"ADA remediation and transition planning: findings become a phased plan with owners and dates, tracked in a client view and re-checked until each fix is verified.", findings:"Evidence-based findings reports read staff and customer experience data together with ADA review findings, against the standard and against lived reality.", communications:"Accessible communications and media consulting for companies: social media, press releases, video, marketing, campus and internal materials checked so stories about disabled and neurodivergent people lead with the person and their work, in accessible formats.", cohesion:"The Team Cohesion and Communication Snapshot reads how a team talks, decides, and works together, and how it communicates with clients. Findings in plain language, matched to neurodiversity training, ADA training, communication practice, or a mix, landing on a named training plan.", training:"ADA training for leadership, coordinators, facilities, digital, HR and parks teams, in Fort Collins and virtually. Eight themes taught by Matthew Cicanese, ADAC.", modules:"ADA audit modules for voting places, digital services and physical locations, each with its own checklist writing into one shared record.", titles:"How ADA Titles I, II, III, IV and V organize accessibility findings: employment, government, public accommodations, telecommunications and miscellaneous provisions.", reporting:"Workplace reporting that reads employee support, Title I and Title II findings, customer satisfaction, retention and staff churn in one picture.", evidence:"How accessibility engagement data becomes anonymized averages and case studies from our own client work, under strict data rules: client data stays the client property and is never sold.", about:"Matthew Cicanese, ADAC, Certified ADA Coordinator, Accessibility Speaker, Trainer and Consultant, and Founder of Fixing Friction in Fort Collins, Colorado. To be the resource I never had as a person with disabilities and divergence.", start:"Start an ADA accessibility engagement with a few sentences about your organization, your role and what you are working on. Based in Fort Collins, CO, serving the region on site and clients virtually.", inside:"Inside Fixing Friction is the hub of the lane for individuals and families: the tools to open first, the community routes, and the ADA Titles in plain language, for individual contributors, ERG members, and internal champions.", tools:"Tools and resources that live on this site: the Scorecard, the ADA Titles in plain language, the three checklists, and Fixing Friction on Substack.", community:"Community and support for the people who feel the friction first: ERG routes, internal champions, the Team Cohesion Snapshot, workplace reporting, and Fixing Friction on Substack.", debt:"Accessibility Friction builds in four places: digital, physical, communications and workplace, and technology. Every barrier left standing slows people down.", keydates:"Five awareness moments a year put disability on board, HR, and communications calendars. Each moment routes to one clear starting point, and planning starts one quarter ahead.", athome:"At Home: Neurodivergent Households. Private homes sit mostly outside the ADA. Mixed households, executive function at home, a sensory home, and home AI as a helping layer the household controls, never surveillance.", burnout:"Burnout Bingo reads burnout across personal, relational, and professional life. One square is a bad day, a row is a signal: spot it, catch it early, get through the thick of it, and prevent the return.", scorecards:"Two scorecard paths on one page: the Scorecard, and the free two-minute Cognitive Clarity Scorecard for individuals and families.", "ai-scorecards":"Three short, plain-language AI scorecards: pick the right tool for the job (1.1), map where AI fits in your work (2.1), and get steadier results from Muse and other AI tools (3.1)."};
+          var titlesMap = {home:"ADA Accessibility Consulting in Fort Collins, CO | Fixing Friction", "buildout-page":"Developer Build Out | Fixing Friction", scorecard:"Find Your Starting Point Scorecard | Fixing Friction", services:"ADA Consulting Services: Audits, Advising, Training and Plans | Fort Collins, CO", verticals:"ADA Consulting by Sector: Find Your First Barrier and Fix It First | Fixing Friction", pathways:"ADA Pathways: Enter Anywhere, Leave With a Plan, an Owner and a Finish Line", audits:"ADA Accessibility Assessments and Accessibility Audits for Buildings, Websites and Voting Places | Fort Collins, CO", advising:"ADA Accessibility Advising for Policies, Self-Evaluations and Decisions", support:"ADA Consulting and Ongoing Support for Coordinators and Teams", materials:"The Second Reading: A Training Materials Audit for Course Libraries", plans:"ADA Remediation and Transition Planning With Owners, Dates and Re-Checks", findings:"Evidence-Based ADA Findings Reports: Compliance and Lived Experience", communications:"Accessible Communications and Media for Companies | Fixing Friction", cohesion:"Team Cohesion and Communication Snapshot: Read the Team, Land on a Training Plan | Fixing Friction", training:"ADA Training for Staff, Leaders and Coordinators | Fort Collins and Virtual", modules:"ADA Audit Modules: Voting, Digital and Physical Checklists | Fixing Friction", titles:"ADA Titles I to V: One Clear Picture of Where You Stand", reporting:"Workplace Accessibility Reporting: Staff Support and Customer Outcomes", evidence:"Accessibility Evidence: What the Work Found, Fixed and Proved, No Client Exposed", voting:"Voting and Polling Place Accessibility: Pre-Planning, Inspections, Remediation and Multi-Site Management", speaking:"ADA Keynote Speaking: Accessibility Friction and Desire Paths | Fixing Friction", selfeval:"ADA Self-Evaluation, Self-Evaluation Training and Fractional Coordinator Support", events:"Event Accessibility Consulting: Pre-Planning, Live Support and Debrief", about:"About Matthew Cicanese, ADA Consultant in Fort Collins, CO | Litmus Collective", start:"Get Started: Name What Is in Front of You, Leave With the Honest First Step | Fort Collins, CO", inside:"Inside Fixing Friction: Where the Friction Is Felt | Fixing Friction", tools:"Tools and Resources for Individuals and Families | Fixing Friction", community:"Community and Support for Staff Champions and ERGs | Fixing Friction", debt:"Accessibility Friction: Four Places and What They Cost | Fixing Friction", keydates:"Key Dates and Planning Calendar | Fixing Friction", athome:"At Home: Neurodivergent Households | Fixing Friction", burnout:"Burnout Bingo: Spot the Pattern Before It Spots You | Fixing Friction", scorecards:"Scorecards: Start With a Diagnostic, Pick Your Path | Fixing Friction", "ai-scorecards":"AI Scorecards: Start Here | Fixing Friction"};
+          var descMap = {home:"Helping communities and individuals feel seen, heard, understood, and connected to the tools, resources, and access they deserve and have a right to. Accessibility Solutions through Speaking, Training, Compliance, and Consulting, by Matthew Cicanese, ADAC, in Fort Collins, Colorado.", voting:"Voting and polling place accessibility: pre-planning strategy, site selection, readiness inspections and audits, Election Day support, remediation, post-election debrief and multi-site management.", speaking:"ADA keynote speaking on Accessibility Friction, desire paths, and disability etiquette and the media.", selfeval:"Self-evaluation facilitation, self-evaluation training, Coordinator Setup Sprint and fractional ADA Coordinator support.", events:"Event accessibility consulting: pre-planning, live event support, and post-event case study and debrief.", "buildout-page":"Products and lead magnets in build out. Not available yet, and no dates are promised.", scorecard:"Answer a few short questions and get one honest starting point, shown on screen straight away. No email is needed, and nothing is saved or sent.", services:"Accessibility Solutions in Fort Collins, CO: Keynote Speaking, Training and Workshops, Fractional Consulting and Advising, and Accessibility and Usability Testing, detailed as ADA Services and Beyond Compliance.", verticals:"Client verticals for ADA consulting: business and corporate teams, government and public programs, transit and public spaces, schools and districts, airports and public venues, training providers, and fire and life safety, each with its entry offer and pathway. Most place-based doors open with an Accessibility Assessment.", pathways:"ADA pathways show how training leads to consulting and advising, audits surface findings, findings lead to remediation, and remediation matures into a Self-Evaluation and Transition Plan carried by ongoing support or a Fractional ADA Coordinator, with parallel routes for training materials and outward communications.", audits:"Start with an Accessibility Assessment: one site, one focused visit, the barriers that block access most photographed, measured and ranked. Full accessibility audits for buildings, campuses, websites, documents and polling places in Fort Collins and the surrounding region. Findings in plain language, ranked by what blocks access most.", advising:"ADA accessibility advising for self-evaluations, access policy, grievance procedures and accommodation questions. Leave with a documented decision and the reasons behind it.", support:"ADA consulting and ongoing support beside your team and your coordinator: progress monitored, coaching through the real work, and finished fixes verified against the original finding.", materials:"The Second Reading is a training materials audit in three tiers, First Look, Full Second Reading, and Audit and Alignment, reading your whole course library at once for contradictions, gaps against the standards, and barriers disabled learners actually meet.", plans:"ADA remediation and transition planning: findings become a phased plan with owners and dates, tracked on the plan and re-checked until each fix is verified.", findings:"Evidence-based findings reports read staff and customer experience data together with ADA review findings, against the standard and against lived reality.", communications:"Accessible communications and media consulting for companies: social media, press releases, video, marketing, campus and internal materials checked so stories about disabled and neurodivergent people lead with the person and their work, in accessible formats.", cohesion:"The Team Cohesion and Communication Snapshot reads how a team talks, decides, and works together, and how it communicates with clients. Findings in plain language, matched to neurodiversity training, ADA training, communication practice, or a mix, landing on a named training plan.", training:"ADA training for leadership, coordinators, facilities, digital, HR and parks teams, in Fort Collins and virtually. Eight themes taught by Matthew Cicanese, ADAC.", modules:"ADA audit modules for voting places, digital services and physical locations, each with its own checklist writing into one shared record.", titles:"How ADA Titles I, II, III, IV and V organize accessibility findings: employment, government, public accommodations, telecommunications and miscellaneous provisions.", reporting:"Workplace reporting that reads employee support, Title I and Title II findings, customer satisfaction, retention and staff churn in one picture.", evidence:"How accessibility engagement data becomes anonymized averages and case studies from our own client work, under strict data rules: client data stays the client property and is never sold.", about:"Matthew Cicanese, ADAC, Certified ADA Coordinator, Accessibility Speaker, Trainer and Consultant, and Founder of Fixing Friction in Fort Collins, Colorado. To be the resource I never had as a person with disabilities and divergence.", start:"Start an ADA accessibility engagement with a few sentences about your organization, your role and what you are working on. Based in Fort Collins, CO, serving the region on site and clients virtually.", inside:"Inside Fixing Friction is the hub of the lane for individuals and families: the tools to open first, the community routes, and the ADA Titles in plain language, for individual contributors, ERG members, and internal champions.", tools:"Tools and resources that live on this site: the Scorecard, the ADA Titles in plain language, the three checklists, and Fixing Friction on Substack.", community:"Community and support for the people who feel the friction first: ERG routes, internal champions, the Team Cohesion Snapshot, workplace reporting, and Fixing Friction on Substack.", debt:"Accessibility Friction builds in four places: digital, physical, communications and workplace, and technology. Every barrier left standing slows people down.", keydates:"Five awareness moments a year put disability on board, HR, and communications calendars. Each moment routes to one clear starting point, and planning starts one quarter ahead.", athome:"At Home: Neurodivergent Households. Private homes sit mostly outside the ADA. Mixed households, executive function at home, a sensory home, and home AI as a helping layer the household controls, never surveillance.", burnout:"Burnout Bingo reads burnout across personal, relational, and professional life. One square is a bad day, a row is a signal: spot it, catch it early, get through the thick of it, and prevent the return.", scorecards:"The Scorecard, one honest starting point for leaders and everyday workers, and the AI Scorecards library.", "ai-scorecards":"Three short, plain-language AI scorecards: pick the right tool for the job (1.1), map where AI fits in your work (2.1), and get steadier results from Muse and other AI tools (3.1)."};
           document.title = titlesMap[id] || titlesMap.home;
           var md = document.getElementById("metaDesc"); if (md && descMap[id]) md.setAttribute("content", descMap[id]);
           var ogt = document.getElementById("ogTitle"); if (ogt) ogt.setAttribute("content", document.title);
@@ -5242,9 +5225,11 @@
           window.__currentPageId = id;
           if (typeof window.__updateScReturnBar === "function") window.__updateScReturnBar(id);
         }
+        var OLD_PRODUCT_ROUTES = ["carecircle", "brainblame", "app", "prototypes", "apps"];
         function go(id) {
           if (id === "assessments") id = "audits";
           if (id === "consulting") id = "advising";
+          if (OLD_PRODUCT_ROUTES.indexOf(id) !== -1) id = "buildout-page";
           if (pages.indexOf(id) === -1) id = "home";
           window.__routerPush = true;
           try { showPage(id); } finally { window.__routerPush = false; }
@@ -5287,6 +5272,7 @@
         var startQuery = startParts[1] || "";
         if (startHash === "assessments") startHash = "audits";
         if (startHash === "consulting") startHash = "advising";
+        if (OLD_PRODUCT_ROUTES.indexOf(startHash) !== -1) startHash = "buildout-page";
         if (startHash === "scorecard" && startQuery) {
           var rm = startQuery.match(/(?:^|&)role=(leader|champion|individual)(?:&|$)/);
           if (rm) window.__pendingScorecardRole = rm[1];
@@ -5300,6 +5286,7 @@
           var h = (location.hash || "").replace(/^#/, "").split("?")[0];
           if (h === "assessments") h = "audits";
           if (h === "consulting") h = "advising";
+          if (OLD_PRODUCT_ROUTES.indexOf(h) !== -1) h = "buildout-page";
           if (!h) h = "home";
           if (pages.indexOf(h) !== -1 && h !== window.__currentPageId) {
             window.__routerPush = false;
@@ -5890,7 +5877,6 @@
       els.forEach(function (el) { io.observe(el); });
     })();
     (function () {
-      var AI_SC_CONTACT_ENABLED = false;
 
       var AI_ARCH_ORDER = ["fearful", "cautious", "curious", "confident", "stacker"];
       var AI_ARCH_SPOTS = {
@@ -5920,7 +5906,6 @@
           summary: "Will try AI carefully for one small job and checks everything. This is a good place, not a problem.",
           giveHeading: "What helps most right now",
           give: [
-            "Plain-language guides and templates you can inspect before using.",
             "Clear Do and Do Not rules so you know where the guardrails sit.",
             "One low-risk first use on non-sensitive material where checking the output takes seconds."
           ],
@@ -6171,7 +6156,6 @@
             var map = {
               R: {
                 profile: "The Researcher",
-                ghlTag: "ff-scorecard-1-1-result-r",
                 summary: "Start with a source-based research tool. Gemini Notebook (Formerly NotebookLM) is the example Matthew is asked about most often for this job.",
                 useFor: "Use it only on documents, notes, PDFs, or recordings you supplied so you can trace every answer back to your own sources.",
                 notFor: "Do not use it to invent sources, fill in missing facts, or make a compliance or legal call.",
@@ -6183,7 +6167,6 @@
               },
               W: {
                 profile: "The Shaper",
-                ghlTag: "ff-scorecard-1-1-result-w",
                 summary: "Start with a writing and thinking partner. Muse, Meta's AI, is the example Matthew is asked about most often for this job (others include ChatGPT, Claude, Gemini, and Dots).",
                 useFor: "Use it to outline, draft in plain language, and test your thinking while your own judgement stays in charge.",
                 notFor: "Do not use it as your only fact check, and do not publish names, dates, or quotes without verifying them yourself.",
@@ -6195,7 +6178,6 @@
               },
               S: {
                 profile: "The Access Checker",
-                ghlTag: "ff-scorecard-1-1-result-s",
                 summary: "Start with the specialist or accessibility route for this job, and verify the output yourself or with a qualified person.",
                 useFor: "Use assistive or specialist tools as a supporting layer for captions, alt text, or plain-language checks.",
                 notFor: "Never let an AI tool issue an accessibility finding, a compliance call, or a legal determination.",
@@ -6207,7 +6189,6 @@
               },
               G: {
                 profile: "The Quick Look",
-                ghlTag: "ff-scorecard-1-1-result-g",
                 summary: "A general chat tool you already have (such as ChatGPT, Claude, Gemini, Muse, Meta's AI, or Dots) is enough for this job. Do not buy a new subscription for a quick pass or one-time task.",
                 useFor: "Use it for a fast first look, a plain summary of public material, or a simple next step.",
                 notFor: "Do not feed it sensitive material or treat a first-pass answer as verified fact.",
@@ -6219,7 +6200,6 @@
               },
               N: {
                 profile: "No New Tool Yet",
-                ghlTag: "ff-scorecard-1-1-result-n",
                 summary: "This is a valid result. No tool can fix a job that has not been named yet. Name the job and where the work sticks first.",
                 useFor: "Start by writing down the exact task, who it affects, and what done looks like before opening any app.",
                 notFor: "Do not add another subscription or stack another tool onto an unclear workflow.",
@@ -6233,7 +6213,6 @@
             var res = map[best];
             return {
               profile: res.profile,
-              ghlTag: res.ghlTag,
               privacyFlag: privacyFlag,
               oneTimeFlag: oneTimeFlag,
               summary: res.summary,
@@ -6341,7 +6320,6 @@
             if (overrideP) {
               return {
                 profile: "Protect First",
-                ghlTag: "ff-scorecard-2-1-result-p",
                 overrideNote: "Triggered by your answer on risk: when getting it wrong could harm, exclude, or mislead someone, safety overrides speed every time.",
                 summary: "Slow this part down. Do not use AI on sensitive, access, legal, health, or people decisions without a human check against a primary source.",
                 useFor: "Keep human expertise and primary sources in charge. Use plain-language checklists and human review.",
@@ -6360,7 +6338,6 @@
               var z2 = zoneInfo[topKeys[1]];
               return {
                 profile: "Split Workflow",
-                ghlTag: "ff-scorecard-2-1-result-split",
                 summary: "Your work is part human-led and part assisted, with no single zone dominating. Separate those two zones on purpose instead of forcing one rule across the whole job.",
                 splitZones: [z1, z2],
                 useFor: "Run each zone under its own rule: keep human judgement where it matters most, and use light assistance only on the repeat friction.",
@@ -6375,7 +6352,6 @@
             var map = {
               H: {
                 profile: "Expert Led",
-                ghlTag: "ff-scorecard-2-1-result-h",
                 summary: "Your judgement is the work. AI, if any, only prepares material for you to decide on.",
                 useFor: "Use AI strictly for prep work (pulling notes together or organising material you supplied) before you make the call.",
                 notFor: "Do not outsource your voice, your relationships, or your final decision.",
@@ -6386,7 +6362,6 @@
               },
               A: {
                 profile: "Assisted Flow",
-                ghlTag: "ff-scorecard-2-1-result-a",
                 summary: "Keep your steps, and let AI hold, sort, and summarise between them so you do not lose the thread.",
                 useFor: "Use AI to sort notes, summarise piles of material, and keep repeat formatting off your plate.",
                 notFor: "Do not let it skip your verification step or invent details you did not supply.",
@@ -6397,7 +6372,6 @@
               },
               D: {
                 profile: "Draft and Verify",
-                ghlTag: "ff-scorecard-2-1-result-d",
                 summary: "Let AI make rough first drafts fast to beat the blank page, then you edit and verify every line that leaves the building.",
                 useFor: "Use AI to get momentum in short bursts on routine first drafts.",
                 notFor: "Do not publish an unchecked draft or skip checking names, numbers, and tone.",
@@ -6408,7 +6382,6 @@
               },
               P: {
                 profile: "Protect First",
-                ghlTag: "ff-scorecard-2-1-result-p",
                 summary: "Slow this part down. No AI on sensitive, access, legal, health, or people decisions without a human check against a primary source.",
                 useFor: "Keep human judgement and verified primary sources in the lead, and reduce overload before adding any tool.",
                 notFor: "Do not rush sensitive or high-stakes work through an AI tool.",
@@ -6522,7 +6495,6 @@
             if (total <= 5) {
               band = {
                 profile: "Prompting By Hope",
-                ghlTag: "ff-scorecard-3-1-result-prompting-by-hope",
                 summary: "Right now, Muse is guessing at what lives in your head. A short Do and Do Not starter card and a 5-part brief will stabilize your results right away.",
                 cardDo: [
                   "Name the job, audience, and what done looks like up front.",
@@ -6543,7 +6515,6 @@
             } else if (total <= 10) {
               band = {
                 profile: "Clear Brief Builder",
-                ghlTag: "ff-scorecard-3-1-result-clear-brief-builder",
                 summary: "You already have solid instincts, and tightening your brief into one repeatable 5-part structure will cut the back-and-forth in half.",
                 cardDo: [
                   "Use the 5-part brief every time: Job, Source, Rules, Example, Done When.",
@@ -6561,7 +6532,6 @@
             } else {
               band = {
                 profile: "Steady Director",
-                ghlTag: "ff-scorecard-3-1-result-steady-director",
                 summary: "You direct the tool instead of hoping it guesses right. Turn your best briefs into reusable assets and keep privacy and verification locked in.",
                 cardDo: [
                   "Save briefs that work as reusable assets and version them.",
@@ -6599,29 +6569,11 @@
       var qBox = document.getElementById("aiScQBox");
       var prevBtn = document.getElementById("aiScPrevBtn");
       var nextBtn = document.getElementById("aiScNextBtn");
-      var contactWrap = document.getElementById("aiScContactWrap");
-      var contactForm = document.getElementById("aiScContactForm");
-      var skipContactBtn = document.getElementById("aiScSkipContact");
-      var ghlInput = document.getElementById("aiScGhlTagInput");
       var resultWrap = document.getElementById("aiScResultWrap");
       var backHubBtn = document.getElementById("aiScBackHub");
       if (!hubEl || !runnerEl) return;
 
       var state = { id: null, idx: 0, answers: [], computed: null, archKey: "curious" };
-
-      function lockContactHidden() {
-        if (!contactWrap) return;
-        contactWrap.hidden = true;
-        contactWrap.setAttribute("aria-hidden", "true");
-        contactWrap.inert = true;
-      }
-      function unlockContactVisible() {
-        if (!contactWrap || !AI_SC_CONTACT_ENABLED) return;
-        contactWrap.hidden = false;
-        contactWrap.removeAttribute("aria-hidden");
-        contactWrap.inert = false;
-      }
-      lockContactHidden();
 
       function allQuestionsAnswered(sc) {
         if (!sc || !sc.questions || !sc.questions.length) return false;
@@ -6639,7 +6591,6 @@
       function showHub() {
         state.id = null;
         runnerEl.hidden = true;
-        lockContactHidden();
         hubEl.hidden = false;
         try { history.replaceState(null, "", "#ai-scorecards"); } catch (e) {}
       }
@@ -6672,7 +6623,7 @@
         });
         prevBtn.disabled = (state.idx === 0);
         if (state.idx === total - 1) {
-          nextBtn.textContent = AI_SC_CONTACT_ENABLED ? "Continue to optional contact step" : "See my result";
+          nextBtn.textContent = "See my result";
         } else {
           nextBtn.textContent = "Next question";
         }
@@ -6688,7 +6639,6 @@
         hubEl.hidden = true;
         runnerEl.hidden = false;
         stepWrap.hidden = false;
-        lockContactHidden();
         resultWrap.hidden = true;
         runCode.textContent = sc.code;
         runTitle.textContent = sc.title;
@@ -6697,7 +6647,6 @@
           return '<li><strong>' + esc(t[0]) + ':</strong> ' + esc(t[1]) + '</li>';
         }).join("");
         runWelcome.textContent = sc.welcome;
-        if (contactForm) contactForm.reset();
         try { history.replaceState(null, "", "#ai-scorecards?sc=" + id); } catch (e) {}
         renderQuestion();
       }
@@ -6710,21 +6659,7 @@
         });
         state.computed = sc.evaluate(chosen, sc);
         state.archKey = evaluateAiArch(state.id, state.answers);
-        if (ghlInput && state.computed) ghlInput.value = state.computed.ghlTag || "";
         return !!state.computed;
-      }
-
-      function showContactStep() {
-        if (!computeResult()) return;
-        if (!AI_SC_CONTACT_ENABLED) {
-          showResult(false);
-          return;
-        }
-        stepWrap.hidden = true;
-        unlockContactVisible();
-        resultWrap.hidden = true;
-        var h = document.getElementById("aiScContactHeading");
-        if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
       }
 
       function buildPlainSummary(sc, res, archKey) {
@@ -6734,7 +6669,6 @@
           sc.code + ": " + sc.title,
           "Result Profile: " + res.profile,
           "Where you are on the AI Arch (Matthewism #18): " + arch.label + " (" + arch.role + ")",
-          "Tag: " + res.ghlTag + " | " + arch.tag,
           "",
           res.summary
         ];
@@ -6754,7 +6688,7 @@
         return lines.join("\n");
       }
 
-      function showResult(contactSaved) {
+      function showResult() {
         var sc = AI_SCORECARDS[state.id];
         if (!sc || !allQuestionsAnswered(sc)) return;
         if (!state.computed && !computeResult()) return;
@@ -6762,9 +6696,7 @@
         if (!res) return;
         var arch = AI_ARCH_SPOTS[state.archKey] || AI_ARCH_SPOTS.curious;
         stepWrap.hidden = true;
-        lockContactHidden();
         resultWrap.hidden = false;
-        resultWrap.setAttribute("data-ghl-tag", res.ghlTag || "");
         resultWrap.setAttribute("data-arch-spot", arch.key);
         resultWrap.setAttribute("data-arch-tag", arch.tag);
         resultWrap.setAttribute("data-privacy-flag", res.privacyFlag ? "true" : "false");
@@ -6835,7 +6767,6 @@
           '<button type="button" class="btn ghost" id="aiScCopyResBtn">Copy my result summary</button>' +
           '<button type="button" class="btn ghost" id="aiScPrintResBtn">Print or save my results</button>' +
           '</div>' +
-          (contactSaved && AI_SC_CONTACT_ENABLED ? '<p class="fineprint" style="margin-top:10px;">Your note and routing tag (<code>' + esc(res.ghlTag) + '</code>) are ready for your records.</p>' : '') +
           (res.namesTools || state.archKey === "confident" ? '<p class="ai-sc-ownership">Tool names belong to their owners. Fixing Friction is not affiliated with or endorsed by them.</p>' : '') +
           '<p class="fineprint" style="margin-top:10px;">Guidance only, not a finding, compliance call, or legal determination. Matthew Cicanese, ADAC.</p>' +
           '</div>';
@@ -6900,24 +6831,10 @@
             state.idx += 1;
             renderQuestion();
           } else {
-            showContactStep();
+            if (computeResult()) showResult();
           }
         });
       }
-      if (contactForm) {
-        contactForm.addEventListener("submit", function (ev) {
-          ev.preventDefault();
-          if (!AI_SC_CONTACT_ENABLED) return;
-          showResult(true);
-        });
-      }
-      if (skipContactBtn) {
-        skipContactBtn.addEventListener("click", function () {
-          if (!AI_SC_CONTACT_ENABLED) return;
-          showResult(false);
-        });
-      }
-
       window.__openAiScorecard = openScorecard;
       window.__showAiScorecardsHub = showHub;
       if (window.__pendingAiScorecard) {

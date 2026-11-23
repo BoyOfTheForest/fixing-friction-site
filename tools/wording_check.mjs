@@ -77,5 +77,14 @@ const llmsTxt = fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8");
 ok(!/capital D|with a capital|vision in one eye/i.test(html) && !/capital D|with a capital|vision in one eye/i.test(llmsTxt), "Matthew's bio never uses the phrase capital D or vision in one eye (page, JSON-LD, meta, alt text and llms.txt)");
 ok(html.includes("Deaf on his right and with low vision on his left") && html.includes("Deaf on his right, with low vision on his left"), "the specific wording is present: Deaf on his right, low vision on his left");
 ok(!navFoot.includes("—"), "no em dash in navigation or footer");
+{
+  const noBO = html.replace(/<section class="page" id="page-buildout-page"[\s\S]*?<\/section>/, "");
+  const SOFTWARE = ["client home", "in the app", "In the app", "Inside the app", "The app keeps", "software in the app", "software shaped to each client", "Inside Fixing Friction ADA", "The app layer", "business app", "app and tools", "The App page", "follow online", "Publish it to the client view", "everywhere in the app"];
+  for (const p of SOFTWARE) ok(!noBO.includes(p), 'software-present phrase gone from audience copy: "' + p + '"');
+  ok(!/(the|a|its|in a|in the|to the) client view/i.test(noBO) && !/tracked in a client view/i.test(noBO), 'software-present phrase gone from audience copy: "the client view", "a client view" (the data rule "cross-client views are anonymized averages only" is a different statement and stays)');
+  ok(!/Takes under two minutes|under two minutes/i.test(html), "no 'under two minutes' claim anywhere on the site (the AI scorecards' own time chips are a different wording)");
+  ok(!/Play Burnout Bingo|Play it solo/.test(html), "Burnout Bingo is not presented as a game to play");
+  ok(!/guides and templates you can inspect|through a free guide/.test(html), "the removed guide and template promises are gone");
+}
 console.log(fails.length ? "\nFAILED: " + fails.length : "\nALL PHASE 4 CHECKS PASSED");
 ws.close(); proc.kill(); srv.close(); process.exit(fails.length ? 1 : 0);

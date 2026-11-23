@@ -83,7 +83,7 @@ for (const [name, w, h] of sizes) {
   ok(fb.cols === wantCols, `${name}: footer has ${fb.cols} columns per row (want ${wantCols})`);
   const small = await ev(`JSON.stringify([].filter.call(document.querySelectorAll('.sitemap a'),function(a){return a.getBoundingClientRect().height<43.5}).map(function(a){return a.textContent.trim()}))`);
   ok(small === "[]", `${name}: every footer link >= 44px tall ${small}`);
-  ok(await ev(`!document.querySelector('.foot-cta') && !document.querySelector('footer.site a[href*=buildout]') && !document.querySelector('footer.site a[href*=launch]') && !document.querySelector('footer.site a[href*=changes]')`), `${name}: no dev links and no Not-sure line in the footer`);
+  ok(await ev(`!document.querySelector('.foot-cta') && !document.querySelector('footer.site a[href*=buildout]:not([href="#buildout-page"])') && document.querySelectorAll('footer.site a[href="#buildout-page"]').length===1 && !document.querySelector('footer.site nav.sitemap a[href="#buildout-page"]') && document.querySelector('footer.site a[href="#buildout-page"]').getBoundingClientRect().height>=43.5 && !document.querySelector('footer.site a[href*=launch]') && !document.querySelector('footer.site a[href*=changes]')`), `${name}: no dev links and no Not-sure line in the footer (the one Developer Build Out link sits in the bottom bar, not in the columns, and is 44 px tall)`);
   ok(await ev(`document.querySelectorAll('.sitemap > div').length===6 && document.querySelector('footer.site .foot-bar').previousElementSibling.classList.contains('sitemap')`), `${name}: footer is the six columns then the bottom bar`);
   const wid = await ev(WIDOW);
   ok(wid === "[]", `${name}: no widow word in footer headings ${wid}`);

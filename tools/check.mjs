@@ -36,7 +36,7 @@ const pagesArr = (html.match(/var pages = \[([^\]]*)\]/) || [])[1];
 const pagesList = pagesArr ? [...pagesArr.matchAll(/"([^"]+)"/g)].map((m) => m[1]) : [];
 for (const p of pagesList) if (!pageIds.includes(p)) fail("pages", "pages array lists " + p + " but there is no section");
 for (const p of pageIds) if (!pagesList.includes(p)) fail("pages", "section page-" + p + " is missing from the pages array");
-const EXPECTED_PAGES = 33;
+const EXPECTED_PAGES = 34;
 if (pageIds.length !== EXPECTED_PAGES) fail("pages", "expected " + EXPECTED_PAGES + " page sections, found " + pageIds.length);
 
 // links
@@ -84,18 +84,28 @@ if (faqLd && faqSrc) {
 // hygiene
 // internal build-out pages are not published: they must not exist in the repository (served by GitHub Pages)
 for (const d of ["buildout", "launch", "changes", "docs"]) if (fs.existsSync(path.join(ROOT, d))) fail("unpublish", "/" + d + "/ is in the repository and would be served publicly");
-// unbuilt product pages stay unpublished (Phase 5 fix round 2): no section, no route, no inbound link, no audience-copy mention
-const UNPUBLISHED = ["carecircle", "brainblame", "app", "prototypes", "directory"];
-for (const r of UNPUBLISHED) {
+// unbuilt product pages stay unpublished as pages (Phase 5 fix rounds 2 and 3). Their old routes land on the Developer Build Out page.
+const GONE = ["carecircle", "brainblame", "app", "prototypes", "directory"];
+const OLD_ROUTES = ["carecircle", "brainblame", "app", "prototypes", "apps"];
+for (const r of GONE) {
   if (ids.has("page-" + r)) fail("unpublish", "page-" + r + " is back in the page source");
   if (pagesList.includes(r)) fail("unpublish", "pages array lists " + r);
   if (new RegExp('data-go="' + r + '"|href="#' + r + '[?"]').test(html)) fail("unpublish", "a link points to the unpublished route #" + r);
 }
-if (/"apps"/.test(html)) fail("unpublish", "the apps alias is back");
-for (const f of ["index.html", "llms.txt", "404.html", "sitemap.xml"]) {
-  const body = fs.readFileSync(path.join(ROOT, f), "utf8");
-  if (/Care ?Circle|Brain ?Blame/i.test(body)) fail("unpublish", "CareCircle or Brain Blame appears in " + f);
-  if (/\b(prototypes|brainblame|carecircle)\b/i.test(body) && f !== "index.html") fail("unpublish", "an unpublished route is named in " + f);
+if (!ids.has("page-buildout-page") || !pagesList.includes("buildout-page")) fail("buildout", "the Developer Build Out page (#buildout-page) is missing from the page source or the page list");
+const bo0 = html.indexOf('<section class="page" id="page-buildout-page"');
+const bo1 = bo0 >= 0 ? html.indexOf("</section>", bo0) + "</section>".length : 0;
+const buildoutSection = bo0 >= 0 ? html.slice(bo0, bo1) : "";
+const htmlNoBO = (bo0 >= 0 ? html.slice(0, bo0) + html.slice(bo1) : html).replace(/var OLD_PRODUCT_ROUTES = \[[^\]]*\];/, "");
+if (/Care ?Circle|Brain ?Blame|Cognitive Clarity/i.test(htmlNoBO)) fail("unpublish", "CareCircle, Brain Blame or Cognitive Clarity appears in audience copy outside the Developer Build Out page");
+if (!/Care ?Circle/.test(buildoutSection) || !/Brain Blame/.test(buildoutSection) || !/Cognitive Clarity/.test(buildoutSection)) fail("buildout", "the Developer Build Out page lost a concept entry");
+if (/<form|<input|<textarea|<select|mailto:|type="email"/i.test(buildoutSection)) fail("buildout", "the Developer Build Out page must hold no form, input, email field or mailto link");
+if (/<button|data-go="start"|Try it|Join |Sign up|Get access|Request access/i.test(buildoutSection)) fail("buildout", "the Developer Build Out page reads like a live offer (button, start link, try it or join wording)");
+for (const f of ["llms.txt", "404.html", "sitemap.xml"]) {
+  let body = fs.readFileSync(path.join(ROOT, f), "utf8");
+  if (f === "404.html") body = body.replace(/"(carecircle|brainblame|app|prototypes|apps)": "buildout-page",? ?/g, "");
+  if (/Care ?Circle|Brain ?Blame|Cognitive Clarity|\b(prototypes|brainblame|carecircle)\b/i.test(body)) fail("unpublish", "an unpublished product or route is named in " + f);
+  if (f !== "404.html" && /buildout-page|Developer Build Out/i.test(body)) fail("buildout", "the Developer Build Out page must not be listed in " + f);
 }
 if (/info@/i.test(html)) fail("email", "old info@ address found");
 for (const f of ["robots.txt", "sitemap.xml", "llms.txt", "404.html", "CNAME"]) if (!fs.existsSync(path.join(ROOT, f))) fail("files", f + " missing");
@@ -191,16 +201,17 @@ async function browserChecks() {
       }
       note("chip row " + width + "px: " + rows + " pages with the row, " + chipsSeen + " chips, none scroll sideways");
     }
-    // unpublished routes open the homepage (same treatment as #directory)
+    // old product routes land on the Developer Build Out page; #directory still falls back to the homepage
     if (!SHOTS_ONLY) {
       await c.send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
-      for (const r of UNPUBLISHED.concat(["apps"])) {
+      for (const r of OLD_ROUTES.concat(["directory"])) {
         await c.send("Page.navigate", { url: "about:blank" }); await sleep(250);
         await c.send("Page.navigate", { url: base + "#" + r }); await sleep(1100);
         const cur = await c.eval("(function(){var a=document.querySelector('section.page.active');return a?a.id:''})()");
-        if (cur !== "page-home") fail("unpublish", "#" + r + " is reachable: it opened " + cur + " instead of the homepage");
+        const want = r === "directory" ? "page-home" : "page-buildout-page";
+        if (cur !== want) fail("unpublish", "#" + r + " opened " + cur + " instead of " + want);
       }
-      note("unpublished routes (" + UNPUBLISHED.concat(["apps"]).join(", ") + ") all fall back to the homepage");
+      note("old product routes (" + OLD_ROUTES.join(", ") + ") open the Developer Build Out page; #directory opens the homepage");
     }
     if (!SHOTS_ONLY) {
     // text spacing override (WCAG 1.4.12): nothing important may clip

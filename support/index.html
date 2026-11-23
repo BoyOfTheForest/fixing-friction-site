@@ -1226,6 +1226,48 @@
       .sc-res-hero .fr-note{border-left:3px solid #FFFFFF;padding-left:12px;}
       .fr-select{min-height:44px;margin-top:10px;padding:8px 18px;border:1.5px solid #FFFFFF;border-radius:999px;background:transparent;color:#FFFFFF;font:inherit;font-weight:700;cursor:pointer;}
       .fr-select:focus-visible{outline:3px solid #FFFFFF;outline-offset:3px;}
+      
+      .fr-welcome{max-width:46rem;}
+      .fr-welcome .small{margin-top:12px;font-weight:700;}
+      .fr-fit .card h2{font-size:1.2rem;margin:8px 0 8px;line-height:1.25;}
+      .fr-get,.fr-how{max-width:46rem;}
+      .fr-get p,.fr-how p,.fr-welcome p{margin:0 0 14px;}
+      .fr-get p:last-child,.fr-how p:last-of-type,.fr-welcome p:last-child{margin-bottom:0;}
+      .fr-get h2,.fr-how h2{margin-bottom:8px;}
+      .fr-how .btnrow{margin-top:18px;}
+      .fr-h1{font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;margin:18px 0 0;}
+      .fr-quiz{padding:30px 32px;}
+      .fr-quiz .sc-form .fr-q{margin:0 0 30px;}
+      .fr-quiz .sc-form .fr-q legend{font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.3;margin:0 0 18px;max-width:42rem;}
+      .fr-quiz .fr-area-h{font-size:clamp(1.4rem,2.8vw,1.8rem);margin:4px 0 8px;}
+      .fr-quiz #frStepHost{min-height:9rem;}
+      .fr-quiz .sc-progress{margin:26px 0 18px;}
+      @media (max-width:640px){.fr-quiz{padding:22px 18px;}}
+      .fr-foot-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+      .sc-res-foot #frDlStatus{flex:1 1 100%;margin:0;}
+      .ff-return{position:sticky;top:var(--ff-hdr,64px);z-index:45;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#101F3C;color:#FFFFFF;padding:8px 16px;min-height:62px;margin:0 0 18px;border-radius:0 0 12px 12px;}
+      .ff-return[hidden]{display:none;}
+      .ff-return-link{display:inline-flex;align-items:center;gap:14px;min-height:44px;color:#FFFFFF;font-weight:800;font-size:1.1rem;text-decoration:none;}
+      .ff-return-link,.ff-return-link .ff-return-text{color:#FFFFFF;}
+      .ff-return-link:hover .ff-return-text{text-decoration:underline;text-underline-offset:3px;}
+      .ff-return-chip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#FFFFFF;color:#101F3C;font-size:1.5rem;line-height:1;flex:0 0 auto;}
+      .ff-return-chip::after{content:"";position:absolute;top:-2px;right:-2px;bottom:-2px;left:-2px;border-radius:50%;border:2px solid #FFFFFF;opacity:0;animation:ffRing 2.8s ease-out infinite;}
+      @keyframes ffRing{0%{transform:scale(1);opacity:.7;}70%,100%{transform:scale(1.55);opacity:0;}}
+      .ff-return :focus-visible{outline:3px solid #7DD3FC;outline-offset:3px;}
+      .ff-return-x{min-height:44px;min-width:44px;padding:8px 16px;border:1.5px solid #FFFFFF;border-radius:999px;background:transparent;color:#FFFFFF;font:inherit;font-weight:700;cursor:pointer;}
+      .ff-crumbs{margin:6px 0 0;font-size:.95rem;}
+      .ff-crumbs ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:0;margin:0;}
+      .ff-crumbs li+li::before{content:"\203A";margin-right:8px;color:var(--muted);}
+      .ff-crumb-link{display:inline-flex;align-items:center;min-height:44px;font-weight:700;}
+      .ff-crumb-here{color:var(--muted);}
+      .ff-toast{position:fixed;right:16px;bottom:16px;z-index:60;max-width:22rem;background:#FFFFFF;color:var(--ink);border:2px solid #101F3C;border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px rgba(16,31,60,.25);opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .35s ease;}
+      .ff-toast[hidden]{display:none;}
+      .ff-toast.show{opacity:1;transform:none;}
+      .ff-toast p{margin:0 0 10px;font-weight:600;color:var(--ink);}
+      .ff-toast-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+      .ff-toast-x{min-height:44px;padding:8px 14px;border:0;background:transparent;color:var(--accent-deep);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;}
+      @media (max-width:640px){.ff-toast{left:12px;right:12px;max-width:none;bottom:12px;}}
+      @media (prefers-reduced-motion:reduce){.ff-return-chip::after{animation:none;opacity:0;}.ff-toast{transform:none;transition:opacity .2s ease;}}
       .sc-res-hero .fr-door,.sc-res-hero .fr-community{margin-top:14px;}
       #frResult,#frResHead{scroll-margin-top:120px;}
       .method-pillar{margin-top:30px;}
@@ -1661,11 +1703,11 @@
       (function () {
         var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if ("scrollRestoration" in history) { try { history.scrollRestoration = "manual"; } catch (e) {} }
-        var pages = ["home", "voting", "speaking", "selfeval", "events", "buildout-page", "method", "frictions", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
+        var pages = ["home", "voting", "speaking", "selfeval", "events", "buildout-page", "method", "frictions", "frictions-quiz", "frictions-results", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
         var mainEl = document.getElementById("main");
         var presentPages = pages.filter(function (p) { return !!document.getElementById("page-" + p); });
         var single = presentPages.length === 1;
-        function realPath(id) { return id === "home" ? "/" : "/" + id + "/"; }
+        function realPath(id) { return id === "home" ? "/" : "/" + id.replace(/^frictions-/, "frictions/") + "/"; }
         window.__ffRoute = function (id, query) { return single ? realPath(id) + (query ? "?" + query : "") : "#" + id + (query ? "?" + query : ""); };
         function resolveRoute(id) {
           if (id === "assessments") id = "audits";
@@ -1814,8 +1856,8 @@
               b.setAttribute("aria-current", "page");
             });
           }
-          var titlesMap = {home:"ADA Accessibility Consulting in Fort Collins, CO | Fixing Friction", "buildout-page":"Developer Build Out | Fixing Friction", method:"TLCCW: Think, Learn, Communicate, Create, Work | Fixing Friction", frictions:"Find Your Frictions | Fixing Friction", scorecard:"Find Your Starting Point Scorecard | Fixing Friction", services:"ADA Consulting Services: Audits, Advising, Training and Plans | Fort Collins, CO", verticals:"ADA Consulting by Sector: Find Your First Barrier and Fix It First | Fixing Friction", pathways:"ADA Pathways: Enter Anywhere, Leave With a Plan, an Owner and a Finish Line", audits:"ADA Accessibility Assessments and Accessibility Audits for Buildings, Websites and Voting Places | Fort Collins, CO", advising:"ADA Accessibility Advising for Policies, Self-Evaluations and Decisions", support:"ADA Consulting and Ongoing Support for Coordinators and Teams", materials:"The Second Reading: A Training Materials Audit for Course Libraries", plans:"ADA Remediation and Transition Planning With Owners, Dates and Re-Checks", findings:"Evidence-Based ADA Findings Reports: Compliance and Lived Experience", communications:"Accessible Communications and Media for Companies | Fixing Friction", cohesion:"Team Cohesion and Communication Snapshot: Read the Team, Land on a Training Plan | Fixing Friction", training:"ADA Training for Staff, Leaders and Coordinators | Fort Collins and Virtual", modules:"ADA Audit Modules: Voting, Digital and Physical Checklists | Fixing Friction", titles:"ADA Titles I to V: One Clear Picture of Where You Stand", reporting:"Workplace Accessibility Reporting: Staff Support and Customer Outcomes", evidence:"Accessibility Evidence: What the Work Found, Fixed and Proved, No Client Exposed", voting:"Voting and Polling Place Accessibility: Pre-Planning, Inspections, Remediation and Multi-Site Management", speaking:"ADA Keynote Speaking: Accessibility Friction and Desire Paths | Fixing Friction", selfeval:"ADA Self-Evaluation, Self-Evaluation Training and Fractional Coordinator Support", events:"Event Accessibility Consulting: Pre-Planning, Live Support and Debrief", about:"About Matthew Cicanese, ADA Consultant in Fort Collins, CO | Litmus Collective", start:"Get Started: Name What Is in Front of You, Leave With the Honest First Step | Fort Collins, CO", inside:"Inside Fixing Friction: Where the Friction Is Felt | Fixing Friction", tools:"Tools and Resources for Individuals and Families | Fixing Friction", community:"Community and Support for Staff Champions and ERGs | Fixing Friction", debt:"Accessibility Friction: Four Places and What They Cost | Fixing Friction", keydates:"Key Dates and Planning Calendar | Fixing Friction", athome:"At Home: Neurodivergent Households | Fixing Friction", burnout:"Burnout Bingo: Spot the Pattern Before It Spots You | Fixing Friction", scorecards:"Scorecards: Start With a Diagnostic, Pick Your Path | Fixing Friction", "ai-scorecards":"AI Scorecards: Start Here | Fixing Friction"};
-          var descMap = {home:"Helping communities and individuals feel seen, heard, understood, and connected to the tools, resources, and access they deserve and have a right to. Accessibility Solutions through Speaking, Training, Compliance, and Consulting, by Matthew Cicanese, ADAC, in Fort Collins, Colorado.", voting:"Voting and polling place accessibility: pre-planning strategy, site selection, readiness inspections and audits, Election Day support, remediation, post-election debrief and multi-site management.", speaking:"ADA keynote speaking on Accessibility Friction, desire paths, and disability etiquette and the media.", selfeval:"Self-evaluation facilitation, self-evaluation training, Coordinator Setup Sprint and fractional ADA Coordinator support.", events:"Event accessibility consulting: pre-planning, live event support, and post-event case study and debrief.", "buildout-page":"Products and lead magnets in build out. Not available yet, and no dates are promised.", method:"TLCCW stands for Think, Learn, Communicate, Create, Work: five small steps for working on friction, shown for a worker first and for a leader second.", frictions:"A few plain questions to show where friction is costing you the most: in yourself, in the people you care for, or in your work. Answered on screen only, nothing saved.", scorecard:"Answer a few short questions and get one honest starting point, shown on screen straight away. No email is needed, and nothing is saved or sent.", services:"Accessibility Solutions in Fort Collins, CO: Keynote Speaking, Training and Workshops, Fractional Consulting and Advising, and Accessibility and Usability Testing, detailed as ADA Services and Beyond Compliance.", verticals:"Client verticals for ADA consulting: business and corporate teams, government and public programs, transit and public spaces, schools and districts, airports and public venues, training providers, and fire and life safety, each with its entry offer and pathway. Most place-based doors open with an Accessibility Assessment.", pathways:"ADA pathways show how training leads to consulting and advising, audits surface findings, findings lead to remediation, and remediation matures into a Self-Evaluation and Transition Plan carried by ongoing support or a Fractional ADA Coordinator, with parallel routes for training materials and outward communications.", audits:"Start with an Accessibility Assessment: one site, one focused visit, the barriers that block access most photographed, measured and ranked. Full accessibility audits for buildings, campuses, websites, documents and polling places in Fort Collins and the surrounding region. Findings in plain language, ranked by what blocks access most.", advising:"ADA accessibility advising for self-evaluations, access policy, grievance procedures and accommodation questions. Leave with a documented decision and the reasons behind it.", support:"ADA consulting and ongoing support beside your team and your coordinator: progress monitored, coaching through the real work, and finished fixes verified against the original finding.", materials:"The Second Reading is a training materials audit in three tiers, First Look, Full Second Reading, and Audit and Alignment, reading your whole course library at once for contradictions, gaps against the standards, and barriers disabled learners actually meet.", plans:"ADA remediation and transition planning: findings become a phased plan with owners and dates, tracked on the plan and re-checked until each fix is verified.", findings:"Evidence-based findings reports read staff and customer experience data together with ADA review findings, against the standard and against lived reality.", communications:"Accessible communications and media consulting for companies: social media, press releases, video, marketing, campus and internal materials checked so stories about disabled and neurodivergent people lead with the person and their work, in accessible formats.", cohesion:"The Team Cohesion and Communication Snapshot reads how a team talks, decides, and works together, and how it communicates with clients. Findings in plain language, matched to neurodiversity training, ADA training, communication practice, or a mix, landing on a named training plan.", training:"ADA training for leadership, coordinators, facilities, digital, HR and parks teams, in Fort Collins and virtually. Eight themes taught by Matthew Cicanese, ADAC.", modules:"ADA audit modules for voting places, digital services and physical locations, each with its own checklist writing into one shared record.", titles:"How ADA Titles I, II, III, IV and V organize accessibility findings: employment, government, public accommodations, telecommunications and miscellaneous provisions.", reporting:"Workplace reporting that reads employee support, Title I and Title II findings, customer satisfaction, retention and staff churn in one picture.", evidence:"How accessibility engagement data becomes anonymized averages and case studies from our own client work, under strict data rules: client data stays the client property and is never sold.", about:"Matthew Cicanese, ADAC, Certified ADA Coordinator, Accessibility Speaker, Trainer and Consultant, and Founder of Fixing Friction in Fort Collins, Colorado. To be the resource I never had as a person with disabilities and divergence.", start:"Start an ADA accessibility engagement with a few sentences about your organization, your role and what you are working on. Based in Fort Collins, CO, serving the region on site and clients virtually.", inside:"Inside Fixing Friction is the hub of the lane for individuals and families: the tools to open first, the community routes, and the ADA Titles in plain language, for individual contributors, ERG members, and internal champions.", tools:"Tools and resources that live on this site: the Scorecard, the ADA Titles in plain language, the three checklists, and Fixing Friction on Substack.", community:"Community and support for the people who feel the friction first: ERG routes, internal champions, the Team Cohesion Snapshot, workplace reporting, and Fixing Friction on Substack.", debt:"Accessibility Friction builds in four places: digital, physical, communications and workplace, and technology. Every barrier left standing slows people down.", keydates:"Five awareness moments a year put disability on board, HR, and communications calendars. Each moment routes to one clear starting point, and planning starts one quarter ahead.", athome:"At Home: Neurodivergent Households. Private homes sit mostly outside the ADA. Mixed households, executive function at home, a sensory home, and home AI as a helping layer the household controls, never surveillance.", burnout:"Burnout Bingo reads burnout across personal, relational, and professional life. One square is a bad day, a row is a signal: spot it, catch it early, get through the thick of it, and prevent the return.", scorecards:"The Scorecard, one honest starting point for leaders and everyday workers, and the AI Scorecards library.", "ai-scorecards":"Three short, plain-language AI scorecards: pick the right tool for the job (1.1), map where AI fits in your work (2.1), and get steadier results from Muse and other AI tools (3.1)."};
+          var titlesMap = {home:"ADA Accessibility Consulting in Fort Collins, CO | Fixing Friction", "buildout-page":"Developer Build Out | Fixing Friction", method:"TLCCW: Think, Learn, Communicate, Create, Work | Fixing Friction", frictions:"Find Your Frictions | Fixing Friction", "frictions-quiz":"Find Your Frictions: The Questions | Fixing Friction", "frictions-results":"Your Lay of the Land | Find Your Frictions | Fixing Friction", scorecard:"Find Your Starting Point Scorecard | Fixing Friction", services:"ADA Consulting Services: Audits, Advising, Training and Plans | Fort Collins, CO", verticals:"ADA Consulting by Sector: Find Your First Barrier and Fix It First | Fixing Friction", pathways:"ADA Pathways: Enter Anywhere, Leave With a Plan, an Owner and a Finish Line", audits:"ADA Accessibility Assessments and Accessibility Audits for Buildings, Websites and Voting Places | Fort Collins, CO", advising:"ADA Accessibility Advising for Policies, Self-Evaluations and Decisions", support:"ADA Consulting and Ongoing Support for Coordinators and Teams", materials:"The Second Reading: A Training Materials Audit for Course Libraries", plans:"ADA Remediation and Transition Planning With Owners, Dates and Re-Checks", findings:"Evidence-Based ADA Findings Reports: Compliance and Lived Experience", communications:"Accessible Communications and Media for Companies | Fixing Friction", cohesion:"Team Cohesion and Communication Snapshot: Read the Team, Land on a Training Plan | Fixing Friction", training:"ADA Training for Staff, Leaders and Coordinators | Fort Collins and Virtual", modules:"ADA Audit Modules: Voting, Digital and Physical Checklists | Fixing Friction", titles:"ADA Titles I to V: One Clear Picture of Where You Stand", reporting:"Workplace Accessibility Reporting: Staff Support and Customer Outcomes", evidence:"Accessibility Evidence: What the Work Found, Fixed and Proved, No Client Exposed", voting:"Voting and Polling Place Accessibility: Pre-Planning, Inspections, Remediation and Multi-Site Management", speaking:"ADA Keynote Speaking: Accessibility Friction and Desire Paths | Fixing Friction", selfeval:"ADA Self-Evaluation, Self-Evaluation Training and Fractional Coordinator Support", events:"Event Accessibility Consulting: Pre-Planning, Live Support and Debrief", about:"About Matthew Cicanese, ADA Consultant in Fort Collins, CO | Litmus Collective", start:"Get Started: Name What Is in Front of You, Leave With the Honest First Step | Fort Collins, CO", inside:"Inside Fixing Friction: Where the Friction Is Felt | Fixing Friction", tools:"Tools and Resources for Individuals and Families | Fixing Friction", community:"Community and Support for Staff Champions and ERGs | Fixing Friction", debt:"Accessibility Friction: Four Places and What They Cost | Fixing Friction", keydates:"Key Dates and Planning Calendar | Fixing Friction", athome:"At Home: Neurodivergent Households | Fixing Friction", burnout:"Burnout Bingo: Spot the Pattern Before It Spots You | Fixing Friction", scorecards:"Scorecards: Start With a Diagnostic, Pick Your Path | Fixing Friction", "ai-scorecards":"AI Scorecards: Start Here | Fixing Friction"};
+          var descMap = {home:"Helping communities and individuals feel seen, heard, understood, and connected to the tools, resources, and access they deserve and have a right to. Accessibility Solutions through Speaking, Training, Compliance, and Consulting, by Matthew Cicanese, ADAC, in Fort Collins, Colorado.", voting:"Voting and polling place accessibility: pre-planning strategy, site selection, readiness inspections and audits, Election Day support, remediation, post-election debrief and multi-site management.", speaking:"ADA keynote speaking on Accessibility Friction, desire paths, and disability etiquette and the media.", selfeval:"Self-evaluation facilitation, self-evaluation training, Coordinator Setup Sprint and fractional ADA Coordinator support.", events:"Event accessibility consulting: pre-planning, live event support, and post-event case study and debrief.", "buildout-page":"Products and lead magnets in build out. Not available yet, and no dates are promised.", method:"TLCCW stands for Think, Learn, Communicate, Create, Work: five small steps for working on friction, shown for a worker first and for a leader second.", frictions:"A few plain questions to show where friction is costing you the most: in yourself, in the people you care for, or in your work. Your answers stay in this browser tab only and are never sent anywhere.", "frictions-quiz":"Answer one plain question at a time. Your answers stay in this browser tab only, are never sent anywhere, and are gone when the tab closes.", "frictions-results":"Where friction is heaviest right now, area by area, with first resources, shown on screen from your own answers.", scorecard:"Answer a few short questions and get one honest starting point, shown on screen straight away. No email is needed, and nothing is saved or sent.", services:"Accessibility Solutions in Fort Collins, CO: Keynote Speaking, Training and Workshops, Fractional Consulting and Advising, and Accessibility and Usability Testing, detailed as ADA Services and Beyond Compliance.", verticals:"Client verticals for ADA consulting: business and corporate teams, government and public programs, transit and public spaces, schools and districts, airports and public venues, training providers, and fire and life safety, each with its entry offer and pathway. Most place-based doors open with an Accessibility Assessment.", pathways:"ADA pathways show how training leads to consulting and advising, audits surface findings, findings lead to remediation, and remediation matures into a Self-Evaluation and Transition Plan carried by ongoing support or a Fractional ADA Coordinator, with parallel routes for training materials and outward communications.", audits:"Start with an Accessibility Assessment: one site, one focused visit, the barriers that block access most photographed, measured and ranked. Full accessibility audits for buildings, campuses, websites, documents and polling places in Fort Collins and the surrounding region. Findings in plain language, ranked by what blocks access most.", advising:"ADA accessibility advising for self-evaluations, access policy, grievance procedures and accommodation questions. Leave with a documented decision and the reasons behind it.", support:"ADA consulting and ongoing support beside your team and your coordinator: progress monitored, coaching through the real work, and finished fixes verified against the original finding.", materials:"The Second Reading is a training materials audit in three tiers, First Look, Full Second Reading, and Audit and Alignment, reading your whole course library at once for contradictions, gaps against the standards, and barriers disabled learners actually meet.", plans:"ADA remediation and transition planning: findings become a phased plan with owners and dates, tracked on the plan and re-checked until each fix is verified.", findings:"Evidence-based findings reports read staff and customer experience data together with ADA review findings, against the standard and against lived reality.", communications:"Accessible communications and media consulting for companies: social media, press releases, video, marketing, campus and internal materials checked so stories about disabled and neurodivergent people lead with the person and their work, in accessible formats.", cohesion:"The Team Cohesion and Communication Snapshot reads how a team talks, decides, and works together, and how it communicates with clients. Findings in plain language, matched to neurodiversity training, ADA training, communication practice, or a mix, landing on a named training plan.", training:"ADA training for leadership, coordinators, facilities, digital, HR and parks teams, in Fort Collins and virtually. Eight themes taught by Matthew Cicanese, ADAC.", modules:"ADA audit modules for voting places, digital services and physical locations, each with its own checklist writing into one shared record.", titles:"How ADA Titles I, II, III, IV and V organize accessibility findings: employment, government, public accommodations, telecommunications and miscellaneous provisions.", reporting:"Workplace reporting that reads employee support, Title I and Title II findings, customer satisfaction, retention and staff churn in one picture.", evidence:"How accessibility engagement data becomes anonymized averages and case studies from our own client work, under strict data rules: client data stays the client property and is never sold.", about:"Matthew Cicanese, ADAC, Certified ADA Coordinator, Accessibility Speaker, Trainer and Consultant, and Founder of Fixing Friction in Fort Collins, Colorado. To be the resource I never had as a person with disabilities and divergence.", start:"Start an ADA accessibility engagement with a few sentences about your organization, your role and what you are working on. Based in Fort Collins, CO, serving the region on site and clients virtually.", inside:"Inside Fixing Friction is the hub of the lane for individuals and families: the tools to open first, the community routes, and the ADA Titles in plain language, for individual contributors, ERG members, and internal champions.", tools:"Tools and resources that live on this site: the Scorecard, the ADA Titles in plain language, the three checklists, and Fixing Friction on Substack.", community:"Community and support for the people who feel the friction first: ERG routes, internal champions, the Team Cohesion Snapshot, workplace reporting, and Fixing Friction on Substack.", debt:"Accessibility Friction builds in four places: digital, physical, communications and workplace, and technology. Every barrier left standing slows people down.", keydates:"Five awareness moments a year put disability on board, HR, and communications calendars. Each moment routes to one clear starting point, and planning starts one quarter ahead.", athome:"At Home: Neurodivergent Households. Private homes sit mostly outside the ADA. Mixed households, executive function at home, a sensory home, and home AI as a helping layer the household controls, never surveillance.", burnout:"Burnout Bingo reads burnout across personal, relational, and professional life. One square is a bad day, a row is a signal: spot it, catch it early, get through the thick of it, and prevent the return.", scorecards:"The Scorecard, one honest starting point for leaders and everyday workers, and the AI Scorecards library.", "ai-scorecards":"Three short, plain-language AI scorecards: pick the right tool for the job (1.1), map where AI fits in your work (2.1), and get steadier results from Muse and other AI tools (3.1)."};
           if (!single) {
           document.title = titlesMap[id] || titlesMap.home;
           var md = document.getElementById("metaDesc"); if (md && descMap[id]) md.setAttribute("content", descMap[id]);
@@ -3624,6 +3666,104 @@
     </script>
     <script>
     (function () {
+      var PREFIX = "ffr2:";
+      var TTL = 3 * 60 * 60 * 1000;
+      var RESULTS = "/frictions/results/";
+      var ORDER = ["personal_0", "personal_1", "personal_2", "personal_3", "relational_0", "relational_1", "relational_2", "relational_3", "relational_4", "professional_0", "professional_1", "professional_2", "professional_3"];
+      var TOKEN_RE = /^([012n-]{13})\|(\d{10,14})\|(\d{1,7})\|([01])([01])([01])$/;
+      function encode(o) {
+        var v = ORDER.map(function (k) { var x = o.a[k]; return x === undefined ? "-" : (x === "na" ? "n" : String(x)); }).join("");
+        return PREFIX + btoa(v + "|" + (o.ts || Date.now()) + "|" + Math.max(0, Math.round(o.y || 0)) + "|" + (o.d ? 1 : 0) + (o.t ? 1 : 0) + (o.dl ? 1 : 0));
+      }
+      function decode(name) {
+        if (typeof name !== "string" || name.indexOf(PREFIX) !== 0) return null;
+        var s;
+        try { s = atob(name.slice(PREFIX.length)); } catch (e) { return null; }
+        var m = TOKEN_RE.exec(s);
+        if (!m) return null;
+        var a = {};
+        for (var i = 0; i < ORDER.length; i++) { var c = m[1].charAt(i); if (c !== "-") a[ORDER[i]] = c === "n" ? "na" : c; }
+        return { a: a, ts: Number(m[2]), y: Number(m[3]), d: Number(m[4]), t: Number(m[5]), dl: Number(m[6]) };
+      }
+      var S = {
+        read: function () {
+          try {
+            var o = decode(window.name);
+            if (!o) return null;
+            if (Date.now() - o.ts > TTL) { S.clear(); return null; }
+            return o;
+          } catch (e) { return null; }
+        },
+        write: function (o) { try { window.name = encode(o); } catch (e) {} },
+        clear: function () { try { if (typeof window.name === "string" && window.name.indexOf(PREFIX) === 0) window.name = ""; } catch (e) {} },
+        update: function (patch) { var o = S.read(); if (!o) return null; for (var k in patch) o[k] = patch[k]; S.write(o); return o; }
+      };
+      window.__ffSession = S;
+
+      var isFrictions = !!(document.getElementById("page-frictions") || document.getElementById("page-frictions-quiz") || document.getElementById("page-frictions-results"));
+
+      document.addEventListener("click", function (ev) {
+        var a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+        if (!a) return;
+        try { if (/^https?:$/.test(a.protocol) && a.host !== location.host) S.clear(); } catch (e) {}
+      }, true);
+
+      function mk(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+
+      function mountReturn() {
+        if (isFrictions) return;
+        var o = S.read();
+        if (!o) return;
+        var main = document.getElementById("main");
+        var sec = main && main.querySelector("section.page.active");
+        if (!main || !sec) return;
+        var first = main.firstChild;
+        if (!o.d) {
+          var bar = mk("div", "ff-return");
+          bar.id = "ffReturn";
+          bar.setAttribute("role", "region");
+          bar.setAttribute("aria-label", "Your results");
+          var link = mk("a", "ff-return-link");
+          link.setAttribute("href", RESULTS);
+          var chip = mk("span", "ff-return-chip", "←");
+          chip.setAttribute("aria-hidden", "true");
+          link.appendChild(chip);
+          link.appendChild(mk("span", "ff-return-text", "Return to my results"));
+          bar.appendChild(link);
+          var x = mk("button", "ff-return-x", "Hide");
+          x.type = "button";
+          x.setAttribute("aria-label", "Hide this bar. Your results are kept.");
+          x.addEventListener("click", function () { S.update({ d: 1 }); if (bar.parentNode) bar.parentNode.removeChild(bar); });
+          bar.appendChild(x);
+          main.insertBefore(bar, first);
+        }
+        var nav = mk("nav", "ff-crumbs");
+        nav.setAttribute("aria-label", "Breadcrumb");
+        var ol = mk("ol");
+        var li1 = mk("li");
+        var c1 = mk("a", "ff-crumb-link", "My results");
+        c1.setAttribute("href", RESULTS);
+        li1.appendChild(c1);
+        var li2 = mk("li", "ff-crumb-here", sec.getAttribute("aria-label") || "This page");
+        li2.setAttribute("aria-current", "page");
+        ol.appendChild(li1); ol.appendChild(li2);
+        nav.appendChild(ol);
+        main.insertBefore(nav, sec);
+      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mountReturn); else mountReturn();
+
+      function setHdr() { var h = document.querySelector("header.site"); if (h) document.documentElement.style.setProperty("--ff-hdr", h.offsetHeight + "px"); }
+      setHdr();
+      window.addEventListener("resize", setHdr);
+      window.addEventListener("load", setHdr);
+
+      window.addEventListener("pagehide", function () {
+        if (document.getElementById("page-frictions-results") && S.read()) S.update({ y: window.pageYOffset || 0 });
+      });
+    })();
+    </script>
+    <script>
+    (function () {
       var FR_FREQ = [
         { v: 0, l: "Hardly ever" },
         { v: 1, l: "Sometimes" },
@@ -3647,7 +3787,7 @@
           resources: [["Help at home and for families", "athome"], ["Inside Fixing Friction", "inside"], ["Burnout Bingo", "burnout"]],
           qs: [
             { t: "With my partner, the work of running our life together lands on one of us more than the other.", na: true },
-            { t: "Helping a parent or an older relative takes more of my time and energy than I can give.", na: true },
+            { t: "Helping a parent, parent figure, or older relative look after themselves takes more out of you than you can really give.", na: true },
             { t: "Looking after my children&#8217;s needs leaves little room for anything else.", na: true },
             { t: "I do not get enough time with the people I care about." },
             { t: "Nobody around me can see how much I am carrying." }
@@ -3664,21 +3804,17 @@
           ] }
       ];
 
-      var frForm = document.getElementById("frForm");
-      var frResult = document.getElementById("frResult");
-      var frHost = document.getElementById("frStepHost");
-      if (!frForm || !frResult || !frHost) return;
-      var frErr = document.getElementById("frError");
-      var frBack = document.getElementById("frBack");
-      var frNext = document.getElementById("frNext");
-      var frReset = document.getElementById("frReset");
-      var frProgLabel = document.getElementById("frProgressLabel");
-      var frProgBar = document.getElementById("frProgressBar");
-      var frProgFill = document.getElementById("frProgressFill");
-      var state = { pos: 0, ans: {} };
+      var S = window.__ffSession || { read: function () { return null; }, write: function () {}, clear: function () {}, update: function () { return null; } };
+      var QUIZ = "/frictions/quiz/";
+      var RESULTS = "/frictions/results/";
+      var SITE = "https://fixingfriction.com";
+      var ROUTE_PATH = { home: "/", frictions: "/frictions/" };
+      function pathFor(go) { return ROUTE_PATH[go] || ("/" + go + "/"); }
 
       function glue(t) { return t.replace(/\b(a|an|the|and|or|in|of|to|at|for|on|by|with|from|but|as|so)\s+/gi, function (m, w) { return w + " "; }); }
       function bind(t) { return glue(t.replace(/ ([^ ]+) ([^ ]+)$/, function (m, a, c) { return " " + a + " " + c; })); }
+      function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+      function plain(s) { var d = document.createElement("div"); d.innerHTML = s; return d.textContent; }
 
       var FR_TOTAL_Q = FR_AREAS.reduce(function (n, a) { return n + a.qs.length; }, 0);
       var FR_STEPS = [];
@@ -3687,89 +3823,47 @@
         a.qs.forEach(function (q, qi) { FR_STEPS.push({ a: ai, q: qi }); });
       });
 
-      function renderStep(focusIt) {
-        var st = FR_STEPS[state.pos];
-        var area = FR_AREAS[st.a];
-        var before = 0;
-        for (var i = 0; i < st.a; i++) before += FR_AREAS[i].qs.length;
-        if (st.q >= 0) before += st.q;
-        var label = "Part " + (st.a + 1) + " of " + FR_AREAS.length + ": " + area.label;
-        if (st.q >= 0) label += ", question " + (st.q + 1) + " of " + area.qs.length;
-        frProgLabel.textContent = label;
-        frProgBar.setAttribute("aria-valuenow", String(before));
-        frProgBar.setAttribute("aria-valuemax", String(FR_TOTAL_Q));
-        frProgBar.setAttribute("aria-valuetext", label);
-        frProgFill.style.width = (before / FR_TOTAL_Q * 100) + "%";
-        frHost.innerHTML = "";
-        frErr.hidden = true;
-        var focusEl;
-        if (st.q < 0) {
-          var h = document.createElement("h2");
-          h.className = "fr-area-h";
-          h.setAttribute("tabindex", "-1");
-          h.textContent = glue(area.label + ": " + area.who.toLowerCase());
-          frHost.appendChild(h);
-          var intro = document.createElement("p");
-          intro.className = "small";
-          intro.textContent = area.intro;
-          frHost.appendChild(intro);
-          focusEl = h;
-        } else {
-          var q = area.qs[st.q];
-          var fs = document.createElement("fieldset");
-          fs.className = "fr-q";
-          var lg = document.createElement("legend");
-          lg.setAttribute("tabindex", "-1");
-          lg.innerHTML = bind(q.t);
-          fs.appendChild(lg);
-          var wrap = document.createElement("div");
-          wrap.className = "fr-opts";
-          var opts = FR_FREQ.slice();
-          if (q.na) opts.push(FR_NA);
-          var key = area.id + "_" + st.q;
-          opts.forEach(function (o) {
-            var lab = document.createElement("label");
-            var inp = document.createElement("input");
-            inp.type = "radio"; inp.name = "fr_" + key; inp.value = String(o.v);
-            if (state.ans[key] === String(o.v)) inp.checked = true;
-            lab.appendChild(inp);
-            lab.appendChild(document.createTextNode(" " + o.l));
-            wrap.appendChild(lab);
-          });
-          fs.appendChild(wrap);
-          frHost.appendChild(fs);
-          focusEl = lg;
-        }
-        var last = state.pos === FR_STEPS.length - 1;
-        frBack.hidden = state.pos === 0;
-        frNext.textContent = last ? "See my lay of the land" : "Continue";
-        var hint = document.getElementById("frHint");
-        hint.hidden = st.q < 0;
-        hint.textContent = "You can skip this question and press " + (last ? "See my lay of the land." : "Continue.");
-        if (focusIt !== false) focusEl.focus();
-      }
-
-      function collect() {
-        var st = FR_STEPS[state.pos];
-        if (st.q < 0) return;
-        var key = FR_AREAS[st.a].id + "_" + st.q;
-        var el = frForm.querySelector('input[name="fr_' + key + '"]:checked');
-        if (el) state.ans[key] = el.value; else delete state.ans[key];
-      }
-
-      function areaScore(area) {
+      function areaScore(area, ans) {
         var sum = 0, count = 0;
         area.qs.forEach(function (q, qi) {
-          var v = state.ans[area.id + "_" + qi];
+          var v = ans[area.id + "_" + qi];
           if (v === undefined || v === "na") return;
           sum += Number(v); count++;
         });
         return { count: count, mean: count ? sum / count : null };
       }
-
       function level(mean) { return mean >= 1.25 ? "heavy" : (mean >= 0.5 ? "some" : "light"); }
       var LEVEL_WORD = { heavy: "Heavier right now", some: "Some friction", light: "Lighter right now" };
       var LEVEL_DOTS = { heavy: "●●●", some: "●●○", light: "●○○" };
+      var KIT_LINE = "I have named what is costing me the most at work, and I would like to talk about one small fix.";
+      var KIT_NOTE = "Hi [name], I have been thinking about what is costing me the most at work: [the one thing]. I think one small change could help: [the one fix]. Could we talk about it for ten minutes this week? Thanks, [your name]";
+      var DOOR_A = "If the honest answer is that you need to leave and you need a plan, that work lives inside the ";
+      var DOOR_B = " too.";
+      var FINE = "Guidance only. This is a starting picture from your own answers, not a diagnosis or a medical or legal opinion.";
+      var COMMUNITY = "Inside Fixing Friction leads to the Fixing Friction Community, a paid group coaching program for Divergent Doers.";
+
+      function compute(ans) {
+        var scores = FR_AREAS.map(function (a) { return { area: a, s: areaScore(a, ans) }; });
+        var answered = scores.filter(function (x) { return x.s.count > 0; });
+        var topMean = -1;
+        answered.forEach(function (x) { if (x.s.mean > topMean) topMean = x.s.mean; });
+        var tops = topMean >= 0.5 ? answered.filter(function (x) { return x.s.mean === topMean; }) : [];
+        var head, lead;
+        if (!answered.length) {
+          head = bind("You skipped every question, so there is nothing to place yet");
+          lead = "Start over when you are ready, or open Inside Fixing Friction to look around.";
+        } else if (!tops.length) {
+          head = bind("Nothing stands out as heavy right now");
+          lead = "Your answers point to lighter friction in the places you answered. The first resources below are still a good place to look around.";
+        } else if (tops.length === 1) {
+          head = bind("Most of the friction you described sits in " + tops[0].area.label.toLowerCase() + " life");
+          lead = "Here is the lay of the land, one area at a time, with first resources for each.";
+        } else {
+          head = bind("Your friction is spread across more than one area");
+          lead = "Here is the lay of the land, one area at a time, with first resources for each.";
+        }
+        return { scores: scores, tops: tops, head: head, lead: lead };
+      }
 
       function link(label, go) {
         var a = document.createElement("a");
@@ -3780,30 +3874,161 @@
         return a;
       }
 
-      function showResult() {
-        var scores = FR_AREAS.map(function (a) { return { area: a, s: areaScore(a) }; });
-        var answered = scores.filter(function (x) { return x.s.count > 0; });
-        var top = null, topMean = -1;
-        answered.forEach(function (x) { if (x.s.mean > topMean) topMean = x.s.mean; });
-        var tops = topMean >= 0.5 ? answered.filter(function (x) { return x.s.mean === topMean; }) : [];
+      function buildDownload(data) {
+        var h = [];
+        h.push('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="only light"><title>My lay of the land | Find Your Frictions</title>');
+        h.push("<style>:root{color-scheme:only light}html,body{background:#ffffff;color:#1c1e22}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;max-width:44rem;margin:0 auto;padding:32px 20px 56px}h1{font-size:1.8rem;margin:0 0 6px;color:#101F3C}h2{font-size:1.35rem;margin:0 0 8px;color:#101F3C}h3{font-size:1.1rem;margin:0 0 4px;color:#101F3C}.area{border-top:1px solid #cbd5e1;padding:14px 0}.lvl{font-weight:700;margin:0 0 4px}a{color:#2A48AB}.kit{border:1px solid #cbd5e1;border-radius:10px;padding:12px 16px;margin-top:12px}.note{border-left:3px solid #101F3C;padding-left:12px}.fine{color:#475569;font-size:.9rem}</style></head><body>");
+        h.push("<h1>Your lay of the land</h1><h2>" + esc(plain(data.head)) + "</h2><p>" + esc(data.lead) + "</p>");
+        data.scores.forEach(function (x) {
+          var lv = x.s.count ? level(x.s.mean) : null;
+          h.push('<div class="area"><h3>' + esc(plain(x.area.label + ": " + x.area.who.toLowerCase())) + "</h3>");
+          h.push('<p class="lvl">' + (lv ? esc(LEVEL_WORD[lv] + (data.tops.indexOf(x) !== -1 ? ", the most of the three" : "")) : "Skipped") + "</p>");
+          if (lv) h.push("<p>" + esc(x.area.lines[lv]) + "</p>");
+          h.push("<p><strong>First resources:</strong></p><ul>");
+          x.area.resources.forEach(function (r) { h.push('<li><a href="' + SITE + pathFor(r[1]) + '">' + esc(r[0]) + "</a></li>"); });
+          h.push("</ul>");
+          if (x.area.id === "professional") {
+            h.push('<div class="kit"><h3>A small kit for work</h3><p><strong>One line to hand to a manager:</strong> ' + esc(KIT_LINE) + '</p><p><strong>A short note you can copy:</strong></p><p class="note">' + esc(KIT_NOTE) + "</p></div>");
+            h.push("<p>" + esc(DOOR_A) + '<a href="' + SITE + '/community/">Community</a>' + esc(DOOR_B) + "</p>");
+          }
+          h.push("</div>");
+        });
+        h.push('<p><a href="' + SITE + '/inside/"><strong>Inside Fixing Friction</strong></a></p><p>' + esc(COMMUNITY) + "</p>");
+        h.push('<p class="fine">' + esc(FINE) + ' This page was made in your browser from your own answers and was not sent anywhere.</p></body></html>');
+        return h.join("");
+      }
+
+      function download(data) {
+        var html = buildDownload(data);
+        var blob = new Blob([html], { type: "text/html" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "my-lay-of-the-land.html";
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      }
+
+      function bootQuiz() {
+        var frForm = document.getElementById("frForm");
+        var frHost = document.getElementById("frStepHost");
+        if (!frForm || !frHost) return;
+        if (frForm.getAttribute("data-booted") === "1") { return; }
+        frForm.setAttribute("data-booted", "1");
+        S.clear();
+        var frErr = document.getElementById("frError");
+        var frBack = document.getElementById("frBack");
+        var frNext = document.getElementById("frNext");
+        var frReset = document.getElementById("frReset");
+        var frProgLabel = document.getElementById("frProgressLabel");
+        var frProgBar = document.getElementById("frProgressBar");
+        var frProgFill = document.getElementById("frProgressFill");
+        var hint = document.getElementById("frHint");
+        var state = { pos: 0, ans: {} };
+
+        function renderStep(focusIt) {
+          var st = FR_STEPS[state.pos];
+          var area = FR_AREAS[st.a];
+          var before = 0;
+          for (var i = 0; i < st.a; i++) before += FR_AREAS[i].qs.length;
+          if (st.q >= 0) before += st.q;
+          var label = "Part " + (st.a + 1) + " of " + FR_AREAS.length + ": " + area.label;
+          if (st.q >= 0) label += ", question " + (st.q + 1) + " of " + area.qs.length;
+          frProgLabel.textContent = label;
+          frProgBar.setAttribute("aria-valuenow", String(before));
+          frProgBar.setAttribute("aria-valuemax", String(FR_TOTAL_Q));
+          frProgBar.setAttribute("aria-valuetext", label);
+          frProgFill.style.width = (before / FR_TOTAL_Q * 100) + "%";
+          frHost.innerHTML = "";
+          frErr.hidden = true;
+          var focusEl;
+          if (st.q < 0) {
+            var h = document.createElement("h2");
+            h.className = "fr-area-h";
+            h.setAttribute("tabindex", "-1");
+            h.textContent = glue(area.label + ": " + area.who.toLowerCase());
+            frHost.appendChild(h);
+            var intro = document.createElement("p");
+            intro.className = "small";
+            intro.textContent = area.intro;
+            frHost.appendChild(intro);
+            focusEl = h;
+          } else {
+            var q = area.qs[st.q];
+            var fs = document.createElement("fieldset");
+            fs.className = "fr-q";
+            var lg = document.createElement("legend");
+            lg.setAttribute("tabindex", "-1");
+            lg.innerHTML = bind(q.t);
+            fs.appendChild(lg);
+            var wrap = document.createElement("div");
+            wrap.className = "fr-opts";
+            var opts = FR_FREQ.slice();
+            if (q.na) opts.push(FR_NA);
+            var key = area.id + "_" + st.q;
+            opts.forEach(function (o) {
+              var lab = document.createElement("label");
+              var inp = document.createElement("input");
+              inp.type = "radio"; inp.name = "fr_" + key; inp.value = String(o.v);
+              if (state.ans[key] === String(o.v)) inp.checked = true;
+              lab.appendChild(inp);
+              lab.appendChild(document.createTextNode(" " + o.l));
+              wrap.appendChild(lab);
+            });
+            fs.appendChild(wrap);
+            frHost.appendChild(fs);
+            focusEl = lg;
+          }
+          var last = state.pos === FR_STEPS.length - 1;
+          frBack.disabled = state.pos === 0;
+          frNext.textContent = last ? "See my lay of the land" : "Continue";
+          hint.hidden = st.q < 0;
+          hint.textContent = "You can skip this question and press " + (last ? "See my lay of the land." : "Continue.");
+          if (focusIt !== false) focusEl.focus();
+        }
+
+        function collect() {
+          var st = FR_STEPS[state.pos];
+          if (st.q < 0) return;
+          var key = FR_AREAS[st.a].id + "_" + st.q;
+          var el = frForm.querySelector('input[name="fr_' + key + '"]:checked');
+          if (el) state.ans[key] = el.value; else delete state.ans[key];
+        }
+
+        frNext.addEventListener("click", function () {
+          collect();
+          if (state.pos >= FR_STEPS.length - 1) {
+            S.write({ a: state.ans, ts: Date.now(), y: 0, d: 0, t: 0, dl: 0 });
+            window.location.assign(RESULTS);
+            return;
+          }
+          state.pos++;
+          renderStep(true);
+        });
+        frBack.addEventListener("click", function () { collect(); if (state.pos > 0) { state.pos--; renderStep(true); } });
+        frReset.addEventListener("click", function () { S.clear(); state = { pos: 0, ans: {} }; renderStep(true); });
+        frForm.addEventListener("submit", function (ev) { ev.preventDefault(); frNext.click(); });
+        frProgBar.setAttribute("aria-valuemin", "0");
+        renderStep(true);
+      }
+
+      function bootResults() {
+        var frResult = document.getElementById("frResult");
+        if (!frResult) return;
+        var o = S.read();
+        var empty = document.getElementById("frEmpty");
+        if (!o) { frResult.hidden = true; if (empty) empty.hidden = false; return; }
+        var data = compute(o.a);
         var head = document.getElementById("frResHead");
         var lead = document.getElementById("frResLead");
-        if (!answered.length) {
-          head.textContent = bind("You skipped every question, so there is nothing to place yet");
-          lead.textContent = "Start over when you are ready, or open Inside Fixing Friction to look around.";
-        } else if (!tops.length) {
-          head.textContent = bind("Nothing stands out as heavy right now");
-          lead.textContent = "Your answers point to lighter friction in the places you answered. The first resources below are still a good place to look around.";
-        } else if (tops.length === 1) {
-          head.textContent = bind("Most of the friction you described sits in " + tops[0].area.label.toLowerCase() + " life");
-          lead.textContent = "Here is the lay of the land, one area at a time, with first resources for each.";
-        } else {
-          head.textContent = bind("Your friction is spread across more than one area");
-          lead.textContent = "Here is the lay of the land, one area at a time, with first resources for each.";
-        }
+        head.textContent = data.head;
+        lead.textContent = data.lead;
         var list = document.getElementById("frAreas");
         list.innerHTML = "";
-        scores.forEach(function (x) {
+        data.scores.forEach(function (x) {
           var li = document.createElement("li");
           li.className = "fr-area";
           var h3 = document.createElement("h3");
@@ -3818,7 +4043,7 @@
             dots.className = "fr-dots";
             dots.textContent = LEVEL_DOTS[lv] + " ";
             p.appendChild(dots);
-            p.appendChild(document.createTextNode(LEVEL_WORD[lv] + (tops.indexOf(x) !== -1 ? ", the most of the three" : "")));
+            p.appendChild(document.createTextNode(LEVEL_WORD[lv] + (data.tops.indexOf(x) !== -1 ? ", the most of the three" : "")));
           } else {
             p.appendChild(document.createTextNode("Skipped"));
           }
@@ -3843,7 +4068,7 @@
             kh.textContent = "A small kit for work";
             kit.appendChild(kh);
             var k1 = document.createElement("p");
-            k1.innerHTML = "<strong>One line to hand to a manager:</strong> I have named what is costing me the most at work, and I would like to talk about one small fix.";
+            k1.innerHTML = "<strong>One line to hand to a manager:</strong> " + esc(KIT_LINE);
             kit.appendChild(k1);
             var k2 = document.createElement("p");
             k2.innerHTML = "<strong>A short note you can copy from this screen:</strong>";
@@ -3851,7 +4076,7 @@
             var note = document.createElement("p");
             note.className = "fr-note";
             note.id = "frNote";
-            note.textContent = "Hi [name], I have been thinking about what is costing me the most at work: [the one thing]. I think one small change could help: [the one fix]. Could we talk about it for ten minutes this week? Thanks, [your name]";
+            note.textContent = KIT_NOTE;
             kit.appendChild(note);
             var sel = document.createElement("button");
             sel.type = "button";
@@ -3865,42 +4090,82 @@
             li.appendChild(kit);
             var door = document.createElement("p");
             door.className = "fr-door";
-            door.appendChild(document.createTextNode("If the honest answer is that you need to leave and you need a plan, that work lives inside the "));
+            door.appendChild(document.createTextNode(DOOR_A));
             door.appendChild(link("Community", "community"));
-            door.appendChild(document.createTextNode(" too."));
+            door.appendChild(document.createTextNode(DOOR_B));
             li.appendChild(door);
           }
           list.appendChild(li);
         });
-        frForm.hidden = true;
-        var shell = document.getElementById("frShell");
-        if (shell) shell.hidden = true;
+        if (empty) empty.hidden = true;
         frResult.hidden = false;
-        head.focus({ preventScroll: true });
-        if (frResult.scrollIntoView) frResult.scrollIntoView({ block: "start" });
+        var bar = document.getElementById("frReturnBar");
+        if (bar) bar.hidden = false;
+        var barLink = document.getElementById("frReturnLink");
+        if (barLink) barLink.addEventListener("click", function (ev) { ev.preventDefault(); head.focus({ preventScroll: true }); head.scrollIntoView({ block: "start" }); });
+
+        var status = document.getElementById("frDlStatus");
+        function doDownload() {
+          download(data);
+          S.update({ dl: 1 });
+          hideToast();
+          if (status) status.textContent = "Your results were made on this device and downloaded. Nothing was sent anywhere.";
+        }
+        document.getElementById("frDownload").addEventListener("click", doDownload);
+        document.getElementById("frRetake").addEventListener("click", function () { S.clear(); window.location.assign(QUIZ); });
+
+        var toast = null;
+        function hideToast() { if (toast) { toast.classList.remove("show"); toast.hidden = true; } }
+        function buildToast() {
+          var t = document.createElement("div");
+          t.className = "ff-toast";
+          t.id = "frToast";
+          t.setAttribute("role", "status");
+          t.hidden = true;
+          var p = document.createElement("p");
+          p.textContent = "Download your results so you don't have to take the quiz again.";
+          t.appendChild(p);
+          var row = document.createElement("div");
+          row.className = "ff-toast-row";
+          var dl = document.createElement("button");
+          dl.type = "button"; dl.className = "btn primary"; dl.id = "frToastDl"; dl.textContent = "Download my results";
+          dl.addEventListener("click", doDownload);
+          var x = document.createElement("button");
+          x.type = "button"; x.className = "ff-toast-x"; x.id = "frToastX"; x.textContent = "Not now";
+          x.addEventListener("click", hideToast);
+          row.appendChild(dl); row.appendChild(x); t.appendChild(row);
+          document.body.appendChild(t);
+          return t;
+        }
+        {
+          if (!o.dl && !o.t) {
+            toast = buildToast();
+            window.setTimeout(function () {
+              var now = S.read();
+              if (!now || now.dl || now.t) return;
+              toast.hidden = false;
+              window.requestAnimationFrame(function () { toast.classList.add("show"); });
+              S.update({ t: 1 });
+            }, 15000);
+          }
+        }
+
+        if (o.y > 0) {
+          var restoreY = function () { window.scrollTo({ top: o.y, left: 0, behavior: "instant" }); };
+          window.requestAnimationFrame(function () { window.requestAnimationFrame(restoreY); });
+          window.addEventListener("load", function () { window.setTimeout(restoreY, 120); });
+        } else {
+          head.focus({ preventScroll: true });
+        }
       }
 
-      function resetAll() {
-        state = { pos: 0, ans: {} };
-        frResult.hidden = true;
-        var shell = document.getElementById("frShell");
-        if (shell) shell.hidden = false;
-        frForm.hidden = false;
-        renderStep(true);
-      }
-
-      frNext.addEventListener("click", function () {
-        collect();
-        if (state.pos >= FR_STEPS.length - 1) { showResult(); return; }
-        state.pos++;
-        renderStep(true);
+      function boot() { bootQuiz(); bootResults(); }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
+      window.addEventListener("load", function () {
+        var host = document.getElementById("frStepHost");
+        var form = document.getElementById("frForm");
+        if (host && form && !host.firstChild) { form.removeAttribute("data-booted"); bootQuiz(); }
       });
-      frBack.addEventListener("click", function () { collect(); if (state.pos > 0) { state.pos--; renderStep(true); } });
-      frReset.addEventListener("click", resetAll);
-      document.getElementById("frRetake").addEventListener("click", resetAll);
-      frForm.addEventListener("submit", function (ev) { ev.preventDefault(); frNext.click(); });
-      frProgBar.setAttribute("aria-valuemin", "0");
-      renderStep(false);
     })();
     </script>
   </body>

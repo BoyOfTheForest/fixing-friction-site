@@ -18,3 +18,7 @@ jobs:
         run: CHROME=$(which google-chrome || which chromium) node tools/crawl_nojs.mjs
       - name: Real pages click inventory
         run: CHROME=$(which google-chrome || which chromium) node tools/realpages_check.mjs
+      - name: Focus behaviour audit of the three scorecard flows
+        run: CHROME=$(which google-chrome || which chromium) node tools/focus_audit.mjs
+      - name: Find Your Frictions package check
+        run: CHROME=$(which google-chrome || which chromium) node tools/frictions_check.mjs

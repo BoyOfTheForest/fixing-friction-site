@@ -14,7 +14,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { buildAll, UNLISTED, ALIASES } from "./build.mjs";
+import { buildAll, UNLISTED, ALIASES, pathFor } from "./build.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -38,7 +38,7 @@ const pagesArr = (html.match(/var pages = \[([^\]]*)\]/) || [])[1];
 const pagesList = pagesArr ? [...pagesArr.matchAll(/"([^"]+)"/g)].map((m) => m[1]) : [];
 for (const p of pagesList) if (!pageIds.includes(p)) fail("pages", "pages array lists " + p + " but there is no section");
 for (const p of pageIds) if (!pagesList.includes(p)) fail("pages", "section page-" + p + " is missing from the pages array");
-const EXPECTED_PAGES = 36;
+const EXPECTED_PAGES = 38; /* 36 before the Find Your Frictions package added its quiz and results routes */
 if (pageIds.length !== EXPECTED_PAGES) fail("pages", "expected " + EXPECTED_PAGES + " page sections, found " + pageIds.length);
 
 // links
@@ -68,8 +68,8 @@ note("assets referenced: " + assets.size + ", missing: " + missing);
 // ---- generated real pages (build output) ----
 const SITE = "https://fixingfriction.com";
 const lf = (s) => s.split("\r\n").join("\n");
-const routeFile = (id) => (id === "home" ? "index.html" : id + "/index.html");
-const routePath = (id) => (id === "home" ? "/" : "/" + id + "/");
+const routeFile = (id) => (id === "home" ? "index.html" : pathFor(id).slice(1) + "index.html");
+const routePath = pathFor;
 const built = buildAll(lf(html));
 const gen = {};
 let genBytes = 0, genLinks = 0, genAssetRefs = new Set();
@@ -111,8 +111,9 @@ for (const id of Object.keys(gen)) {
   for (const m of g.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) { try { JSON.parse(m[1]); } catch (e) { fail("generated", id + ": JSON-LD does not parse"); } }
   if (id === "home" && (g.match(/application\/ld\+json/g) || []).length !== 2) fail("generated", "home must keep its two JSON-LD blocks");
   if (id !== "home" && id !== "about" && !/"@type": "WebPage"/.test(g)) fail("generated", id + ": WebPage JSON-LD missing");
-  if (id === "home" && !g.includes("location.replace(\"/\" + id + \"/\" + query)")) fail("generated", "home is missing the old-address forwarding shim");
-  if (id !== "home" && g.includes("Old shared addresses such as")) fail("generated", id + ": only the homepage carries the forwarding shim");
+  const SHIM = "location.replace(\"/\" + id.replace(/^frictions-/, \"frictions/\") + \"/\" + query)";
+  if (id === "home" && !g.includes(SHIM)) fail("generated", "home is missing the old-address forwarding shim");
+  if (id !== "home" && g.includes(SHIM)) fail("generated", id + ": only the homepage carries the forwarding shim");
 }
 for (const a of genAssetRefs) if (!fs.existsSync(path.join(ROOT, a.slice(1)))) { fail("generated", "asset missing: " + a); }
 note("generated pages: " + Object.keys(gen).length + " (" + Math.round(genBytes / 1024) + " KB), root links checked: " + genLinks + ", asset paths: " + genAssetRefs.size);

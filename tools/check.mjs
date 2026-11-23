@@ -36,7 +36,7 @@ const pagesArr = (html.match(/var pages = \[([^\]]*)\]/) || [])[1];
 const pagesList = pagesArr ? [...pagesArr.matchAll(/"([^"]+)"/g)].map((m) => m[1]) : [];
 for (const p of pagesList) if (!pageIds.includes(p)) fail("pages", "pages array lists " + p + " but there is no section");
 for (const p of pageIds) if (!pagesList.includes(p)) fail("pages", "section page-" + p + " is missing from the pages array");
-const EXPECTED_PAGES = 34;
+const EXPECTED_PAGES = 35;
 if (pageIds.length !== EXPECTED_PAGES) fail("pages", "expected " + EXPECTED_PAGES + " page sections, found " + pageIds.length);
 
 // links

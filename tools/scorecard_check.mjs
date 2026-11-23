@@ -94,7 +94,13 @@ ok(/<\/h1>\s*<p class="sc-promise">A few short questions\. No email needed to se
 }
 ok(!/diagnos|disability status/i.test(scCode), "no question in the flow asks for a diagnosis, condition name or status");
 const tl = [...html.matchAll(/TLCCW/g)].map((m) => m.index);
-ok(tl.length > 0 && tl.every((i) => i >= scStart && i <= scEnd), "TLCCW appears only inside the scorecard result script (not in nav, footer, hero, headings or any other page)");
+{
+  const m0 = html.indexOf('<section class="page" id="page-method"'); const m1 = html.indexOf("</section>", m0);
+  const strings = [...html.matchAll(/method:"TLCCW[^"]*"/g)].map((m) => [m.index, m.index + m[0].length]);
+  const okPlace = tl.length > 0 && tl.every((i) => (i >= scStart && i <= scEnd) || (i >= m0 && i <= m1) || strings.some(([a, b]) => i >= a && i <= b));
+  ok(okPlace && m0 > 0 && strings.length === 2, "TLCCW appears only in the scorecard result script, on the method page and in that page's two tab strings (not in nav, footer, hero or any other page)");
+  ok((html.match(/data-go="method"/g) || []).length === 2 && /a\.setAttribute\("data-go", "method"\)/.test(html), "the method page is linked from exactly the homepage door, the Training page, and the scorecard result builder");
+}
 ok(!/Creative Consulting/.test(html), "no Creative Consulting anywhere");
 ok(!/—|&mdash;/.test(html), "no em dash in the page");
 const scSec = html.slice(html.indexOf('id="page-scorecard"'), html.indexOf("</section>", html.indexOf('id="page-scorecard"')));
@@ -146,7 +152,7 @@ for (const [sn, w, h] of sizes) {
     if (name.startsWith("2")) { const rr = await rectOf("#scResult"); await cap("result-leader-" + sn, { x: 0, y: Math.max(0, rr.y - 20), width: w, height: Math.min(rr.h + 60, 2400) }); }
     { const vis = await ev(`(function(){var h=document.getElementById('scResHead').getBoundingClientRect();var hd=document.querySelector('header.site').getBoundingClientRect();return h.top>=hd.bottom-1&&h.top<innerHeight})()`); ok(vis, `[${sn}] path ${name}: the result headline lands fully below the sticky header, not hidden behind it`); }
     ok(!/Disability|Neurodivergence|Chronic Health|Broken Systems|lens/i.test(r.text), `[${sn}] path ${name}: result names the stage and starting point only, no lens label`);
-    ok(/TLCCW/.test(r.method) && /Think, Learn, Communicate, Create, Work/.test(r.method) && r.methodLinks === 0, `[${sn}] path ${name}: TLCCW spelled out on first use, no link`);
+    ok(/TLCCW/.test(r.method) && /Think, Learn, Communicate, Create, Work/.test(r.method) && r.methodLinks === 1, `[${sn}] path ${name}: TLCCW spelled out on first use, linked once to the method page`);
     ok(r.close.length > 10 && /\.$/.test(r.close), `[${sn}] path ${name}: one plain closing line`);
     ok(!r.text.includes("—"), `[${sn}] path ${name}: no em dash on the result`);
     if ("456".includes(name[0])) ok(!/pilot session|assessment/i.test(r.primary) && /How to work on it/.test(r.text) && (r.text.match(/Think:|Learn:|Communicate:|Create:|Work:/g) || []).length === 5, `[${sn}] path ${name}: worker result has an employer-free primary and the five-line teaching paragraph`);

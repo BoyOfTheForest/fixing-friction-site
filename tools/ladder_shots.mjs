@@ -13,7 +13,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffl-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -25,7 +27,7 @@ ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) 
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; cb.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
-const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w + "#home" }); await sleep(1800); };
+const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w }); await sleep(1800); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
@@ -119,7 +121,7 @@ console.log("context range", Math.round(ctx.top), Math.round(ctx.bottom));
 for (const sc of [0.4, 0.25]) { try { const r = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: ctx.top, width: 1440, height: ctx.bottom - ctx.top, scale: sc } }); fs.writeFileSync(path.join(OUT, "desktop-1440-homepage-context-new-order.png"), Buffer.from(r.data, "base64")); break; } catch (e) { console.log("context screenshot retry", sc, e.message); } }
 // phone close-ups at 2x
 await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
-await send("Page.navigate", { url: base + "?closeup#home" }); await sleep(1800);
+await send("Page.navigate", { url: base + "?closeup" }); await sleep(1800);
 await ev(`(async function(){for(var y=0;y<document.documentElement.scrollHeight&&y<12000;y+=500){window.scrollTo(0,y);await new Promise(function(r){setTimeout(r,60)})}window.scrollTo(0,0)})()`); await sleep(500);
 const box = JSON.parse(await ev(`(function(){var q=function(s){var r=document.querySelector(s).getBoundingClientRect();return {t:r.top+scrollY,b:r.bottom+scrollY}};return JSON.stringify({head:q('#how-it-works .eyebrow'),intro:q('.ff-ladder-intro'),note:q('.ff-note'),close:q('.ff-close')})})()`));
 for (const [nm, from, to] of [["heading-and-intro", box.head.t, box.intro.b], ["note-and-closing", box.note.t, box.close.b]]) {
@@ -128,7 +130,7 @@ for (const [nm, from, to] of [["heading-and-intro", box.head.t, box.intro.b], ["
   fs.writeFileSync(path.join(OUT, "phone-390-closeup-" + nm + ".png"), Buffer.from(rr.data, "base64"));
 }
 // source checks
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8");
 ok(!/accelerate/i.test(html), "the word Accelerate appears nowhere on the site");const sec = html.slice(html.indexOf('id="how-it-works"'), html.indexOf('<p class="eyebrow u20">Proof from the field</p>'));
 ok(!sec.includes("\u2014"), "no em dash in the new section");
 ok(!/Creative Consulting/i.test(html), "no Creative Consulting");

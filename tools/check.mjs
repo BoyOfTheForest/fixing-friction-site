@@ -3,6 +3,7 @@
    node tools/check.mjs                 full check (static + browser)
    node tools/check.mjs --static        static checks only (fast)
    node tools/check.mjs --pages a,b     only these page ids in the browser
+   Text rules read the source (src/site.html). Page, link and script checks run on the generated real pages (index.html and /<route>/index.html).
    node tools/check.mjs --shots DIR     also save a full-page screenshot per page at 1280 (reduced motion, for before/after diffs)
    node tools/check.mjs --shots-only DIR  only the screenshots (use with --shots DIR)
    node tools/check.mjs --json FILE     write the report as JSON
@@ -13,6 +14,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { buildAll, UNLISTED, ALIASES } from "./build.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -29,7 +31,7 @@ const fail = (area, msg) => failures.push(area + ": " + msg);
 const note = (msg) => notes.push(msg);
 
 /* ---------------- static checks ---------------- */
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8");
 const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
 const pageIds = [...ids].filter((i) => i.startsWith("page-")).map((i) => i.slice(5));
 const pagesArr = (html.match(/var pages = \[([^\]]*)\]/) || [])[1];
@@ -62,6 +64,80 @@ for (const m of html.matchAll(/assets\/[A-Za-z0-9_.\-]+\.[a-z0-9]+/g)) assets.ad
 let missing = 0;
 for (const a of assets) if (!fs.existsSync(path.join(ROOT, a))) { missing++; fail("assets", "missing file " + a); }
 note("assets referenced: " + assets.size + ", missing: " + missing);
+
+// ---- generated real pages (build output) ----
+const SITE = "https://fixingfriction.com";
+const lf = (s) => s.split("\r\n").join("\n");
+const routeFile = (id) => (id === "home" ? "index.html" : id + "/index.html");
+const routePath = (id) => (id === "home" ? "/" : "/" + id + "/");
+const built = buildAll(lf(html));
+const gen = {};
+let genBytes = 0, genLinks = 0, genAssetRefs = new Set();
+for (const id of pagesList) {
+  const f = path.join(ROOT, routeFile(id));
+  if (!fs.existsSync(f)) { fail("generated", routeFile(id) + " is missing: run node tools/build.mjs"); continue; }
+  gen[id] = lf(fs.readFileSync(f, "utf8")); genBytes += gen[id].length;
+  if (gen[id] !== built.pages[id]) fail("generated", routeFile(id) + " is out of date or was edited by hand: run node tools/build.mjs");
+}
+{
+  const sm = fs.existsSync(path.join(ROOT, "sitemap.xml")) ? lf(fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8")) : "";
+  if (sm !== built.sitemap) fail("generated", "sitemap.xml is out of date or was edited by hand: run node tools/build.mjs");
+}
+const titles = new Map();
+for (const id of Object.keys(gen)) {
+  const g = gen[id];
+  const secs = (g.match(/<section class="page[ "]/g) || []).length;
+  if (secs !== 1 || !g.includes('<section class="page active" id="page-' + id + '"')) fail("generated", id + ": must hold exactly its own section, active (found " + secs + ")");
+  const title = (g.match(/<title>([^<]*)<\/title>/) || [])[1];
+  if (!title) fail("generated", id + ": no title"); else if (titles.has(title)) fail("generated", id + ": title is the same as " + titles.get(title)); else titles.set(title, id);
+  const canon = (g.match(/<link rel="canonical" href="([^"]*)"/) || [])[1];
+  if (canon !== SITE + routePath(id)) fail("generated", id + ": canonical is " + canon);
+  if (!g.includes('<meta property="og:url" content="' + SITE + routePath(id) + '"')) fail("generated", id + ": og:url does not match the page address");
+  const desc = (g.match(/<meta name="description" id="metaDesc" content="([^"]*)"/) || [])[1];
+  if (!desc || desc.length < 40) fail("generated", id + ": meta description missing or short");
+  if (!/<meta name="robots" content="index, follow/.test(g)) fail("generated", id + ": public robots meta missing");
+  const noScripts = g.replace(/<script\b[\s\S]*?<\/script>/g, "");
+  if (/<a\s[^>]*data-go="[^"]*"[^>]*\shref="#/.test(noScripts) || /<a\s(?:[^>]*\s)?href="#[^"]*"[^>]*data-go=/.test(noScripts)) fail("generated", id + ": a link still points at a #route");
+  if (/(?<![A-Za-z0-9_\/.\-])assets\/[A-Za-z0-9_.\-]+\.[a-z0-9]+/.test(g)) fail("generated", id + ": a relative assets/ path would break from a sub-folder");
+  for (const m of g.matchAll(/\/assets\/[A-Za-z0-9_.\-]+\.[a-z0-9]+/g)) genAssetRefs.add(m[0]);
+  for (const m of noScripts.matchAll(/<a\s(?:[^>]*\s)?href="(\/[^"]*)"/g)) {
+    genLinks++;
+    const p = m[1].split("#")[0].split("?")[0];
+    const target = p === "/" ? "index.html" : p.replace(/^\//, "").replace(/\/$/, "") + "/index.html";
+    if (!fs.existsSync(path.join(ROOT, target))) fail("generated", id + ": link to " + m[1] + " has no page");
+  }
+  const bal = (tag) => (g.match(new RegExp("<" + tag + "[\\s>]", "g")) || []).length - (g.match(new RegExp("</" + tag + ">", "g")) || []).length;
+  for (const tg of ["div", "section", "details", "ul", "li", "figure", "p"]) if (bal(tg) !== 0) fail("generated", id + ": <" + tg + "> is unbalanced");
+  for (const m of g.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) { try { JSON.parse(m[1]); } catch (e) { fail("generated", id + ": JSON-LD does not parse"); } }
+  if (id === "home" && (g.match(/application\/ld\+json/g) || []).length !== 2) fail("generated", "home must keep its two JSON-LD blocks");
+  if (id !== "home" && id !== "about" && !/"@type": "WebPage"/.test(g)) fail("generated", id + ": WebPage JSON-LD missing");
+  if (id === "home" && !g.includes("location.replace(\"/\" + id + \"/\" + query)")) fail("generated", "home is missing the old-address forwarding shim");
+  if (id !== "home" && g.includes("Old shared addresses such as")) fail("generated", id + ": only the homepage carries the forwarding shim");
+}
+for (const a of genAssetRefs) if (!fs.existsSync(path.join(ROOT, a.slice(1)))) { fail("generated", "asset missing: " + a); }
+note("generated pages: " + Object.keys(gen).length + " (" + Math.round(genBytes / 1024) + " KB), root links checked: " + genLinks + ", asset paths: " + genAssetRefs.size);
+// sitemap and llms.txt carry real addresses; the three unlisted pages stay out of both
+{
+  const sm = fs.existsSync(path.join(ROOT, "sitemap.xml")) ? fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8") : "";
+  const locs = [...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map((x) => x[1]);
+  const want = pagesList.filter((r) => !UNLISTED.includes(r)).map((r) => SITE + routePath(r));
+  if (JSON.stringify(locs) !== JSON.stringify(want)) fail("sitemap", "sitemap.xml must list exactly the listed routes as real addresses");
+  for (const u of UNLISTED) if (sm.includes(routePath(u))) fail("sitemap", routePath(u) + " must stay out of sitemap.xml");
+  const llms = fs.existsSync(path.join(ROOT, "llms.txt")) ? fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8") : "";
+  for (const u of UNLISTED) if (llms.includes(routePath(u))) fail("llms", routePath(u) + " must stay out of llms.txt");
+  for (const m of llms.matchAll(/https:\/\/fixingfriction\.com(\/[^\s)]*)?/g)) {
+    const p = m[1] || "/";
+    if (p.includes("#")) fail("llms", "llms.txt still names a #section address: " + m[0]);
+    else if (!pagesList.some((r) => routePath(r) === p)) fail("llms", "llms.txt names an address with no page: " + m[0]);
+  }
+  note("sitemap.xml lists " + locs.length + " real addresses; method, frictions and buildout-page are in neither sitemap.xml nor llms.txt");
+  const n404 = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  const p404 = (n404.match(/var pages = \[([^\]]*)\]/) || [])[1];
+  const l404 = p404 ? [...p404.matchAll(/"([^"]+)"/g)].map((x) => x[1]) : [];
+  if (JSON.stringify(l404) !== JSON.stringify(pagesList)) fail("404", "the 404.html page list differs from the route table");
+  for (const [k, v] of Object.entries(ALIASES)) if (!new RegExp('"' + k + '": "' + v + '"').test(n404)) fail("404", "404.html is missing the alias " + k + " to " + v);
+  for (const m of n404.matchAll(/"[a-z-]+": "([a-z-]+)"/g)) if (!pagesList.includes(m[1])) fail("404", "404.html alias points at a missing page " + m[1]);
+}
 
 // structured data parses, and the FAQ schema matches the FAQ in the page script
 const lds = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
@@ -149,7 +225,9 @@ async function browserChecks() {
   const chrome = findChrome();
   if (!chrome) { fail("browser", "Chrome not found (set CHROME=path)"); return; }
   const srv = await serve();
-  const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+  const ORIGIN = "http://127.0.0.1:" + srv.address().port;
+  const base = ORIGIN + "/";
+  const RP = (id) => ORIGIN + routePath(id);
   const port = 9300 + Math.floor(Math.random() * 500);
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), "ffcheck-"));
   const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + profile, "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -165,11 +243,12 @@ async function browserChecks() {
     await c.send("Page.enable"); await c.send("Runtime.enable");
     const axeSrc = fs.readFileSync(path.join(ROOT, "tools/vendor/axe.min.js"), "utf8");
     const list = ONLY || pageIds;
-    const showHash = (id) => c.eval("(function(){location.hash='#" + id + "';window.dispatchEvent(new PopStateEvent('popstate'));return 1})()");
+    let wantAxe = true;
+    const showHash = async (id) => { await c.send("Page.navigate", { url: RP(id) }); for (let i = 0; i < 100; i++) { await sleep(100); try { if ((await c.eval("location.pathname + String.fromCharCode(124) + document.readyState")) === routePath(id) + "|complete") break; } catch (e) {} } if (wantAxe) await c.eval(axeSrc); };
     async function load(width, reduced) {
       await c.send("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 1, mobile: width < 500 });
       await c.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: reduced ? "reduce" : "no-preference" }] });
-      await c.send("Page.navigate", { url: base + "#home" });
+      await c.send("Page.navigate", { url: base });
       await sleep(1200);
       await c.eval(axeSrc);
     }
@@ -200,6 +279,32 @@ async function browserChecks() {
         if (r.has && r.minChip < 44) fail("chip-row", id + ": a chip is under 44 px tall at " + width + "px");
       }
       note("chip row " + width + "px: " + rows + " pages with the row, " + chipsSeen + " chips, none scroll sideways");
+    }
+    // old shared addresses: /#route forwards to the real page, the scorecard deep links keep their bucket, the AI scorecard links keep their scorecard
+    if (!SHOTS_ONLY && !ONLY) {
+      await c.send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
+      let shimOk = 0;
+      for (const id of pagesList.filter((p) => p !== "home")) {
+        await c.send("Page.navigate", { url: "about:blank" }); await sleep(120);
+        await c.send("Page.navigate", { url: base + "#" + id }); await sleep(700);
+        const here = await c.eval("location.pathname");
+        if (here !== routePath(id)) fail("shim", "/#" + id + " landed on " + here + " instead of " + routePath(id)); else shimOk++;
+      }
+      note("hash shim: " + shimOk + " of " + (pagesList.length - 1) + " old #route addresses land on their real page");
+      for (const role of ["leader", "champion", "individual"]) {
+        await c.send("Page.navigate", { url: "about:blank" }); await sleep(120);
+        await c.send("Page.navigate", { url: base + "#scorecard?role=" + role }); await sleep(1500);
+        const r = await c.eval("(function(){var a=document.querySelector('section.page.active');return location.pathname+'|'+location.search+'|'+(a?a.id:'')+'|'+(window.__pendingScorecardRole===undefined?'applied':'pending')+'|'+(document.querySelector('#page-scorecard input:checked,#page-scorecard [aria-pressed=\"true\"],#page-scorecard .sel,#page-scorecard [aria-checked=\"true\"]')?'selected':'none')})()");
+        const [pth, qs, act] = r.split("|");
+        if (pth !== "/scorecard/" || qs !== "?role=" + role || act !== "page-scorecard") fail("shim", "/#scorecard?role=" + role + " landed on " + r);
+      }
+      for (const sc of ["1.1", "2.1", "3.1"]) {
+        await c.send("Page.navigate", { url: "about:blank" }); await sleep(120);
+        await c.send("Page.navigate", { url: base + "#ai-scorecards?sc=" + sc }); await sleep(1500);
+        const r = await c.eval("location.pathname+'|'+location.search");
+        if (r !== "/ai-scorecards/|?sc=" + sc) fail("shim", "/#ai-scorecards?sc=" + sc + " landed on " + r);
+      }
+      note("hash shim: scorecard role deep links and AI scorecard sc= deep links keep their meaning");
     }
     // old product routes land on the Developer Build Out page; #directory still falls back to the homepage
     if (!SHOTS_ONLY) {

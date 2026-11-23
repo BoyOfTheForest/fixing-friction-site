@@ -12,7 +12,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffl-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -24,11 +26,11 @@ ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) 
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; cb.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
-const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w + "#home" }); await sleep(1800); };
+const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w }); await sleep(1800); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
-const show = async (id) => { await ev("location.hash='#" + id + "'; window.dispatchEvent(new PopStateEvent('popstate')); 1"); await sleep(800); };
+const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id + "/"); await sleep(800); };
 const PRESS = (k, code, vk, text) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk, ...(text ? { text } : {}) }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 const LINEFN = `function(sel){
   var NB=String.fromCharCode(160), SMALL={a:1,an:1,the:1,and:1,or:1,in:1,of:1,to:1,at:1,for:1,on:1,by:1,with:1,from:1,but:1,as:1,so:1};
@@ -53,17 +55,18 @@ const NEURO = "Every workshop is designed to be neuro inclusive. No performative
 
 // ---------- structure (width independent)
 await load(1440, 900);
-const ids = JSON.parse(await ev(`JSON.stringify([].map.call(document.querySelectorAll('section.page'),function(s){return s.id.replace('page-','')}))`));
+const ids = [...(fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").match(/var pages = \[([^\]]*)\]/)[1]).matchAll(/"([^"]+)"/g)].map((m) => m[1]); /* the route table in the source: a real page holds only its own section */
 const SKIP = ["home", "scorecards", "scorecard", "ai-scorecards"];
 const bad1 = [];
 for (const id of ids) {
+  await show(id);
   const r = JSON.parse(await ev(`(function(){var s=document.getElementById('page-${id}');var l=s.querySelectorAll('.ff-begin');var last=s.lastElementChild;var a=l[0]?l[0].querySelectorAll('a'):[];return JSON.stringify({n:l.length,isLast:last===l[0],txt:l[0]?l[0].textContent.replace(/\\s+/g,' ').trim():'',links:a.length,href:a[0]?a[0].getAttribute('href'):'',linkTxt:a[0]?a[0].textContent:''})})()`));
   if (SKIP.includes(id)) { if (r.n !== 0) bad1.push(id + " should not have the line"); continue; }
-  if (r.n !== 1 || !r.isLast || r.txt !== LINE || r.links !== 1 || r.href !== "#scorecards" || r.linkTxt !== "Take the Scorecard") bad1.push(id + " " + JSON.stringify(r));
+  if (r.n !== 1 || !r.isLast || r.txt !== LINE || r.links !== 1 || r.href !== "/scorecards/" || r.linkTxt !== "Take the Scorecard") bad1.push(id + " " + JSON.stringify(r));
 }
 ok(bad1.length === 0, `Change 1: the line is the last element of every interior page (${ids.length - SKIP.length} pages), same wording, one link to the scorecard page ${JSON.stringify(bad1)}`);
 ok(await ev(`!document.querySelector('#page-home .ff-begin')`), "Change 1: not on the homepage");
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").replace(/\r\n/g, "\n");
 ok((html.split(PRINCIPLE).length - 1) === 2, "Change 2: the principle line appears exactly twice on the site (homepage and About)");
 const home = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-services"'));
 const sys = home.slice(home.indexOf('class="ff-system"'), home.indexOf('class="ff-system"') + 700);

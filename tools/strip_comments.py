@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Build step: strip developer comments from the published index.html so internal notes never ship.
+"""Build step: strip developer comments from the source src/site.html (run tools/build.mjs afterwards) so internal notes never ship.
 Removes HTML comments, CSS comments inside <style>, and stand-alone JS comments (full-line // lines and
 full-line /* ... */ blocks) inside <script>. JSON-LD blocks are left alone. Safe to re-run.
-Usage: python tools/strip_comments.py   (edits index.html in place)"""
+Usage: python tools/strip_comments.py   (edits src/site.html in place)"""
 import os, re, sys
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-p = os.path.join(root, "index.html")
+p = os.path.join(root, "src", "site.html")
 raw = open(p, "rb").read().decode("utf-8")
 crlf = "\r\n" in raw
 t = raw.replace("\r\n", "\n")

@@ -13,7 +13,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9800 + Math.floor(Math.random() * 100);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffn-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -26,7 +28,7 @@ const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
 const key = async (k, code, vk) => { await send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk, ...(k === "Enter" ? { text: String.fromCharCode(13) } : {}) }); await send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }); };
-const load = async (w, h, hash = "home") => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "#" + hash }); await sleep(1500); };
+const load = async (w, h, hash = "home") => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: RP(hash) }); await sleep(1500); };
 const shot = async (name, clip, plain) => { const r = await send("Page.captureScreenshot", plain ? { format: "png" } : { format: "png", captureBeyondViewport: true, ...(clip ? { clip: { ...clip, scale: 1 } } : {}) }); fs.writeFileSync(path.join(OUT, name + ".png"), Buffer.from(r.data, "base64")); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 
@@ -83,7 +85,7 @@ for (const [name, w, h] of sizes) {
   ok(fb.cols === wantCols, `${name}: footer has ${fb.cols} columns per row (want ${wantCols})`);
   const small = await ev(`JSON.stringify([].filter.call(document.querySelectorAll('.sitemap a'),function(a){return a.getBoundingClientRect().height<43.5}).map(function(a){return a.textContent.trim()}))`);
   ok(small === "[]", `${name}: every footer link >= 44px tall ${small}`);
-  ok(await ev(`!document.querySelector('.foot-cta') && !document.querySelector('footer.site a[href*=buildout]:not([href="#buildout-page"])') && document.querySelectorAll('footer.site a[href="#buildout-page"]').length===1 && !document.querySelector('footer.site nav.sitemap a[href="#buildout-page"]') && document.querySelector('footer.site a[href="#buildout-page"]').getBoundingClientRect().height>=43.5 && !document.querySelector('footer.site a[href*=launch]') && !document.querySelector('footer.site a[href*=changes]')`), `${name}: no dev links and no Not-sure line in the footer (the one Developer Build Out link sits in the bottom bar, not in the columns, and is 44 px tall)`);
+  ok(await ev(`!document.querySelector('.foot-cta') && !document.querySelector('footer.site a[href*=buildout]:not([href="/buildout-page/"])') && document.querySelectorAll('footer.site a[href="/buildout-page/"]').length===1 && !document.querySelector('footer.site nav.sitemap a[href="/buildout-page/"]') && document.querySelector('footer.site a[href="/buildout-page/"]').getBoundingClientRect().height>=43.5 && !document.querySelector('footer.site a[href*=launch]') && !document.querySelector('footer.site a[href*=changes]')`), `${name}: no dev links and no Not-sure line in the footer (the one Developer Build Out link sits in the bottom bar, not in the columns, and is 44 px tall)`);
   ok(await ev(`document.querySelectorAll('.sitemap > div').length===6 && document.querySelector('footer.site .foot-bar').previousElementSibling.classList.contains('sitemap')`), `${name}: footer is the six columns then the bottom bar`);
   const wid = await ev(WIDOW);
   ok(wid === "[]", `${name}: no widow word in footer headings ${wid}`);
@@ -122,15 +124,15 @@ await key("Escape", "Escape", 27); await sleep(300);
 ok(await ev(`!document.querySelector('.nav-drop.open') && document.activeElement.getAttribute('data-nav-group')==='leaders'`), "Escape closes and returns focus to the trigger");
 await ev(`document.querySelector('[data-nav-group=about]').closest('.nav-drop').dispatchEvent(new MouseEvent('mouseenter',{bubbles:true}))`); await sleep(200);
 ok(await ev(`!document.querySelector('.nav-drop.open')`), "hover alone does not open a dropdown");
-await ev(`location.hash='#audits'; window.dispatchEvent(new PopStateEvent('popstate'))`); await sleep(500);
+await goReal(RP("audits"), "/audits/"); await sleep(500);
 ok(await ev(`document.querySelector('[data-nav-group=ada]').getAttribute('aria-current')==='page'`), "current section marked (aria-current) on ADA group at #audits");
-await ev(`location.hash='#speaking'; window.dispatchEvent(new PopStateEvent('popstate'))`); await sleep(500);
+await goReal(RP("speaking"), "/speaking/"); await sleep(500);
 ok(await ev(`document.querySelectorAll('nav.pages [aria-current]').length===1 && document.querySelector('[data-nav-group=speaking]').getAttribute('aria-current')==='page'`), 'moving to another section clears the previous current mark (exactly one marked)');
-await ev(`location.hash='#audits'; window.dispatchEvent(new PopStateEvent('popstate'))`); await sleep(500);
+await goReal(RP("audits"), "/audits/"); await sleep(500);
 await shot("desktop-1440-current-marker", { x: 0, y: 0, width: 1440, height: 140 });
 const cta = JSON.parse(await ev(`(function(){var a=document.querySelector('nav.pages a.cta');return JSON.stringify({h:a.getBoundingClientRect().height,others:[].map.call(document.querySelectorAll('nav.pages .drop-btn'),function(b){return getComputedStyle(b).backgroundColor+'|'+getComputedStyle(b).fontWeight})})})()`));
 ok(cta.h >= 44 && cta.others.every((o) => o === "rgb(255, 255, 255)|600"), "only the CTA is filled; nav text items are white and not bolded (" + cta.others[0] + ")");
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8");
 const navFoot = ((html.match(/<header class="site">[\s\S]*?<\/header>/) || [""])[0]) + ((html.match(/<footer class="site">[\s\S]*?<\/footer>/) || [""])[0]);
 for (const w of ["For Individuals", "ADA Consulting and Compliance", "Creative Consulting", "\u2014"]) ok(!navFoot.includes(w), `nav and footer do not contain "${w === "\u2014" ? "em dash" : w}"`);
 ok(!/>\s*Consulting\s*</.test(navFoot), "no standalone Consulting item in nav or footer");

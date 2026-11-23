@@ -12,7 +12,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffl-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -24,11 +26,11 @@ ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) 
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; cb.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
-const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w + "#home" }); await sleep(1800); };
+const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w }); await sleep(1800); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
-const show = async (id) => { await ev("location.hash='#" + id + "'; window.dispatchEvent(new PopStateEvent('popstate')); 1"); await sleep(800); };
+const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id + "/"); await sleep(800); };
 const LINEFN = `function(sel){
   var NB=String.fromCharCode(160), SMALL={a:1,an:1,the:1,and:1,or:1,in:1,of:1,to:1,at:1,for:1,on:1,by:1,with:1,from:1,but:1,as:1,so:1};
   var bad=[];
@@ -46,7 +48,7 @@ const LINEFN = `function(sel){
   return JSON.stringify(bad);
 }`;
 const sizes = [["desktop-1440", 1440, 900], ["tablet-landscape-1024", 1024, 768], ["tablet-portrait-768", 768, 1024], ["phone-390", 390, 844]];
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").replace(/\r\n/g, "\n");
 const ll = fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8");
 const cap = async (name, clip) => { const r = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { ...clip, scale: 1 } }); fs.writeFileSync(path.join(OUT, name + ".png"), Buffer.from(r.data, "base64")); };
 const rectOf = (sel) => ev(`(function(){var e=document.querySelector(${JSON.stringify(sel)});if(!e)return null;var r=e.getBoundingClientRect();return {x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height}})()`);
@@ -130,12 +132,12 @@ const specs = {
   "6 worker, systems option": ["self", [], ["systems"], all7("burn")]
 };
 const expect = {
-  "1 leader, people hat, Turn Out answers": { head: "Turn Out is dropping. This is the early warning stage", primary: "Start with a pilot session", ph: "#start", sec: null },
-  "2 leader, ADA hat, Burn Out answers": { head: "Burn Out is the stage you are in", primary: "Start with an assessment", ph: "#audits", sec: null },
-  "3 Both, deadline selected, Burn Out answers": { head: "Burn Out is the stage you are in", primary: "Start with an assessment", ph: "#audits", sec: null, both: true },
-  "4 worker, two lens options": { head: "Churn Out is happening. Act on the cause, not just the vacancy", primary: "Inside Fixing Friction", ph: "#inside", sec: "Help at work", sh: "#inside" },
-  "5 worker, lens skipped": { head: "Turn Out is dropping. This is the early warning stage", primary: "Inside Fixing Friction", ph: "#inside", sec: null },
-  "6 worker, systems option": { head: "Burn Out is the stage you are in", primary: "Inside Fixing Friction", ph: "#inside", sec: "Share this with your leader", sh: "#training" }
+  "1 leader, people hat, Turn Out answers": { head: "Turn Out is dropping. This is the early warning stage", primary: "Start with a pilot session", ph: "/start/", sec: null },
+  "2 leader, ADA hat, Burn Out answers": { head: "Burn Out is the stage you are in", primary: "Start with an assessment", ph: "/audits/", sec: null },
+  "3 Both, deadline selected, Burn Out answers": { head: "Burn Out is the stage you are in", primary: "Start with an assessment", ph: "/audits/", sec: null, both: true },
+  "4 worker, two lens options": { head: "Churn Out is happening. Act on the cause, not just the vacancy", primary: "Inside Fixing Friction", ph: "/inside/", sec: "Help at work", sh: "/inside/" },
+  "5 worker, lens skipped": { head: "Turn Out is dropping. This is the early warning stage", primary: "Inside Fixing Friction", ph: "/inside/", sec: null },
+  "6 worker, systems option": { head: "Burn Out is the stage you are in", primary: "Inside Fixing Friction", ph: "/inside/", sec: "Share this with your leader", sh: "/training/" }
 };
 const report = [];
 for (const [sn, w, h] of sizes) {
@@ -212,13 +214,13 @@ ok(await ev(`!document.getElementById('aiScResultWrap').hidden && document.getEl
 
 // ---------- guide map extras (desktop)
 await startFresh(1440, 900);
-const x1 = await run("lead", ["hr"], [], all7("burn")); ok(x1.primary === "Start with a pilot session" && x1.secondary === "Workplace and Team Consulting" && x1.secondaryHref === "#support", "leader HR hat: pilot session primary, Workplace and Team Consulting secondary");
+const x1 = await run("lead", ["hr"], [], all7("burn")); ok(x1.primary === "Start with a pilot session" && x1.secondary === "Workplace and Team Consulting" && x1.secondaryHref === "/support/", "leader HR hat: pilot session primary, Workplace and Team Consulting secondary");
 await startFresh(1440, 900); const x2 = await run("lead", [], [], all7("churn")); ok(x2.primary === "Start with a pilot session" && x2.head.startsWith("Churn Out") && x2.secondary === null, "leader with the hat question skipped, Churn Out: pilot session, no secondary");
 await startFresh(1440, 900); const x3 = await run("lead", ["people", "deadline"], [], all7("turn")); ok(x3.primary === "Start with an assessment", "Deadlines override: leader with people hat plus deadline, Turn Out, gets the assessment");
-await startFresh(1440, 900); const x4 = await run("both", ["people"], [], all7("burn")); ok(x4.primary === "Start with a pilot session" && x4.both && /Leaders burn out too/.test(x4.both) && x4.bothHref === "#inside", "Both, people hat, Burn Out: pilot primary plus one plain line saying leaders burn out too, linking to Inside");
+await startFresh(1440, 900); const x4 = await run("both", ["people"], [], all7("burn")); ok(x4.primary === "Start with a pilot session" && x4.both && /Leaders burn out too/.test(x4.both) && x4.bothHref === "/inside/", "Both, people hat, Burn Out: pilot primary plus one plain line saying leaders burn out too, linking to Inside");
 await startFresh(1440, 900); const x5 = await run("both", ["people"], [], all7("turn")); ok(x5.both === null && x5.primary === "Start with a pilot session", "Both, Turn Out: leader primary, no Burn Out line");
-await startFresh(1440, 900); const x6 = await run("self", [], ["brain"], all7("burn")); ok(x6.secondary === "Help at work" && x6.secondaryHref === "#home" && x6.secondaryJump === "lens-neurodivergence", "worker, brain works differently: Help at work linking to the Neurodivergence part of the Burn Out section");
-await startFresh(1440, 900); const x7 = await run("self", [], ["condition"], all7("burn")); ok(x7.secondary === "Help at home and for families" && x7.secondaryHref === "#athome", "worker, ongoing condition: Help at home and for families");
+await startFresh(1440, 900); const x6 = await run("self", [], ["brain"], all7("burn")); ok(x6.secondary === "Help at work" && x6.secondaryHref === "/#lens-neurodivergence" && x6.secondaryJump === "lens-neurodivergence", "worker, brain works differently: Help at work linking to the Neurodivergence part of the Burn Out section");
+await startFresh(1440, 900); const x7 = await run("self", [], ["condition"], all7("burn")); ok(x7.secondary === "Help at home and for families" && x7.secondaryHref === "/athome/", "worker, ongoing condition: Help at home and for families");
 await startFresh(1440, 900); const x8 = await run("self", [], ["toomuch"], all7("burn")); ok(x8.secondary === null, "worker, just too much: no lens and no secondary link");
 await startFresh(1440, 900); const x9 = await run("self", [], ["systems", "condition"], all7("burn")); ok(x9.secondary === "Help at home and for families", "worker with two lenses gets exactly one secondary (list order wins)");
 await startFresh(1440, 900); const x10 = await run("self", [], [], ["burn", "turn", "turn", "churn", "churn", "burn", "turn"]); ok(x10.head.startsWith("Turn Out"), "stage routing: highest count wins (3 turn, 2 burn, 2 churn gives Turn Out)");

@@ -231,7 +231,7 @@ ok(await ev(`document.querySelectorAll('input[name="scBucket"]').length===3 && !
 await ev("document.getElementById('scContinue').click(); 1");
 ok(await ev(`!document.getElementById('scError').hidden`), "bucket question requires an answer");
 await ev(`document.querySelector('input[name="scBucket"][value="self"]').click(); document.getElementById('scContinue').click(); 1`);
-ok(await ev(`document.querySelectorAll('input[name="scLens"]').length===5 && !!document.querySelector('.sc-privacy-note') && !!(document.querySelector('.sc-privacy-note').compareDocumentPosition(document.querySelector('fieldset')) & 4) && document.querySelectorAll('input[name="scHat"]').length===0`), "worker path: the lens question follows, with the privacy line directly above it, and no hat question");
+ok(await ev(`document.querySelectorAll('input[name="scLens"]').length===5 && !!document.querySelector('.sc-privacy-note') && !!(document.querySelector('.sc-privacy-note').compareDocumentPosition(document.querySelector('#scStepHost fieldset')) & 4) && document.querySelectorAll('input[name="scHat"]').length===0`), "worker path: the lens question follows, with the privacy line directly above it, and no hat question");
 ok(await ev(`[].every.call(document.querySelectorAll('input[name="scLens"]'),function(i){return i.type==='checkbox'})`), "lens question is multi select");
 await ev("document.getElementById('scContinue').click(); 1");
 ok(await ev(`document.getElementById('scError').hidden && document.querySelectorAll('input[name="scStage0"]').length===3`), "lens question can be skipped with no answer");

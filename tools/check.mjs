@@ -36,7 +36,7 @@ const pagesArr = (html.match(/var pages = \[([^\]]*)\]/) || [])[1];
 const pagesList = pagesArr ? [...pagesArr.matchAll(/"([^"]+)"/g)].map((m) => m[1]) : [];
 for (const p of pagesList) if (!pageIds.includes(p)) fail("pages", "pages array lists " + p + " but there is no section");
 for (const p of pageIds) if (!pagesList.includes(p)) fail("pages", "section page-" + p + " is missing from the pages array");
-const EXPECTED_PAGES = 35;
+const EXPECTED_PAGES = 36;
 if (pageIds.length !== EXPECTED_PAGES) fail("pages", "expected " + EXPECTED_PAGES + " page sections, found " + pageIds.length);
 
 // links
@@ -231,7 +231,7 @@ async function browserChecks() {
       for (let i = 0; i < 14; i++) {
         await c.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
         await c.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
-        const r = await c.eval("(function(){var e=document.activeElement;if(!e||e===document.body)return null;var b=e.getBoundingClientRect();var cs=getComputedStyle(e);var ring=(cs.outlineStyle!=='none'&&parseFloat(cs.outlineWidth)>0)||cs.boxShadow!=='none';return {k:e.tagName+(e.id?'#'+e.id:'')+(e.className?'.'+String(e.className).split(' ')[0]:'')+'|'+(e.textContent||'').trim().slice(0,24),vis:b.width>0&&b.height>0&&cs.visibility!=='hidden',ring:ring}})()");
+        const r = await c.eval("(function(){var e=document.activeElement;if(!e||e===document.body)return null;var b=e.getBoundingClientRect();var cs=getComputedStyle(e);var ring=(cs.outlineStyle!=='none'&&parseFloat(cs.outlineWidth)>0)||cs.boxShadow!=='none';return {k:e.tagName+(e.id?'#'+e.id:'')+(e.name?'['+e.name+']':'')+(e.className?'.'+String(e.className).split(' ')[0]:'')+'|'+(e.textContent||'').trim().slice(0,24),vis:b.width>0&&b.height>0&&cs.visibility!=='hidden',ring:ring}})()");
         if (!r) continue;
         if (!r.vis) fail("keyboard", id + ": focus landed on an invisible element " + r.k);
         if (!r.ring) fail("keyboard", id + ": no visible focus style on " + r.k);

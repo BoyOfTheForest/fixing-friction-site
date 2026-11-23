@@ -2,7 +2,7 @@
 
 > Fixing Friction is an ADA accessibility practice based in Fort Collins, Colorado, led by Matthew Cicanese, ADAC (Certified ADA Coordinator). It offers keynote speaking, training, accessibility audits and assessments, remediation and transition planning, and advising for organizations, plus tools and community for individuals and families. Guidance and coordination, not legal advice or a legal determination.
 
-Website: https://fixingfriction.com/ (one page, sections addressed with #names)
+Website: https://fixingfriction.com/
 Contact: hello@fixingfriction.com
 Area served: Fort Collins, Colorado and the surrounding region, on site; clients served virtually.
 
@@ -23,15 +23,15 @@ Area served: Fort Collins, Colorado and the surrounding region, on site; clients
 - Title II web deadlines: April 26, 2027 for public entities serving 50,000 or more people; April 26, 2028 for smaller public entities.
 - An audit starts no statutory clock. It does create documented knowledge, which makes doing nothing afterwards the risky move.
 
-## Pages (section addresses on the one page)
-- Home: https://fixingfriction.com/#home
-- Services: https://fixingfriction.com/#services
-- Audits and assessments: https://fixingfriction.com/#audits
-- Remediation and transition planning: https://fixingfriction.com/#plans
-- Training: https://fixingfriction.com/#training
-- Keynote speaking: https://fixingfriction.com/#speaking
-- Voting and polling places: https://fixingfriction.com/#voting
-- Self-evaluation and coordinator support: https://fixingfriction.com/#selfeval
-- Scorecards: https://fixingfriction.com/#scorecards
-- About, and common questions: https://fixingfriction.com/#about
-- Start a conversation: https://fixingfriction.com/#start
+## Pages
+- Home: https://fixingfriction.com/
+- Services: https://fixingfriction.com/services/
+- Audits and assessments: https://fixingfriction.com/audits/
+- Remediation and transition planning: https://fixingfriction.com/plans/
+- Training: https://fixingfriction.com/training/
+- Keynote speaking: https://fixingfriction.com/speaking/
+- Voting and polling places: https://fixingfriction.com/voting/
+- Self-evaluation and coordinator support: https://fixingfriction.com/selfeval/
+- Scorecards: https://fixingfriction.com/scorecards/
+- About, and common questions: https://fixingfriction.com/about/
+- Start a conversation: https://fixingfriction.com/start/

@@ -12,7 +12,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffl-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -24,11 +26,11 @@ ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) 
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; cb.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
-const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w + "#home" }); await sleep(1800); };
+const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w }); await sleep(1800); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
-const show = async (id) => { await ev("location.hash='#" + id + "'; window.dispatchEvent(new PopStateEvent('popstate')); 1"); await sleep(800); };
+const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id + "/"); await sleep(800); };
 const LINEFN = `function(sel){
   var NB=String.fromCharCode(160), SMALL={a:1,an:1,the:1,and:1,or:1,in:1,of:1,to:1,at:1,for:1,on:1,by:1,with:1,from:1,but:1,as:1,so:1};
   var bad=[];
@@ -46,7 +48,7 @@ const LINEFN = `function(sel){
   return JSON.stringify(bad);
 }`;
 const sizes = [["desktop-1440", 1440, 900], ["tablet-landscape-1024", 1024, 768], ["tablet-portrait-768", 768, 1024], ["phone-390", 390, 844]];
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").replace(/\r\n/g, "\n");
 const NBS = / |&nbsp;/g;
 const cap = async (name, clip) => { const r = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { ...clip, scale: 1 } }); fs.writeFileSync(path.join(OUT, name + ".png"), Buffer.from(r.data, "base64")); };
 const rectOf = (sel) => ev(`(function(){var e=document.querySelector(${JSON.stringify(sel)});if(!e)return null;var r=e.getBoundingClientRect();return {x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height}})()`);
@@ -102,7 +104,7 @@ ok((html.match(/data-go="frictions"/g) || []).length === 3, "exactly three links
 
 // ---------- dynamic: stepped flow, one question per screen
 const NA = "na";
-async function open(w, h) { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: base + "?f" + w + Math.random().toString(36).slice(2, 6) + "#frictions" }); await sleep(1600); }
+async function open(w, h) { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: RP("frictions") + "?f" + w + Math.random().toString(36).slice(2, 6) }); await sleep(1600); }
 const PARTS = ["personal", "relational", "professional"], QN = { personal: 4, relational: 5, professional: 4 };
 const LABEL = "document.getElementById('frProgressLabel').textContent";
 const click = (sel) => ev(`document.querySelector(${JSON.stringify(sel)}).click(); 1`);
@@ -139,7 +141,7 @@ ok(JSON.stringify(naIdx) === JSON.stringify([4, 5, 6]), "Not part of my life app
 ok(qs.filter((x) => x.opts === 3).length === 10, "the other ten questions offer exactly Hardly ever, Sometimes, Most weeks");
 ok(r1.visible && r1.head === "Most of the friction you described sits in professional life" && r1.areas[2].level.startsWith("Heavier right now, the most of the three") && r1.areas[0].level === "Lighter right now", "professional heavy: headline and levels are right");
 ok(r1.areas[0].line === "Less friction is showing up here at the moment." && r1.areas[2].line === "Your job is carrying a lot of friction." && r1.areas[1].line === "Less friction is showing up here at the moment.", "the built result sentences are the approved lines, with no repeated level word");
-ok(r1.btns === 1 && r1.primary === "#inside" && r1.community === "Inside Fixing Friction leads to the Fixing Friction Community, a paid group coaching program for Divergent Doers.", "one primary route, Inside Fixing Friction, with the Community named as the program it leads to");
+ok(r1.btns === 1 && r1.primary === "/inside/" && r1.community === "Inside Fixing Friction leads to the Fixing Friction Community, a paid group coaching program for Divergent Doers.", "one primary route, Inside Fixing Friction, with the Community named as the program it leads to");
 ok(r1.kits === 1 && r1.areas[2].kit && !r1.areas[0].kit && !r1.areas[1].kit, "the champion kit appears only in the Professional result");
 ok(/I have named what is costing me the most at work, and I would like to talk about one small fix\./.test(r1.text) && /^Hi \[name\], I have been thinking about what is costing me the most at work: \[the one thing\]\./.test(r1.note || ""), "the kit holds one forwardable line and one short template note, with square-bracket blanks and no names");
 ok(r1.areas[2].door === "If the honest answer is that you need to leave and you need a plan, that work lives inside the Community too.", "the quiet door is present on the Professional result, plain wording, no track name");

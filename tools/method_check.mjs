@@ -12,7 +12,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffl-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -24,11 +26,11 @@ ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) 
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; cb.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
-const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w + "#home" }); await sleep(1800); };
+const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w }); await sleep(1800); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
-const show = async (id) => { await ev("location.hash='#" + id + "'; window.dispatchEvent(new PopStateEvent('popstate')); 1"); await sleep(800); };
+const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id + "/"); await sleep(800); };
 const LINEFN = `function(sel){
   var NB=String.fromCharCode(160), SMALL={a:1,an:1,the:1,and:1,or:1,in:1,of:1,to:1,at:1,for:1,on:1,by:1,with:1,from:1,but:1,as:1,so:1};
   var bad=[];
@@ -46,7 +48,7 @@ const LINEFN = `function(sel){
   return JSON.stringify(bad);
 }`;
 const sizes = [["desktop-1440", 1440, 900], ["tablet-landscape-1024", 1024, 768], ["tablet-portrait-768", 768, 1024], ["phone-390", 390, 844]];
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").replace(/\r\n/g, "\n");
 const NB = / |&nbsp;/g;
 const cap = async (name, clip) => { const r = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { ...clip, scale: 1 } }); fs.writeFileSync(path.join(OUT, name + ".png"), Buffer.from(r.data, "base64")); };
 const rectOf = (sel) => ev(`(function(){var e=document.querySelector(${JSON.stringify(sel)});if(!e)return null;var r=e.getBoundingClientRect();return {x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height}})()`);
@@ -90,7 +92,7 @@ ok(!/systems mismatch, never a character flaw/.test(secText) && (html.match(/sys
 for (const [sn, w, h] of sizes) {
   await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 });
   await send("Page.navigate", { url: "about:blank" }); await sleep(200);
-  await send("Page.navigate", { url: base + "?m" + w + "#method" }); await sleep(1600);
+  await send("Page.navigate", { url: RP("method") + "?m" + w }); await sleep(1600);
   ok(await ev(`document.querySelector('section.page.active').id==='page-method'`), `[${sn}] #method opens the method page on a fresh load`);
   ok(await ev(`document.documentElement.scrollWidth<=innerWidth+1`), `[${sn}] no sideways overflow`);
   const bad = JSON.parse(await ev(`(${LINEFN})('#page-method h1, #page-method h2, #page-method .method-line')`));
@@ -112,7 +114,7 @@ for (const [sn, w, h] of sizes) {
 async function runPath(bucket, hats, lens, stage) {
   await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
   await send("Page.navigate", { url: "about:blank" }); await sleep(200);
-  await send("Page.navigate", { url: base + "?p" + bucket + "#scorecard" }); await sleep(1500);
+  await send("Page.navigate", { url: RP("scorecard") + "?p" + bucket }); await sleep(1500);
   await ev(`document.querySelector('input[name="scBucket"][value="${bucket}"]').click(); document.getElementById('scContinue').click(); 1`);
   if (bucket !== "self") { for (const x of hats) await ev(`document.querySelector('input[name="scHat"][value="${x}"]').click(); 1`); await ev("document.getElementById('scContinue').click(); 1"); }
   if (bucket !== "lead") { for (const x of lens) await ev(`document.querySelector('input[name="scLens"][value="${x}"]').click(); 1`); await ev("document.getElementById('scContinue').click(); 1"); }
@@ -120,18 +122,18 @@ async function runPath(bucket, hats, lens, stage) {
   await sleep(300);
 }
 await runPath("lead", ["people"], [], "turn");
-ok(await ev(`(function(){var m=document.getElementById('scResMethod');var a=m.querySelectorAll('a');return a.length===1&&a[0].textContent==='TLCCW'&&a[0].getAttribute('href')==='#method'&&/The method behind this result is TLCCW: Think, Learn, Communicate, Create, Work\\./.test(m.textContent)})()`), "leader result: the one method line names TLCCW and links to #method, text unchanged");
+ok(await ev(`(function(){var m=document.getElementById('scResMethod');var a=m.querySelectorAll('a');return a.length===1&&a[0].textContent==='TLCCW'&&a[0].getAttribute('href')==='/method/'&&/The method behind this result is TLCCW: Think, Learn, Communicate, Create, Work\\./.test(m.textContent)})()`), "leader result: the one method line names TLCCW and links to #method, text unchanged");
 await ev(`document.querySelector('#scResMethod a').click(); 1`); await sleep(700);
 ok(await ev(`document.querySelector('section.page.active').id==='page-method'`), "leader result: the TLCCW link opens the method page");
 await runPath("self", [], ["brain"], "burn");
-ok(await ev(`(function(){var m=document.getElementById('scResMethod');var a=m.querySelectorAll('a');return a.length===1&&a[0].getAttribute('href')==='#method'&&/The result names the stage\\. TLCCW, which stands for Think, Learn, Communicate, Create, Work, is how you work on it\\./.test(m.textContent)&&m.querySelectorAll('li').length===5})()`), "worker result: the teaching paragraph links TLCCW to #method, text and five pillar lines unchanged");
+ok(await ev(`(function(){var m=document.getElementById('scResMethod');var a=m.querySelectorAll('a');return a.length===1&&a[0].getAttribute('href')==='/method/'&&/The result names the stage\\. TLCCW, which stands for Think, Learn, Communicate, Create, Work, is how you work on it\\./.test(m.textContent)&&m.querySelectorAll('li').length===5})()`), "worker result: the teaching paragraph links TLCCW to #method, text and five pillar lines unchanged");
 await ev(`document.querySelector('#scResMethod a').click(); 1`); await sleep(700);
 ok(await ev(`document.querySelector('section.page.active').id==='page-method'`), "worker result: the TLCCW link opens the method page");
-await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: base + "?h#home" }); await sleep(1500);
+await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: base + "?h" }); await sleep(1500);
 ok(await ev(`(function(){var a=document.querySelector('#page-home .doors a[data-go="method"]');if(!a)return false;var r=a.getBoundingClientRect();return r.height>=43.5&&a.textContent.trim()==='How the method works'})()`), "homepage door: method link is present and at least 44 px tall");
 await ev(`document.querySelector('#page-home .doors a[data-go="method"]').click(); 1`); await sleep(700);
 ok(await ev(`document.querySelector('section.page.active').id==='page-method'`), "homepage door link opens the method page");
-await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: base + "?t#training" }); await sleep(1500);
+await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: RP("training") + "?t" }); await sleep(1500);
 ok(await ev(`(function(){var a=document.querySelector('#page-training a[data-go="method"]');if(!a)return false;return a.getBoundingClientRect().height>=43.5})()`), "Training page: method link is present and at least 44 px tall");
 await ev(`document.querySelector('#page-training a[data-go="method"]').click(); 1`); await sleep(700);
 ok(await ev(`document.querySelector('section.page.active').id==='page-method'`), "Training page link opens the method page");

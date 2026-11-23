@@ -12,7 +12,9 @@ const srv = await new Promise((res) => {
     r.writeHead(200, { "content-type": t }); fs.createReadStream(f).pipe(r);
   }).listen(0, "127.0.0.1", () => res(s));
 });
-const base = "http://127.0.0.1:" + srv.address().port + "/index.html";
+const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
 const proc = spawn(chrome, ["--headless=new", "--remote-debugging-port=" + port, "--user-data-dir=" + fs.mkdtempSync(path.join(os.tmpdir(), "ffl-")), "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--no-first-run", "about:blank"], { stdio: "ignore" });
@@ -24,11 +26,11 @@ ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && cb.has(d.id)) 
 const send = (method, params = {}) => new Promise((res, rej) => { const i = ++id; cb.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params })); });
 const ev = async (e) => { const r = await send("Runtime.evaluate", { expression: e, awaitPromise: true, returnByValue: true }); if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description); return r.result.value; };
 await send("Page.enable"); await send("Runtime.enable");
-const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w + "#home" }); await sleep(1800); };
+const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }); await send("Page.navigate", { url: base + "?" + w }); await sleep(1800); };
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
-const show = async (id) => { await ev("location.hash='#" + id + "'; window.dispatchEvent(new PopStateEvent('popstate')); 1"); await sleep(800); };
+const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id + "/"); await sleep(800); };
 const LINEFN = `function(sel){
   var NB=String.fromCharCode(160), SMALL={a:1,an:1,the:1,and:1,or:1,in:1,of:1,to:1,at:1,for:1,on:1,by:1,with:1,from:1,but:1,as:1,so:1};
   var bad=[];
@@ -46,7 +48,7 @@ const LINEFN = `function(sel){
   return JSON.stringify(bad);
 }`;
 const sizes = [["desktop-1440", 1440, 900], ["tablet-landscape-1024", 1024, 768], ["tablet-portrait-768", 768, 1024], ["phone-390", 390, 844]];
-const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
+const html = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").replace(/\r\n/g, "\n");
 const ll = fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8");
 // ---------- static: banned strings, Directory, Canon, comments, GoHighLevel
 for (const s of ["Funnel role", "For the buyer", "Take it upward", "Concept picture", "Concept illustration"]) ok(!html.includes(s) && !ll.includes(s), `"${s}" no longer appears anywhere in the page or llms.txt`);
@@ -152,7 +154,7 @@ await load(1440, 900); await show("about");
   ok(JSON.stringify(r.lines) === JSON.stringify(["Seen. Heard. Understood.", "Connected to the access", "they have a right to."]) && r.fs === "46.4px", `desktop 1440: About h1 renders exactly as before the fix, three lines at 46.4px (${r.lines.join(" | ")}, ${r.fs})`);
 }
 await load(1440, 900);
-await show("directory");
-ok(await ev(`(function(){var a=document.querySelector('section.page.active');return !!a&&a.id!=='page-directory'&&!document.getElementById('page-directory')})()`), "the old #directory address no longer opens a Directory page (the page does not exist; the site falls back to the homepage)");
+await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: base + "?d#directory" }); await sleep(1500);
+ok(await ev(`(function(){var a=document.querySelector('section.page.active');return !!a&&a.id==='page-home'&&!document.getElementById('page-directory')})()`), "the old #directory address no longer opens a Directory page (the page does not exist; the site falls back to the homepage)");
 console.log(fails.length ? "FAILED: " + fails.length : "ALL PHASE 4.8 CHECKS PASSED");
 ws.close(); proc.kill(); srv.close(); process.exit(fails.length ? 1 : 0);

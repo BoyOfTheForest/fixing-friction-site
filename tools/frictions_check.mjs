@@ -87,70 +87,124 @@ ok((insideSec.match(/data-go="frictions"/g) || []).length === 1, "the Inside pag
 ok((toolsSec.match(/data-go="frictions"/g) || []).length === 1, "the Tools page links to it once");
 ok((html.match(/data-go="frictions"/g) || []).length === 3, "exactly three links to the page in the source (home door, Inside, Tools)");
 
-// ---------- dynamic: logic
+// ---------- F3: built area sentences equal the approved lines, with no level word repeated at the start
+{
+  const APPROVED = {
+    personal: { heavy: "Your own time, energy and growth are carrying a lot of friction.", some: "A few things about your own days could be easier.", light: "Less friction is showing up here at the moment." },
+    relational: { heavy: "Looking after the people you care for is carrying a lot of friction.", some: "A few things about caring for others could be easier.", light: "Less friction is showing up here at the moment." },
+    professional: { heavy: "Your job is carrying a lot of friction.", some: "A few things about your job could be easier.", light: "Less friction is showing up here at the moment." }
+  };
+  const built = {};
+  for (const m of areasSrc.matchAll(/id: "(\w+)"[\s\S]*?lines: \{ heavy: "([^"]*)", some: "([^"]*)", light: "([^"]*)" \}/g)) built[m[1]] = { heavy: m[2], some: m[3], light: m[4] };
+  ok(JSON.stringify(built) === JSON.stringify(APPROVED), "every built area sentence equals the approved line exactly");
+  ok(!/^(Heavier right now|Some friction|Lighter right now)/.test(Object.values(built).flatMap((o) => Object.values(o)).join("\n")) && Object.values(built).flatMap((o) => Object.values(o)).every((l) => !/^(Heavier right now|Some friction|Lighter right now)/.test(l)), "no area sentence opens with a level word that duplicates its level label");
+}
+
+// ---------- dynamic: stepped flow, one question per screen
 const NA = "na";
 async function open(w, h) { await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 }); await send("Page.navigate", { url: "about:blank" }); await sleep(200); await send("Page.navigate", { url: base + "?f" + w + Math.random().toString(36).slice(2, 6) + "#frictions" }); await sleep(1600); }
-async function flow(ans) {
+const PARTS = ["personal", "relational", "professional"], QN = { personal: 4, relational: 5, professional: 4 };
+const LABEL = "document.getElementById('frProgressLabel').textContent";
+const click = (sel) => ev(`document.querySelector(${JSON.stringify(sel)}).click(); 1`);
+async function flow(ans, trace) {
   const labels = [];
-  for (let i = 0; i < 3; i++) {
-    labels.push(await ev("document.getElementById('frProgressLabel').textContent"));
-    const area = ["personal", "relational", "professional"][i];
-    (ans[area] || []).forEach((v, qi) => { if (v !== undefined) ev(`(function(){var r=document.querySelector('input[name="fr_${area}_${qi}"][value="${v}"]');if(r)r.click()})()`); });
-    await sleep(80);
-    await ev("document.getElementById('frNext').click(); 1"); await sleep(120);
+  for (const area of PARTS) {
+    labels.push(await ev(LABEL)); trace && trace.push({ intro: true, fieldsets: await ev("document.querySelectorAll('.fr-q').length") });
+    await click("#frNext"); await sleep(70);
+    for (let qi = 0; qi < QN[area]; qi++) {
+      labels.push(await ev(LABEL));
+      const info = JSON.parse(await ev(`JSON.stringify({n:document.querySelectorAll('.fr-q').length,opts:document.querySelectorAll('.fr-q input').length,fillw:document.getElementById('frProgressFill').style.width,now:document.getElementById('frProgressBar').getAttribute('aria-valuenow'),max:document.getElementById('frProgressBar').getAttribute('aria-valuemax')})`));
+      trace && trace.push({ area, qi, ...info });
+      const v = (ans[area] || [])[qi];
+      if (v !== undefined) await ev(`(function(){var r=document.querySelector('input[name="fr_${area}_${qi}"][value="${v}"]');if(r)r.click()})(); 1`);
+      await click("#frNext"); await sleep(70);
+    }
   }
-  const res = JSON.parse(await ev(`(function(){var r=document.getElementById('frResult');var areas=[].map.call(r.querySelectorAll('.fr-area'),function(li){return {h:li.querySelector('h3').textContent,level:li.querySelector('.fr-level').textContent.replace(/[\\u25CF\\u25CB]/g,'').trim(),kit:!!li.querySelector('.fr-kit'),door:li.querySelector('.fr-door')?li.querySelector('.fr-door').textContent:null,links:[].map.call(li.querySelectorAll('.fr-links a'),function(a){return a.getAttribute('data-go')})}});return JSON.stringify({visible:!r.hidden,head:document.getElementById('frResHead').textContent.replace(/\\u00a0/g,' '),lead:document.getElementById('frResLead').textContent,areas:areas,btns:r.querySelectorAll('.sc-res-hero .btn').length,primary:r.querySelector('.sc-res-hero .btn').getAttribute('href'),community:r.querySelector('.fr-community').textContent,note:(document.getElementById('frNote')||{}).textContent||null,kits:r.querySelectorAll('.fr-kit').length,text:r.innerText})})()`));
+  const res = JSON.parse(await ev(`(function(){var r=document.getElementById('frResult');var areas=[].map.call(r.querySelectorAll('.fr-area'),function(li){var ps=li.querySelectorAll('p');return {h:li.querySelector('h3').textContent,level:li.querySelector('.fr-level').textContent.replace(/[\\u25CF\\u25CB]/g,'').trim(),line:ps.length>1&&!ps[1].classList.contains('fr-first')?ps[1].textContent:null,kit:!!li.querySelector('.fr-kit'),door:li.querySelector('.fr-door')?li.querySelector('.fr-door').textContent:null,links:[].map.call(li.querySelectorAll('.fr-links a'),function(a){return a.getAttribute('data-go')})}});return JSON.stringify({visible:!r.hidden,head:document.getElementById('frResHead').textContent.replace(/\\u00a0/g,' '),areas:areas,btns:r.querySelectorAll('.sc-res-hero .btn').length,primary:r.querySelector('.sc-res-hero .btn').getAttribute('href'),community:r.querySelector('.fr-community').textContent,note:(document.getElementById('frNote')||{}).textContent||null,kits:r.querySelectorAll('.fr-kit').length,text:r.innerText})})()`));
   res.labels = labels; return res;
 }
 const all = (n, v) => Array(n).fill(v);
 await open(1440, 900);
-ok(await ev(`document.querySelector('section.page.active').id==='page-frictions' && document.getElementById('frProgressLabel').textContent==='Part 1 of 3: Personal' && document.querySelectorAll('.fr-q').length===4`), "#frictions opens on part 1 of 3, Personal, with four questions");
-let r1 = await flow({ personal: all(4, "0"), relational: [NA, NA, NA, "0", "0"], professional: all(4, "2") });
+ok(await ev(`document.querySelector('section.page.active').id==='page-frictions' && ${LABEL}==='Part 1 of 3: Personal' && document.querySelectorAll('.fr-q').length===0 && /Personal/.test(document.querySelector('.fr-area-h').textContent) && document.querySelector('#frStepHost p').textContent==='This part is about you: your time, your energy, your own growth.'`), "#frictions opens on the Personal intro screen: part name and its intro line, no questions yet");
+const trace = [];
+let r1 = await flow({ personal: all(4, "0"), relational: [NA, NA, NA, "0", "0"], professional: all(4, "2") }, trace);
+const expectLabels = []; PARTS.forEach((a, ai) => { const L = ["Personal", "Relational", "Professional"][ai]; expectLabels.push(`Part ${ai + 1} of 3: ${L}`); for (let q = 0; q < QN[a]; q++) expectLabels.push(`Part ${ai + 1} of 3: ${L}, question ${q + 1} of ${QN[a]}`); });
+ok(JSON.stringify(r1.labels) === JSON.stringify(expectLabels), "progress names the part and the question position on every screen: " + r1.labels.slice(0, 3).join(" | ") + " ...");
+const qs = trace.filter((x) => x.qi !== undefined);
+ok(qs.length === 13 && qs.every((x) => x.n === 1), "exactly one question per screen across all 13 questions");
+ok(trace.filter((x) => x.intro).every((x) => x.fieldsets === 0), "the three intro screens carry no question");
+ok(qs.every((x, i) => Number(x.now) === i && x.max === "13") && qs.every((x, i) => parseFloat(x.fillw) >= (i ? parseFloat(qs[i - 1].fillw) : 0) - 0.01), "the progress bar tracks overall progress through the 13 questions and never goes backwards");
+const naIdx = qs.map((x, i) => (x.opts === 4 ? i : -1)).filter((i) => i >= 0);
+ok(JSON.stringify(naIdx) === JSON.stringify([4, 5, 6]), "Not part of my life appears on questions 5, 6 and 7 only: positions " + naIdx.map((i) => i + 1).join(","));
+ok(qs.filter((x) => x.opts === 3).length === 10, "the other ten questions offer exactly Hardly ever, Sometimes, Most weeks");
 ok(r1.visible && r1.head === "Most of the friction you described sits in professional life" && r1.areas[2].level.startsWith("Heavier right now, the most of the three") && r1.areas[0].level === "Lighter right now", "professional heavy: headline and levels are right");
-ok(JSON.stringify(r1.labels) === JSON.stringify(["Part 1 of 3: Personal", "Part 2 of 3: Relational", "Part 3 of 3: Professional"]), "progress reads Part 1, 2, 3 of 3 with the area name");
+ok(r1.areas[0].line === "Less friction is showing up here at the moment." && r1.areas[2].line === "Your job is carrying a lot of friction." && r1.areas[1].line === "Less friction is showing up here at the moment.", "the built result sentences are the approved lines, with no repeated level word");
 ok(r1.btns === 1 && r1.primary === "#inside" && r1.community === "Inside Fixing Friction leads to the Fixing Friction Community, a paid group coaching program for Divergent Doers.", "one primary route, Inside Fixing Friction, with the Community named as the program it leads to");
 ok(r1.kits === 1 && r1.areas[2].kit && !r1.areas[0].kit && !r1.areas[1].kit, "the champion kit appears only in the Professional result");
 ok(/I have named what is costing me the most at work, and I would like to talk about one small fix\./.test(r1.text) && /^Hi \[name\], I have been thinking about what is costing me the most at work: \[the one thing\]\./.test(r1.note || ""), "the kit holds one forwardable line and one short template note, with square-bracket blanks and no names");
 ok(r1.areas[2].door === "If the honest answer is that you need to leave and you need a plan, that work lives inside the Community too.", "the quiet door is present on the Professional result, plain wording, no track name");
-ok(!/leave and (you need )?a plan|exit track|Rebuild|Pivot|Second Act/i.test(r1.areas[0].links.join(" ") + r1.areas[1].links.join(" ")), "no public name for the leaving track");
 ok(JSON.stringify(r1.areas.map((a) => a.links)) === JSON.stringify([["inside", "burnout", "method"], ["athome", "inside", "burnout"], ["modules", "titles", "tools"]]), "first resources per area come only from existing pages: " + JSON.stringify(r1.areas.map((a) => a.links)));
 ok(await ev(`sessionStorage.length===0 && localStorage.length===0 && document.cookie===''`), "nothing is written to sessionStorage, localStorage or cookies by the flow");
-await ev("document.getElementById('frNote'); document.querySelector('.fr-select').click(); 1");
+await ev("document.querySelector('.fr-select').click(); 1");
 ok(await ev(`window.getSelection().toString().replace(/\\s+/g,' ').trim()===document.getElementById('frNote').textContent.trim()`), "the Select the note button selects the note for copying, with no clipboard or network call");
 await open(1440, 900); let r2 = await flow({ personal: all(4, "2"), relational: [NA, NA, NA, "0", "0"], professional: all(4, "0") });
-ok(r2.head === "Most of the friction you described sits in personal life" && r2.areas[0].level.startsWith("Heavier right now, the most"), "personal heavy: headline and level are right");
+ok(r2.head === "Most of the friction you described sits in personal life" && r2.areas[0].level.startsWith("Heavier right now, the most") && r2.areas[0].line === "Your own time, energy and growth are carrying a lot of friction.", "personal heavy: headline, level and approved sentence");
 await open(1440, 900); let r3 = await flow({ personal: all(4, "0"), relational: [NA, NA, NA, "2", "2"], professional: all(4, "1") });
-ok(r3.head === "Most of the friction you described sits in relational life" && r3.areas[1].level.startsWith("Heavier right now, the most"), "relational: Not part of my life answers are left out, two answers of Most weeks make it heavy");
+ok(r3.head === "Most of the friction you described sits in relational life" && r3.areas[1].level.startsWith("Heavier right now, the most") && r3.areas[1].line === "Looking after the people you care for is carrying a lot of friction." && r3.areas[2].level === "Some friction" && r3.areas[2].line === "A few things about your job could be easier.", "relational: Not part of my life answers are left out, two Most weeks make it heavy; the 'some' sentence is the approved one");
 await open(1440, 900); let r4 = await flow({ personal: all(4, "2"), relational: [NA, NA, NA, "0", "0"], professional: all(4, "2") });
 ok(r4.head === "Your friction is spread across more than one area", "a tie reads as spread across more than one area");
 await open(1440, 900); let r5 = await flow({});
-ok(r5.head === "You skipped every question, so there is nothing to place yet" && r5.areas.every((a) => a.level === "Skipped"), "skipping every question is allowed and says so plainly");
+ok(r5.head === "You skipped every question, so there is nothing to place yet" && r5.areas.every((a) => a.level === "Skipped"), "skipping every question by pressing Continue is allowed and says so plainly");
 await open(1440, 900); let r6 = await flow({ personal: all(4, "0"), relational: [NA, NA, NA, "0", "0"], professional: all(4, "0") });
 ok(r6.head === "Nothing stands out as heavy right now", "all Hardly ever reads as nothing heavy");
+await open(1440, 900); let r7 = await flow({ personal: ["2", undefined, "2", undefined], relational: [undefined, NA, undefined, "1", undefined], professional: [undefined, undefined, "2", undefined] });
+ok(r7.visible && r7.areas[0].level.startsWith("Heavier") && r7.areas[2].level.startsWith("Heavier"), "skipping some questions works: the average uses only the answers given");
+// Back keeps an answer; Start over mid-part clears everything
 await open(1440, 900);
-await ev(`document.getElementById('frNext').click(); document.getElementById('frNext').click(); 1`); await sleep(150);
-await ev(`document.getElementById('frBack').click(); 1`); await sleep(120);
-ok(await ev(`document.getElementById('frProgressLabel').textContent==='Part 2 of 3: Relational'`), "Back returns to the previous part");
-// resource link opens a real page
+await click("#frNext"); await sleep(70); await ev(`document.querySelector('input[name="fr_personal_0"][value="2"]').click(); 1`); await click("#frNext"); await sleep(70);
+ok(await ev(`${LABEL}==='Part 1 of 3: Personal, question 2 of 4'`), "Continue moves to question 2 of 4");
+await click("#frBack"); await sleep(80);
+ok(await ev(`!!document.querySelector('input[name="fr_personal_0"][value="2"]:checked')`), "Back returns to the previous question with its answer kept");
+await click("#frNext"); await sleep(60); await click("#frNext"); await sleep(60); await click("#frNext"); await sleep(60); await click("#frNext"); await sleep(70);
+ok(await ev(`${LABEL}==='Part 2 of 3: Relational'`), "the next part opens on its own intro screen");
+await click("#frNext"); await sleep(60); await click("#frReset"); await sleep(120);
+ok(await ev(`${LABEL}==='Part 1 of 3: Personal' && document.querySelectorAll('.fr-q').length===0 && document.getElementById('frResult').hidden`), "Start over in the middle of a part returns to the first intro screen");
+await click("#frNext"); await sleep(70);
+ok(await ev(`!document.querySelector('input[name="fr_personal_0"]:checked')`), "Start over cleared the earlier answers");
+// a resource link opens a real page
 await open(1440, 900); await flow({ professional: all(4, "2") });
 await ev(`document.querySelector('.fr-area:nth-child(3) .fr-links a').click(); 1`); await sleep(600);
 ok(await ev(`document.querySelector('section.page.active').id==='page-modules'`), "a first resource link opens the page it names (the three checklists)");
 
-// ---------- dynamic: layout per width
+// ---------- dynamic: layout per width, every question screen
 const CONTRAST = `(function(){function parse(c){var m=c.match(/[\\d.]+/g).map(Number);return {r:m[0],g:m[1],b:m[2],a:m.length>3?m[3]:1}}function lum(c){var f=function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b)}function bgOf(el){while(el){var c=parse(getComputedStyle(el).backgroundColor);if(c.a>0.9)return c;el=el.parentElement}return {r:255,g:255,b:255,a:1}}var bad=[];[].forEach.call(document.querySelectorAll('#frResult h2,#frResult h3,#frResult h4,#frResult p,#frResult li,#frResult strong,#frResult a,#frResult button,#frResult .eyebrow,#frResult .fr-dots'),function(e){if(!e.offsetParent||!e.textContent.trim())return;var f=parse(getComputedStyle(e).color),b=bgOf(e),l1=lum(f),l2=lum(b),cr=(Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);if(cr<4.5)bad.push(e.tagName+' '+cr.toFixed(2)+' '+e.textContent.trim().slice(0,30))});return JSON.stringify(bad)})()`;
 for (const [sn, w, h] of sizes) {
   await open(w, h);
-  ok(await ev(`document.documentElement.scrollWidth<=innerWidth+1`), `[${sn}] entry: no sideways overflow`);
-  const bad0 = JSON.parse(await ev(`(${LINEFN})('#page-frictions h1, #page-frictions .fr-area-h, #page-frictions legend')`));
-  ok(bad0.length === 0, `[${sn}] entry: headings and questions have no widow or stranded preposition ${bad0.join(" ; ")}`);
-  const small0 = JSON.parse(await ev(`JSON.stringify([].filter.call(document.querySelectorAll('#frForm .fr-opts label, #frForm .btn'),function(e){return e.offsetParent&&e.getBoundingClientRect().height<43.5}).map(function(e){return e.textContent.trim()}))`));
-  ok(small0.length === 0, `[${sn}] entry: every option and button is at least 44 px tall ${small0.join(" ; ")}`);
-  // keyboard: arrow keys move within a radio group, Space selects
-  await ev(`document.querySelector('input[name="fr_personal_0"]').focus(); 1`); await KEY("ArrowRight", "ArrowRight", 39); await sleep(80);
-  ok(await ev(`document.querySelector('input[name="fr_personal_0"]:checked')!==null`), `[${sn}] keyboard: arrow keys choose an answer inside a question`);
-  if (sn === "desktop-1440") { const rr = await rectOf("#page-frictions"); await cap("frictions-entry-" + sn, { x: 0, y: Math.max(0, rr.y - 10), width: w, height: Math.min(rr.h, 2400) }); }
-  const rs = await flow({ personal: all(4, "1"), relational: [NA, NA, NA, "2", "1"], professional: all(4, "2") });
-  ok(rs.visible && rs.head.startsWith("Most of the friction"), `[${sn}] result shows`);
+  ok(await ev(`document.documentElement.scrollWidth<=innerWidth+1`), `[${sn}] intro: no sideways overflow`);
+  const badI = JSON.parse(await ev(`(${LINEFN})('#page-frictions h1, #page-frictions .fr-area-h')`));
+  ok(badI.length === 0, `[${sn}] intro: heading has no widow or stranded preposition ${badI.join(" ; ")}`);
+  const smallI = JSON.parse(await ev(`JSON.stringify([].filter.call(document.querySelectorAll('#frForm .btn'),function(e){return e.offsetParent&&e.getBoundingClientRect().height<43.5}).map(function(e){return e.textContent.trim()}))`));
+  ok(smallI.length === 0, `[${sn}] intro: buttons at least 44 px tall ${smallI.join(" ; ")}`);
+  if (sn === "desktop-1440") { const rr = await rectOf("#page-frictions"); await cap("frictions-intro-" + sn, { x: 0, y: Math.max(0, rr.y - 10), width: w, height: Math.min(rr.h, 1500) }); }
+  await click("#frNext"); await sleep(70);
+  let badAll = [], smallAll = [], ovAll = 0, keyOk = true;
+  for (let i = 0; i < 13; i++) {
+    const L = JSON.parse(await ev(`(${LINEFN})('#frForm legend')`)); if (L.length) badAll.push(...L);
+    const S = JSON.parse(await ev(`JSON.stringify([].filter.call(document.querySelectorAll('#frForm .fr-opts label, #frForm .btn'),function(e){return e.offsetParent&&e.getBoundingClientRect().height<43.5}).map(function(e){return e.textContent.trim()}))`)); if (S.length) smallAll.push(...S);
+    if (!(await ev(`document.documentElement.scrollWidth<=innerWidth+1`))) ovAll++;
+    if (i === 0 || i === 4) {
+      await ev(`document.querySelector('#frForm input').focus(); 1`); await KEY("ArrowRight", "ArrowRight", 39); await sleep(60);
+      if (!(await ev(`document.querySelector('#frForm input:checked')!==null`))) keyOk = false;
+    }
+    if (sn !== "x" && (i === 1) && (sn === "desktop-1440" || sn === "phone-390")) { const rr = await rectOf("#page-frictions"); await cap("frictions-question-" + sn, { x: 0, y: Math.max(0, rr.y - 10), width: w, height: Math.min(rr.h, 1500) }); }
+    await click("#frNext"); await sleep(60);
+    if (i === 3 || i === 8) { await click("#frNext"); await sleep(60); }
+  }
+  ok(badAll.length === 0, `[${sn}] all 13 questions: no widow or stranded preposition ${badAll.join(" ; ")}`);
+  ok(smallAll.length === 0, `[${sn}] all 13 questions: every option and button is at least 44 px tall ${smallAll.join(" ; ")}`);
+  ok(ovAll === 0, `[${sn}] all 13 questions: no sideways overflow`);
+  ok(keyOk, `[${sn}] keyboard: arrow keys choose an answer on a question screen`);
+  ok(await ev(`!document.getElementById('frResult').hidden`), `[${sn}] the last Continue opens the result`);
   ok(await ev(`(function(){var h=document.getElementById('frResHead').getBoundingClientRect();var hd=document.querySelector('header.site').getBoundingClientRect();return h.top>=hd.bottom-1&&h.top<innerHeight})()`), `[${sn}] the result headline lands below the sticky header`);
   const cb = JSON.parse(await ev(CONTRAST)); ok(cb.length === 0, `[${sn}] result: every text element has at least 4.5:1 contrast ${cb.join(" ; ")}`);
   const bad1 = JSON.parse(await ev(`(${LINEFN})('#frResHead, #frResult h3')`)); ok(bad1.length === 0, `[${sn}] result headings: no widow ${bad1.join(" ; ")}`);

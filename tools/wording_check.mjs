@@ -83,6 +83,9 @@ ok(!navFoot.includes("—"), "no em dash in navigation or footer");
   for (const p of SOFTWARE) ok(!noBO.includes(p), 'software-present phrase gone from audience copy: "' + p + '"');
   ok(!/(the|a|its|in a|in the|to the) client view/i.test(noBO) && !/tracked in a client view/i.test(noBO), 'software-present phrase gone from audience copy: "the client view", "a client view" (the data rule "cross-client views are anonymized averages only" is a different statement and stays)');
   ok(!/Takes under two minutes|under two minutes/i.test(html), "no 'under two minutes' claim anywhere on the site (the AI scorecards' own time chips are a different wording)");
+  ok(!/cross[- ]client views/i.test(html) && (html.match(/cross-client comparisons are anonymized averages only/gi) || []).length === 4, "the cross-client wording reads comparisons (four places), and 'cross-client views' is gone");
+  ok((html.match(/Friction is a systems mismatch, never a character flaw\./g) || []).length === 2 && (html.match(/systems mismatch, never a character flaw/g) || []).length === 2, "the principle line appears exactly twice on the whole site (homepage and About), never a third time");
+  ok(!/<span class="tag">Try it<\/span>/.test(html) && html.includes('aria-label="Sample progress tracker"') && html.includes("This is a small sample with example items"), "the Plans sample tracker has no Try it tag and is still labelled a sample");
   ok(!/Play Burnout Bingo|Play it solo/.test(html), "Burnout Bingo is not presented as a game to play");
   ok(!/guides and templates you can inspect|through a free guide/.test(html), "the removed guide and template promises are gone");
 }

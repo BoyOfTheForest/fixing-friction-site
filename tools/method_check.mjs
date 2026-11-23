@@ -81,6 +81,11 @@ const total = (html.match(/data-go="method"/g) || []).length;
 ok(total === 2, `exactly two method links in the page markup (home door, Training): ${total}`);
 ok(/a\.setAttribute\("href", "#method"\)/.test(html) && /a\.textContent = "TLCCW"/.test(html), "the scorecard result builds its method link to #method");
 
+const INTRO = "TLCCW stands for Think, Learn, Communicate, Create, Work. It is a philosophy and a mindset before it is a method: a way of moving through the world when your brain or body works differently, whether you are on your own, with your family, out in the world, or at work. It was built for neurodivergent people, disabled people, and people living with chronic conditions, and for the leaders who shape the environments they move through. Five steps, in order, each one small enough to start today. Each step is shown here for a worker first, then for a leader.";
+ok(secText.includes(INTRO), "the polished introduction paragraph is present, exact");
+ok(secText.includes("Start with the cost, not the verdict. The question is what is costing you the most, not what is wrong with you."), "the Think worker card is exact");
+ok(secText.includes("Name the barrier in plain words and ask for what would fix it. Your own words are the evidence: you are the one who lives with the barrier."), "the Communicate worker card is exact");
+ok(!/systems mismatch, never a character flaw/.test(secText) && (html.match(/systems mismatch, never a character flaw/g) || []).length === 2, "the method page does not carry the principle line, and it appears exactly twice on the site");
 // ---------- dynamic
 for (const [sn, w, h] of sizes) {
   await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: 1, mobile: w < 600 });

@@ -162,6 +162,21 @@ async function browserChecks() {
       }
       note("viewport " + width + "px: " + list.length + " pages scanned");
     }
+    // On this page chip row (folded in from overflow_check.mjs): the row wraps and never scrolls sideways, nothing overflows the page, chips stay 44 px tall
+    const CHIPROW = "(function(){var s=document.querySelector('section.page.active');var n=s&&s.querySelector('nav.on-this-page');var row=n&&n.querySelector('.otp-row');var d=document.documentElement;var chips=n?[].slice.call(n.querySelectorAll('a')):[];return JSON.stringify({has:!!n,rowOver:row?row.scrollWidth>row.clientWidth+1:false,rowScroll:row?/(auto|scroll)/.test(getComputedStyle(row).overflowX):false,navOver:n?n.scrollWidth>n.clientWidth+1:false,pageOver:d.scrollWidth>innerWidth+1||document.body.scrollWidth>innerWidth+1,minChip:chips.length?Math.min.apply(null,chips.map(function(a){return Math.round(a.getBoundingClientRect().height)})):99,chips:chips.length})})()";
+    for (const width of (SHOTS_ONLY ? [] : [1440, 1024, 768, 390])) {
+      await load(width, false);
+      let rows = 0, chipsSeen = 0;
+      for (const id of list) {
+        await showHash(id); await sleep(300);
+        const r = JSON.parse(await c.eval(CHIPROW));
+        if (r.has) { rows++; chipsSeen += r.chips; }
+        if (r.rowOver || r.navOver || r.rowScroll) fail("chip-row", id + ": the On this page row scrolls sideways at " + width + "px");
+        if (r.pageOver) fail("chip-row", id + ": the page overflows sideways at " + width + "px");
+        if (r.has && r.minChip < 44) fail("chip-row", id + ": a chip is under 44 px tall at " + width + "px");
+      }
+      note("chip row " + width + "px: " + rows + " pages with the row, " + chipsSeen + " chips, none scroll sideways");
+    }
     if (!SHOTS_ONLY) {
     // text spacing override (WCAG 1.4.12): nothing important may clip
     await load(1280, false);

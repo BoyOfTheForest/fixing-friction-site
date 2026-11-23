@@ -65,7 +65,20 @@ ok(scStart > 0, "new scorecard script present");
 ok(!/localStorage|sessionStorage|indexedDB|document\.cookie|fetch\(|XMLHttpRequest|sendBeacon|gtag|dataLayer|mailto:|WebSocket/.test(scCode), "scorecard script has no storage, network, analytics or email calls");
 ok(!/ff_scorecard_state|SC_SAVE_KEY|scStoreSet|restoreSavedScorecard|scReturnBar/.test(html), "old persistence (sessionStorage save, restore, return banner) is removed everywhere");
 for (const s of ["Which sounds most like you today?", "I lead a team or an organization", "I feel the friction in my own work or home life", "Both. I lead people, and I feel it myself", "What sits on your desk?", "People and performance", "ADA, compliance, or facilities", "Hiring, HR, or people and culture", "Deadlines I am worried about", "What makes a normal day harder than it should be?", "Pick any that fit. There are no wrong answers, and you can skip this.", "My body or my health", "My brain works differently", "An ongoing health condition I manage every day", "The systems, tools, or rules at work", "It is just too much, and I cannot point to one thing", "Your answers change only which starting point you are shown. Nothing here asks what condition you have.", "Burn Out is the stage you are in", "Turn Out is dropping. This is the early warning stage", "Churn Out is happening. Act on the cause, not just the vacancy"]) ok(html.includes(s), "exact text present: " + s);
-ok(/<\/h1>\s*<p class="sc-promise">Nine questions\. No email needed to see your result\. One honest starting point, shown straight away\.<\/p>/.test(html) && (html.match(/Nine questions\. No email needed/g) || []).length === 1, "promise line: exact, once, directly under the scorecard h1 on the scorecard page only");
+ok(/<\/h1>\s*<p class="sc-promise">A few short questions\. No email needed to see your result\. One honest starting point, shown straight away\.<\/p>/.test(html) && (html.match(/No email needed to see your result/g) || []).length === 1, "promise line: exact new wording, once, directly under the scorecard h1 on the scorecard page only");
+{
+  const promo = html.slice(html.indexOf("Find your clearest first step"), html.indexOf("Find your clearest first step") + 700);
+  const tools = html.slice(html.indexOf(">The Scorecard</h3>"), html.indexOf(">The Scorecard</h3>") + 600);
+  const tab = html.slice(html.indexOf('scorecard:"Answer'), html.indexOf('scorecard:"Answer') + 200);
+  const aud = html.slice(html.indexOf("A few short questions. One suggested first step."), html.indexOf("A few short questions. One suggested first step.") + 500);
+  const NUM = /\b(nine|9|ten|10|eight|8|seven|7|six|five|four|three|two|2)[- ](short |plain[- ]language )?(\w+ )?questions?\b/i;
+  ok(!NUM.test(promo) && !NUM.test(tools) && !NUM.test(tab) && !NUM.test(aud), "no numeric question count in the promise line, the Tools card, the tab description or the Audits promo");
+  ok(html.includes("Answer a few short questions about who you are answering as") && html.includes('scorecard:"Answer a few short questions and get one honest starting point') && html.includes("A few short questions. One suggested first step."), "Tools card, tab description and Audits promo use the approved wording");
+  const body = html.replace(/<script[\s\S]*?<\/script>/g, (m) => (m.includes("var descMap") ? m : ""));
+  const stray = [...body.matchAll(/\b(nine|9)[- ](short )?questions?\b|Nine[- ]question/gi)].map((m) => m[0]);
+  ok(stray.length === 0 && !/nine[- ]question|Nine questions/i.test(ll), "no 'nine questions' count anywhere on the site, in meta, JSON-LD or llms.txt " + stray.join(","));
+  ok(!/startSummaryBox|startCopyAgain|summary has been copied|Copy summary again/.test(html), "the dead Get Started summary banner is gone and nothing references it");
+}
 ok(!/diagnos|disability status/i.test(scCode), "no question in the flow asks for a diagnosis, condition name or status");
 const tl = [...html.matchAll(/TLCCW/g)].map((m) => m.index);
 ok(tl.length > 0 && tl.every((i) => i >= scStart && i <= scEnd), "TLCCW appears only inside the scorecard result script (not in nav, footer, hero, headings or any other page)");
@@ -117,7 +130,8 @@ for (const [sn, w, h] of sizes) {
     const exp = name.startsWith("3") ? 10 : 9;
     ok(nums.every((n, i) => n[0] === i + 1) && nums.slice(1).every((n) => n[1] === exp) && nums.length === exp, `[${sn}] path ${name}: progress counts up 1..${exp} with a fixed total of ${exp}, never backwards`);
     if (name.startsWith("4")) { const rr = await rectOf("#scResult"); await cap("result-worker-" + sn, { x: 0, y: Math.max(0, rr.y - 20), width: w, height: Math.min(rr.h + 60, 3000) }); }
-    if (name.startsWith("2") && sn === "desktop-1440") { const rr = await rectOf("#scResult"); await cap("result-leader-" + sn, { x: 0, y: Math.max(0, rr.y - 20), width: w, height: Math.min(rr.h + 60, 2400) }); }
+    if (name.startsWith("2")) { const rr = await rectOf("#scResult"); await cap("result-leader-" + sn, { x: 0, y: Math.max(0, rr.y - 20), width: w, height: Math.min(rr.h + 60, 2400) }); }
+    { const vis = await ev(`(function(){var h=document.getElementById('scResHead').getBoundingClientRect();var hd=document.querySelector('header.site').getBoundingClientRect();return h.top>=hd.bottom-1&&h.top<innerHeight})()`); ok(vis, `[${sn}] path ${name}: the result headline lands fully below the sticky header, not hidden behind it`); }
     ok(!/Disability|Neurodivergence|Chronic Health|Broken Systems|lens/i.test(r.text), `[${sn}] path ${name}: result names the stage and starting point only, no lens label`);
     ok(/TLCCW/.test(r.method) && /Think, Learn, Communicate, Create, Work/.test(r.method) && r.methodLinks === 0, `[${sn}] path ${name}: TLCCW spelled out on first use, no link`);
     ok(r.close.length > 10 && /\.$/.test(r.close), `[${sn}] path ${name}: one plain closing line`);
@@ -131,6 +145,38 @@ fs.writeFileSync(path.join(OUT, "six-paths.txt"), report.join("\n") + "\n");
 // ---------- result contrast (every text element on the dark result band, worker and leader)
 const CONTRAST = `(function(){function parse(c){var m=c.match(/[\\d.]+/g).map(Number);return {r:m[0],g:m[1],b:m[2],a:m.length>3?m[3]:1}}function lum(c){var f=function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b)}function bg(el){while(el){var c=parse(getComputedStyle(el).backgroundColor);if(c.a>0.9)return c;el=el.parentElement}return {r:255,g:255,b:255,a:1}}var bad=[];[].forEach.call(document.querySelectorAll('#scResult h2,#scResult h3,#scResult p,#scResult li,#scResult strong,#scResult a,#scResult button'),function(e){if(!e.offsetParent||!e.textContent.trim())return;var f=parse(getComputedStyle(e).color);var b=bg(e);var l1=lum(f),l2=lum(b);var cr=(Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);if(cr<4.5)bad.push(e.tagName+' '+cr.toFixed(2)+' '+e.textContent.trim().slice(0,40))});return JSON.stringify(bad)})()`;
 for (const nm of ["4 worker, two lens options", "2 leader, ADA hat, Burn Out answers", "3 Both, deadline selected, Burn Out answers"]) { await startFresh(1440, 900); await run(...specs[nm]); const cb = JSON.parse(await ev(CONTRAST)); ok(cb.length === 0, `result (${nm[0]}): every text element has at least 4.5:1 contrast ${cb.join(" ; ")}`); }
+
+// ---------- Fix round 1, item 1: computed colour and contrast of every text element on the dark result band, per variant and width
+const BANDJS = `(function(){function parse(c){var m=c.match(/[\\d.]+/g).map(Number);return {r:m[0],g:m[1],b:m[2],a:m.length>3?m[3]:1}}function lum(c){var f=function(v){v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(c.r)+0.7152*f(c.g)+0.0722*f(c.b)}function cr(a,b){var l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05)}function bgOf(el){while(el){var c=parse(getComputedStyle(el).backgroundColor);if(c.a>0.9)return c;el=el.parentElement}return {r:255,g:255,b:255,a:1}}
+var band=document.querySelector('#scResult .sc-res-hero');var bandBg=parse(getComputedStyle(band).backgroundColor);var out={band:bandBg,bandRgb:getComputedStyle(band).backgroundColor,pillars:[],elements:[],bad:[]};
+var sel='#scResult .eyebrow,#scResult h2,#scResult h3,#scResult p,#scResult li,#scResult strong,#scResult a,#scResult button';
+[].forEach.call(band.querySelectorAll('.eyebrow,h2,h3,p,li,strong,a,button'),function(e){if(!e.offsetParent||!e.textContent.trim())return;var f=parse(getComputedStyle(e).color);var b=bgOf(e);var c=cr(f,b);var id=e.id||e.tagName.toLowerCase()+':'+e.textContent.trim().slice(0,24);out.elements.push({id:id,color:getComputedStyle(e).color,bg:'rgb('+b.r+','+b.g+','+b.b+')',ratio:Math.round(c*100)/100});if(c<4.5)out.bad.push(id+' '+getComputedStyle(e).color+' on rgb('+b.r+','+b.g+','+b.b+') = '+c.toFixed(2))});
+[].forEach.call(band.querySelectorAll('.sc-method li'),function(li){var st=li.querySelector('strong');var mk=parse(getComputedStyle(li,'::marker').color);var lc=parse(getComputedStyle(li).color);var sc=st?parse(getComputedStyle(st).color):lc;var b=bgOf(li);out.pillars.push({text:li.textContent.trim().slice(0,28),liColor:getComputedStyle(li).color,labelColor:st?getComputedStyle(st).color:null,markerColor:getComputedStyle(li,'::marker').color,liRatio:Math.round(cr(lc,b)*100)/100,labelRatio:Math.round(cr(sc,b)*100)/100,markerRatio:Math.round(cr(mk,b)*100)/100,liLum:lum(lc),bandLum:lum(bandBg),opacity:getComputedStyle(li).opacity,visibility:getComputedStyle(li).visibility})});
+return JSON.stringify(out)})()`;
+const VARIANTS = [
+  ["worker Burn Out", ["self", [], ["brain"], all7("burn")]], ["worker Turn Out", ["self", [], [], all7("turn")]], ["worker Churn Out", ["self", [], ["body", "brain"], all7("churn")]],
+  ["leader Burn Out", ["lead", ["ada"], [], all7("burn")]], ["leader Turn Out", ["lead", ["people"], [], all7("turn")]], ["leader Churn Out", ["both", ["hr"], [], all7("churn")]],
+  ["both Burn Out (with Inside line)", ["both", ["people"], [], all7("burn")]]
+];
+const bandLog = [];
+for (const [sn, w, h] of sizes) {
+  for (const [vn, spec] of VARIANTS) {
+    await startFresh(w, h); await run(...spec); await sleep(120);
+    const d = JSON.parse(await ev(BANDJS));
+    ok(d.bad.length === 0, `[${sn}] ${vn}: every text element on the result band has at least 4.5:1 contrast ${d.bad.join(" ; ")}`);
+    if (vn.startsWith("worker")) {
+      ok(d.pillars.length === 5, `[${sn}] ${vn}: five TLCCW pillar lines render`);
+      const bad = d.pillars.filter((p) => p.liRatio < 4.5 || p.labelRatio < 4.5 || p.markerRatio < 4.5 || p.liLum <= d.bandLum || p.opacity !== "1" || p.visibility !== "visible");
+      ok(bad.length === 0, `[${sn}] ${vn}: each pillar line, its bold label and its bullet marker are light on the navy band (>= 4.5:1, lighter than the band) ${JSON.stringify(bad)}`);
+      if (sn === "desktop-1440") bandLog.push(`${vn}: band ${d.bandRgb}; pillar text ${d.pillars[0].liColor} (${Math.min(...d.pillars.map((p) => p.liRatio))}:1 min), label ${d.pillars[0].labelColor} (${Math.min(...d.pillars.map((p) => p.labelRatio))}:1 min), marker ${d.pillars[0].markerColor} (${Math.min(...d.pillars.map((p) => p.markerRatio))}:1 min)`);
+    } else {
+      ok(d.pillars.length === 0, `[${sn}] ${vn}: leader result carries no pillar list`);
+      if (sn === "desktop-1440") bandLog.push(`${vn}: lowest element ratio ${Math.min(...d.elements.map((e) => e.ratio))}:1 over ${d.elements.length} text elements`);
+    }
+    if (sn === "desktop-1440" && vn === "worker Churn Out") fs.writeFileSync(path.join(OUT, "band-colours-worker-churn.json"), JSON.stringify(d, null, 1));
+  }
+}
+fs.writeFileSync(path.join(OUT, "band-contrast.txt"), bandLog.join("\n") + "\n");
 
 // ---------- guide map extras (desktop)
 await startFresh(1440, 900);

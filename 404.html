@@ -21,8 +21,8 @@
 <script>
 /* Typed addresses such as /audits or /speaking/ land on the right section of the one-page site. */
 (function () {
-  var pages = ["home", "voting", "speaking", "selfeval", "events", "prototypes", "app", "brainblame", "carecircle", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
-  var alias = {"assessments": "audits", "consulting": "advising", "apps": "prototypes", "accessibility-audits": "audits", "contact": "start", "get-started": "start", "pricing": "start", "scorecard": "scorecards", "services-and-pricing": "services", "faq": "about", "ada-training": "training", "keynote": "speaking", "voting-places": "voting"};
+  var pages = ["home", "voting", "speaking", "selfeval", "events", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
+  var alias = {"assessments": "audits", "consulting": "advising", "accessibility-audits": "audits", "contact": "start", "get-started": "start", "pricing": "start", "scorecard": "scorecards", "services-and-pricing": "services", "faq": "about", "ada-training": "training", "keynote": "speaking", "voting-places": "voting"};
   var seg = (location.pathname || "").replace(/^\/+|\/+$/g, "").toLowerCase().split("/")[0];
   seg = seg.replace(/\.html?$/, "");
   var id = alias[seg] || (pages.indexOf(seg) !== -1 ? seg : "");
@@ -34,7 +34,7 @@
 <main>
   <p class="eyebrow">Fixing Friction</p>
   <h1>We could not find that page.</h1>
-  <p>The link may be old or mistyped. Everything on this site starts from the home page, and the scorecard will point you to the right first step.</p>
+  <p>The link may be old or mistyped. Everything on this site starts from the home page, and the Scorecard will point you to the right first step.</p>
   <p><a class="btn" href="/">Go to the home page</a></p>
   <p>Still stuck? Email <a class="text" href="mailto:hello@fixingfriction.com">hello@fixingfriction.com</a>.</p>
 </main>

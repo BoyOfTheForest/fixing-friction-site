@@ -36,7 +36,8 @@ const pagesArr = (html.match(/var pages = \[([^\]]*)\]/) || [])[1];
 const pagesList = pagesArr ? [...pagesArr.matchAll(/"([^"]+)"/g)].map((m) => m[1]) : [];
 for (const p of pagesList) if (!pageIds.includes(p)) fail("pages", "pages array lists " + p + " but there is no section");
 for (const p of pageIds) if (!pagesList.includes(p)) fail("pages", "section page-" + p + " is missing from the pages array");
-if (pageIds.length < 30) fail("pages", "only " + pageIds.length + " sections found");
+const EXPECTED_PAGES = 33;
+if (pageIds.length !== EXPECTED_PAGES) fail("pages", "expected " + EXPECTED_PAGES + " page sections, found " + pageIds.length);
 
 // links
 let linkCount = 0;
@@ -83,6 +84,19 @@ if (faqLd && faqSrc) {
 // hygiene
 // internal build-out pages are not published: they must not exist in the repository (served by GitHub Pages)
 for (const d of ["buildout", "launch", "changes", "docs"]) if (fs.existsSync(path.join(ROOT, d))) fail("unpublish", "/" + d + "/ is in the repository and would be served publicly");
+// unbuilt product pages stay unpublished (Phase 5 fix round 2): no section, no route, no inbound link, no audience-copy mention
+const UNPUBLISHED = ["carecircle", "brainblame", "app", "prototypes", "directory"];
+for (const r of UNPUBLISHED) {
+  if (ids.has("page-" + r)) fail("unpublish", "page-" + r + " is back in the page source");
+  if (pagesList.includes(r)) fail("unpublish", "pages array lists " + r);
+  if (new RegExp('data-go="' + r + '"|href="#' + r + '[?"]').test(html)) fail("unpublish", "a link points to the unpublished route #" + r);
+}
+if (/"apps"/.test(html)) fail("unpublish", "the apps alias is back");
+for (const f of ["index.html", "llms.txt", "404.html", "sitemap.xml"]) {
+  const body = fs.readFileSync(path.join(ROOT, f), "utf8");
+  if (/Care ?Circle|Brain ?Blame/i.test(body)) fail("unpublish", "CareCircle or Brain Blame appears in " + f);
+  if (/\b(prototypes|brainblame|carecircle)\b/i.test(body) && f !== "index.html") fail("unpublish", "an unpublished route is named in " + f);
+}
 if (/info@/i.test(html)) fail("email", "old info@ address found");
 for (const f of ["robots.txt", "sitemap.xml", "llms.txt", "404.html", "CNAME"]) if (!fs.existsSync(path.join(ROOT, f))) fail("files", f + " missing");
 const robots = fs.existsSync(path.join(ROOT, "robots.txt")) ? fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8") : "";
@@ -176,6 +190,17 @@ async function browserChecks() {
         if (r.has && r.minChip < 44) fail("chip-row", id + ": a chip is under 44 px tall at " + width + "px");
       }
       note("chip row " + width + "px: " + rows + " pages with the row, " + chipsSeen + " chips, none scroll sideways");
+    }
+    // unpublished routes open the homepage (same treatment as #directory)
+    if (!SHOTS_ONLY) {
+      await c.send("Emulation.setDeviceMetricsOverride", { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
+      for (const r of UNPUBLISHED.concat(["apps"])) {
+        await c.send("Page.navigate", { url: "about:blank" }); await sleep(250);
+        await c.send("Page.navigate", { url: base + "#" + r }); await sleep(1100);
+        const cur = await c.eval("(function(){var a=document.querySelector('section.page.active');return a?a.id:''})()");
+        if (cur !== "page-home") fail("unpublish", "#" + r + " is reachable: it opened " + cur + " instead of the homepage");
+      }
+      note("unpublished routes (" + UNPUBLISHED.concat(["apps"]).join(", ") + ") all fall back to the homepage");
     }
     if (!SHOTS_ONLY) {
     // text spacing override (WCAG 1.4.12): nothing important may clip

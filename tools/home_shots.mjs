@@ -70,7 +70,7 @@ for (const [name, w, h] of sizes) {
 }
 // content checks from the source
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-const home = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-prototypes"'));
+const home = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-services"'));
 const mine = home.slice(home.indexOf('<div class="hero-bleed">'), home.indexOf('<div class="logo-banner"'));
 ok(!mine.includes("\u2014"), "no em dash in the hero, self select or Three Outs copy");
 ok((html.match(/corporate bullshit/g) || []).length === 1, "the phrase corporate bullshit appears exactly once on the site");

@@ -65,7 +65,7 @@ ok(bad1.length === 0, `Change 1: the line is the last element of every interior 
 ok(await ev(`!document.querySelector('#page-home .ff-begin')`), "Change 1: not on the homepage");
 const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8").replace(/\r\n/g, "\n");
 ok((html.split(PRINCIPLE).length - 1) === 2, "Change 2: the principle line appears exactly twice on the site (homepage and About)");
-const home = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-prototypes"'));
+const home = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-services"'));
 const sys = home.slice(home.indexOf('class="ff-system"'), home.indexOf('class="ff-system"') + 700);
 ok(home.split(PRINCIPLE).length === 2 && sys.includes(PRINCIPLE), "Change 2 place A: the line is on the homepage exactly once, inside the Broken Systems at Work block");
 const about = html.slice(html.indexOf('id="page-about"'), html.indexOf('id="page-start"'));

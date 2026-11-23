@@ -56,7 +56,7 @@ ok(!/<!--/.test(html) && !/\/\*/.test(html), "no HTML, CSS or JS block comments 
 ok(!/GoHighLevel|webhook|TODO/i.test(html), "the GoHighLevel webhook TODO comment is gone and nothing connects to it");
 ok(!/—|&mdash;/.test(html), "no em dash anywhere in the page");
 ok(!fs.existsSync(path.join(ROOT, "docs")) && !fs.existsSync(path.join(ROOT, "buildout")) && !fs.existsSync(path.join(ROOT, "launch")) && !fs.existsSync(path.join(ROOT, "changes")), "no internal folders in the published repository");
-ok((html.match(/<figcaption>Illustration[:.]/g) || []).length === 91 && !/Concept (picture|illustration)/.test(html), "91 captions now start with Illustration (colon or full stop kept) and no Concept caption or alt text remains: 92 were converted, 2 went with the unpublished Directory page");
+ok((html.match(/<figcaption>Illustration[:.]/g) || []).length === 85 && !/Concept (picture|illustration)/.test(html), "85 captions now start with Illustration (colon or full stop kept) and no Concept caption or alt text remains: 92 were converted, 2 went with the unpublished Directory page, and 6 went with the four unpublished product pages in Phase 5 fix round 2");
 const about = html.slice(html.indexOf('id="page-about"'), html.indexOf("</section>", html.indexOf('id="page-about"')));
 const order = ["Seen. Heard. Understood.", 'class="ab-matthew"', 'class="ab-cultcat"', 'id="about-team"', 'class="ab-stories"', 'id="about-mission"', 'id="about-faq"', 'id="about-contact"', 'class="ff-begin"'].map((k) => about.indexOf(k));
 ok(order.every((p, i) => p >= 0 && (i === 0 || p > order[i - 1])), "About order: brand opening, Matthew, CultCat, team, Brand stories, mission, FAQ, contact, starting point line");

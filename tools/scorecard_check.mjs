@@ -77,6 +77,19 @@ ok(/<\/h1>\s*<p class="sc-promise">A few short questions\. No email needed to se
   const body = html.replace(/<script[\s\S]*?<\/script>/g, (m) => (m.includes("var descMap") ? m : ""));
   const stray = [...body.matchAll(/\b(nine|9)[- ](short )?questions?\b|Nine[- ]question/gi)].map((m) => m[0]);
   ok(stray.length === 0 && !/nine[- ]question|Nine questions/i.test(ll), "no 'nine questions' count anywhere on the site, in meta, JSON-LD or llms.txt " + stray.join(","));
+  {
+    const h1 = (html.match(/<div class="sc-intro">[\s\S]*?<h1>([\s\S]*?)<\/h1>/) || [])[1] || "";
+    const pl = (html.match(/<p class="sc-promise">([\s\S]*?)<\/p>/) || [])[1] || "";
+    const TIME = /\b(under|in|within|less than|about|just)?\s*(a|one|two|three|five|ten|2|3|5|10|\d+)[- ]?(minutes?|mins?|seconds?)\b|\b(quick|fast|instant|two-minute|2-minute)\b|\btakes?\b[^.]*\b(minutes?|seconds?)\b/i;
+    ok(h1 === "Find your clearest first step." && !TIME.test(h1) && !TIME.test(pl), "the scorecard h1 and promise line make no time promise (h1 is exactly: Find your clearest first step.)");
+    ok(!/under two minutes/i.test(h1 + pl + html.slice(html.indexOf('id="page-scorecard"'), html.indexOf('id="page-scorecard"') + 1500)), "no 'under two minutes' in the scorecard entry block");
+    ok(!/service, program, or (product|app)|points to the service|point to the matching service|point you to the service|sort the (seven )?services|for the service you need first/i.test(html), "no sentence anywhere says the Scorecard points to a service, program, or product");
+    const NEWP = "Your result points to one starting point, a pilot session, an assessment, or Inside Fixing Friction, matched to the problem";
+    const blocks = [...html.matchAll(/Let the Scorecard route you/g)].map((m) => html.slice(m.index, m.index + 700));
+    ok(blocks.length === 18 && blocks.every((b) => b.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").includes(NEWP)), "all 18 remaining Let the Scorecard route you blocks use the approved starting point wording (" + blocks.length + " found)");
+    const promo = html.slice(html.indexOf("A few short questions. One suggested first step."), html.indexOf("A few short questions. One suggested first step.") + 600);
+    ok(promo.includes("The Scorecard points to the starting point that fits first, and one concrete next step."), "the Pathways promo uses the approved wording");
+  }
   ok(!/startSummaryBox|startCopyAgain|summary has been copied|Copy summary again/.test(html), "the dead Get Started summary banner is gone and nothing references it");
 }
 ok(!/diagnos|disability status/i.test(scCode), "no question in the flow asks for a diagnosis, condition name or status");

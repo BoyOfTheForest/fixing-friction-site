@@ -17,7 +17,9 @@ const LASTMOD = "2026-11-22";
 const CHECK = process.argv.includes("--check");
 
 /* Pages that stay out of sitemap.xml and the llms.txt resource lists (standing exclusions). Reachable by direct address. */
-export const UNLISTED = ["method", "frictions", "buildout-page"];
+export const UNLISTED = ["method", "frictions", "frictions-quiz", "frictions-results", "buildout-page"];
+/* Route ids that start with "frictions-" live under /frictions/ (the quiz and the results page of Find Your Frictions). */
+export const pathFor = (id) => (id === "home" ? "/" : "/" + id.replace(/^frictions-/, "frictions/") + "/");
 /* Old addresses that land on a real page. Used by the homepage hash shim and by 404.html. */
 export const ALIASES = { assessments: "audits", consulting: "advising", carecircle: "buildout-page", brainblame: "buildout-page", app: "buildout-page", prototypes: "buildout-page", apps: "buildout-page" };
 
@@ -54,7 +56,6 @@ export function buildAll(srcText) {
   const titlesMap = new Function("return " + src.match(/var titlesMap = (\{[^\n]*\});\n/)[1])();
   const descMap = new Function("return " + src.match(/var descMap = (\{[^\n]*\});\n/)[1])();
 
-  const pathFor = (id) => (id === "home" ? "/" : "/" + id + "/");
   const realHref = (go, jump, role, sc) => {
     let id = ALIASES[go] || go;
     if (!routes.includes(id)) id = "home";
@@ -89,7 +90,6 @@ export function buildAll(srcText) {
 
   const shim =
     "    <script>\n" +
-    "      /* Old shared addresses such as /#scorecard?role=leader land on the real page (/scorecard/?role=leader). */\n" +
     "      (function () {\n" +
     '        var h = (location.hash || "").replace(/^#/, "");\n' +
     "        if (!h) return;\n" +
@@ -100,7 +100,7 @@ export function buildAll(srcText) {
     "        var routes = " + JSON.stringify(routes.filter((r) => r !== "home")) + ";\n" +
     "        id = alias[id] || id;\n" +
     "        if (routes.indexOf(id) === -1) return;\n" +
-    '        location.replace("/" + id + "/" + query);\n' +
+    '        location.replace("/" + id.replace(/^frictions-/, "frictions/") + "/" + query);\n' +
     "      })();\n" +
     "    </script>\n";
 
@@ -146,7 +146,7 @@ export function buildAll(srcText) {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const out = buildAll(read(path.join(ROOT, "src", "site.html")));
   const files = [];
-  for (const id of out.routes) files.push([id === "home" ? "index.html" : id + "/index.html", out.pages[id]]);
+  for (const id of out.routes) files.push([id === "home" ? "index.html" : pathFor(id).slice(1) + "index.html", out.pages[id]]);
   files.push(["sitemap.xml", out.sitemap]);
   let changed = 0;
   for (const [rel, text] of files) {

@@ -21,12 +21,12 @@
 <script>
 /* Old or typed addresses such as /audits.html or /assessments land on the real page. */
 (function () {
-  var pages = ["home", "voting", "speaking", "selfeval", "events", "buildout-page", "method", "frictions", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
+  var pages = ["home", "voting", "speaking", "selfeval", "events", "buildout-page", "method", "frictions", "frictions-quiz", "frictions-results", "scorecard", "services", "verticals", "pathways", "audits", "advising", "support", "materials", "plans", "findings", "communications", "cohesion", "training", "modules", "titles", "reporting", "evidence", "about", "start", "inside", "tools", "community", "debt", "keydates", "athome", "burnout", "scorecards", "ai-scorecards"];
   var alias = {"assessments": "audits", "consulting": "advising", "carecircle": "buildout-page", "brainblame": "buildout-page", "app": "buildout-page", "prototypes": "buildout-page", "apps": "buildout-page", "accessibility-audits": "audits", "contact": "start", "get-started": "start", "pricing": "start", "services-and-pricing": "services", "faq": "about", "ada-training": "training", "keynote": "speaking", "voting-places": "voting"};
   var seg = (location.pathname || "").replace(/^\/+|\/+$/g, "").toLowerCase().split("/")[0];
   seg = seg.replace(/\.html?$/, "");
   var id = alias[seg] || (pages.indexOf(seg) !== -1 ? seg : "");
-  if (id) location.replace(id === "home" ? "/" : "/" + id + "/");
+  if (id) location.replace(id === "home" ? "/" : "/" + id.replace(/^frictions-/, "frictions/") + "/");
 })();
 </script>
 </head>

@@ -15,7 +15,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const src = fs.readFileSync(path.join(ROOT, "src", "site.html"), "utf8").split("\r\n").join("\n");
 const routes = [...(src.match(/var pages = \[([^\]]*)\]/)[1]).matchAll(/"([^"]+)"/g)].map((m) => m[1]);
-const pathFor = (id) => (id === "home" ? "/" : "/" + id + "/");
+const pathFor = (id) => (id === "home" ? "/" : "/" + id.replace(/^frictions-/, "frictions/") + "/");
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".woff2": "font/woff2", ".svg": "image/svg+xml", ".txt": "text/plain", ".xml": "application/xml" };
 const srv = http.createServer((req, rsp) => {
   let u = decodeURIComponent(req.url.split("?")[0]);
@@ -100,7 +100,7 @@ for (const rt of rows) {}
 console.log("route".padEnd(16) + "text KB".padEnd(9) + "vs source".padEnd(11) + "h1 / result");
 for (const r of rows) console.log(r.rt.padEnd(16) + String(r.kb).padEnd(9) + (r.ratio + "%").padEnd(11) + (r.fails.length ? "FAIL: " + r.fails.join("; ") : "ok  " + r.h1.slice(0, 60)));
 console.log("\nreachable from the homepage by real links: " + seen.size + " of " + routes.length + " pages");
-const EXPECT_UNLINKED = [];
+const EXPECT_UNLINKED = ["frictions-results"]; /* reached only by finishing the quiz, or by the Return Path with a result in the tab: by design no static link points at it */
 for (const u of unreachable) { console.log("  not reached by links: " + u); }
 for (const u of unreachable) if (!EXPECT_UNLINKED.includes(u)) failures.push(u + ": not reachable from the homepage by following real links");
 ws.close(); proc.kill(); srv.close();

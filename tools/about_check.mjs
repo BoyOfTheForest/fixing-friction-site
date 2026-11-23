@@ -13,7 +13,7 @@ const srv = await new Promise((res) => {
   }).listen(0, "127.0.0.1", () => res(s));
 });
 const ORIGIN = "http://127.0.0.1:" + srv.address().port; const base = ORIGIN + "/";
-const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id + "/");
+const RP = (id) => ORIGIN + (id === "home" ? "/" : "/" + id.replace(/^frictions-/, "frictions/") + "/");
 const goReal = async (url, want) => { await send("Page.navigate", { url }); for (let i = 0; i < 80; i++) { await sleep(100); try { const r = await ev("location.pathname + String.fromCharCode(124) + document.readyState"); if (r === want + String.fromCharCode(124) + "complete") break; } catch (e) {} } };
 const chrome = ["C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"].find((p) => fs.existsSync(p));
 const port = 9950 + Math.floor(Math.random() * 40);
@@ -30,7 +30,7 @@ const load = async (w, h) => { await send("Emulation.setDeviceMetricsOverride", 
 const fails = []; const ok = (c, m) => { console.log((c ? "ok   " : "FAIL ") + m); if (!c) fails.push(m); };
 const KEY = (k, code, vk) => send("Input.dispatchKeyEvent", { type: "keyDown", key: k, code, windowsVirtualKeyCode: vk }).then(() => send("Input.dispatchKeyEvent", { type: "keyUp", key: k, code, windowsVirtualKeyCode: vk }));
 
-const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id + "/"); await sleep(800); };
+const show = async (id) => { await goReal(RP(id), id === "home" ? "/" : "/" + id.replace(/^frictions-/, "frictions/") + "/"); await sleep(800); };
 const LINEFN = `function(sel){
   var NB=String.fromCharCode(160), SMALL={a:1,an:1,the:1,and:1,or:1,in:1,of:1,to:1,at:1,for:1,on:1,by:1,with:1,from:1,but:1,as:1,so:1};
   var bad=[];

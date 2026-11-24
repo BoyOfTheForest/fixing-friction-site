@@ -81,14 +81,14 @@ ok(resources.length === 9 && resources.every((g) => pagesList.includes(g)), "eve
 ok(strip(secAll).replace(/ ,/g, ",").includes("Inside Fixing Friction leads to the Fixing Friction Community, a paid group coaching program for Divergent Doers."), "the Community is named as the program the route leads to, in the approved description");
 ok(!/paid community|\$|per seat|cohort size|launch date/i.test(strip(secAll)), "no price, launch date, cohort size or bare 'paid community' on the page");
 const hf = html.slice(html.indexOf("<header"), html.indexOf("</header>")) + html.slice(html.indexOf("<footer"), html.indexOf("</footer>"));
-ok(!/#frictions|data-go="frictions"/.test(hf), "not in navigation or footer");
+ok((hf.match(/data-go="frictions"/g) || []).length === 3 && !/data-go="frictions-(quiz|results)"/.test(hf), "in navigation and footer only as the first scorecard item of For Everyday Workers (header dropdown, mobile menu, footer), per the 2026-11-24 ruling; never the quiz or results routes");
 const homeSec = html.slice(html.indexOf('id="page-home"'), html.indexOf('id="page-home"') + 60000);
 const insideSec = html.slice(html.indexOf('id="page-inside"'), html.indexOf("</section>", html.indexOf('id="page-inside"')));
 const toolsSec = html.slice(html.indexOf('id="page-tools"'), html.indexOf("</section>", html.indexOf('id="page-tools"')));
 ok((homeSec.match(/data-go="frictions"/g) || []).length === 1 && /class="btn primary u02" data-go="frictions">Find Your Frictions/.test(homeSec) && homeSec.indexOf('data-go="frictions"') > homeSec.indexOf("For Everyday Workers &amp; Families"), "the homepage For Everyday Workers door carries it as the primary button");
 ok((insideSec.match(/data-go="frictions"/g) || []).length === 1, "the Inside page links to it once");
 ok((toolsSec.match(/data-go="frictions"/g) || []).length === 1, "the Tools page links to it once");
-ok((html.match(/data-go="frictions"/g) || []).length === 3, "exactly three links to the page in the source (home door, Inside, Tools)");
+ok((html.match(/data-go="frictions"/g) || []).length === 7, "exactly seven links to the page in the source (home door, Inside, Tools, the Scorecards hub card, and the three For Everyday Workers items)");
 
 // ---------- F3: built area sentences equal the approved lines, with no level word repeated at the start
 {

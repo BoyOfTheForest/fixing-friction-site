@@ -675,7 +675,7 @@
       .booking-strip .booking-copy span{display:block;font-size:.95rem;color:var(--muted);margin-top:2px;}
       .booking-strip .btnrow{margin-top:0;}
       @media (max-width:640px){ .booking-strip{align-items:flex-start;} .booking-strip .btnrow{margin-top:2px;} }
-      #training-calendar-december{scroll-margin-top:92px;}
+      #training-calendar-december,#stage-burn-out,#stage-turn-out,#stage-churn-out{scroll-margin-top:92px;}
       .announce-bar{background:#1E40AF;border-bottom:1px solid #1E3A8A;color:#FFFFFF;padding:9px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;text-align:center;font-size:.92rem;line-height:1.45;}
       .announce-bar p{margin:0;color:#FFFFFF;}
       .announce-bar p.announce-short{color:#FFFFFF;}
@@ -1472,9 +1472,9 @@
           <span class="nav-drop">
             <button type="button" class="drop-btn" data-nav-group="outs" aria-expanded="false" aria-controls="dm-outs">The Three Outs <span class="caret" aria-hidden="true">&#9662;</span></button>
             <span class="drop-menu wide" id="dm-outs" role="group" aria-label="The Three Outs">
-              <a href="/" data-go="home"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
-              <a href="/" data-go="home"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
-              <a href="/" data-go="home"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
+              <a href="/#stage-burn-out" data-go="home" data-jump="stage-burn-out"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
+              <a href="/#stage-turn-out" data-go="home" data-jump="stage-turn-out"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
+              <a href="/#stage-churn-out" data-go="home" data-jump="stage-churn-out"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
               <a href="/debt/" data-go="debt">How friction builds into all three</a>
             </span>
           </span>
@@ -1493,6 +1493,7 @@
               <a href="/inside/" data-go="inside">Inside Fixing Friction</a>
               <a href="/inside/" data-go="inside">Help at work</a>
               <a href="/athome/" data-go="athome">Help at home and for families</a>
+              <a href="/frictions/" data-go="frictions">Find Your Frictions</a>
               <a href="/scorecards/" data-go="scorecards">Take the Scorecard</a>
             </span>
           </span>
@@ -1529,9 +1530,9 @@
       </div>
       <div class="menupanel" id="menupanel" role="navigation" aria-label="Site menu">
         <div class="menu-set" role="group" aria-label="The Three Outs" data-nav-group="outs">
-        <a href="/" data-go="home" class="sub"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
-        <a href="/" data-go="home" class="sub"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
-        <a href="/" data-go="home" class="sub"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
+        <a href="/#stage-burn-out" data-go="home" data-jump="stage-burn-out" class="sub"><span class="di-t">Burn Out<span class="vh">: </span></span><span class="di-s">What individual contributors feel</span></a>
+        <a href="/#stage-turn-out" data-go="home" data-jump="stage-turn-out" class="sub"><span class="di-t">Turn Out<span class="vh">: </span></span><span class="di-s">When people stop showing up</span></a>
+        <a href="/#stage-churn-out" data-go="home" data-jump="stage-churn-out" class="sub"><span class="di-t">Churn Out<span class="vh">: </span></span><span class="di-s">When people leave for good</span></a>
         <a href="/debt/" data-go="debt" class="sub">How friction builds into all three</a>
         </div>
         <div class="menu-set g-start" role="group" aria-label="For Leaders" data-nav-group="leaders">
@@ -1544,6 +1545,7 @@
         <a href="/inside/" data-go="inside" class="sub">Inside Fixing Friction</a>
         <a href="/inside/" data-go="inside" class="sub">Help at work</a>
         <a href="/athome/" data-go="athome" class="sub">Help at home and for families</a>
+        <a href="/frictions/" data-go="frictions" class="sub">Find Your Frictions</a>
         <a href="/scorecards/" data-go="scorecards" class="sub">Take the Scorecard</a>
         </div>
         <div class="menu-set g-start" role="group" aria-label="Speaking and Training" data-nav-group="speaking">
@@ -1629,9 +1631,9 @@
         <nav class="sitemap" aria-label="Footer">
           <div>
             <h3 role="heading" aria-level="2">The&nbsp;Three&nbsp;Outs</h3>
-            <a href="/" data-go="home">Burn Out</a>
-            <a href="/" data-go="home">Turn Out</a>
-            <a href="/" data-go="home">Churn Out</a>
+            <a href="/#stage-burn-out" data-go="home" data-jump="stage-burn-out">Burn Out</a>
+            <a href="/#stage-turn-out" data-go="home" data-jump="stage-turn-out">Turn Out</a>
+            <a href="/#stage-churn-out" data-go="home" data-jump="stage-churn-out">Churn Out</a>
             <a href="/debt/" data-go="debt">How friction builds</a>
           </div>
           <div>
@@ -1646,6 +1648,7 @@
             <a href="/inside/" data-go="inside">Inside Fixing Friction</a>
             <a href="/inside/" data-go="inside">Help at work</a>
             <a href="/athome/" data-go="athome">Help at home and for families</a>
+            <a href="/frictions/" data-go="frictions">Find Your Frictions</a>
             <a href="/scorecards/" data-go="scorecards">Take the Scorecard</a>
           </div>
           <div>

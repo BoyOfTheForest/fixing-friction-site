@@ -26,3 +26,5 @@ jobs:
         run: CHROME=$(which google-chrome || which chromium) node tools/speaking_check.mjs "$RUNNER_TEMP/speaking-shots"
       - name: Training page clarity check
         run: CHROME=$(which google-chrome || which chromium) node tools/training_check.mjs "$RUNNER_TEMP/training-shots"
+      - name: Navigation link integrity check
+        run: CHROME=$(which google-chrome || which chromium) node tools/nav_links_check.mjs "$RUNNER_TEMP/nav-links-shots"

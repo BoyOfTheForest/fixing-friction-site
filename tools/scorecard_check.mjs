@@ -56,7 +56,7 @@ const rectOf = (sel) => ev(`(function(){var e=document.querySelector(${JSON.stri
 // ---------- static: preliminary items
 ok(html.includes("Matthew is a practitioner who is Deaf on his right.") && !html.includes("Deaf on one side"), "P1: Training line reads \"Matthew is a practitioner who is Deaf on his right.\"");
 ok((html.match(/<h2 class="u11">Hitting friction for yourself, your family, or your job\?<\/h2>/g) || []).length === 1 && !html.includes("Hitting friction at work, or at home"), "P2: individuals card heading changed, once");
-ok((html.match(/<h2 class="u11">Tired of seeing your team unhappy, disappearing, and(?:&nbsp;| )eventually leaving\?<\/h2>/g) || []).length === 1 && !html.includes("Leading an organization?"), "P3: organizations card heading changed, once");
+ok((html.match(/<h2 class="u11">Tired of seeing your team unhappy, disappearing, and(?:&nbsp;| )eventually(?:&nbsp;| )leaving\?<\/h2>/g) || []).length === 1 && !html.includes("Leading an organization?"), "P3: organizations card heading changed, once");
 ok(/access <br class="hero-rights-br" \/><span[^>]*>they deserve and have a right to\.<\/span>/.test(html.replace(/&nbsp;/g, " ")), "P4: authored break sits immediately before \"they deserve\" in the hero subhead, wording unchanged");
 ok(!/Speaking, Training, Consulting|Speaking, Training, and Consulting/.test(html + ll) && /hero-services">Speaking, Training, Compliance, Consulting</.test(html), "P5: hero services line and every machine-readable copy read Speaking, Training, Compliance, Consulting (locked order)");
 
